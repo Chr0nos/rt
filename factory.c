@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:00:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 19:44:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 20:03:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "libft.h"
 #include <stdlib.h>
 
 t_uint				rt_sizeof(t_type type)
@@ -43,5 +44,6 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	obj->id = lastid++;
 	obj->trans = draw_make_matrix_identity();
+	ft_bzero(obj->bounds, sizeof(t_v3f) * 6);
 	return (rt_obj_addchild(parent, obj));
 }

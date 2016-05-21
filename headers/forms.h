@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 19:35:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 19:59:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct			s_obj
 	t_type				type;
 	t_uint				id;
 	t_mattf				trans;
+	t_v3f				bounds[6];
 	struct s_obj		*parent;
 	struct s_obj		*childs;
 	struct s_obj		*next;
