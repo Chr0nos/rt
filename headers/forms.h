@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/20 23:53:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 19:35:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,51 @@
 # define FORMS_H
 # include "draw.h"
 
-typedef t_vector	t_v3f;
-typedef t_matrix	t_mattf;
+typedef unsigned int	t_uint;
+typedef t_vector		t_v3f;
+typedef t_matrix		t_mattf;
 
-enum				e_type
+typedef enum			e_type
 {
 	ROOT = 0,
 	CUBE = 1,
 	PLAN = 2,
-	SPHERE = 3
-};
+	SPHERE = 3,
+	CAMERA = 4,
+	EMPTY = 5
+}						t_type;
 
-typedef struct		s_cube
+typedef struct			s_cube
 {
-	unsigned int	color;
-	t_mattf			trans;
-	float			size;
-}					t_cube;
+	unsigned int		color;
+	float				size;
+}						t_cube;
 
-typedef struct		s_plan
+typedef struct			s_plan
 {
-	unsigned int	color;
-	t_mattf			trans;
-}					t_plan;
+	unsigned int		color;
+}						t_plan;
 
-typedef struct		s_sphere
+typedef struct			s_sphere
 {
-	unsigned int	color;
-	t_mattf			trans;
-	float			radius;
-}					t_sphere;
+	unsigned int		color;
+	float				radius;
+}						t_sphere;
 
-typedef struct		s_obj
+typedef struct			s_camera
 {
-	int				type;
-	unsigned int	id;
-	struct s_obj	*parent;
-	struct s_obj	*childs;
-	struct s_obj	*next;
-	void			*content;
-}					t_obj;
+	t_mattf				rtrans;
+}						t_camera;
+
+typedef struct			s_obj
+{
+	t_type				type;
+	t_uint				id;
+	t_mattf				trans;
+	struct s_obj		*parent;
+	struct s_obj		*childs;
+	struct s_obj		*next;
+	void				*content;
+}						t_obj;
 
 #endif

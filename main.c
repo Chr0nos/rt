@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/20 18:47:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 16:15:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,16 @@ int		main(void)
 
 	if (draw_init(&rt.sys, draw_make_px(800, 600), "RTv1") < 0)
 		return (1);
-	while (!sdl_loop(&event, &rt))
-		SDL_Delay(1);
+	if (!(rt.sys.screen = SDL_GetWindowSurface(rt.sys.win)))
+		ft_putendl("error: failed to get sdl surface from screen");
+	else
+	{
+		draw_reset_surface(rt.sys.screen, COLOR_WHITE);
+		SDL_UpdateWindowSurface(rt.sys.win);
+		while (!sdl_loop(&event, &rt))
+			SDL_Delay(1);
+	}
+	SDL_DestroyWindow(rt.sys.win);
+	SDL_Quit();
 	return (0);
 }

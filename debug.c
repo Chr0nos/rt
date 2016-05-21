@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/20 23:54:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 19:29:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void		rt_puttype(int type)
 		ft_putstr("SPHERE");
 	else if (type == ROOT)
 		ft_putstr("ROOT");
+	else if (type == CAMERA)
+		ft_putstr("CAMERA");
 	else
 		ft_putstr("UNKNOW");
 }
@@ -46,7 +48,7 @@ static void		rt_debug_childs(t_obj *item, unsigned int level)
 	}
 }
 
-void	rt_debug(t_obj *item, unsigned int level)
+void			rt_debug(t_obj *item, unsigned int level)
 {
 	rt_putnchar('\t', level);
 	ft_putstr("type: ");

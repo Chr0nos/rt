@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/05/20 23:19:20 by snicolet         ###   ########.fr        #
+#    Updated: 2016/05/21 19:39:51 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ re: fclean all
 
 relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
 
-linux:
-	make FLAGS="$(FLAGS)" LINKER="$(FLAGS) -L $(DRAW) -ldraw -L $(LIBFT) -lft -lm"
+test: object.o debug.o factory.o test.o
+	$(CC) $(FLAGS) object.o debug.o factory.o test.o -o test $(LINKER)
 
 .PHONY: all re clean fclean
