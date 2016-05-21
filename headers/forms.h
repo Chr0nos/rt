@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 19:59:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/21 20:17:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,23 @@ typedef struct			s_camera
 	t_mattf				rtrans;
 }						t_camera;
 
+typedef struct			s_box
+{
+	float				xmin;
+	float				xmax;
+	float				ymin;
+	float				ymax;
+	float				zmin;
+	float				zmax;
+}						t_box;
+
 typedef struct			s_obj
 {
 	t_type				type;
 	t_uint				id;
 	t_mattf				trans;
-	t_v3f				bounds[6];
+	t_box				bounds;
+	t_box				hitbox;
 	struct s_obj		*parent;
 	struct s_obj		*childs;
 	struct s_obj		*next;
