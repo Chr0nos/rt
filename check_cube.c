@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-static int	check_between(float x, float min, float max)
+static int	check_between(float a, float min, float max)
 {
 	return ((a >= min) && (a <= max));
 }
