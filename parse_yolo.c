@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/23 20:01:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/23 21:58:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 
 	split = ft_strsplit(opts, ' ');
 	size = ft_tabcount((void**)split);
-	if ((obj->type == SPHERE) && (size == 6))
+	if (size >= 6)
 	{
-		((t_sphere*)obj->content)->radius = ft_atoi(split[0]);
+		obj->trans.offset = (t_v3f){(float)ft_atod(split[1]),
+			(float)ft_atod(split[2]), (float)ft_atod(split[3])};
+		if (obj->type == SPHERE)
+			((t_sphere*)obj->content)->radius = (float)ft_atod(split[0]);
+		rt_box_update(obj);
 	}
 	ft_free_tab(split, (unsigned int)size);
 	free(split);
