@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/05/21 20:44:37 by snicolet         ###   ########.fr        #
+#    Updated: 2016/05/23 17:30:38 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT) -I $(SDL)
 CC=clang
 SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
-OBJ=main.o debug.o factory.o object.o check_cube.o
+OBJ=main.o debug.o factory.o object.o check_cube.o parse_yolo.o
 
 all: $(NAME)
 

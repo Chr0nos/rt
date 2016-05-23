@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 16:15:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/23 17:36:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
-int		main(void)
+static int		rt_start(void)
 {
 	t_rt		rt;
 	SDL_Event	event;
@@ -78,5 +78,13 @@ int		main(void)
 	}
 	SDL_DestroyWindow(rt.sys.win);
 	SDL_Quit();
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac >= 2)
+		ft_printf("%p\n", parse_yolo(av[1]));
+	(void)rt_start;
 	return (0);
 }
