@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 00:10:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 01:53:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include <math.h>
 #define PROP_SIZE 0
-#define CUBE_COLOR_POS 4
 #define S_COLOR_POS 4
 #define CAMERA_OR_X 3
 #define CAMERA_OR_Y 4
@@ -73,19 +72,12 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 {
 	if (!ac)
 		return (1);
-	if (obj->type == SPHERE)
+	if (obj->type & (SPHERE | CUBE))
 	{
 		if (ac < 4)
 			return (1);
 		((t_sphere*)obj->content)->radius = (float)ft_atod(av[PROP_SIZE]);
 		((t_sphere*)obj->content)->color = yolo_setup_color(av[S_COLOR_POS]);
-	}
-	else if (obj->type == CUBE)
-	{
-		if (ac < 4)
-			return (1);
-		((t_cube*)obj->content)->size = (float)ft_atod(av[PROP_SIZE]);
-		((t_cube*)obj->content)->color = yolo_setup_color(av[CUBE_COLOR_POS]);
 	}
 	else if (obj->type == CAMERA)
 		return (yolo_setup_camera(obj, ac, av));
