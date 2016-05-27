@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/23 17:36:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 18:31:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,13 @@ static int		rt_start(void)
 
 int		main(int ac, char **av)
 {
+	t_obj	*root;
+
 	if (ac >= 2)
-		ft_printf("%p\n", parse_yolo(av[1]));
+	{
+		root = parse_yolo(av[1]);
+		rt_obj_free(root, 0);
+	}
 	(void)rt_start;
 	return (0);
 }
