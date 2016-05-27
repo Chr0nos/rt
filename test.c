@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:48:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 18:22:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 23:16:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		main(void)
 	rt_factory_alloc(CUBE, cube);
 	rt_factory_alloc(SPHERE, root);
 	rt_debug(root, 0);
-
 	rt_obj_free(cube, 0);
 	rt_debug(root, 0);
 	rt_obj_free(root, 0);

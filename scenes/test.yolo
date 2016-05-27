@@ -1,5 +1,6 @@
 #format: <type> <size> <x> <y> <z> <color>
-CAMERA 10 10 10
+#		pos					orientation
+CAMERA 10 10 10				0 0 0
 #    size	pos				color
 CUBE 10		 0 0 0			255:0:0
 	SPHERE 7 -2 4 7			0:255:0
