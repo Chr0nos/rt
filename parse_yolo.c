@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 00:09:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 00:26:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static int		parse_yolo_lvl(char *line)
 	return (len);
 }
 
-static void		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
+static void		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj,
+	t_obj *root)
 {
 	const int	lvl = parse_yolo_lvl(line);
 	t_obj		*parent;
@@ -73,7 +74,9 @@ static void		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
 	name_type = ft_strndup(line, ft_strsublenstr(line, " \t"));
 	type = parse_yolo_gettype(name_type);
 	free(name_type);
-	if ((*lastlvl < lvl) || ((*lastobj)->type == ROOT))
+	if (lvl == 0)
+		parent = root;
+	else if ((*lastlvl < lvl) || ((*lastobj)->type == ROOT))
 		parent = *lastobj;
 	else
 		parent = (*lastobj)->parent;
@@ -98,7 +101,7 @@ t_obj			*parse_yolo(const char *filepath)
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		if ((line[0] != '#') && (!ft_stronlystr(line, " \t")))
-			parse_yolo_line(line, &lastlvl, &lastobj);
+			parse_yolo_line(line, &lastlvl, &lastobj, obj);
 		free(line);
 	}
 	close(fd);
