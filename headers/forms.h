@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 20:17:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 17:14:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum			e_type
 	PLAN = 2,
 	SPHERE = 3,
 	CAMERA = 4,
-	EMPTY = 5
+	EMPTY = 5,
+	SPOT = 6
 }						t_type;
 
 typedef struct			s_cube
