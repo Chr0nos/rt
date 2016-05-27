@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 22:58:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 23:33:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_obj			*parse_yolo(const char *filepath)
 	lastobj = obj;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
-		if (line[0] != '#')
+		if ((line[0] != '#') && (line[0]))
 			parse_yolo_line(line, &lastlvl, &lastobj);
 		free(line);
 	}
