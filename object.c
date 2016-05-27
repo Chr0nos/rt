@@ -6,11 +6,18 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/24 06:51:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 01:45:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+t_obj		*rt_obj_nparent(t_obj *obj, unsigned int n)
+{
+	while ((n--) && (obj->parent))
+		obj = obj->parent;
+	return (obj);
+}
 
 t_obj		*rt_obj_addchild(t_obj *parent, t_obj *child)
 {
