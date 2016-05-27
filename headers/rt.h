@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/23 21:54:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 20:54:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_obj			*rt_obj_makeroot(void);
 t_obj			*rt_obj_delchild(t_obj *parent, t_obj *child);
 
 t_obj			*parse_yolo(const char *filepath);
+int				yolo_setup(t_obj *obj, size_t ac, char **av);
+
 
 void			rt_box_update(t_obj *obj);
 

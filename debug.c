@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 17:43:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 21:51:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void		rt_puttype(int type)
 		ft_putstr("ROOT");
 	else if (type == CAMERA)
 		ft_putstr("CAMERA");
+	else if (type == SPOT)
+		ft_putstr("SPOT");
+	else if (type == POINTLIGHT)
+		ft_putstr("POINTLIGHT");
 	else
 		ft_putstr("UNKNOW");
 }
@@ -67,6 +71,8 @@ void			rt_debug(t_obj *item, unsigned int level)
 	rt_puttype(item->type);
 	if (item->type != ROOT)
 		rt_debug_pos(item);
+	if (item->type & (CUBE | SPHERE | PLAN))
+		ft_printf(" color: %d", *(unsigned int*)item->content);
 	write(1, "\n", 1);
 	rt_debug_childs(item, level);
 }

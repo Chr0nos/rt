@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:00:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 20:19:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 22:38:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,21 @@
 
 t_uint				rt_sizeof(t_type type)
 {
-	if (type == CUBE)
-		return (sizeof(t_obj) + sizeof(t_cube));
-	if (type == PLAN)
-		return (sizeof(t_obj) + sizeof(t_plan));
-	if (type == SPHERE)
-		return (sizeof(t_obj) + sizeof(t_sphere));
-	else if (type == CAMERA)
-		return (sizeof(t_obj) + sizeof(t_camera));
-	return (0);
+	unsigned int		p;
+	const t_typesize	sizes[] = {
+		(t_typesize){CUBE, sizeof(t_cube)},
+		(t_typesize){PLAN, sizeof(t_plan)},
+		(t_typesize){SPHERE, sizeof(t_sphere)},
+		(t_typesize){CAMERA, sizeof(t_camera)}
+	//	(t_typesize){SPOT, sizeof(t_spot)},
+	//	(t_typesize){POINTLIGHT, sizeof(t_pointlight)}
+	};
+
+	p = 4;
+	while (p--)
+		if (sizes[p].type == type)
+			return (sizeof(t_obj) + (unsigned int)sizes[p].size);
+	return (sizeof(t_obj));
 }
 
 t_obj				*rt_factory_alloc(t_type type, t_obj *parent)

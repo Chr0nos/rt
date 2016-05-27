@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/23 21:58:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 21:44:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 	char	**split;
 	size_t	size;
 
-	split = ft_strsplit(opts, ' ');
+	split = ft_strsplitstr(opts, " \t");
 	size = ft_tabcount((void**)split);
 	if (size >= 6)
 	{
 		obj->trans.offset = (t_v3f){(float)ft_atod(split[1]),
 			(float)ft_atod(split[2]), (float)ft_atod(split[3])};
-		if (obj->type == SPHERE)
-			((t_sphere*)obj->content)->radius = (float)ft_atod(split[0]);
+		yolo_setup(obj, size ,split);
 		rt_box_update(obj);
 	}
 	ft_free_tab(split, (unsigned int)size);
@@ -39,11 +38,12 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 static t_type	parse_yolo_gettype(const char *name)
 {
 	const char		*tname[] = { "CUBE", "PLAN", "SPHERE", "ROOT", "CAMERA",
-		"EMPTY"};
-	const t_type	types[] = { CUBE, PLAN, SPHERE, ROOT, CAMERA, EMPTY };
+		"EMPTY", "SPOT", "POINTLIGHT" };
+	const t_type	types[] = { CUBE, PLAN, SPHERE, ROOT, CAMERA, EMPTY,
+	 	SPOT, POINTLIGHT };
 	int				p;
 
-	p = 6;
+	p = 8;
 	while (p--)
 		if (!ft_strcmp(tname[p], name))
 			return (types[p]);
@@ -71,7 +71,6 @@ static void		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
 	line += lvl;
 	name_type = ft_strndup(line, ft_strsublen(line, ' '));
 	type = parse_yolo_gettype(name_type);
-	ft_printf("lvl: %d - line: %s\n", lvl, line);
 	free(name_type);
 	if ((*lastlvl < lvl) || ((*lastobj)->type == ROOT))
 		parent = *lastobj;
@@ -95,10 +94,8 @@ t_obj			*parse_yolo(const char *filepath)
 	lastlvl = 0;
 	obj = rt_obj_makeroot();
 	lastobj = obj;
-	while (ft_get_next_line(fd, &line) > 0)
+	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
-		if (!line)
-			break ;
 		if (line[0] != '#')
 			parse_yolo_line(line, &lastlvl, &lastobj);
 		free(line);

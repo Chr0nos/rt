@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 17:14:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/27 22:04:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,21 @@ typedef t_matrix		t_mattf;
 
 typedef enum			e_type
 {
-	ROOT = 0,
-	CUBE = 1,
-	PLAN = 2,
-	SPHERE = 3,
-	CAMERA = 4,
-	EMPTY = 5,
-	SPOT = 6
+	ROOT = 1,
+	CUBE = 1 << 1,
+	PLAN = 1 << 2,
+	SPHERE = 1 << 3,
+	CAMERA = 1 << 4,
+	EMPTY = 1 << 5,
+	SPOT = 1 << 6,
+	POINTLIGHT = 1 << 7
 }						t_type;
+
+typedef struct			s_typesize
+{
+	t_type				type;
+	size_t				size;
+}						t_typesize;
 
 typedef struct			s_cube
 {

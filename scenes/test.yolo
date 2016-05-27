@@ -1,4 +1,6 @@
 #format: <type> <size> <x> <y> <z> <color>
-CUBE 10 0 0 0 0x00ff00
-	SPHERE 7 -2 4 7 0xff0000
-	CUBE 4 4 4 4 0x000000
+CAMERA 10 10 10
+#    size	pos				color
+CUBE 10		 0 0 0			255:0:0
+	SPHERE 7 -2 4 7			0:255:0
+	CUBE 4 4 4 4			0:0:0
