@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/21 00:28:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/24 06:51:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_obj		*rt_obj_makeroot(void)
 	root->next = NULL;
 	root->content = NULL;
 	root->type = ROOT;
+	rt_box_update(root);
 	return (root);
 }
 
