@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 23:56:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 00:09:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_type	parse_yolo_gettype(const char *name)
 	const char		*tname[] = { "CUBE", "PLAN", "SPHERE", "ROOT", "CAMERA",
 		"EMPTY", "SPOT", "POINTLIGHT" };
 	const t_type	types[] = { CUBE, PLAN, SPHERE, ROOT, CAMERA, EMPTY,
-	 	SPOT, POINTLIGHT };
+		SPOT, POINTLIGHT };
 	int				p;
 
 	p = 8;

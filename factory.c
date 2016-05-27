@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 23:00:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 23:16:00 by snicolet         ###   ########.fr       */
+/*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
+/*   Updated: 2016/05/28 00:08:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 t_uint				rt_sizeof(t_type type)
 {
 	unsigned int		p;
-	const t_typesize	sizes[] = {
-		(t_typesize){CUBE, sizeof(t_cube)},
-		(t_typesize){PLAN, sizeof(t_plan)},
-		(t_typesize){SPHERE, sizeof(t_sphere)},
-		(t_typesize){CAMERA, sizeof(t_camera)}
-	};
+	t_typesize			sizes[4];
 
-	p = 4;
+	p = 0;
+	sizes[p++] = (t_typesize){CUBE, sizeof(t_cube)};
+	sizes[p++] = (t_typesize){PLAN, sizeof(t_plan)};
+	sizes[p++] = (t_typesize){SPHERE, sizeof(t_sphere)};
+	sizes[p++] = (t_typesize){CAMERA, sizeof(t_camera)};
 	while (p--)
 		if (sizes[p].type == type)
 			return (sizeof(t_obj) + (unsigned int)sizes[p].size);
