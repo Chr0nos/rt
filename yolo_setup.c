@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 03:26:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 03:56:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,18 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 {
-	t_mattf		m;
-	t_mattf		mtmp;
-	t_v3f		tmp;
-	t_v3f		scale;
-	t_v3f		offset;
+	t_v3f		axes;
 
 	if (ac < CAMERA_OR_Z)
 	{
 		ft_printf("error: failed to setup camera\n");
 		return (1);
 	}
-	tmp.x = (float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2);
-	tmp.y = (float)(ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2);
-	tmp.z = (float)(ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2);
-	scale = (t_v3f){1.0, 1.0, 1.0};
-	offset = (t_v3f){0.0, 0.0, 0.0};
-	m = draw_make_matrix_x(offset, tmp.x, scale);
-	mtmp = draw_make_matrix_y(offset, tmp.y, scale);
-	m = draw_matrix_multiply_matrix(m, &mtmp);
-	mtmp = draw_make_matrix_z(offset, tmp.z, scale);
-	m = draw_matrix_multiply_matrix(m, &mtmp);
-	m.offset = obj->trans.offset;
-	obj->trans = m;
+	axes = (t_v3f){(float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2),
+			(float)(ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2),
+			(float)(ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2)};
+	obj->trans = draw_matrix_multiply_axes(axes, (t_v3f){1.0, 1.0, 1.0},
+		obj->trans.offset);
 	return (0);
 }
 
