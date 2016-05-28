@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 22:04:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 21:02:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct			s_sphere
 typedef struct			s_camera
 {
 	t_mattf				rtrans;
+	float				fov;
 }						t_camera;
 
 typedef struct			s_box
@@ -80,5 +81,11 @@ typedef struct			s_obj
 	struct s_obj		*next;
 	void				*content;
 }						t_obj;
+
+typedef struct			s_ray
+{
+	t_v3f				start;
+	t_v3f				dir;
+}						t_ray;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 18:20:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 21:15:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct	s_rt
 {
 	t_draw		sys;
+	t_obj		*root;
 }				t_rt;
 
 int				keydown(int keycode, t_rt *rt);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 04:26:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 21:18:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 		ft_printf("error: failed to setup camera\n");
 		return (1);
 	}
+	((t_camera*)obj->content)->fov = (float)(49.124 / 180.0 * M_PI_2);
 	obj->trans = draw_matrix_multiply_axes(
 		(t_v3f){(float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2),
 			(float)(ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2),
