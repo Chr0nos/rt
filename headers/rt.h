@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 21:15:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 01:08:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ void			rt_obj_free(t_obj *obj, unsigned int level);
 t_obj			*rt_obj_makeroot(void);
 t_obj			*rt_obj_delchild(t_obj *parent, t_obj *child);
 t_obj			*rt_obj_getcamera(t_obj *obj);
+void			rt_update_camera(t_v2i geometry, t_camera *cam);
 
 t_obj			*parse_yolo(const char *filepath);
 int				yolo_setup(t_obj *obj, size_t ac, char **av);
 
 void			rt_box_update(t_obj *obj);
+
+void			rt_rays(t_rt *rt);
+t_uint			rt_raycast(t_rt *rt, t_ray *ray);
 
 #endif

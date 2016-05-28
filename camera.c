@@ -6,12 +6,11 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 19:16:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 01:05:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "libft.h"
 
 t_obj	*rt_obj_getcamera(t_obj *obj)
 {
@@ -33,4 +32,14 @@ t_obj	*rt_obj_getcamera(t_obj *obj)
 		}
 	}
 	return (NULL);
+}
+
+void	rt_update_camera(t_v2i geometry, t_camera *cam)
+{
+	float	fovy;
+
+	fovy = (float)geometry.y / (float)geometry.x * cam->fov;
+	cam->steppx = (t_v2d){(double)cam->fov / (double)geometry.x,
+		(double)fovy / (double)geometry.y};
+	cam->rayreset = (t_v3f){cam->fov / 2, fovy / 2, 0.0};
 }

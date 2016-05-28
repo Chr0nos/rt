@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 21:02:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 00:17:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "draw.h"
 
 typedef unsigned int	t_uint;
+typedef t_point			t_v2i;
 typedef t_vector		t_v3f;
 typedef t_matrix		t_mattf;
 
@@ -29,6 +30,12 @@ typedef enum			e_type
 	SPOT = 1 << 6,
 	POINTLIGHT = 1 << 7
 }						t_type;
+
+typedef struct			s_v2d
+{
+	double				x;
+	double				y;
+}						t_v2d;
 
 typedef struct			s_typesize
 {
@@ -57,7 +64,16 @@ typedef struct			s_camera
 {
 	t_mattf				rtrans;
 	float				fov;
+	t_v2d				steppx;
+	t_v3f				rayreset;
 }						t_camera;
+
+typedef struct			s_ray
+{
+	t_v3f				start;
+	t_v3f				dir;
+	double				limit;
+}						t_ray;
 
 typedef struct			s_box
 {
@@ -81,11 +97,5 @@ typedef struct			s_obj
 	struct s_obj		*next;
 	void				*content;
 }						t_obj;
-
-typedef struct			s_ray
-{
-	t_v3f				start;
-	t_v3f				dir;
-}						t_ray;
 
 #endif
