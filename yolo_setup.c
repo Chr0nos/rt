@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 04:10:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 04:19:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 		return (COLOR_BLACK);
 	split = ft_strsplit(strcolor, ':');
 	splitsize = ft_tabcount((void**)split);
-	if (splitsize != 4)
-		return (COLOR_BLACK);
-	color = (unsigned int)((((ft_atoi(split[0]) & 0xff) << 16) |
+	if (splitsize == 4)
+		color = (unsigned int)((((ft_atoi(split[0]) & 0xff) << 16) |
 			(ft_atoi(split[1]) & 0xff) << 8) | (ft_atoi(split[2]) & 0xff));
+	else
+		color = COLOR_BLACK;
 	ft_free_tab(split, splitsize);
 	free(split);
 	return (color);
