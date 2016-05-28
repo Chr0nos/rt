@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 01:48:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 18:25:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ t_obj			*parse_yolo(const char *filepath)
 		free(line);
 	}
 	close(fd);
-	rt_debug(obj, 0);
+	obj->content = rt_obj_getcamera(obj);
 	return (obj);
 }
