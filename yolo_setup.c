@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 03:56:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 04:10:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,16 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 {
-	t_v3f		axes;
-
 	if (ac < CAMERA_OR_Z)
 	{
 		ft_printf("error: failed to setup camera\n");
 		return (1);
 	}
-	axes = (t_v3f){(float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2),
+	obj->trans = draw_matrix_multiply_axes(
+		(t_v3f){(float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2),
 			(float)(ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2),
-			(float)(ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2)};
-	obj->trans = draw_matrix_multiply_axes(axes, (t_v3f){1.0, 1.0, 1.0},
-		obj->trans.offset);
+			(float)(ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2)},
+			(t_v3f){1.0, 1.0, 1.0}, obj->trans.offset);
 	return (0);
 }
 
