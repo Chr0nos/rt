@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/27 21:51:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/28 03:02:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		rt_debug_childs(t_obj *item, unsigned int level)
 
 static void		rt_debug_pos(t_obj *obj)
 {
-	const unsigned int	precision = 3;
+	const unsigned int	precision = 4;
 	char				*tab[3];
 
 	tab[0] = ft_dtoa((double)obj->trans.offset.x, precision);
@@ -66,13 +66,19 @@ static void		rt_debug_pos(t_obj *obj)
 
 void			rt_debug(t_obj *item, unsigned int level)
 {
+	unsigned int	color;
+
 	rt_putnchar('\t', level);
 	ft_putstr("type: ");
 	rt_puttype(item->type);
 	if (item->type != ROOT)
 		rt_debug_pos(item);
 	if (item->type & (CUBE | SPHERE | PLAN))
-		ft_printf(" color: %d", *(unsigned int*)item->content);
+	{
+		color = *(unsigned int*)item->content;
+		ft_printf(" color: [%d:%d:%d]", (color >> 16) & 0xff,
+			(color >> 8) & 0xff, color & 0xff);
+	}
 	write(1, "\n", 1);
 	rt_debug_childs(item, level);
 }
