@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:26:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 04:57:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 05:07:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	rt_bounds_update_in(t_obj *obj, void *userdata)
 	(void)userdata;
 	update_cube(&obj->bounds, &obj->hitbox);
 	if (obj->parent)
-		update_cube(&obj->parent->bounds, &obj->hitbox);
+		update_cube(&obj->parent->bounds, &obj->bounds);
 }
 
 void		rt_bounds_update(t_obj *node)
