@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 04:28:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 06:24:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ t_uint			rt_raycast(t_rt *rt, t_ray *ray);
 void			rt_node_foreach(t_obj *node, int mode, void (*f)(t_obj*, void*),
 	void *userdata);
 void			rt_node_display(t_obj *obj, void *userdata);
-void			rt_node_display_bounds(t_obj *obj, void *userdata);
+void			rt_putbounds(t_obj *obj, void *userdata);
 
 #endif
