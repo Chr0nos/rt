@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 01:08:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 04:28:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 # define RT_H
 # include "draw.h"
 # include "forms.h"
+# define PREFIX 1
+# define INFIX 2
+# define SUFFIX 4
 
 typedef struct	s_rt
 {
 	t_draw		sys;
 	t_obj		*root;
 }				t_rt;
+
+void			rt_puttype(int type);
 
 int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
@@ -44,8 +49,15 @@ t_obj			*parse_yolo(const char *filepath);
 int				yolo_setup(t_obj *obj, size_t ac, char **av);
 
 void			rt_box_update(t_obj *obj);
+void			rt_bounds_update(t_obj *node);
 
 void			rt_rays(t_rt *rt);
 t_uint			rt_raycast(t_rt *rt, t_ray *ray);
+
+
+void			rt_node_foreach(t_obj *node, int mode, void (*f)(t_obj*, void*),
+	void *userdata);
+void			rt_node_display(t_obj *obj, void *userdata);
+void			rt_node_display_bounds(t_obj *obj, void *userdata);
 
 #endif

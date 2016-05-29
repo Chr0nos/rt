@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 00:15:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 04:42:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	obj->id = lastid++;
 	obj->trans = draw_make_matrix_identity();
-	ft_bzero(&obj->bounds, sizeof(t_box));
-	ft_bzero(&obj->hitbox, sizeof(t_box));
+	obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	return (rt_obj_addchild(parent, obj));
 }

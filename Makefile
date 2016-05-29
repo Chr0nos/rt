@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/05/29 01:07:07 by snicolet         ###   ########.fr        #
+#    Updated: 2016/05/29 03:42:56 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC=clang
 SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 OBJ=main.o debug.o factory.o object.o check_cube.o parse_yolo.o box.o \
-	yolo_setup.o events.o camera.o rays.o
+	yolo_setup.o events.o camera.o rays.o bounds.o node.o
 
 all: $(NAME)
 

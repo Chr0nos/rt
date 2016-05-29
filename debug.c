@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 03:02:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 04:12:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <unistd.h>
 
-static void		rt_puttype(int type)
+void			rt_puttype(int type)
 {
 	if (type == CUBE)
 		ft_putstr("CUBE");
@@ -54,7 +54,7 @@ static void		rt_debug_childs(t_obj *item, unsigned int level)
 
 static void		rt_debug_pos(t_obj *obj)
 {
-	const unsigned int	precision = 4;
+	const unsigned int	precision = 2;
 	char				*tab[3];
 
 	tab[0] = ft_dtoa((double)obj->trans.offset.x, precision);
@@ -71,6 +71,7 @@ void			rt_debug(t_obj *item, unsigned int level)
 	rt_putnchar('\t', level);
 	ft_putstr("type: ");
 	rt_puttype(item->type);
+	ft_printf(" [id: %d]", (int)item->id);
 	if (item->type != ROOT)
 		rt_debug_pos(item);
 	if (item->type & (CUBE | SPHERE | PLAN))
