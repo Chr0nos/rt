@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:25:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/29 06:51:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void			rt_debug(t_obj *item, unsigned int level)
 	rt_putnchar('\t', level + 1);
 	ft_putstr("bounds: ");
 	rt_putbounds(item, (void*)3);
-	write(1, "\n", 1);
-	rt_debug_childs(item, level);
+	if (item->childs)
+	{
+		write(1, "\n", 1);
+		rt_debug_childs(item, level);
+	}
 }
