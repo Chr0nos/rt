@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 04:42:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:26:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	const t_uint		size = rt_sizeof(type);
 	t_obj				*obj;
 
+	if (type == ROOT)
+		return (rt_obj_makeroot());
 	if (!size)
 		return (NULL);
-	else if (!(obj = malloc(size)))
+	if (!(obj = malloc(size)))
 		return (NULL);
 	obj->type = type;
 	obj->next = NULL;

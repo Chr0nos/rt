@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:49:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/31 17:42:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 
 static int		rt_start(t_rt *rt)
 {
-	SDL_Event	event;
-
 	if (draw_init(&rt->sys, draw_make_px(800, 600), "RTv1") < 0)
 		return (1);
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
@@ -39,7 +37,7 @@ static int		rt_start(t_rt *rt)
 	{
 		draw_reset_surface(rt->sys.screen, COLOR_BLACK);
 		SDL_UpdateWindowSurface(rt->sys.win);
-		while (!sdl_loop(&event, rt))
+		while (!sdl_loop(&rt->sys.events, rt))
 			SDL_Delay(1);
 	}
 	SDL_DestroyWindow(rt->sys.win);
@@ -60,9 +58,10 @@ int				main(int ac, char **av)
 		{
 			ft_putstr("\nActive camera: ");
 			rt_debug((t_obj*)rt.root->content, 0);
+			rt_node_foreach(rt.root, INFIX, &rt_node_display, NULL);
 			(void)rt;
 			(void)rt_start;
-			//rt_start(&rt);
+			rt_start(&rt);
 		}
 		else
 			ft_putstr("no camera\n");
