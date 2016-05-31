@@ -3,14 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 05:02:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/31 22:04:59 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+int		raybox_check(t_ray *r, t_box *box)
+{
+	double	tmin;
+	double	tmax;
+	double	temp[2];
+
+	tmin = -INFINITY;
+	tmax = INFINITY;
+	if (r->dir.x != 0.0f)
+	{
+		temp[0] = (box->xmin - r->start.x) / r->dir.x;
+		temp[1] = (box->xmax - r->start.x) / r->dir.x;
+		tmin = fmax(tmin, fmin(temp[0], temp[1]));
+		tmax = fmin(tmax, fmax(temp[0], temp[1]));
+		if (tmin > tmax)
+			return (0);
+	}
+	if (r->dir.y != 0.0f)
+	{
+		temp[0] = (box->ymin - r->start.y) / r->dir.y;
+		temp[1] = (box->ymax - r->start.y) / r->dir.y;
+		tmin = fmax(tmin, fmin(temp[0], temp[1]));
+		tmax = fmin(tmax, fmax(temp[0], temp[1]));
+		if (tmin > tmax)
+			return (0);
+	}
+	if (r->dir.z != 0.0f)
+	{
+		temp[0] = (box->zmin - r->start.z) / r->dir.z;
+		temp[1] = (box->zmax - r->start.z) / r->dir.z;
+		tmin = fmax(tmin, fmin(temp[0], temp[1]));
+		tmax = fmin(tmax, fmax(temp[0], temp[1]));
+		if (tmin > tmax)
+			return (0);
+	}
+	if (tmax < 0.0)
+		return (0);
+	return (1);
+}
 
 void	rt_box_update(t_obj *obj)
 {
