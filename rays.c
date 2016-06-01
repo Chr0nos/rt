@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/31 18:26:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 14:13:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,21 @@
 
 static void		rt_debug_ray(t_ray *ray)
 {
+	static int		limit = 42;
+
 	ft_putstr("start: ");
 	draw_putvector(ray->start, 3);
 	ft_putstr("\ndir: ");
 	draw_putvector(ray->dir, 3);
 	ft_putchar('\n');
+	if (!limit--)
+		exit(0);
 }
 
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 {
 	t_v2i			px;
 	t_mattf			m;
-	int				limit = 42;
 
 	px.x = rt->sys.geometry.x;
 	while (px.x--)
@@ -37,9 +40,12 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 		while (px.y--)
 		{
 			ray->dir = draw_vector_transform(ray->dir, &m);
-			rt_raycast(rt, ray);
-			if (!limit--)
-				exit(0);
+			(void)rt_raycast;
+			if (raybox_check(ray, &rt->root->childs->next->next->bounds))
+				draw_pxi(rt->sys.screen->pixels, px, (unsigned int)rt->sys.geometry.x, COLOR_WHITE);
+			else
+				draw_pxi(rt->sys.screen->pixels, px, (unsigned int)rt->sys.geometry.x, COLOR_RED);
+			//rt_raycast(rt, ray);
 		}
 		m = draw_make_matrix_rot_y((double)camp->steppx.x);
 		ray->dir = draw_vector_transform(ray->dir, &m);

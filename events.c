@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 01:06:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 14:14:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int				keydown(int keycode, t_rt *rt)
 	if (keycode == SDLK_ESCAPE)
 		return (1);
 	if (keycode == SDLK_d)
+	{
 		rt_rays(rt);
+		SDL_UpdateWindowSurface(rt->sys.win);
+	}
 	(void)keycode;
 	(void)rt;
 	return (0);
