@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:37:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:48:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ static double	check(float min, float max, float start, float dir)
 
 int				raybox_check(t_ray *r, t_box *box)
 {
-	double	tmax;
+	double			tmax;
+	const float		rx = (float)r->dir.x;
+	const float		ry = (float)r->dir.y;
+	const float		rz = (float)r->dir.z;
 
 	tmax = (double)INFINITY;
-	if ((tmax = check(box->xmin, box->xmax, r->start.x, r->dir.x)) == 0.0)
+	if ((tmax = check(box->xmin, box->xmax, rx, rx)) == 0.0)
 		return (0);
-	if ((tmax = check(box->ymin, box->ymax, r->start.y, r->dir.y)) == 0.0)
+	if ((tmax = check(box->ymin, box->ymax, ry, ry)) == 0.0)
 		return (0);
-	if ((tmax = check(box->zmin, box->zmax, r->start.z, r->dir.z)) == 0.0)
+	if ((tmax = check(box->zmin, box->zmax, rz, rz)) == 0.0)
 		return (0);
 	if (tmax < 0.0)
 		return (0);
