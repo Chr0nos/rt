@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 13:59:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 20:34:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		raybox_check(t_ray *r, t_box *box)
+static double	check(float min, float max, float start, float dir)
 {
 	double	tmin;
 	double	tmax;
@@ -20,39 +20,35 @@ int		raybox_check(t_ray *r, t_box *box)
 
 	tmin = (double)-INFINITY;
 	tmax = (double)INFINITY;
-	if (r->dir.x != 0.0f)
+	if (dir != 0.0f)
 	{
-		temp[0] = (double)((box->xmin - r->start.x) / r->dir.x);
-		temp[1] = (double)((box->xmax - r->start.x) / r->dir.x);
+		temp[0] = (double)((min - start) / dir);
+		temp[1] = (double)((max - start) / dir);
 		tmin = fmax(tmin, fmin(temp[0], temp[1]));
 		tmax = fmin(tmax, fmax(temp[0], temp[1]));
 		if (tmin > tmax)
-			return (0);
+			return (0.0);
 	}
-	if (r->dir.y != 0.0f)
-	{
-		temp[0] = (double)((box->ymin - r->start.y) / r->dir.y);
-		temp[1] = (double)((box->ymax - r->start.y) / r->dir.y);
-		tmin = fmax(tmin, fmin(temp[0], temp[1]));
-		tmax = fmin(tmax, fmax(temp[0], temp[1]));
-		if (tmin > tmax)
-			return (0);
-	}
-	if (r->dir.z != 0.0f)
-	{
-		temp[0] = (double)((box->zmin - r->start.z) / r->dir.z);
-		temp[1] = (double)((box->zmax - r->start.z) / r->dir.z);
-		tmin = fmax(tmin, fmin(temp[0], temp[1]));
-		tmax = fmin(tmax, fmax(temp[0], temp[1]));
-		if (tmin > tmax)
-			return (0);
-	}
+	return (tmax);
+}
+
+int				raybox_check(t_ray *r, t_box *box)
+{
+	double	tmax;
+
+	tmax = (double)INFINITY;
+	if ((tmax = check(box->xmin, box->xmax, r->start.x, r->dir.x)) == 0.0)
+		return (0);
+	if ((tmax = check(box->ymin, box->ymax, r->start.y, r->dir.y)) == 0.0)
+		return (0);
+	if ((tmax = check(box->zmin, box->zmax, r->start.z, r->dir.z)) == 0.0)
+		return (0);
 	if (tmax < 0.0)
 		return (0);
 	return (1);
 }
 
-void	rt_box_update(t_obj *obj)
+void			rt_box_update(t_obj *obj)
 {
 	const t_v3f		*p = &obj->trans.offset;
 	float			r;
