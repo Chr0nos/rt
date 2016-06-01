@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 14:41:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 20:52:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void		rt_debug_ray(t_ray *ray)
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 {
 	t_v2i			px;
-	t_mattf			m;
+	t_m4			m;
 
 	//rt_debug_ray(ray);
 	px.x = rt->sys.geometry.x;
 	while (px.x--)
 	{
-		m = draw_make_matrix_rot_x((double)camp->steppx.y);
+		m = draw_make_matrix_m4_x((double)camp->steppx.y);
 		px.y = rt->sys.geometry.y;
 		while (px.y--)
 		{
@@ -49,7 +49,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 				draw_pxi(rt->sys.screen->pixels, px, (unsigned int)rt->sys.geometry.x, COLOR_RED);
 			//rt_raycast(rt, ray);
 		}
-		m = draw_make_matrix_rot_y((double)camp->steppx.x);
+		m = draw_make_matrix_m4_y((double)camp->steppx.x);
 		ray->dir = draw_vector_transform(ray->dir, &m);
 	}
 }
