@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 13:59:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 20:18:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		raybox_check(t_ray *r, t_box *box)
 
 void	rt_box_update(t_obj *obj)
 {
-	const t_v3f		*p = &obj->trans.offset;
+	const t_v4f		*p = &obj->trans.w;
 	float			r;
 
 	if (obj->type == CUBE)

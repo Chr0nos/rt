@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 21:18:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 20:19:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 		(t_v3f){(float)(ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2),
 			(float)(ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2),
 			(float)(ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2)},
-			(t_v3f){1.0, 1.0, 1.0}, obj->trans.offset);
+			(t_v3f){1.0, 1.0, 1.0}, obj->trans.w);
 	return (0);
 }
 
