@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 20:49:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:38:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				keydown(int keycode, t_rt *rt)
 	else if (keycode == SDLK_o)
 	{
 		ft_putstr("camera offset -> ");
-		draw_putv4f(((t_obj*)rt->root->content)->trans.w, 6);
+		draw_putv4d(((t_obj*)rt->root->content)->trans.w, 6);
 		ft_putchar('\n');
 	}
 	display(rt);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:00:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:44:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ typedef struct			s_camera
 	t_mattf				rtrans;
 	float				fov;
 	t_v2d				steppx;
-	t_v4f				rayreset;
+	t_v4d				rayreset;
 }						t_camera;
 
 typedef struct			s_ray
 {
-	t_v4f				start;
-	t_v4f				dir;
+	t_v4d				start;
+	t_v4d				dir;
 	double				limit;
 }						t_ray;
 

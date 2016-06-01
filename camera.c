@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 01:05:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:42:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_obj	*rt_obj_getcamera(t_obj *obj)
 
 void	rt_update_camera(t_v2i geometry, t_camera *cam)
 {
-	float	fovy;
+	double	fovy;
 
-	fovy = (float)geometry.y / (float)geometry.x * cam->fov;
+	fovy = (double)geometry.y / (double)geometry.x * (double)cam->fov;
 	cam->steppx = (t_v2d){(double)cam->fov / (double)geometry.x,
 		(double)fovy / (double)geometry.y};
-	cam->rayreset = (t_v3f){cam->fov / 2, fovy / 2, 0.0};
+	cam->rayreset = (t_v4f){cam->fov / 2.0f, (float) fovy / 2.0f, 0.0f, 0.0f};
 }
