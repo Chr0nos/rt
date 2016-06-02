@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:20:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/03 00:16:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,17 @@ static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 			ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2,
 			ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2, 1.0},
 		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
-	return (0);
+	draw_putm4(obj->trans, 6);
+	ft_putchar('\n');
+	t_m4	pute = draw_make_matrix_m4_y(
+		(t_v4d){1.0, 1.0, 1.0, 1.0},
+		1.0,
+		(t_v4d){1.0, 1.0, 1.0, 1.0});
+	obj->trans = draw_matrix_multiply_matrix_m4(obj->trans, &pute);
+	draw_putm4(obj->trans, 6);
+	ft_putchar('\n');
+	exit(0);
+	//return (0);
 }
 
 int					yolo_setup(t_obj *obj, size_t ac, char **av)
