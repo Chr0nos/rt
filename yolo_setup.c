@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:38:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 17:20:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 	obj->trans = draw_matrix_multiply_axes_m4(
 		(t_v4d){ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2,
 			ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2,
-			ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2,
-			1.0},
-			(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
+			ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2, 1.0},
+		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
 	return (0);
 }
 

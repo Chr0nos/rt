@@ -1,7 +1,8 @@
 #						X		Y		Z					orientation
-CAMERA					0		-12		0					0	0	1
+CAMERA					42		51		33					0	0	1
 
 #    					size	X			Y			Z			color
+CUBE					10		0			0			20			100:100:100
 CUBE 					10		0			0			0			255:0:0
 	SPHERE				7		-2			4			7			0:255:0
 	CUBE				4		4			4			4			0:0:255

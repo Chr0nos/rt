@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 12:30:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 17:18:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void			rt_rays(t_rt *rt)
 		(t_v4d){1.0, 1.0, 1.0, 1.0},
 		(t_v4d){0.0, 0.0, 0.0, 0.0});
 	ray.dir = draw_matrix_multiply_m4(cam->trans.z, &m);
+	ft_putstr("camera matrix: ");
+	draw_putm4(cam->trans, 6);
+	ft_putchar('\n');
 	rt_rays_pixels(rt, &ray, camp);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:38:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 16:18:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int				keydown(int keycode, t_rt *rt)
 		return (1);
 	else if (keycode == SDLK_d)
 	{
-		((t_obj*)rt->root->content)->trans.w.x += 0.1;
+		((t_obj*)rt->root->content)->trans.w.x += 0.5;
 		(void)rotate_camera;
 		//rotate_camera(rt, (t_v3f){0.1f, 0.0f, 0.0f});
 	}
 	else if (keycode == SDLK_a)
-		((t_obj*)rt->root->content)->trans.w.x -= 0.1;
+		((t_obj*)rt->root->content)->trans.w.x -= 0.5;
 	else if (keycode == SDLK_o)
 	{
 		ft_putstr("camera offset -> ");
