@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:18:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 18:36:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,16 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 
 t_uint			rt_raycast(t_rt *rt, t_ray *ray)
 {
+	t_box	box;
+
+	box = (t_box){-10.0, 10.0, -10.0, 10.0, 10.0, 20.0};
+	ray->dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
+	ray->limit = 0.0;
+	ray->start = (t_v4d){0.0, 0.0, 0.0, 0.0};
 	rt_debug_ray(ray);
+	ft_printf("retour: %d\n", raybox_check(ray, &box));
+	ray->dir = (t_v4d){0.0, 0.0, -1.0, 0.0};
+	ft_printf("retour: %d\n", raybox_check(ray, &box));
 	(void)rt;
 	(void)ray;
 	return (COLOR_BLACK);
@@ -78,8 +87,11 @@ void			rt_rays(t_rt *rt)
 		(t_v4d){1.0, 1.0, 1.0, 1.0},
 		(t_v4d){0.0, 0.0, 0.0, 0.0});
 	ray.dir = draw_matrix_multiply_m4(cam->trans.z, &m);
+	rt_debug_ray(&ray);
 	ft_putstr("camera matrix: ");
 	draw_putm4(cam->trans, 6);
 	ft_putchar('\n');
 	rt_rays_pixels(rt, &ray, camp);
+	(void)rt_rays_pixels;
+	//rt_raycast(rt, &ray);
 }
