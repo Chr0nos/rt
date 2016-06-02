@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 00:17:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:44:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef unsigned int	t_uint;
 typedef t_point			t_v2i;
 typedef t_vector		t_v3f;
-typedef t_matrix		t_mattf;
+typedef t_m4			t_mattf;
 
 typedef enum			e_type
 {
@@ -65,13 +65,13 @@ typedef struct			s_camera
 	t_mattf				rtrans;
 	float				fov;
 	t_v2d				steppx;
-	t_v3f				rayreset;
+	t_v4d				rayreset;
 }						t_camera;
 
 typedef struct			s_ray
 {
-	t_v3f				start;
-	t_v3f				dir;
+	t_v4d				start;
+	t_v4d				dir;
 	double				limit;
 }						t_ray;
 

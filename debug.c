@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:51:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 20:16:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void		rt_debug_pos(t_obj *obj)
 	const unsigned int	precision = 2;
 	char				*tab[3];
 
-	tab[0] = ft_dtoa((double)obj->trans.offset.x, precision);
-	tab[1] = ft_dtoa((double)obj->trans.offset.y, precision);
-	tab[2] = ft_dtoa((double)obj->trans.offset.z, precision);
+	tab[0] = ft_dtoa((double)obj->trans.w.x, precision);
+	tab[1] = ft_dtoa((double)obj->trans.w.y, precision);
+	tab[2] = ft_dtoa((double)obj->trans.w.z, precision);
 	ft_printf("pos: (x: %s, y: %s, z: %s)", tab[0], tab[1], tab[2]);
 	ft_free_tab(tab, 3);
 }

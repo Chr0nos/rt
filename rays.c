@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 11:25:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 12:11:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 static void		rt_debug_ray(t_ray *ray)
 {
-	static int	limit = 42;
+	static int		limit = 42;
+
 	ft_putstr("start: ");
-	draw_putvector(ray->start, 3);
+	draw_putv4d(ray->start, 3);
 	ft_putstr(" dir: ");
-	draw_putvector(ray->dir, 5);
+	draw_putv4d(ray->dir, 5);
 	ft_putchar('\n');
 	if (!limit--)
 		exit(0);
@@ -29,20 +30,31 @@ static void		rt_debug_ray(t_ray *ray)
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 {
 	t_v2i			px;
-	t_mattf			m;
+	t_m4			m;
 
+	//rt_debug_ray(ray);
 	px.x = rt->sys.geometry.x;
 	while (px.x--)
 	{
-		m = draw_make_matrix_rot_x((double)camp->steppx.y);
+		m = draw_make_matrix_m4_x((t_v4d){0.0, 0.0, 0.0, 0.0},
+			camp->steppx.y, (t_v4d){1.0, 1.0, 1.0, 1.0});
 		px.y = rt->sys.geometry.y;
 		while (px.y--)
 		{
-			ray->dir = draw_vector_transform(ray->dir, &m);
-			rt_raycast(rt, ray);
+			ray->dir = draw_vector_transform_m4(ray->dir, &m);
+			//rt_debug_ray(ray);
+			(void)rt_raycast;
+			if (raybox_check(ray, &rt->root->childs->next->hitbox))
+				draw_pxi(rt->sys.screen->pixels, px,
+					(unsigned int)rt->sys.geometry.x, COLOR_WHITE);
+			else
+				draw_pxi(rt->sys.screen->pixels, px,
+					(unsigned int)rt->sys.geometry.x, COLOR_RED);
+			//rt_raycast(rt, ray);
 		}
-		m = draw_make_matrix_rot_y((double)camp->steppx.x);
-		ray->dir = draw_vector_transform(ray->dir, &m);
+		m = draw_make_matrix_m4_y((t_v4d){0.0, 0.0, 0.0, 0.0},
+			camp->steppx.x, (t_v4d){1.0, 1.0, 1.0, 1.0});
+		ray->dir = draw_vector_transform_m4(ray->dir, &m);
 	}
 }
 
@@ -64,10 +76,11 @@ void			rt_rays(t_rt *rt)
 	cam = (t_obj*)rt->root->content;
 	camp = cam->content;
 	rt_update_camera(rt->sys.geometry, cam->content);
-	ray.start = cam->trans.offset;
+	ray.start = cam->trans.w;
 	ray.limit = 0.0;
-	m = draw_matrix_multiply_axes(camp->rayreset, (t_v3f){1.0, 1.0, 1.0},
-		(t_v3f){0.0, 0.0, 0.0});
-	ray.dir = draw_matrix_multiply(cam->trans.z, &m);
+	m = draw_matrix_multiply_axes_m4(camp->rayreset,
+		(t_v4d){1.0, 1.0, 1.0, 1.0},
+		(t_v4d){0.0, 0.0, 0.0, 0.0});
+	ray.dir = draw_matrix_multiply_m4(cam->trans.z, &m);
 	rt_rays_pixels(rt, &ray, camp);
 }

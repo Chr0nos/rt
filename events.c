@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 01:06:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:38:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,41 @@
 #include "draw.h"
 #include "libft.h"
 
+static void		display(t_rt *rt)
+{
+	rt_rays(rt);
+	SDL_UpdateWindowSurface(rt->sys.win);
+}
+
+static void		rotate_camera(t_rt *rt, t_v3f deg)
+{
+	t_obj		*cam;
+
+	cam = rt->root->content;
+	(void)cam;
+	(void)deg;
+	//cam->trans.w = draw_vector_add(cam->trans.offset, deg);
+}
+
 int				keydown(int keycode, t_rt *rt)
 {
 	if (keycode == SDLK_ESCAPE)
 		return (1);
-	if (keycode == SDLK_d)
-		rt_rays(rt);
-	(void)keycode;
-	(void)rt;
+	else if (keycode == SDLK_d)
+	{
+		((t_obj*)rt->root->content)->trans.w.x += 0.1;
+		(void)rotate_camera;
+		//rotate_camera(rt, (t_v3f){0.1f, 0.0f, 0.0f});
+	}
+	else if (keycode == SDLK_a)
+		((t_obj*)rt->root->content)->trans.w.x -= 0.1;
+	else if (keycode == SDLK_o)
+	{
+		ft_putstr("camera offset -> ");
+		draw_putv4d(((t_obj*)rt->root->content)->trans.w, 6);
+		ft_putchar('\n');
+	}
+	display(rt);
 	return (0);
 }
 

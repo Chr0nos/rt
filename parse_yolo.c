@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 18:25:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/01 21:29:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 	size = ft_tabcount((void**)split);
 	if (size >= 3)
 	{
-		obj->trans.offset = (t_v3f){(float)ft_atod(split[1]),
-			(float)ft_atod(split[2]), (float)ft_atod(split[3])};
+		obj->trans.w = (t_v4d){ft_atod(split[1]),
+			ft_atod(split[2]), ft_atod(split[3]), 1.0};
 		yolo_setup(obj, size - 1, split);
 		rt_box_update(obj);
 	}

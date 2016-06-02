@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:24:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/05/31 21:50:46 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				yolo_setup(t_obj *obj, size_t ac, char **av);
 
 void			rt_box_update(t_obj *obj);
 void			rt_bounds_update(t_obj *node);
+int				raybox_check(t_ray *r, t_box *box);
 
 void			rt_rays(t_rt *rt);
 t_uint			rt_raycast(t_rt *rt, t_ray *ray);
