@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:36:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 17:44:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,22 @@ static void		display(t_rt *rt)
 
 int				keydown(int keycode, t_rt *rt)
 {
+	const double	offset = 1.0;
+
 	if (keycode == SDLK_ESCAPE)
 		return (1);
 	else if (keycode == SDLK_d)
-		((t_obj*)rt->root->content)->trans.w.x += 0.5;
+		((t_obj*)rt->root->content)->trans.w.x += offset;
 	else if (keycode == SDLK_a)
-		((t_obj*)rt->root->content)->trans.w.x -= 0.5;
+		((t_obj*)rt->root->content)->trans.w.x -= offset;
 	else if (keycode == SDLK_w)
-		((t_obj*)rt->root->content)->trans.w.y += 0.5;
+		((t_obj*)rt->root->content)->trans.w.y += offset;
 	else if (keycode == SDLK_s)
-		((t_obj*)rt->root->content)->trans.w.y -= 0.5;
+		((t_obj*)rt->root->content)->trans.w.y -= offset;
+	else if (keycode == SDLK_e)
+		((t_obj*)rt->root->content)->trans.w.z += offset;
+	else if (keycode == SDLK_q)
+		((t_obj*)rt->root->content)->trans.w.z -= offset;
 	display(rt);
 	return (0);
 }
