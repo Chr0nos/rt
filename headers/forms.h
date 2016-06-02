@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:44:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/02 18:41:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum			e_type
 	CAMERA = 1 << 4,
 	EMPTY = 1 << 5,
 	SPOT = 1 << 6,
-	POINTLIGHT = 1 << 7
+	POINTLIGHT = 1 << 7,
+	RADIUS = SPHERE | CUBE
 }						t_type;
 
 typedef struct			s_v2d
