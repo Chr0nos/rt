@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/01 21:48:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 03:04:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static double	check(float min, float max, float start, float dir)
+static int		check(float *box, float start, float dir, double *tb)
 {
 	double	tmin;
 	double	tmax;
@@ -22,31 +22,34 @@ static double	check(float min, float max, float start, float dir)
 	tmax = (double)INFINITY;
 	if (dir != 0.0f)
 	{
-		temp[0] = (double)((min - start) / dir);
-		temp[1] = (double)((max - start) / dir);
-		tmin = fmax(tmin, fmin(temp[0], temp[1]));
-		tmax = fmin(tmax, fmax(temp[0], temp[1]));
-		if (tmin > tmax)
-			return (0.0);
+		temp[0] = (double)((box[0] - start) / dir);
+		temp[1] = (double)((box[1] - start) / dir);
+		tmin = fmin(temp[0], temp[1]);
+		tmax = fmax(temp[0], temp[1]);
 	}
-	return (tmax);
+	if (tmin > tb[1] || tmax < tb[0])
+		return (1);
+	tb[0] = fmax(tb[0], tmin);
+	tb[1] = fmin(tb[1], tmax);
+	return (0);
 }
 
 int				raybox_check(t_ray *r, t_box *box)
 {
-	double			tmax;
+	double			tb[2];
 	const float		rx = (float)r->dir.x;
 	const float		ry = (float)r->dir.y;
 	const float		rz = (float)r->dir.z;
 
-	tmax = (double)INFINITY;
-	if ((tmax = check(box->xmin, box->xmax, rx, rx)) == 0.0)
+	tb[0] = (double)-INFINITY;
+	tb[1] = (double)INFINITY;
+	if (check(&(box->xmin), (float)r->start.x, rx, tb))
 		return (0);
-	if ((tmax = check(box->ymin, box->ymax, ry, ry)) == 0.0)
+	if (check(&(box->ymin), (float)r->start.y, ry, tb))
 		return (0);
-	if ((tmax = check(box->zmin, box->zmax, rz, rz)) == 0.0)
+	if (check(&(box->zmin), (float)r->start.z, rz, tb))
 		return (0);
-	if (tmax < 0.0)
+	if (tb[1] < 0.0)
 		return (0);
 	return (1);
 }
