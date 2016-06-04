@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/31 21:50:46 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/04 19:15:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ int				raybox_check(t_ray *r, t_box *box);
 void			rt_rays(t_rt *rt);
 t_uint			rt_raycast(t_rt *rt, t_ray *ray);
 
-
-void			rt_node_foreach(t_obj *node, int mode, void (*f)(t_obj*, void*),
-	void *userdata);
-void			rt_node_display(t_obj *obj, void *userdata);
+void			rt_node_foreach(t_obj *node, int mode,
+	void (*f)(t_obj*, int, void*), void *userdata);
 void			rt_putbounds(t_obj *obj, void *userdata);
+void			rt_node_display(t_obj *obj, int mode, void *userdata);
 
 #endif

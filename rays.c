@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 18:22:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 18:26:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp)
 			draw_pxi(rt->sys.screen->pixels, px,
 				(unsigned int)rt->sys.geometry.x,
 				(raybox_check(ray, &rt->root->childs->next->hitbox)) ?
-				COLOR_WHITE : COLOR_RED);
+				((t_cube*)(rt->root->childs->next->content))->color : COLOR_RED);
 		}
 		m = draw_make_matrix_m4_y((t_v4d){0.0, 0.0, 0.0, 0.0},
 			-camp->steppx.x, (t_v4d){1.0, 1.0, 1.0, 1.0});
