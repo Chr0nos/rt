@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 17:44:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 18:15:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		display(t_rt *rt)
 
 int				keydown(int keycode, t_rt *rt)
 {
-	const double	offset = 1.0;
+	const double	offset = 0.5;
 
 	if (keycode == SDLK_ESCAPE)
 		return (1);
