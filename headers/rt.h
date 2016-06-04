@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 19:43:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:13:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,10 @@ int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);
+
+double			rad2deg(double rad);
+float			rad2degf(float rad);
+double			deg2rad(double deg);
+float			deg2radf(float deg);
 
 #endif

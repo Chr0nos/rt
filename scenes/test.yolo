@@ -1,5 +1,5 @@
-#						X		Y		Z					orientation
-CAMERA					0		0		0					0	0	0
+#						X		Y		Z					orientation		FOV
+CAMERA					0		0		0					0	0	0		80
 
 #    					size	X			Y			Z			color
 CUBE					10		0			0			20			100:200:100
