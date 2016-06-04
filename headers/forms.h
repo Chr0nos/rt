@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 18:41:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 20:00:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef enum			e_type
 	POINTLIGHT = 1 << 7,
 	RADIUS = SPHERE | CUBE
 }						t_type;
+
+enum					e_stop
+{
+	OK = 0,
+	STOP_NODE = 1,
+	STOP_ALL = 1 << 1
+};
 
 typedef struct			s_v2d
 {
@@ -74,6 +81,7 @@ typedef struct			s_ray
 	t_v4d				start;
 	t_v4d				dir;
 	double				limit;
+	unsigned int		color;
 }						t_ray;
 
 typedef struct			s_box
