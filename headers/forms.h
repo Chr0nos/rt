@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 00:06:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 00:25:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct			s_camera
 	t_v4d				rayfix;
 	t_v4d				rayreset;
 	t_v4d				raypos;
+	t_v4d				mdirx;
+	t_v4d				mdiry;
 	float				fov;
 	float				fovy;
 }						t_camera;
