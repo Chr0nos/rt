@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 23:41:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 00:21:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				sdl_event(SDL_Event *event, t_rt *rt);
 
 void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
-t_uint			rt_sizeof(t_type type);
+t_uint			rt_sizeobj(t_type type);
 
 int				check_cube(const t_box *a, const t_box *b);
 void			update_cube(t_box *a, const t_box *b);
