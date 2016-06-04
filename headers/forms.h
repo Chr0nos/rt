@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/02 18:41:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:55:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ typedef struct			s_sphere
 typedef struct			s_camera
 {
 	t_mattf				rtrans;
-	float				fov;
 	t_v2d				steppx;
+	t_v4d				rayfix;
 	t_v4d				rayreset;
+	t_v4d				raypos;
+	float				fov;
+	float				fovy;
 }						t_camera;
 
 typedef struct			s_ray
