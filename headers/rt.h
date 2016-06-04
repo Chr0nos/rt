@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 23:21:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 23:41:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ float			deg2radf(float deg);
 
 int				display(t_rt *rt);
 int				movemyass(t_rt *rt);
+void			camera_rotate(t_rt *rt, const double x, const int dir);
 
 #endif
