@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bounds.c                                           :+:      :+:    :+:   */
+/*   rad2deg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/29 03:26:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 19:38:08 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/04 22:10:25 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/04 22:13:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include <math.h>
 
-static int	rt_bounds_update_in(t_obj *obj, int mode, void *userdata)
+double	rad2deg(double rad)
 {
-	(void)userdata;
-	if (mode == PREFIX)
-		obj->bounds = obj->hitbox;
-	else if (obj->parent)
-		update_cube(&obj->parent->bounds, &obj->bounds);
-	return (0);
+	return (rad * 180.0 / M_PI);
 }
 
-void		rt_bounds_update(t_obj *node)
+float	rad2degf(float rad)
 {
-	rt_node_foreach(node, SUFFIX | PREFIX, &rt_bounds_update_in, NULL);
+	return ((float)((double)rad * 180.0 / M_PI));
+}
+
+double	deg2rad(double deg)
+{
+	return (deg / 180.0 * M_PI);
+}
+
+float	deg2radf(float deg)
+{
+	return ((float)((double)deg / 180.0 * M_PI));
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 18:05:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:14:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #define CAMERA_OR_X 3
 #define CAMERA_OR_Y 4
 #define CAMERA_OR_Z 5
+#define MINFOV 5.0f
+#define MAXFOV 180.0f
 
 static unsigned int	yolo_setup_color(const char *strcolor)
 {
@@ -40,16 +42,20 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 {
+	float	fov;
+
 	if (ac < CAMERA_OR_Z)
 	{
 		ft_printf("error: failed to setup camera\n");
 		return (1);
 	}
-	((t_camera*)obj->content)->fov = (float)(49.124 / 180.0 * M_PI_2);
+	if ((ac <= 6) || ((fov = (float)ft_atod(av[6])) < MINFOV) || (fov > MAXFOV))
+		fov = 49.124f;
+	((t_camera*)obj->content)->fov = deg2radf(fov);
 	obj->trans = draw_matrix_multiply_axes_m4(
-		(t_v4d){ft_atod(av[CAMERA_OR_X]) / 180.0 * M_PI_2,
-			ft_atod(av[CAMERA_OR_Y]) / 180.0 * M_PI_2,
-			ft_atod(av[CAMERA_OR_Z]) / 180.0 * M_PI_2,
+		(t_v4d){deg2rad(ft_atod(av[CAMERA_OR_X])),
+			deg2rad(ft_atod(av[CAMERA_OR_Y])),
+			deg2rad(ft_atod(av[CAMERA_OR_Z])),
 			1.0},
 		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
 	return (0);
