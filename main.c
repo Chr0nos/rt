@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 18:18:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 23:23:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		rt_start(t_rt *rt)
 	{
 		draw_reset_surface(rt->sys.screen, COLOR_BLACK);
 		SDL_UpdateWindowSurface(rt->sys.win);
-		while (!sdl_loop(&rt->sys.events, rt))
+		while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
 			SDL_Delay(1);
 	}
 	SDL_DestroyWindow(rt->sys.win);
@@ -51,6 +51,7 @@ int				main(int ac, char **av)
 
 	if (ac >= 2)
 	{
+		rt.keyboard = 0;
 		rt.root = parse_yolo(av[1]);
 		rt_bounds_update(rt.root);
 		rt_debug(rt.root, 0);

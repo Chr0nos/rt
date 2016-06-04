@@ -6,46 +6,74 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 18:15:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 23:24:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "draw.h"
 #include "libft.h"
+#include "keyboard.h"
 
-static void		display(t_rt *rt)
+int				movemyass(t_rt *rt)
 {
-	rt_rays(rt);
-	SDL_UpdateWindowSurface(rt->sys.win);
+	const int		k = rt->keyboard;
+	const double	offset = 0.5;
+
+	if (k & ZOOMIN)
+		((t_obj*)rt->root->content)->trans.w.z += offset;
+	if (k & ZOOMOUT)
+		((t_obj*)rt->root->content)->trans.w.z -= offset;
+	if (k & RIGHT)
+		((t_obj*)rt->root->content)->trans.w.x += offset;
+	if (k & LEFT)
+		((t_obj*)rt->root->content)->trans.w.x -= offset;
+	if (k & UP)
+		((t_obj*)rt->root->content)->trans.w.y += offset;
+	if (k & DOWN)
+		((t_obj*)rt->root->content)->trans.w.y -= offset;
+	if (k & QUIT)
+		return (1);
+	return (0);
+}
+
+static int		getkeybit(const int keycode)
+{
+	const t_kbcmp	cmp[] = {
+		{SDLK_e, ZOOMIN},
+		{SDLK_q, ZOOMOUT},
+		{SDLK_ESCAPE, QUIT},
+		{SDLK_w, UP},
+		{SDLK_s, DOWN},
+		{SDLK_a, RIGHT},
+		{SDLK_d, LEFT},
+	};
+	unsigned int	p;
+
+	p = sizeof(cmp);
+	while (p--)
+		if (cmp[p].key == keycode)
+			return (cmp[p].bit);
+	return (-1);
 }
 
 int				keydown(int keycode, t_rt *rt)
 {
-	const double	offset = 0.5;
+	const int		keybit = getkeybit(keycode);
 
-	if (keycode == SDLK_ESCAPE)
-		return (1);
-	else if (keycode == SDLK_d)
-		((t_obj*)rt->root->content)->trans.w.x += offset;
-	else if (keycode == SDLK_a)
-		((t_obj*)rt->root->content)->trans.w.x -= offset;
-	else if (keycode == SDLK_w)
-		((t_obj*)rt->root->content)->trans.w.y += offset;
-	else if (keycode == SDLK_s)
-		((t_obj*)rt->root->content)->trans.w.y -= offset;
-	else if (keycode == SDLK_e)
-		((t_obj*)rt->root->content)->trans.w.z += offset;
-	else if (keycode == SDLK_q)
-		((t_obj*)rt->root->content)->trans.w.z -= offset;
-	display(rt);
+	if ((keybit < 0) || (rt->keyboard & QUIT))
+		return (0);
+	rt->keyboard |= keybit;
 	return (0);
 }
 
 int				keyrlz(int keycode, t_rt *rt)
 {
-	(void)keycode;
-	(void)rt;
+	const int		keybit = getkeybit(keycode);
+
+	if (keybit < 0)
+		return (0);
+	rt->keyboard ^= keybit;
 	return (0);
 }
 

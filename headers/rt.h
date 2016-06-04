@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 22:13:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/04 23:21:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_rt
 {
 	t_draw		sys;
 	t_obj		*root;
+	int			keyboard;
 }				t_rt;
 
 void			rt_puttype(int type);
@@ -67,5 +68,8 @@ double			rad2deg(double rad);
 float			rad2degf(float rad);
 double			deg2rad(double deg);
 float			deg2radf(float deg);
+
+int				display(t_rt *rt);
+int				movemyass(t_rt *rt);
 
 #endif
