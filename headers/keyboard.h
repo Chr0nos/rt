@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 22:26:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 23:36:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 03:41:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ enum	e_keyboard
 	ROTATE_LEFT = 1 << 7,
 	ROTATE_RIGHT = 1 << 8,
 	ROTATE_UP = 1 << 9,
-	ROTATE_DOWN = 1 << 10
+	ROTATE_DOWN = 1 << 10,
+	FORCE_DISPLAY = 1 << 11
 };
 
 typedef struct	s_kb_cmp

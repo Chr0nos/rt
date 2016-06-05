@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 23:23:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 03:43:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "draw.h"
 #include "libft.h"
+#include "keyboard.h"
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
 {
@@ -51,7 +52,7 @@ int				main(int ac, char **av)
 
 	if (ac >= 2)
 	{
-		rt.keyboard = 0;
+		rt.keyboard = FORCE_DISPLAY;
 		rt.root = parse_yolo(av[1]);
 		rt_bounds_update(rt.root);
 		rt_debug(rt.root, 0);
@@ -59,8 +60,6 @@ int				main(int ac, char **av)
 		{
 			ft_putstr("\nActive camera: ");
 			rt_debug((t_obj*)rt.root->content, 0);
-			(void)rt;
-			(void)rt_start;
 			rt_start(&rt);
 		}
 		else
