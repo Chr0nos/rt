@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 00:21:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 17:29:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void			rt_bounds_update(t_obj *node);
 int				raybox_check(t_ray *r, t_box *box);
 
 void			rt_rays(t_rt *rt);
-t_uint			rt_raycast(t_rt *rt, t_ray *ray);
 
 int				rt_node_foreach(t_obj *node, int mode,
 	int (*f)(t_obj*, int, void*), void *userdata);
 void			rt_putbounds(t_obj *obj, void *userdata);
+int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
 

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 20:05:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 17:30:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ int		rt_node_display(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	rt_puttype(obj->type);
 	ft_printf("[%d] ", (int)obj->id);
+	return (0);
+}
+
+/*
+** purpose: get the amount of objects in a tree
+** usage:
+** unsigned int count;
+** count = 0;
+** rt_node_foreach(root, PREFIX, &count);
+*/
+
+int		rt_node_count(t_obj *node, int mode, void *userdata)
+{
+	(void)node;
+	(void)mode;
+	*(unsigned int *)userdata += 1;
 	return (0);
 }
 
