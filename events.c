@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 00:09:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 03:30:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ int				movemyass(t_rt *rt)
 	if (k & DOWN)
 		((t_obj*)rt->root->content)->trans.w.y -= offset;
 	if (k & QUIT)
-		return (1);
+		return (QUIT);
 	if (k & (ROTATE_LEFT | ROTATE_RIGHT | ROTATE_DOWN | ROTATE_UP))
 		camera_rotate(rt, 0.1, k);
-	return (0);
+	return (k & (ZOOMIN | ZOOMOUT | RIGHT | LEFT | UP | DOWN | ROTATE_LEFT |
+				ROTATE_RIGHT | ROTATE_UP | ROTATE_DOWN));
 }
 
 static int		getkeybit(const int keycode)
