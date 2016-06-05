@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 00:07:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 18:52:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 		obj->rotation,
 		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
 	return (0);
+}
+
+int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
+{
+	(void)userdata;
+	(void)mode;
+	if (!obj->parent)
+		return (OK);
+	obj->trans.w = draw_v4d_add(obj->trans.w, obj->parent->trans.w);
+	return (OK);
 }
 
 int					yolo_setup(t_obj *obj, size_t ac, char **av)
