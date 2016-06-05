@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 20:07:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 21:48:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		rt_render_foreach(t_obj *obj, int mode, void *userdata)
+int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_ray	*ray;
 

@@ -6,14 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 03:47:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 21:47:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
 
-#include "libft.h"
 int				display(t_rt *rt)
 {
 	int		ret;

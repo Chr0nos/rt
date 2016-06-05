@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 03:49:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/05 21:48:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 #include "draw.h"
 #include "libft.h"
 #include "keyboard.h"
-
-void			camera_rotate(t_rt *rt, const double x, const int dir)
-{
-	t_obj			*cam;
-	double			rad;
-
-	cam = rt->root->content;
-	rad = (dir & (ROTATE_LEFT | ROTATE_DOWN)) ? -x : x;
-	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
-		cam->rotation.x += rad;
-	if (dir & (ROTATE_UP | ROTATE_DOWN))
-		cam->rotation.y += rad;
-	cam->trans = draw_matrix_multiply_axes_m4(
-		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
-}
 
 int				movemyass(t_rt *rt)
 {
