@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/06 15:24:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:28:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int				movemyass(t_rt *rt)
 {
 	const int		k = rt->keyboard;
-	const double	offset = 0.5;
+	const double	offset = (k & FAST) ? 1.0 : 0.5;
 
 	if (k & ZOOMIN)
 		((t_obj*)rt->root->content)->trans.w.z += offset;
@@ -54,7 +54,8 @@ static int		getkeybit(const int keycode)
 		{SDLK_DOWN, ROTATE_DOWN},
 		{SDLK_LEFT, ROTATE_LEFT},
 		{SDLK_RIGHT, ROTATE_RIGHT},
-		{SDLK_p, FORCE_DISPLAY}
+		{SDLK_p, FORCE_DISPLAY},
+		{SDLK_f, FAST}
 	};
 	unsigned int	p;
 
