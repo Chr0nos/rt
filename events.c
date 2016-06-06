@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 21:48:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:24:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,27 @@ int				keyrlz(int keycode, t_rt *rt)
 	return (0);
 }
 
+int				mouseclick(SDL_Event *event, t_rt *rt)
+{
+	if (event->motion.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (event->button.button == SDL_BUTTON_LEFT)
+			rt->keyboard |= ZOOMIN;
+		else if (event->button.button == SDL_BUTTON_RIGHT)
+			rt->keyboard |= ZOOMOUT;
+	}
+	else
+	{
+		if ((event->button.button == SDL_BUTTON_LEFT) &&
+			(rt->keyboard & ZOOMIN))
+			rt->keyboard ^= ZOOMIN;
+		else if ((event->button.button == SDL_BUTTON_RIGHT) &&
+			(rt->keyboard & ZOOMOUT))
+			rt->keyboard ^= ZOOMOUT;
+	}
+	return (0);
+}
+
 int				sdl_event(SDL_Event *event, t_rt *rt)
 {
 	if (event->type == SDL_QUIT)
@@ -101,5 +122,8 @@ int				sdl_event(SDL_Event *event, t_rt *rt)
 		return (keydown(event->key.keysym.sym, rt));
 	else if (event->type == SDL_KEYUP)
 		return (keyrlz(event->key.keysym.sym, rt));
+	else if ((event->type == SDL_MOUSEBUTTONDOWN) ||
+		(event->type == SDL_MOUSEBUTTONUP))
+		return (mouseclick(event, rt));
 	return (0);
 }

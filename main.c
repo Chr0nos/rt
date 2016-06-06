@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 03:43:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:14:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int				main(int ac, char **av)
 
 	if (ac >= 2)
 	{
+		rt.mouse = 0;
 		rt.keyboard = FORCE_DISPLAY;
 		rt.root = parse_yolo(av[1]);
 		rt_bounds_update(rt.root);

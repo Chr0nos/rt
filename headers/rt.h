@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 18:47:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:14:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ typedef struct	s_rt
 	t_draw		sys;
 	t_obj		*root;
 	int			keyboard;
+	int			mouse;
 }				t_rt;
 
 void			rt_puttype(int type);
 
 int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
+int				mouseclick(SDL_Event *event, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
 
 void			rt_debug(t_obj *item, unsigned int level);
