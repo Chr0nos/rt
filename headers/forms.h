@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 20:57:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/07 22:39:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef enum			e_type
 	EMPTY = 1 << 5,
 	SPOT = 1 << 6,
 	POINTLIGHT = 1 << 7,
-	RADIUS = SPHERE | CUBE
+	RADIUS = SPHERE | CUBE,
+	VISIBLE = CUBE | PLAN | SPHERE
 }						t_type;
 
 enum					e_stop

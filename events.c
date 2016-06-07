@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 20:13:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/07 22:47:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				keyrlz(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
 
-	if (keybit < 0)
+	if ((keybit < 0) || (!(rt->keyboard & keybit)))
 		return (0);
 	rt->keyboard ^= keybit;
 	return (0);
