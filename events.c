@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 22:47:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 00:26:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int				keydown(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
 
+	if (keycode == SDLK_o)
+		draw_putm4(((t_obj*)rt->root->content)->trans, 6);
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
