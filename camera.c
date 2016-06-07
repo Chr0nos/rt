@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 21:49:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/07 20:29:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 {
 	t_v2d	tmp;
 
-	cam->fovy = ((float)geometry.y / (float)geometry.x) * cam->fov;
-	cam->steppx = (t_v2d){(double)cam->fov / (double)geometry.x,
-		(double)cam->fovy / (double)geometry.y};
+	cam->fovx = ((float)geometry.x / (float)geometry.y) * cam->fov;
+	cam->steppx = (t_v2d){(double)cam->fovx / (double)geometry.x,
+		(double)cam->fov / (double)geometry.y};
 	cam->rayreset = (t_v4d){
-		(double)cam->fovy / 2.0,
 		(double)cam->fov / 2.0,
+		(double)cam->fovx / 2.0,
 		0.0,
 		0.0};
-	tmp = (t_v2d){1 - sin((double)cam->fov), 1 - sin((double)cam->fovy)};
+	tmp = (t_v2d){1 - sin((double)cam->fovx), 1 - sin((double)cam->fov)};
 	cam->rayfix = (t_v4d){ tmp.x / 2.0, tmp.y / 2.0,
 		tmp.x / (double)geometry.x, tmp.y / (double)geometry.y};
 }
@@ -62,7 +62,7 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
 		cam->rotation.x += rad;
 	if (dir & (ROTATE_UP | ROTATE_DOWN))
-		cam->rotation.y += rad;
+		cam->rotation.y -= rad;
 	cam->trans = draw_matrix_multiply_axes_m4(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }
