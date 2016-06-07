@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/04 03:04:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/07 22:21:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,21 @@ static int		check(float *box, float start, float dir, double *tb)
 	double	tmax;
 	double	temp[2];
 
-	tmin = (double)-INFINITY;
-	tmax = (double)INFINITY;
+	tmin = (double)(box[0] - start);
+	tmax = (double)(box[1] - start);
 	if (dir != 0.0f)
 	{
-		temp[0] = (double)((box[0] - start) / dir);
-		temp[1] = (double)((box[1] - start) / dir);
+		temp[0] = tmin / (double)dir;
+		temp[1] = tmax / (double)dir;
 		tmin = fmin(temp[0], temp[1]);
 		tmax = fmax(temp[0], temp[1]);
+	}
+	else if (tmin > 0.0 || tmax < 0.0)
+		return (1);
+	else
+	{
+		tmin = (double)-INFINITY;
+		tmax = (double)INFINITY;
 	}
 	if (tmin > tb[1] || tmax < tb[0])
 		return (1);
@@ -51,6 +58,7 @@ int				raybox_check(t_ray *r, t_box *box)
 		return (0);
 	if (tb[1] < 0.0)
 		return (0);
+	r->lenght = (tb[0] > 0.0) ? tb[0] : 0.0;
 	return (1);
 }
 

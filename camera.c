@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 20:29:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/07 21:41:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 	cam->steppx = (t_v2d){(double)cam->fovx / (double)geometry.x,
 		(double)cam->fov / (double)geometry.y};
 	cam->rayreset = (t_v4d){
-		(double)cam->fov / 2.0,
 		(double)cam->fovx / 2.0,
+		(double)cam->fov / 2.0,
 		0.0,
 		0.0};
 	tmp = (t_v2d){1 - sin((double)cam->fovx), 1 - sin((double)cam->fov)};
