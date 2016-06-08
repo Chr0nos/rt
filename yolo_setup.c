@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 23:31:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 00:58:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 	unsigned int	color;
 	size_t			splitsize;
 
+	if (strcolor[0] == '#')
+		return ((unsigned int)ft_basetoul(&strcolor[1], "0123456789ABCDEF"));
 	if (ft_strcount(strcolor, ':') != 2)
 		return (COLOR_BLACK);
 	if (!(split = ft_strsplit(strcolor, ':')))
@@ -48,6 +50,7 @@ static int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 {
 	if (ac < 7)
 		return (1);
+	ft_strtoupper(av[PLAN_COLOR]);
 	((t_plan*)obj->content)->color = yolo_setup_color(av[PLAN_COLOR]);
 	obj->rotation = (t_v4d){
 		deg2rad(ft_atod(av[PLAN_OR_X])),
@@ -104,6 +107,7 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 	{
 		if (ac < 4)
 			return (1);
+		ft_strtoupper(av[S_COLOR_POS]);
 		((t_sphere*)obj->content)->radius = (float)ft_atod(av[PROP_SIZE]);
 		((t_sphere*)obj->content)->color = yolo_setup_color(av[S_COLOR_POS]);
 	}
