@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 19:44:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 21:58:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 #define CAMERA_OR_X 3
 #define CAMERA_OR_Y 4
 #define CAMERA_OR_Z 5
+#define PLAN_OR_X 3
+#define PLAN_OR_Y 4
+#define PLAN_OR_Z 5
+#define PLAN_COLOR 6
 #define MINFOV 5.0f
 #define MAXFOV 180.0f
 
@@ -42,7 +46,20 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 
 static int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 {
-
+	if (ac < 7)
+		return (1);
+	((t_plan*)obj->content)->color = yolo_setup_color(av[PLAN_COLOR]);
+	obj->trans = draw_matrix_multiply_axes_m4(
+		(t_v4d){
+			deg2rad(ft_atod(av[PLAN_OR_X])),
+			deg2rad(ft_atod(av[PLAN_OR_Y])),
+			deg2rad(ft_atod(av[PLAN_OR_Z])),
+			0.0
+		},
+		(t_v4d){1.0, 1.0, 1.0, 1.0},
+		obj->trans.w);
+	draw_putm4(obj->trans, 6);
+	return (0);
 }
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
@@ -90,5 +107,7 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 	}
 	else if (obj->type == CAMERA)
 		return (yolo_setup_camera(obj, ac, av));
+	else if (obj->type == PLAN)
+		return (yolo_setup_plan(obj, ac, av));
 	return (0);
 }
