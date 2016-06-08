@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 22:39:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 16:34:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct			s_obj
 	struct s_obj		*childs;
 	struct s_obj		*next;
 	void				*content;
+	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
 }						t_obj;
 
 #endif

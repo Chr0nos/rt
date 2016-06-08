@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/06 15:14:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 17:44:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_realpos(t_obj *obj, int mode, void *userdata);
+int				yolo_setup_type(t_obj *obj, int mode, void *userdata);
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);
 
@@ -75,5 +76,7 @@ float			deg2radf(float deg);
 int				display(t_rt *rt);
 int				movemyass(t_rt *rt);
 void			camera_rotate(t_rt *rt, const double x, const int dir);
+
+int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v);
 
 #endif

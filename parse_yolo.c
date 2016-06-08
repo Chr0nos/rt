@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 18:48:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 17:43:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ t_obj			*parse_yolo(const char *filepath)
 	close(fd);
 	obj->content = rt_obj_getcamera(obj);
 	rt_node_foreach(obj, PREFIX, &yolo_setup_realpos, NULL);
+	rt_node_foreach(obj, PREFIX, &yolo_setup_type, NULL);
 	return (obj);
 }
