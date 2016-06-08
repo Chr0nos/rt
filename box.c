@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 22:21:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/08 22:41:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ static int		check(float *box, float start, float dir, double *tb)
 {
 	double	tmin;
 	double	tmax;
-	double	temp[2];
 
 	tmin = (double)(box[0] - start);
 	tmax = (double)(box[1] - start);
 	if (dir != 0.0f)
 	{
-		temp[0] = tmin / (double)dir;
-		temp[1] = tmax / (double)dir;
-		tmin = fmin(temp[0], temp[1]);
-		tmax = fmax(temp[0], temp[1]);
+		tmin = tmin / (double)dir;
+		tmax = tmax / (double)dir;
+		if (tmin > tmax)
+			draw_swap(&tmin, &tmax);
 	}
 	else if (tmin > 0.0 || tmax < 0.0)
 		return (1);
