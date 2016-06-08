@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 18:28:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 01:12:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int				main(int ac, char **av)
 		{
 			ft_putstr("\nActive camera: ");
 			rt_debug((t_obj*)rt.root->content, 0);
+			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);
+			ft_putchar('\n');
 			rt_start(&rt);
 		}
 		else
