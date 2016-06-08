@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 18:08:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 19:02:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,11 @@ int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	((r->start.y - c->y) * (r->start.y - c->y)) + ((r->start.z - c->z) *
 	(r->start.z - c->z))) - radius * radius;
 	return (rt_sphere_solve(&s, r, v));
+}
+
+t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v)
+{
+	const t_v4d		*c = &obj->trans.w;
+
+	return (draw_v4d_norm((t_v4d){v->x - c->x, v->y - c->y, v->z - c->z, 1.0}));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   factory.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 17:40:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 18:53:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	obj->rotation = (t_v4d){0.0, 0.0, 0.0, 0.0};
 	obj->inters = NULL;
+	obj->normal = NULL;
 	return (rt_obj_addchild(parent, obj));
 }
