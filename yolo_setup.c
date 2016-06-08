@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/05 18:52:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 19:44:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ static unsigned int	yolo_setup_color(const char *strcolor)
 	ft_free_tab(split, splitsize);
 	free(split);
 	return (color);
+}
+
+static int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
+{
+
 }
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)

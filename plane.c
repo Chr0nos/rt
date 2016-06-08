@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 19:15:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 19:43:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 			0.0
 		};
 	return (1);
+}
+
+t_v4d	rt_plane_normale(t_obj *obj, t_v4d *v)
+{
+	(void)v;
+	return (draw_v4d_norm(obj->trans.w));
 }

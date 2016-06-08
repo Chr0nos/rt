@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 17:41:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 18:52:54 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/08 19:28:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int		yolo_setup_type(t_obj *obj, int mode, void *userdata)
 	{
 		obj->inters = &rt_sphere_inter;
 		obj->normal = &rt_sphere_normal;
+	}
+	else if (obj->type == PLAN)
+	{
+		obj->inters = &rt_plane_inter;
+		obj->normal = &rt_plane_normale;
 	}
 	return (OK);
 }
