@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 19:43:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 23:23:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
+	//const t_v4d		plane = (t_v4d){obj->trans.y.x, obj->trans.y.y,
+	//	obj->trans.y.z, 0.0};
 	const t_v4d		inv = draw_v4d_inv(obj->trans.w);
 	const double	t = draw_v4d_dot(inv,
 		draw_v4d_sub(r->start, obj->trans.w)) /
@@ -28,6 +30,7 @@ int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 			r->start.z + r->dir.z * t,
 			0.0
 		};
+	r->lenght = t;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 22:34:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 23:31:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
 	if (!obj->parent)
 		return (OK);
 	obj->trans.w = draw_v4d_add(obj->trans.w, obj->parent->trans.w);
+	rt_box_update(obj);
 	return (OK);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 19:02:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/08 22:54:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 			r->start.z + r->dir.z * t,
 			0.0
 		};
+	r->lenght = t;
 	return (1);
 }
 
