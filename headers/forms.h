@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 16:34:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 18:25:50 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct			s_obj
 	struct s_obj		*next;
 	void				*content;
 	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
+	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
 }						t_obj;
 
 #endif
