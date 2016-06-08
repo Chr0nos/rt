@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 23:38:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/09 01:45:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,43 @@
 #include "libft.h"
 #include "keyboard.h"
 
+#include <stdio.h>
+
+static t_v4d	movevec(int k)
+{
+	const double	offset = (k & FAST) ? 1.0 : 0.5;
+	t_v4d			ret;
+
+	ret = (t_v4d){0.0, 0.0, 0.0, 1.0};
+	if (k & ZOOMIN)
+		ret.z += offset;
+	if (k & ZOOMOUT)
+		ret.z -= offset;
+	if (k & RIGHT)
+		ret.x -= offset;
+	if (k & LEFT)
+		ret.x += offset;
+	if (k & UP)
+		ret.y += offset;
+	if (k & DOWN)
+		ret.y -= offset;
+	return (ret);
+}
+
 int				movemyass(t_rt *rt)
 {
 	const int		k = rt->keyboard;
-	const double	offset = (k & FAST) ? 1.0 : 0.5;
+	t_m4			m;
+	t_obj			*obj;
 
-	if (k & ZOOMIN)
-		((t_obj*)rt->root->content)->trans.w.z += offset;
-	if (k & ZOOMOUT)
-		((t_obj*)rt->root->content)->trans.w.z -= offset;
-	if (k & RIGHT)
-		((t_obj*)rt->root->content)->trans.w.x -= offset;
-	if (k & LEFT)
-		((t_obj*)rt->root->content)->trans.w.x += offset;
-	if (k & UP)
-		((t_obj*)rt->root->content)->trans.w.y += offset;
-	if (k & DOWN)
-		((t_obj*)rt->root->content)->trans.w.y -= offset;
 	if (k & QUIT)
 		return (QUIT);
+	obj = (t_obj*)(rt->root->content);
+	// ft_memcpy(&m, &(obj->trans), sizeof(t_m4));
+	m = obj->trans;
+	m.w = draw_vector_transform_m4(movevec(k), &m);
+	obj->trans = m;
+	// ft_memcpy(&(obj->trans), &m, sizeof(t_m4));
 	if (k & (ROTATE_LEFT | ROTATE_RIGHT | ROTATE_DOWN | ROTATE_UP))
 		camera_rotate(rt, 0.1, k);
 	return (k & (ZOOMIN | ZOOMOUT | RIGHT | LEFT | UP | DOWN | ROTATE_LEFT |
