@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 17:44:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 18:53:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int				movemyass(t_rt *rt);
 void			camera_rotate(t_rt *rt, const double x, const int dir);
 
 int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v);
+t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v);
 
 #endif
