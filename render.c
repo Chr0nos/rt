@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 00:30:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 01:11:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			r->ray->color = ((t_sphere*)obj->content)->color;
 		else
 			r->ray->color = COLOR_WHITE;
-		return (OK);
 	}
 	return (OK);
 }
