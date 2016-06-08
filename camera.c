@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 21:41:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/08 23:36:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	cam = rt->root->content;
 	rad = (dir & (ROTATE_LEFT | ROTATE_DOWN)) ? -x : x;
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
-		cam->rotation.x += rad;
+		cam->rotation.y += rad;
 	if (dir & (ROTATE_UP | ROTATE_DOWN))
-		cam->rotation.y -= rad;
+		cam->rotation.x -= rad;
 	cam->trans = draw_matrix_multiply_axes_m4(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }

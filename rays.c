@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/07 21:39:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/08 23:35:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
 		rad.y = camp->rayreset.y;
 		while (px.y--)
 		{
-			ray->dir = (t_v4d){sin(rad.y), -sin(rad.x),
-				cos(rad.x) * cos(rad.y), 0.0};
+			ray->dir = (t_v4d){sin(rad.x), -sin(rad.y),
+				cos(rad.y) * cos(rad.x), 0.0};
 			rt_rayplan_fix(ray, &m);
 			draw_pxi(rt->sys.screen->pixels, px,
 				(unsigned int)rt->sys.geometry.x, rt_render(rt, ray));

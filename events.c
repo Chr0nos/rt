@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 00:26:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/08 23:38:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int				movemyass(t_rt *rt)
 	if (k & ZOOMOUT)
 		((t_obj*)rt->root->content)->trans.w.z -= offset;
 	if (k & RIGHT)
-		((t_obj*)rt->root->content)->trans.w.y += offset;
-	if (k & LEFT)
-		((t_obj*)rt->root->content)->trans.w.y -= offset;
-	if (k & UP)
 		((t_obj*)rt->root->content)->trans.w.x -= offset;
-	if (k & DOWN)
+	if (k & LEFT)
 		((t_obj*)rt->root->content)->trans.w.x += offset;
+	if (k & UP)
+		((t_obj*)rt->root->content)->trans.w.y += offset;
+	if (k & DOWN)
+		((t_obj*)rt->root->content)->trans.w.y -= offset;
 	if (k & QUIT)
 		return (QUIT);
 	if (k & (ROTATE_LEFT | ROTATE_RIGHT | ROTATE_DOWN | ROTATE_UP))
