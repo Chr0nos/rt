@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 21:41:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 22:46:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
-	const t_v4d		plane = obj->trans.z;
-	const t_v4d		inv = draw_v4d_inv(plane);
-	const double	t = draw_v4d_dot(inv,
-		draw_v4d_sub(r->start, obj->trans.w)) /
-		draw_v4d_dot(plane, r->dir);
+	const t_v4d		plane = obj->trans.y;
+	double			t;
 
+	t = draw_v4d_dot(plane, r->dir);
+	if (t == 0.0)
+		return (0);
+	t = -draw_v4d_dot(plane, draw_v4d_sub(r->start, obj->trans.w)) / t;
 	if (t < 0.0)
 		return (0);
 	if (v)
