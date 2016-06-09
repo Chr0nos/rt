@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/08 19:14:03 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/09 17:32:50 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,11 @@ re: fclean all
 
 relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
 
-test: object.o debug.o factory.o test.o
-	$(CC) $(FLAGS) object.o debug.o factory.o test.o -o test $(LINKER)
+pull:
+	git pull
+	cd ./libs/libft
+	git pull
+	cd ./libs/libdraw
+	git pull
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean pull
