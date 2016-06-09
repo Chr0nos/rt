@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:13:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 07:42:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 {
 	t_v2d	tmp;
 
-	cam->fovx = ((float)geometry.x / (float)geometry.y) * cam->fov;
-	cam->steppx = (t_v2d){(double)cam->fovx / (double)geometry.x,
-		(double)cam->fov / (double)geometry.y};
+	cam->fovx = ((double)geometry.x / (double)geometry.y) * cam->fov;
+	cam->steppx = (t_v2d){cam->fovx / (double)geometry.x,
+		cam->fov / (double)geometry.y};
 	cam->rayreset = (t_v4d){
-		(double)cam->fovx / 2.0,
-		(double)cam->fov / 2.0,
+		cam->fovx / 2.0,
+		cam->fov / 2.0,
 		0.0,
 		0.0};
-	tmp = (t_v2d){1 - sin((double)cam->fovx), 1 - sin((double)cam->fov)};
+	tmp = (t_v2d){
+		((double)geometry.x / (double)geometry.y) * sin((double)cam->fov),
+		sin((double)cam->fov)};
 	cam->rayfix = (t_v4d){ tmp.x / 2.0, tmp.y / 2.0,
 		tmp.x / (double)geometry.x, tmp.y / (double)geometry.y};
 }

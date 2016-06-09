@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 06:13:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 06:36:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 #define PLAN_OR_Y 4
 #define PLAN_OR_Z 5
 #define PLAN_COLOR 6
-#define MINFOV 5.0f
-#define MAXFOV 180.0f
+#define MINFOV 5.0
+#define MAXFOV 180.0
 
 static unsigned int	yolo_setup_color(const char *strcolor)
 {
@@ -68,16 +68,16 @@ static int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 
 static int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 {
-	float	fov;
+	double	fov;
 
 	if (ac < CAMERA_OR_Z)
 	{
 		ft_printf("error: failed to setup camera\n");
 		return (1);
 	}
-	if ((ac <= 6) || ((fov = (float)ft_atod(av[6])) < MINFOV) || (fov > MAXFOV))
-		fov = 49.124f;
-	((t_camera*)obj->content)->fov = deg2radf(fov);
+	if ((ac <= 6) || ((fov = ft_atod(av[6])) < MINFOV) || (fov > MAXFOV))
+		fov = 49.124;
+	((t_camera*)obj->content)->fov = deg2rad(fov);
 	obj->rotation = (t_v4d){deg2rad(ft_atod(av[CAMERA_OR_X])),
 		deg2rad(ft_atod(av[CAMERA_OR_Y])),
 		deg2rad(ft_atod(av[CAMERA_OR_Z])),

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 23:35:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/09 07:47:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,19 @@
 #include "libft.h"
 #include <unistd.h>
 
-static void		rt_rayplan_fix(t_ray *ray, t_m4 *m)
+static t_v4d	vnormalize(t_v4d v)
 {
+	const double	n = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+
+	v.x /= n;
+	v.y /= n;
+	v.z /= n;
+	return (v);
+}
+
+static void		rt_rayplan_fix(t_ray *ray, t_v4d *rad, t_m4 *m)
+{
+	ray->dir = vnormalize((t_v4d){rad->x, -rad->y, 1.0, 0.0});
 	ray->dir = draw_vector_transform_m4(ray->dir, m);
 }
 
@@ -39,16 +50,14 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
 
 	(void)rt_debug_ray;
 	px.x = rt->sys.geometry.x;
-	rad = (t_v4d){camp->rayreset.x, 0.0, camp->steppx.x, camp->steppx.y};
+	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
 	while (px.x--)
 	{
 		px.y = rt->sys.geometry.y;
-		rad.y = camp->rayreset.y;
+		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
-			ray->dir = (t_v4d){sin(rad.x), -sin(rad.y),
-				cos(rad.y) * cos(rad.x), 0.0};
-			rt_rayplan_fix(ray, &m);
+			rt_rayplan_fix(ray, &rad, &m);
 			draw_pxi(rt->sys.screen->pixels, px,
 				(unsigned int)rt->sys.geometry.x, rt_render(rt, ray));
 			rad.y -= rad.w;
