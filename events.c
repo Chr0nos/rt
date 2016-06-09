@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:03:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 04:05:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "draw.h"
 #include "libft.h"
 #include "keyboard.h"
-
-#include <stdio.h>
 
 static t_v4d	movevec(int k)
 {
@@ -47,11 +45,9 @@ int				movemyass(t_rt *rt)
 	if (k & QUIT)
 		return (QUIT);
 	obj = (t_obj*)(rt->root->content);
-	// ft_memcpy(&m, &(obj->trans), sizeof(t_m4));
 	m = obj->trans;
 	m.w = draw_vector_transform_m4(movevec(k), &m);
 	obj->trans = m;
-	// ft_memcpy(&(obj->trans), &m, sizeof(t_m4));
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
 	return (k & (MOVE | FORCE_DISPLAY));
