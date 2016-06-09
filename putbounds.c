@@ -6,19 +6,17 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:24:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:50:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 05:34:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 
-void	rt_putbounds(t_obj *obj, void *userdata)
+void	rt_putbounds(t_obj *obj, unsigned int p)
 {
 	char				*x[6];
-	unsigned int		p;
 
-	p = (unsigned int)(unsigned long)userdata;
 	x[0] = ft_dtoa((double)obj->bounds.xmin, p);
 	x[1] = ft_dtoa((double)obj->bounds.xmax, p);
 	x[2] = ft_dtoa((double)obj->bounds.ymin, p);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:03:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 05:35:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
 
+void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
 t_uint			rt_sizeobj(t_type type);
@@ -60,7 +61,6 @@ void			rt_rays(t_rt *rt);
 
 int				rt_node_foreach(t_obj *node, int mode,
 	int (*f)(t_obj*, int, void*), void *userdata);
-void			rt_putbounds(t_obj *obj, void *userdata);
 int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
