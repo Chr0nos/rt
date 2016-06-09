@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 18:49:24 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/09 19:11:08 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 OPSYS=$(shell uname -s)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rtv1
@@ -21,7 +22,13 @@ LIBFT=./libs/libft
 SDL=~/.brew/include/
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT) -I $(SDL)
 CC=clang
-SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
+SDL_LINUX = -L ~/.brew/lib/ -lSDL2 -lSDL2_image;
+SDL_DARWIN = -framework sdl2
+ifeq ($(OPSYS), Darwin)
+	SDLLINK=$(SDL_DARWIN)
+else
+	SDLLINK=$(SDL_LINUX)
+endif
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 OBJ=main.o debug.o factory.o object.o check_cube.o parse_yolo.o box.o \
 	yolo_setup.o events.o camera.o rays.o bounds.o node.o puttype.o \
