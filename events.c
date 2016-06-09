@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:52:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 04:55:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int		getkeybit(const int keycode)
 		{SDLK_e, ROLL_RIGHT},
 		{SDLK_q, ROLL_LEFT},
 		{SDLK_LCTRL, DOWN},
+		{SDLK_c, DOWN},
 		{SDLK_a, RIGHT},
 		{SDLK_d, LEFT},
 		{SDLK_UP, ROTATE_UP},
