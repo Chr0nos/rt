@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 03:31:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 04:03:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,17 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation.z += (dir & ROLL_LEFT) ? -x : x;
 	cam->trans = draw_matrix_multiply_axes_m4(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
+}
+
+
+int		camera_reset(t_rt *rt)
+{
+	t_obj		*obj;
+	t_camera	*cam;
+
+	obj = rt->root->content;
+	cam = obj->content;
+	obj->trans = cam->origin;
+	rt->keyboard |= FORCE_DISPLAY;
+	return (0);
 }
