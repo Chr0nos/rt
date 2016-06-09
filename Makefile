@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 17:32:50 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/09 17:43:25 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 OBJ=main.o debug.o factory.o object.o check_cube.o parse_yolo.o box.o \
 	yolo_setup.o events.o camera.o rays.o bounds.o node.o puttype.o \
 	putbounds.o render.o rad2deg.o display.o sphere.o yolo_setup_type.o \
-	plane.o
+	plane.o mouse.o keyboard.o keybit.o
 
 all: $(NAME)
 

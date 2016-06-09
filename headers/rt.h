@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 05:35:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:42:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_rt
 
 void			rt_puttype(int type);
 
+int				getkeybit(const int keycode);
 int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);

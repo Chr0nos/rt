@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:55:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:42:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "keyboard.h"
 
-static t_v4d	movevec(int k)
+static t_v4d	move_vec(int k)
 {
 	const double	offset = (k & FAST) ? 1.0 : 0.5;
 	t_v4d			ret;
@@ -46,88 +46,11 @@ int				movemyass(t_rt *rt)
 		return (QUIT);
 	obj = (t_obj*)(rt->root->content);
 	m = obj->trans;
-	m.w = draw_vector_transform_m4(movevec(k), &m);
+	m.w = draw_vector_transform_m4(move_vec(k), &m);
 	obj->trans = m;
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
 	return (k & (MOVE | FORCE_DISPLAY));
-}
-
-static int		getkeybit(const int keycode)
-{
-	const t_kbcmp	cmp[] = {
-		{SDLK_w, ZOOMIN},
-		{SDLK_s, ZOOMOUT},
-		{SDLK_ESCAPE, QUIT},
-		{SDLK_SPACE, UP},
-		{SDLK_e, ROLL_RIGHT},
-		{SDLK_q, ROLL_LEFT},
-		{SDLK_LCTRL, DOWN},
-		{SDLK_c, DOWN},
-		{SDLK_a, RIGHT},
-		{SDLK_d, LEFT},
-		{SDLK_UP, ROTATE_UP},
-		{SDLK_DOWN, ROTATE_DOWN},
-		{SDLK_LEFT, ROTATE_LEFT},
-		{SDLK_RIGHT, ROTATE_RIGHT},
-		{SDLK_p, FORCE_DISPLAY},
-		{SDLK_LSHIFT, FAST}
-	};
-	unsigned int	p;
-
-	p = sizeof(cmp);
-	while (p--)
-		if (cmp[p].key == keycode)
-			return (cmp[p].bit);
-	return (-1);
-}
-
-int				keydown(int keycode, t_rt *rt)
-{
-	const int		keybit = getkeybit(keycode);
-
-	if (keycode == SDLK_o)
-		draw_putm4(((t_obj*)rt->root->content)->trans, 6);
-	else if (keycode == SDLK_r)
-		return (camera_reset(rt));
-	else if (keycode == SDLK_y)
-		((t_camera*)((t_obj*)rt->root->content)->content)->origin =
-		((t_obj*)rt->root->content)->trans;
-	if ((keybit < 0) || (rt->keyboard & QUIT))
-		return (0);
-	rt->keyboard |= keybit;
-	return (0);
-}
-
-int				keyrlz(int keycode, t_rt *rt)
-{
-	const int		keybit = getkeybit(keycode);
-
-	if ((keybit < 0) || (!(rt->keyboard & keybit)))
-		return (0);
-	rt->keyboard ^= keybit;
-	return (0);
-}
-
-int				mouseclick(SDL_Event *event, t_rt *rt)
-{
-	if (event->motion.type == SDL_MOUSEBUTTONDOWN)
-	{
-		if (event->button.button == SDL_BUTTON_LEFT)
-			rt->keyboard |= ZOOMIN;
-		else if (event->button.button == SDL_BUTTON_RIGHT)
-			rt->keyboard |= ZOOMOUT;
-	}
-	else
-	{
-		if ((event->button.button == SDL_BUTTON_LEFT) &&
-			(rt->keyboard & ZOOMIN))
-			rt->keyboard ^= ZOOMIN;
-		else if ((event->button.button == SDL_BUTTON_RIGHT) &&
-			(rt->keyboard & ZOOMOUT))
-			rt->keyboard ^= ZOOMOUT;
-	}
-	return (0);
 }
 
 int				sdl_event(SDL_Event *event, t_rt *rt)
