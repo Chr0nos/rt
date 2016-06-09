@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 19:18:01 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/09 19:20:25 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC=clang
 ifeq ($(OPSYS), Darwin)
 	SDLLINK=-framework sdl2
 else
-	SDLLINK=L ~/.brew/lib/ -lSDL2 -lSDL2_image
+	SDLLINK=-lSDL2
 endif
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
