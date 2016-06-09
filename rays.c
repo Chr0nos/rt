@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 07:47:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:30:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static t_v4d	vnormalize(t_v4d v)
 
 static void		rt_rayplan_fix(t_ray *ray, t_v4d *rad, t_m4 *m)
 {
-	ray->dir = vnormalize((t_v4d){rad->x, -rad->y, 1.0, 0.0});
+	(void)vnormalize;
+	//ray->dir = vnormalize((t_v4d){rad->x, -rad->y, 1.0, 0.0});
+	//coucou :)
+	ray->dir = draw_v4d_norm((t_v4d){rad->x, -rad->y, 1.0, 0.0});
 	ray->dir = draw_vector_transform_m4(ray->dir, m);
 }
 
