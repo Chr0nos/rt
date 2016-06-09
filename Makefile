@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 19:20:25 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/09 21:26:15 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,7 @@ relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
 
 pull:
 	git pull
-	cd ./libs/libft
-	git pull
-	cd ./libs/libdraw
-	git pull
+	cd ./libs/libft && git pull
+	cd ./libs/libdraw && git pull
 
 .PHONY: all re clean fclean pull
