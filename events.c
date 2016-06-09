@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:05:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 04:52:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ int				keydown(int keycode, t_rt *rt)
 		draw_putm4(((t_obj*)rt->root->content)->trans, 6);
 	else if (keycode == SDLK_r)
 		return (camera_reset(rt));
+	else if (keycode == SDLK_y)
+		((t_camera*)((t_obj*)rt->root->content)->content)->origin =
+		((t_obj*)rt->root->content)->trans;
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
