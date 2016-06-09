@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/28 01:45:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 05:52:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ t_obj		*rt_obj_makeroot(void)
 	root->next = NULL;
 	root->content = NULL;
 	root->type = ROOT;
+	root->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	root->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	root->normal = NULL;
+	root->inters = NULL;
+	root->trans = draw_make_matrix_m4_identity();
+	root->rotation = (t_v4d){0.0, 0.0, 0.0, 1.0};
 	rt_box_update(root);
 	return (root);
 }
