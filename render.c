@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 22:56:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 03:08:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		if (r->lowest_lenght < r->ray->lenght)
 			return (OK);
 		r->lowest_lenght = r->ray->lenght;
-		if (obj->type == CUBE)
-			r->ray->color = ((t_cube*)obj->content)->color;
-		else if (obj->type == SPHERE)
-			r->ray->color = ((t_sphere*)obj->content)->color;
-		else
-			r->ray->color = COLOR_WHITE;
+		r->ray->color = ((t_cube*)obj->content)->color;
 	}
 	return (OK);
 }
@@ -44,7 +39,6 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
-	ray->lenght = HUGE_VAL;
 	r = (t_render){ray, HUGE_VAL};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->root, INFIX, &rt_render_foreach, &r);
