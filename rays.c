@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 17:30:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 21:38:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,8 @@
 #include "libft.h"
 #include <unistd.h>
 
-static t_v4d	vnormalize(t_v4d v)
-{
-	const double	n = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-
-	v.x /= n;
-	v.y /= n;
-	v.z /= n;
-	return (v);
-}
-
 static void		rt_rayplan_fix(t_ray *ray, t_v4d *rad, t_m4 *m)
 {
-	(void)vnormalize;
-	//ray->dir = vnormalize((t_v4d){rad->x, -rad->y, 1.0, 0.0});
-	//coucou :)
 	ray->dir = draw_v4d_norm((t_v4d){rad->x, -rad->y, 1.0, 0.0});
 	ray->dir = draw_vector_transform_m4(ray->dir, m);
 }
