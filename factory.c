@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   factory.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 18:53:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/09 04:10:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->rotation = (t_v4d){0.0, 0.0, 0.0, 0.0};
 	obj->inters = NULL;
 	obj->normal = NULL;
+	if (type & VISIBLE)
+		((t_cube*)obj->content)->color = COLOR_BLACK;
 	return (rt_obj_addchild(parent, obj));
 }
