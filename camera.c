@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:03:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 04:13:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 
 void	camera_rotate(t_rt *rt, const double x, const int dir)
 {
-	t_obj			*cam;
+	t_obj	*cam;
 
 	cam = rt->root->content;
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
@@ -66,7 +66,6 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	cam->trans = draw_matrix_multiply_axes_m4(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }
-
 
 int		camera_reset(t_rt *rt)
 {
