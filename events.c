@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 03:15:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 03:29:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ int				movemyass(t_rt *rt)
 	m.w = draw_vector_transform_m4(movevec(k), &m);
 	obj->trans = m;
 	// ft_memcpy(&(obj->trans), &m, sizeof(t_m4));
-	if (k & (ROTATE_LEFT | ROTATE_RIGHT | ROTATE_DOWN | ROTATE_UP))
+	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
-	return (k & (ZOOMIN | ZOOMOUT | RIGHT | LEFT | UP | DOWN | ROTATE_LEFT |
-				ROTATE_RIGHT | ROTATE_UP | ROTATE_DOWN | FORCE_DISPLAY));
+	return (k & (MOVE | FORCE_DISPLAY));
 }
 
 static int		getkeybit(const int keycode)
@@ -64,9 +63,9 @@ static int		getkeybit(const int keycode)
 		{SDLK_w, ZOOMIN},
 		{SDLK_s, ZOOMOUT},
 		{SDLK_ESCAPE, QUIT},
-		{SDLK_e, UP},
 		{SDLK_SPACE, UP},
-		{SDLK_q, DOWN},
+		{SDLK_e, ROLL_RIGHT},
+		{SDLK_q, ROLL_LEFT},
 		{SDLK_LCTRL, DOWN},
 		{SDLK_a, RIGHT},
 		{SDLK_d, LEFT},
