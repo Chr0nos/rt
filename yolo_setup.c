@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 03:57:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 06:13:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
 {
 	(void)userdata;
 	(void)mode;
-	if (!obj->parent)
+	if ((!obj->parent) || (obj->type == CAMERA))
 		return (OK);
 	obj->trans.w = draw_v4d_add(obj->trans.w, obj->parent->trans.w);
 	rt_box_update(obj);
