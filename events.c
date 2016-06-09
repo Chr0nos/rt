@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 01:45:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/09 03:15:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ int				movemyass(t_rt *rt)
 static int		getkeybit(const int keycode)
 {
 	const t_kbcmp	cmp[] = {
-		{SDLK_e, ZOOMIN},
-		{SDLK_q, ZOOMOUT},
+		{SDLK_w, ZOOMIN},
+		{SDLK_s, ZOOMOUT},
 		{SDLK_ESCAPE, QUIT},
-		{SDLK_w, UP},
-		{SDLK_s, DOWN},
+		{SDLK_e, UP},
+		{SDLK_SPACE, UP},
+		{SDLK_q, DOWN},
+		{SDLK_LCTRL, DOWN},
 		{SDLK_a, RIGHT},
 		{SDLK_d, LEFT},
 		{SDLK_UP, ROTATE_UP},
@@ -73,7 +75,7 @@ static int		getkeybit(const int keycode)
 		{SDLK_LEFT, ROTATE_LEFT},
 		{SDLK_RIGHT, ROTATE_RIGHT},
 		{SDLK_p, FORCE_DISPLAY},
-		{SDLK_f, FAST}
+		{SDLK_LSHIFT, FAST}
 	};
 	unsigned int	p;
 
