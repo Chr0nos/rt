@@ -6,19 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 21:38:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/09 22:58:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 #include <unistd.h>
-
-static void		rt_rayplan_fix(t_ray *ray, t_v4d *rad, t_m4 *m)
-{
-	ray->dir = draw_v4d_norm((t_v4d){rad->x, -rad->y, 1.0, 0.0});
-	ray->dir = draw_vector_transform_m4(ray->dir, m);
-}
 
 static void		rt_debug_ray(t_ray *ray)
 {
@@ -47,7 +41,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
-			rt_rayplan_fix(ray, &rad, &m);
+			ray->dir = draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0});
+			ray->dir = draw_vector_transform_m4(ray->dir, &m);
 			draw_pxi(rt->sys.screen->pixels, px,
 				(unsigned int)rt->sys.geometry.x, rt_render(rt, ray));
 			rad.y -= rad.w;
