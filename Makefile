@@ -3,15 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 17:43:25 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/09 18:49:24 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+OPSYS=$(shell uname -s)
+CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rtv1
-FLAGS=-Wall -Wextra -Werror -pipe -Ofast -Weverything -Wno-padded -Wno-reserved-id-macro -Wno-documentation-unknown-command -Wno-documentation
+FLAGS=-Wall -Wextra -Werror -pipe -Ofast -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
+ifneq ($(CLANGVERSION),3.5.2)
+	FLAGS+=-Wno-reserved-id-macro
+endif
 DRAW=./libs/libdraw
 LIBFT=./libs/libft
 SDL=~/.brew/include/
