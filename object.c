@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 20:41:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 22:40:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,18 @@ t_obj		*rt_obj_delchild(t_obj *parent, t_obj *child)
 	return (child);
 }
 
-t_obj		*rt_obj_makeroot(void)
+void		rt_obj_init(t_obj *obj, t_type type)
 {
-	t_obj	*root;
-
-	if (!(root = malloc(sizeof(t_obj))))
-		return (NULL);
-	root->id = 0;
-	root->parent = NULL;
-	root->childs = NULL;
-	root->next = NULL;
-	root->content = NULL;
-	root->type = ROOT;
-	root->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	root->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	root->normal = NULL;
-	root->inters = NULL;
-	root->trans = draw_make_matrix_m4_identity();
-	root->rotation = (t_v4d){0.0, 0.0, 0.0, 1.0};
-	rt_box_update(root);
-	return (root);
+	obj->id = 0;
+	obj->type = type;
+	obj->next = NULL;
+	obj->childs = NULL;
+	obj->content = NULL;
+	obj->trans = draw_make_matrix_m4_identity();
+	obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	obj->rotation = (t_v4d){0.0, 0.0, 0.0, 0.0};
+	obj->inters = NULL;
+	obj->normal = NULL;
+	obj->parent = NULL;
 }

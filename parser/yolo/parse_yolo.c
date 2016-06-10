@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 18:36:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 22:41:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_obj			*parse_yolo(const char *filepath)
 
 	if ((fd = open(filepath, O_RDONLY)) < 0)
 		return (NULL);
-	if (!(obj = rt_obj_makeroot()))
+	if (!(obj = rt_factory_alloc(ROOT, NULL)))
 	{
 		close(fd);
 		return (NULL);

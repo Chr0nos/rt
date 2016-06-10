@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 04:10:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 22:40:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,19 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	const t_uint		size = rt_sizeobj(type);
 	t_obj				*obj;
 
-	if (type == ROOT)
-		return (rt_obj_makeroot());
 	if (!size)
 		return (NULL);
 	if (!(obj = malloc(size)))
 		return (NULL);
-	obj->type = type;
-	obj->next = NULL;
-	obj->childs = NULL;
+	rt_obj_init(obj, type);
+	if (type == ROOT)
+	{
+		rt_box_update(obj);
+		return (obj);
+	}
+	obj->id = lastid++;
 	obj->parent = parent;
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
-	obj->id = lastid++;
-	obj->trans = draw_make_matrix_m4_identity();
-	obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	obj->rotation = (t_v4d){0.0, 0.0, 0.0, 0.0};
-	obj->inters = NULL;
-	obj->normal = NULL;
 	if (type & VISIBLE)
 		((t_cube*)obj->content)->color = COLOR_BLACK;
 	return (rt_obj_addchild(parent, obj));
