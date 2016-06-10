@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 04:48:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:30:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ static int		rt_start(t_rt *rt)
 {
 	if (draw_init(&rt->sys, draw_make_px(1024, 768), "RTv1") < 0)
 		return (1);
-	//if (!draw_init_openglcontext(&rt->sys))
-	//{
-		if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
-			ft_putendl("error: failed to get sdl surface from screen");
-		else
-		{
-			draw_reset_surface(rt->sys.screen, COLOR_BLACK);
-			SDL_UpdateWindowSurface(rt->sys.win);
-			while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
-				SDL_Delay(1);
-		}
+	/*if (!draw_init_openglcontext(&rt->sys))
+		;
+	else*/
+	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
+		ft_putendl("error: failed to get sdl surface from screen");
+	else
+	{
+		draw_reset_surface(rt->sys.screen, COLOR_BLACK);
+		SDL_UpdateWindowSurface(rt->sys.win);
+		while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
+			SDL_Delay(1);
+	}
 	//}
 	draw_quit(&rt->sys);
 	return (0);

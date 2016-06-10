@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 15:48:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:26:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_type			rt_gettype(const char *str)
 {
-	t_typecmp	types[] = {
+	const t_typecmp	types[] = {
 		{CUBE, "CUBE"},
 		{PLAN, "PLAN"},
 		{SPHERE, "SPHERE"},
@@ -36,7 +36,7 @@ t_type			rt_gettype(const char *str)
 
 void			rt_puttype(int type)
 {
-	t_typecmp	types[] = {
+	const t_typecmp	types[] = {
 		{CUBE, "CUBE"},
 		{PLAN, "PLAN"},
 		{SPHERE, "SPHERE"},

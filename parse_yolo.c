@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 15:49:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:36:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
+static t_obj	*yolo_parse_obj(const char *opts, t_obj *obj)
 {
 	char			**split;
 	size_t			size;
@@ -30,14 +30,13 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 		obj->trans.w = (t_v4d){ft_atod(split[0 + ofs]),
 			ft_atod(split[1 + ofs]), ft_atod(split[2 + ofs]), 1.0};
 		yolo_setup(obj, size - 1, split);
-		//rt_box_update(obj);
 	}
 	ft_free_tab(split, (unsigned int)size);
 	free(split);
 	return (obj);
 }
 
-static int		parse_yolo_lvl(char *line)
+static int		yolo_parse_lvl(char *line)
 {
 	int		len;
 
@@ -49,7 +48,7 @@ static int		parse_yolo_lvl(char *line)
 
 static int		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
 {
-	const int	lvl = parse_yolo_lvl(line);
+	const int	lvl = yolo_parse_lvl(line);
 	t_obj		*parent;
 	t_type		type;
 	char		*name_type;
@@ -69,9 +68,17 @@ static int		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
 	else
 		parent = rt_obj_nparent(*lastobj, (unsigned int)(*lastlvl - lvl + 1));
 	line += ft_strsublenstr(line, " \t");
-	*lastobj = parse_yolo_setupobj(line, rt_factory_alloc(type, parent));
+	*lastobj = yolo_parse_obj(line, rt_factory_alloc(type, parent));
 	*lastlvl = lvl;
 	return (0);
+}
+
+static t_obj	*yolo_parse_finalize(t_obj *root)
+{
+	root->content = rt_obj_getcamera(root);
+	rt_node_foreach(root, PREFIX, &yolo_setup_realpos, NULL);
+	rt_node_foreach(root, PREFIX, &yolo_setup_type, NULL);
+	return (root);
 }
 
 t_obj			*parse_yolo(const char *filepath)
@@ -100,8 +107,5 @@ t_obj			*parse_yolo(const char *filepath)
 		free(line);
 	}
 	close(fd);
-	obj->content = rt_obj_getcamera(obj);
-	rt_node_foreach(obj, PREFIX, &yolo_setup_realpos, NULL);
-	rt_node_foreach(obj, PREFIX, &yolo_setup_type, NULL);
-	return (obj);
+	return (yolo_parse_finalize(obj));
 }

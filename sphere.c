@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 05:01:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:31:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 			return (0);
 	}
 	if (v)
-		*v = (t_v4d){r->start.x + r->dir.x * t,	r->start.y + r->dir.y * t,
-			r->start.z + r->dir.z * t, 0.0};
+		*v = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
+		r->start.z + r->dir.z * t, 0.0};
 	r->lenght = t;
 	return (1);
 }

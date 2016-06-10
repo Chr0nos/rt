@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 04:08:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:26:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
 	return (0);
 }
 
-void		rt_node_free(t_obj *node)
+void	rt_node_free(t_obj *node)
 {
 	t_obj	*obj;
 	t_obj	*tmp;
