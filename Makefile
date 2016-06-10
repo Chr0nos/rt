@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/09 21:26:15 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/10 16:31:20 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ fclean: clean
 	make -C $(DRAW) fclean
 
 re: fclean all
+
+proper: all clean
 
 relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
 
