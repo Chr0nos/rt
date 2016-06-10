@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 10:00:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 10:08:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
 		return ;
 	name_type = ft_strndup(line, ft_strsublenstr(line, " \t"));
 	type = rt_gettype(name_type);
+	if (type == ROOT)
+		type = EMPTY;
 	free(name_type);
 	if ((*lastlvl < lvl) || ((*lastobj)->type == ROOT))
 		parent = *lastobj;
