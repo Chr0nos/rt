@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/05/29 06:15:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 09:11:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 
 void			rt_puttype(int type)
 {
-	if (type == CUBE)
-		ft_putstr("CUBE");
-	else if (type == PLAN)
-		ft_putstr("PLAN");
-	else if (type == SPHERE)
-		ft_putstr("SPHERE");
-	else if (type == ROOT)
-		ft_putstr("ROOT");
-	else if (type == CAMERA)
-		ft_putstr("CAMERA");
-	else if (type == SPOT)
-		ft_putstr("SPOT");
-	else if (type == POINTLIGHT)
-		ft_putstr("POINTLIGHT");
-	else
-		ft_putstr("UNKNOW");
+	t_typecmp		*types[] = {
+		&(t_typecmp){CUBE, "CUBE"},
+		&(t_typecmp){PLAN, "PLAN"},
+		&(t_typecmp){SPHERE, "SPHERE"},
+		&(t_typecmp){ROOT, "ROOT"},
+		&(t_typecmp){SPOT, "SPOT"},
+		&(t_typecmp){CAMERA, "CAMERA"},
+		&(t_typecmp){POINTLIGHT, "POINTLIGHT"},
+		&(t_typecmp){FACE, "FACE"},
+		&(t_typecmp){EMPTY, "EMPTY"}
+	};
+	int				p;
+
+	p = 9;
+	while ((p--) && (types[p]->type != type))
+		;
+	ft_putstr((p < 0) ? "UNKNOW" : types[p]->str);
 }

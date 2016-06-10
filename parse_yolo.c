@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 23:24:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 09:11:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static t_obj	*parse_yolo_setupobj(const char *opts, t_obj *obj)
 static t_type	parse_yolo_gettype(const char *name)
 {
 	const char		*tname[] = { "CUBE", "PLAN", "SPHERE", "ROOT", "CAMERA",
-		"EMPTY", "SPOT", "POINTLIGHT" };
+		"EMPTY", "SPOT", "POINTLIGHT", "FACE" };
 	const t_type	types[] = { CUBE, PLAN, SPHERE, ROOT, CAMERA, EMPTY,
-		SPOT, POINTLIGHT };
+		SPOT, POINTLIGHT, FACE };
 	int				p;
 
-	p = 8;
+	p = 9;
 	while (p--)
 		if (!ft_strcmp(tname[p], name))
 			return (types[p]);
