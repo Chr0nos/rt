@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 22:54:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 05:01:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@
 static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 {
 	double			t;
+	double			delta_sqrt;
+	double			sa2;
 
 	s->delta = s->b * s->b - 4.0 * s->a * s->c;
 	if (s->delta < 0.0)
 		return (0);
-	else if (s->delta == 0.0)
-		t = (-s->b - sqrt(s->delta)) / (2.0 * s->a);
+	delta_sqrt = sqrt(s->delta);
+	sa2 = s->a * 2.0;
+	if (s->delta == 0.0)
+		t = (-s->b - delta_sqrt) / sa2;
 	else
 	{
-		s->sol1 = (-s->b - sqrt(s->delta)) / (2.0 * s->a);
-		s->sol2 = (s->b - sqrt(s->delta)) / (2.0 * s->a);
+		s->sol1 = (-s->b - delta_sqrt) / sa2;
+		s->sol2 = (s->b - delta_sqrt) / sa2;
 		t = (s->sol1 < s->sol2 ? s->sol1 : s->sol2);
 		t = (t < 0.0 ? s->sol1 : s->sol2);
 		if (t < 0.0)
 			return (0);
 	}
 	if (v)
-		*v = (t_v4d){
-			r->start.x + r->dir.x * t,
-			r->start.y + r->dir.y * t,
-			r->start.z + r->dir.z * t,
-			0.0
-		};
+		*v = (t_v4d){r->start.x + r->dir.x * t,	r->start.y + r->dir.y * t,
+			r->start.z + r->dir.z * t, 0.0};
 	r->lenght = t;
 	return (1);
 }
