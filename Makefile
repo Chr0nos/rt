@@ -13,7 +13,7 @@
 OPSYS=$(shell uname -s)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rtv1
-FLAGS=-Wall -Wextra -Werror -pipe -Ofast -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
+FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
 endif
