@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 22:46:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/10 14:10:03 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 t_v4d	rt_plane_normale(t_obj *obj, t_v4d *v)
 {
 	(void)v;
-	return (draw_v4d_norm(obj->trans.w));
+	return (draw_v4d_norm(obj->trans.y));
 }
