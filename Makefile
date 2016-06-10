@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/10 19:46:06 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/10 22:22:04 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,21 +25,33 @@ ifeq ($(OPSYS), Darwin)
 else
 	SDLLINK=-lSDL2
 endif
+OBJBUILDDIR=build
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
+YOLODIR=parser/yolo
 YOLO=parse_yolo.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o
 OBJ=main.o debug.o factory.o object.o check_cube.o box.o events.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
-	sphere.o plane.o mouse.o keyboard.o keybit.o cube.o $(YOLO)
+	mouse.o keyboard.o keybit.o
+TYPEDIR=type
+TYPE=cube.o sphere.o plane.o
+
+ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
+	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
+	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o)
+ALLDIR=$(OBJBUILDDIR) $(OBJBUILDDIR)/$(YOLODIR) $(OBJBUILDDIR)/$(TYPEDIR)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
-	$(CC) $(OBJ) $(LINKER) -o $(NAME)
+$(NAME): $(ALLDIR) $(LIBFT)/libft.a $(DRAW)/libdraw.a $(ALLOBJ)
+	$(CC) $(ALLOBJ) $(LINKER) -o $(NAME)
 
-%.o: %.c
-	$(CC) -c $< $(INC) $(FLAGS)
+$(ALLDIR):
+	mkdir -p $@
+
+$(OBJBUILDDIR)/%.o: %.c
+	$(CC) -c $< -o $@ $(INC) $(FLAGS)
 
 $(LIBFT)/libft.a:
 	make -j -C $(LIBFT) FLAGS="$(FLAGS)"
@@ -50,7 +62,7 @@ $(DRAW)/libdraw.a:
 clean:
 	make -C $(LIBFT) clean
 	make -C $(DRAW) clean
-	$(RM) $(OBJ)
+	$(RM) -r $(OBJBUILDDIR)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -61,7 +73,7 @@ re: fclean all
 
 proper: all clean
 
-relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(OBJ)
+relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(ALLDIR) $(ALLOBJ)
 
 pull:
 	git pull
