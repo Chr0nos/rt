@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 09:13:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 15:47:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum			e_type
 	SPOT = 1 << 6,
 	POINTLIGHT = 1 << 7,
 	FACE = 1 << 8,
+	INVALID = 1 << 9,
 	RADIUS = SPHERE | CUBE,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE,
 	NOCHECKBOX = PLAN
