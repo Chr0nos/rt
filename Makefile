@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/10 18:21:57 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/10 19:46:06 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ YOLO=parse_yolo.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o
 OBJ=main.o debug.o factory.o object.o check_cube.o box.o events.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
-	sphere.o plane.o mouse.o keyboard.o keybit.o $(YOLO)
+	sphere.o plane.o mouse.o keyboard.o keybit.o cube.o $(YOLO)
 
 all: $(NAME)
 

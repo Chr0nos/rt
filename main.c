@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 18:30:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 18:36:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int		rt_start(t_rt *rt)
 		while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
 			SDL_Delay(1);
 	}
-	//}
 	draw_quit(&rt->sys);
 	return (0);
 }

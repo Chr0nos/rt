@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 18:25:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 19:06:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,4 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 			return (parse[p].config(obj, ac, av));
 	return (0);
 }
+ 
