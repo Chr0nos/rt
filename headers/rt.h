@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 09:51:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 16:48:51 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int				rt_node_foreach(t_obj *node, int mode,
 int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
+int				rt_light_foreach(t_obj *obj, int mode, void *userdata);
+int				rt_shadow_foreach(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_realpos(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_type(t_obj *obj, int mode, void *userdata);
 
