@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/10 22:22:04 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/10 22:50:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,19 +28,29 @@ endif
 OBJBUILDDIR=build
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
+
 YOLODIR=parser/yolo
 YOLO=parse_yolo.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o
-OBJ=main.o debug.o factory.o object.o check_cube.o box.o events.o camera.o \
-	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
-	mouse.o keyboard.o keybit.o
+
+OBJ=main.o debug.o factory.o object.o check_cube.o box.o camera.o \
+	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o
+
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o
 
+EVENTDIR=events
+EVENT=mouse.o keyboard.o keybit.o events.o
+
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
-	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o)
-ALLDIR=$(OBJBUILDDIR) $(OBJBUILDDIR)/$(YOLODIR) $(OBJBUILDDIR)/$(TYPEDIR)
+	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
+	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o)
+
+ALLDIR=$(OBJBUILDDIR) \
+		$(OBJBUILDDIR)/$(YOLODIR) \
+		$(OBJBUILDDIR)/$(TYPEDIR) \
+		$(OBJBUILDDIR)/$(EVENTDIR)
 
 all: $(NAME)
 
