@@ -80,6 +80,6 @@ void		rt_node_free(t_obj *node)
 		obj = tmp;
 	}
 	if (node->parent)
-		node->parent = NULL;
+		rt_obj_delchild(node->parent, node);
 	free(node);
 }
