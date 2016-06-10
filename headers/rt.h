@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 19:44:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 20:41:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void			update_cube(t_box *a, const t_box *b);
 
 t_obj			*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj			*rt_obj_addchild(t_obj *parent, t_obj *child);
-void			rt_obj_free(t_obj *obj);
 t_obj			*rt_obj_makeroot(void);
 t_obj			*rt_obj_delchild(t_obj *parent, t_obj *child);
 t_obj			*rt_obj_getcamera(t_obj *obj);
