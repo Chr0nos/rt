@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 06:12:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/10 04:07:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ static int		rt_start(t_rt *rt)
 				SDL_Delay(1);
 		}
 	}
-	SDL_GL_DeleteContext(rt->sys.glcontext);
-	SDL_DestroyWindow(rt->sys.win);
-	SDL_Quit();
+	draw_quit(&rt->sys);
 	return (0);
 }
 
@@ -58,20 +56,22 @@ int				main(int ac, char **av)
 	{
 		rt.mouse = 0;
 		rt.keyboard = FORCE_DISPLAY;
-		rt.root = parse_yolo(av[1]);
+		if (!(rt.root = parse_yolo(av[1])))
+		{
+			ft_putendl_fd("error.", 2);
+			return (1);
+		}
 		rt_bounds_update(rt.root);
 		rt_debug(rt.root, 0);
 		if (rt.root->content)
 		{
-			ft_putstr("\nActive camera: ");
-			rt_debug((t_obj*)rt.root->content, 0);
 			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);
 			ft_putchar('\n');
 			rt_start(&rt);
 		}
 		else
 			ft_putstr("no camera\n");
-		rt_obj_free(rt.root, 0);
+		rt_node_free(rt.root);
 	}
 	return (0);
 }
