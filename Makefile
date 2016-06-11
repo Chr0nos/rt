@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/10 22:50:28 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/11 04:48:25 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 
 YOLODIR=parser/yolo
-YOLO=parse_yolo.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
+YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o
 
 OBJ=main.o debug.o factory.o object.o check_cube.o box.o camera.o \

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 18:36:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/11 04:49:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "draw.h"
 #include "libft.h"
 #include "keyboard.h"
+#include "parser.h"
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
 {
@@ -56,7 +57,7 @@ int				main(int ac, char **av)
 	{
 		rt.mouse = 0;
 		rt.keyboard = FORCE_DISPLAY;
-		if (!(rt.root = parse_yolo(av[1])))
+		if (!(rt.root = yolo_parse(av[1])))
 		{
 			ft_putendl_fd("error.", 2);
 			return (1);

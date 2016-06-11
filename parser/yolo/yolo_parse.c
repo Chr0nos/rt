@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_yolo.c                                       :+:      :+:    :+:   */
+/*   yolo_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 22:41:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/11 04:50:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
+#include "parser.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -46,7 +47,7 @@ static int		yolo_parse_lvl(char *line)
 	return (len);
 }
 
-static int		parse_yolo_line(char *line, int *lastlvl, t_obj **lastobj)
+static int		yolo_parse_line(char *line, int *lastlvl, t_obj **lastobj)
 {
 	const int	lvl = yolo_parse_lvl(line);
 	t_obj		*parent;
@@ -81,7 +82,7 @@ static t_obj	*yolo_parse_finalize(t_obj *root)
 	return (root);
 }
 
-t_obj			*parse_yolo(const char *filepath)
+t_obj			*yolo_parse(const char *filepath)
 {
 	int		fd;
 	int		lastlvl;
@@ -101,7 +102,7 @@ t_obj			*parse_yolo(const char *filepath)
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		if ((line[0] != '#') && (!ft_stronlystr(line, " \t")) &&
-			(parse_yolo_line(line, &lastlvl, &lastobj) < 0) &&
+			(yolo_parse_line(line, &lastlvl, &lastobj) < 0) &&
 			(ft_mfree(1, line)))
 			break ;
 		free(line);

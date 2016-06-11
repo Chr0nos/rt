@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 20:12:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/11 04:47:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct		s_parser_cfg
 	int				(*config)(t_obj *, size_t, char **);
 }					t_parser_cfg;
 
+t_obj				*yolo_parse(const char *filepath);
+int					yolo_setup(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cube(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_plan(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
