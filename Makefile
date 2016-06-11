@@ -86,8 +86,8 @@ proper: all clean
 relibs: fcleanlibs $(LIBFT)/libft.a $(DRAW)/libdraw.a $(ALLDIR) $(ALLOBJ)
 
 pull:
-	git pull
-	cd ./libs/libft && git pull
-	cd ./libs/libdraw && git pull
+	git pull origin master
+	cd ./libs/libft && git pull origin master
+	cd ./libs/libdraw && git pull origin master
 
 .PHONY: all re clean fclean pull
