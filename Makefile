@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/11 04:48:25 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/11 19:02:09 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ endif
 DRAW=./libs/libdraw
 LIBFT=./libs/libft
 CC=clang
-ifeq ($(OPSYS), Darwin)
-	SDLLINK=-framework sdl2
-else
-	SDLLINK=-lSDL2
-endif
 OBJBUILDDIR=build
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
+ifeq ($(OPSYS), Darwin)
+	SDLLINK=-framework sdl2
+	INC+=-I ./headers/mac
+else
+	SDLLINK=-lSDL2
+	INC+=-I./headers/linux
+endif
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 
 YOLODIR=parser/yolo

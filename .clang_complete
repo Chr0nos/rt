@@ -1,3 +1,4 @@
 -Iheaders
 -Ilibs/libft
 -Ilibs/libdraw/headers
+-Ilibs/libdraw/headers/mac

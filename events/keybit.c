@@ -6,32 +6,33 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:42:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 17:42:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/11 19:00:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
+#include "osconfig.h"
 
 int			getkeybit(const int keycode)
 {
 	const t_kbcmp	cmp[] = {
-		{SDLK_w, ZOOMIN},
-		{SDLK_s, ZOOMOUT},
-		{SDLK_ESCAPE, QUIT},
-		{SDLK_SPACE, UP},
-		{SDLK_e, ROLL_RIGHT},
-		{SDLK_q, ROLL_LEFT},
-		{SDLK_LCTRL, DOWN},
-		{SDLK_c, DOWN},
-		{SDLK_a, RIGHT},
-		{SDLK_d, LEFT},
-		{SDLK_UP, ROTATE_UP},
-		{SDLK_DOWN, ROTATE_DOWN},
-		{SDLK_LEFT, ROTATE_LEFT},
-		{SDLK_RIGHT, ROTATE_RIGHT},
-		{SDLK_p, FORCE_DISPLAY},
-		{SDLK_LSHIFT, FAST}
+		{KC_W, ZOOMIN},
+		{KC_S, ZOOMOUT},
+		{KC_ESCAPE, QUIT},
+		{KC_SPACE, UP},
+		{KC_E, ROLL_RIGHT},
+		{KC_Q, ROLL_LEFT},
+		{KC_LCTRL, DOWN},
+		{KC_C, DOWN},
+		{KC_A, RIGHT},
+		{KC_D, LEFT},
+		{KC_UP, ROTATE_UP},
+		{KC_DOWN, ROTATE_DOWN},
+		{KC_LEFT, ROTATE_LEFT},
+		{KC_RIGHT, ROTATE_RIGHT},
+		{KC_P, FORCE_DISPLAY},
+		{KC_LSHIFT, FAST}
 	};
 	unsigned int	p;
 
