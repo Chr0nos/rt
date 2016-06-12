@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 15:47:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/12 19:35:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef enum			e_type
 	POINTLIGHT = 1 << 7,
 	FACE = 1 << 8,
 	INVALID = 1 << 9,
+	CONE = 1 << 10,
 	RADIUS = SPHERE | CUBE,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE,
-	NOCHECKBOX = PLAN
+	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE,
+	NOCHECKBOX = PLAN | CONE
 }						t_type;
 
 enum					e_stop
@@ -71,6 +72,12 @@ typedef struct			s_plan
 {
 	unsigned int		color;
 }						t_plan;
+
+typedef struct			s_cone
+{
+	unsigned int		color;
+	float				size;
+}						t_cone;
 
 typedef struct			s_sphere
 {

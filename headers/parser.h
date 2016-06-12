@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/11 04:47:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/12 19:25:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define PLAN_OR_Y 4
 # define PLAN_OR_Z 5
 # define PLAN_COLOR 6
+# define CONE_COLOR 4
 # define MINFOV 5.0
 # define MAXFOV 180.0
 # include "rt.h"
@@ -35,6 +36,7 @@ t_obj				*yolo_parse(const char *filepath);
 int					yolo_setup(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cube(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_plan(t_obj *obj, size_t ac, char **av);
+int					yolo_setup_cone(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
 

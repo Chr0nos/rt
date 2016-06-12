@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 17:41:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 19:46:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/12 19:05:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int		yolo_setup_type(t_obj *obj, int mode, void *userdata)
 	{
 		obj->inters = &rt_plane_inter;
 		obj->normal = &rt_plane_normale;
+	}
+	else if (obj->type == CONE)
+	{
+		obj->inters = &rt_cone_inter;
+		obj->normal = &rt_cone_normale;
 	}
 	else if (obj->type == CUBE)
 		obj->inters = &rt_cube_inter;
