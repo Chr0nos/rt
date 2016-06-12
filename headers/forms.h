@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/12 19:35:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/12 19:44:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef enum			e_type
 	CONE = 1 << 10,
 	RADIUS = SPHERE | CUBE,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE,
-	NOCHECKBOX = PLAN | CONE
+	NOCHECKBOX = PLAN
 }						t_type;
 
 enum					e_stop
