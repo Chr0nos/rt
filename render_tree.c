@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/13 17:02:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 18:04:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 	ob->normal = obj->normal;
 	ob->id = obj->id;
 	ob->rotation = obj->rotation;
+	return (ob);
 }
 
 int		rt_rtree_count(t_obj *node, int mode, void *userdata)
 {
-	t_treec		*c;
+	t_rtree		*c;
 
 	(void)mode;
-	c = (t_treec *)userdata;
+	c = (t_rtree *)userdata;
 	if (node->type & BOUNDED)
 		c->bnum += 1;
 	else if (node->type & NOCHECKBOX)
@@ -48,7 +49,7 @@ void	rt_rtree_fill(t_obj *node, t_rtree *rtree, t_obj *parent, t_m4 mat)
 	t_obj		*obj;
 
 	obj = NULL;
-	mat = draw_matrix_multiply_matrix_m4(mat, obj->trans);
+	mat = draw_matrix_multiply_matrix_m4(mat, &obj->trans);
 	if (node->type & BOUNDED)
 		obj = rt_rtree_push(&(rtree->m_biter), node, parent, &mat);
 	else if (node->type & NOCHECKBOX)
@@ -60,7 +61,7 @@ void	rt_rtree_fill(t_obj *node, t_rtree *rtree, t_obj *parent, t_m4 mat)
 	node = node->childs;
 	while (node)
 	{
-		rt_rtree_fill(node, rtree, obj, mat)
+		rt_rtree_fill(node, rtree, obj, mat);
 		node = node->next;
 	}
 }
