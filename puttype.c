@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/12 19:01:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 12:11:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_type			rt_gettype(const char *str)
 		{POINTLIGHT, "POINTLIGHT"},
 		{FACE, "FACE"},
 		{EMPTY, "EMPTY"},
-		{CONE, "CONE"}
+		{CONE, "CONE"},
+		{CYL, "CYL"}
 	};
 	int				p;
 
@@ -48,7 +49,8 @@ void			rt_puttype(int type)
 		{FACE, "FACE"},
 		{EMPTY, "EMPTY"},
 		{INVALID, "INVALID"},
-		{CONE, "CONE"}
+		{CONE, "CONE"},
+		{CYL, "CYLINDRE"}
 	};
 	int				p;
 
