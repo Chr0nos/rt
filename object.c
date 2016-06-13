@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 22:40:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:59:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_obj		*rt_obj_delchild(t_obj *parent, t_obj *child)
 	return (child);
 }
 
-void		rt_obj_init(t_obj *obj, t_type type)
+t_obj		*rt_obj_init(t_obj *obj, t_type type)
 {
 	obj->id = 0;
 	obj->type = type;
@@ -62,4 +62,5 @@ void		rt_obj_init(t_obj *obj, t_type type)
 	obj->inters = NULL;
 	obj->normal = NULL;
 	obj->parent = NULL;
+	return (obj);
 }
