@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/12 19:15:59 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/13 10:46:29 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ=main.o debug.o factory.o object.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o
+TYPE=cube.o sphere.o plane.o cone.o cylindre.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o

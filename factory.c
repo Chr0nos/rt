@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/12 18:58:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:43:45 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){SPHERE, sizeof(struct s_sphere)},
 		(t_typesize){CONE, sizeof(struct s_cone)},
 		(t_typesize){CAMERA, sizeof(struct s_camera)}
+		(t_typesize){CYL, sizeof(struct s_cyl)},
 	};
 
 	p = 5;

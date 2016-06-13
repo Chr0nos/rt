@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/12 19:44:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:38:59 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef enum			e_type
 	FACE = 1 << 8,
 	INVALID = 1 << 9,
 	CONE = 1 << 10,
-	RADIUS = SPHERE | CUBE,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE,
+	CYL = 1 << 11,
+	RADIUS = SPHERE | CUBE | CYL,
+	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
 	NOCHECKBOX = PLAN
 }						t_type;
 
@@ -78,6 +79,12 @@ typedef struct			s_cone
 	unsigned int		color;
 	float				size;
 }						t_cone;
+
+typedef struct			s_cyl
+{
+	unsigned int		color;
+	float				size;
+}						t_cyl;
 
 typedef struct			s_sphere
 {
