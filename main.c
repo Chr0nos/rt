@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/11 04:49:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:53:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static int		rt_start(t_rt *rt)
 {
 	if (draw_init(&rt->sys, draw_make_px(1024, 768), "RTv1") < 0)
 		return (1);
-	/*if (!draw_init_openglcontext(&rt->sys))
-		;
-	else*/
+	if (draw_init_openglcontext(&rt->sys))
+		return (1);
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 		ft_putendl("error: failed to get sdl surface from screen");
 	else
