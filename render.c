@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:23:56 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 11:30:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
 			return (OK);
-		if (r->light_lenght < r->ray->lenght)
+		if (r->light_lenght > r->ray->lenght)
 			return (OK);
-		r->ray->color = COLOR_BLACK;
+		r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
 	}
 	return (OK);
 }
@@ -90,8 +90,8 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->root, INFIX, &rt_render_foreach, &r);
-	//if (r.obj_intersect)
-	//	rt_node_foreach(rt->root, INFIX, &rt_light_foreach, &r);
+	if (r.obj_intersect)
+		rt_node_foreach(rt->root, INFIX, &rt_light_foreach, &r);
 	ray->lenght = r.lowest_lenght;
 	return (ray->color);
 }
