@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 11:30:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:47:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
 			return (OK);
-		if (r->light_lenght > r->ray->lenght)
+		if (r->light_lenght < r->ray->lenght)
 			return (OK);
 		r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
+		return (STOP_ALL);
 	}
 	return (OK);
 }
+
+/*
+** called on EACH spot
+** by rt_render_foreach
+*/
 
 int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -45,8 +51,8 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r = userdata;
 	origin = *r->ray;
 	r->ray->start = r->intersection;
-	r->light_lenght = draw_v4d_dot(obj->trans.w, r->intersection);
-	r->ray->dir = draw_v4d_sub(obj->trans.w, r->intersection);
+	r->light_lenght = draw_v4d_dist(obj->trans.w, r->intersection);
+	r->ray->dir = draw_v4d_norm(draw_v4d_sub(obj->trans.w, r->intersection));
 	rt_node_foreach(r->root, INFIX, &rt_shadow_foreach, r);
 	origin.color = r->ray->color;
 	*r->ray = origin;

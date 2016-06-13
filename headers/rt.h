@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 12:16:33 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 17:02:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_H
 # include "draw.h"
 # include "forms.h"
+# include "tree.h"
 # define PREFIX 1
 # define INFIX 2
 # define SUFFIX 4
@@ -43,7 +44,7 @@ t_uint			rt_sizeobj(t_type type);
 int				check_cube(const t_box *a, const t_box *b);
 void			update_cube(t_box *a, const t_box *b);
 
-void			rt_obj_init(t_obj *obj, t_type type);
+t_obj			*rt_obj_init(t_obj *obj, t_type type);
 t_obj			*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj			*rt_obj_addchild(t_obj *parent, t_obj *child);
 t_obj			*rt_obj_delchild(t_obj *parent, t_obj *child);
