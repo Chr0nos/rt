@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:42:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/11 19:00:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:49:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			getkeybit(const int keycode)
 	};
 	unsigned int	p;
 
-	p = sizeof(cmp);
+	p = 16;
 	while (p--)
 		if (cmp[p].key == keycode)
 			return (cmp[p].bit);

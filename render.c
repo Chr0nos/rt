@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 14:43:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 15:47:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,15 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 		if (r->light_lenght < r->ray->lenght)
 			return (OK);
 		r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
+		return (STOP_ALL);
 	}
 	return (OK);
 }
+
+/*
+** called on EACH spot
+** by rt_render_foreach
+*/
 
 int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
