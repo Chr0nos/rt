@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:40:32 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 10:59:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef struct		s_parser_cfg
 {
-	t_type			type;
+	unsigned int	type;
 	int				(*config)(t_obj *, size_t, char **);
 }					t_parser_cfg;
 

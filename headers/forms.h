@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:38:59 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 10:52:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct			s_cone
 typedef struct			s_cyl
 {
 	unsigned int		color;
-	float				size;
+	float				radius;
 }						t_cyl;
 
 typedef struct			s_sphere
