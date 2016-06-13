@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 17:41:47 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 17:49:48 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->id = lastid++;
 	obj->parent = parent;
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
-	rt_debug(obj, 0);
 	if (type & VISIBLE)
 		((t_cube*)obj->content)->color = COLOR_BLACK;
 	return (rt_obj_addchild(parent, obj));
