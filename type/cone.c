@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/12 18:48:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:33:30 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	if (v)
 		*v = (t_v4d){
 			r->start.x + r->dir.x * t,
-			r->start.y + r->dir.y * t,
-			r->start.z + r->dir.z * t,
-			0.0
+				r->start.y + r->dir.y * t,
+				r->start.z + r->dir.z * t,
+				0.0
 		};
 	r->lenght = t;
 	return (1);

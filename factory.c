@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:52:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 17:41:47 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){CYL, sizeof(struct s_cyl)}
 	};
 
-	p = 5;
+	p = 6;
 	while (p--)
 		if (sizes[p].type == type)
 			return (sizeof(t_obj) + (unsigned int)sizes[p].size);
@@ -52,6 +52,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->id = lastid++;
 	obj->parent = parent;
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
+	rt_debug(obj, 0);
 	if (type & VISIBLE)
 		((t_cube*)obj->content)->color = COLOR_BLACK;
 	return (rt_obj_addchild(parent, obj));

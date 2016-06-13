@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/13 14:16:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 16:42:53 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,23 @@ static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
-	t_cyl_inter	s;
+	t_cyl_inter		s;
+	double			tmp[4];
 	const t_v4d		*c = &obj->trans.w;
+	const t_v4d		*rot = &obj->rotation;
 	const double	radius = (double)((t_cyl*)obj->content)->radius;
 
-	s.a = r->dir.x * r->dir.x + r->dir.y * r->dir.y + r->dir.z * r->dir.z;
-	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) +
-		r->dir.y * (r->start.y - c->y)
-		+ r->dir.z * (r->start.z - c->z));
-	s.c = (((r->start.x - c->x) * (r->start.x - c->x)) +
-	((r->start.y - c->y) * (r->start.y - c->y)) + ((r->start.z - c->z) *
-	(r->start.z - c->z))) - radius * radius;
+	tmp[0] = rot->x * rot->x + rot->y * rot->y + rot->z * rot->z;
+	tmp[1] = r->dir.x * rot->x + r->dir.y * rot->y + r->dir.z * rot->z;
+	tmp[2] = (r->start.x - c->x) * (r->start.x - c->x) + (r->start.y - c->y) *
+		(r->start.y - c->y) + (r->start.z - c->z) * (r->start.z - c->z);
+	tmp[3] = rot->x * (r->start.x - c->x) + rot->y * (r->start.y - c->y) +
+		rot->z * (r->start.z - c->z);
+	s.a = (r->dir.x * r->dir.x + r->dir.y * r->dir.y + r->dir.z * r->dir.z) -
+		((tmp[1] * tmp[1]) / tmp[0]);
+	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) + r->dir.y * (r->start.y - c->y)
+			+ r->dir.z * (r->start.z - c->z)) - (2 * tmp[1] * tmp[3] / tmp[0]);
+	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) / tmp[0]);
 	return (rt_cyl_solve(&s, r, v));
 }
 
