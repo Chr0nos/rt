@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 18:31:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:55:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 {
 	double			t;
-	double			delta_sqrt;
 	double			sa2;
 
+	r->lenght = HUGE_VAL;
 	s->delta = s->b * s->b - 4.0 * s->a * s->c;
 	if (s->delta < 0.0)
 		return (0);
-	delta_sqrt = sqrt(s->delta);
+	s->delta_sqrt = sqrt(s->delta);
 	sa2 = s->a * 2.0;
 	if (s->delta == 0.0)
-		t = (-s->b - delta_sqrt) / sa2;
+		t = (-s->b - s->delta_sqrt) / sa2;
 	else
 	{
-		s->sol1 = (-s->b - delta_sqrt) / sa2;
-		s->sol2 = (s->b - delta_sqrt) / sa2;
+		s->sol1 = (-s->b - s->delta_sqrt) / sa2;
+		s->sol2 = (s->b - s->delta_sqrt) / sa2;
 		t = (s->sol1 < s->sol2 ? s->sol1 : s->sol2);
 		t = (t < 0.0 ? s->sol1 : s->sol2);
 		if (t < 0.0)

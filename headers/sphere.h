@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:55:51 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/08 17:22:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:55:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_sphere_inter
 	double		delta;
 	double		sol1;
 	double		sol2;
+	double		delta_sqrt;
 }				t_sphere_inter;
 
 #endif
