@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/13 14:06:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 14:16:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,31 @@
 
 static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 {
-	(void)s;
-	(void)r;
-	(void)v;
-	return (0);
+	double			t;
+	double			delta_sqrt;
+	double			sa2;
+
+	s->delta = s->b * s->b - 4.0 * s->a * s->c;
+	if (s->delta < 0.0)
+		return (0);
+	delta_sqrt = sqrt(s->delta);
+	sa2 = s->a * 2.0;
+	if (s->delta == 0.0)
+		t = (-s->b - delta_sqrt) / sa2;
+	else
+	{
+		s->sol1 = (-s->b - delta_sqrt) / sa2;
+		s->sol2 = (s->b - delta_sqrt) / sa2;
+		t = (s->sol1 < s->sol2 ? s->sol1 : s->sol2);
+		t = (t < 0.0 ? s->sol1 : s->sol2);
+		if (t < 0.0)
+			return (0);
+	}
+	if (v)
+		*v = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
+		r->start.z + r->dir.z * t, 0.0};
+	r->lenght = t;
+	return (1);
 }
 
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
