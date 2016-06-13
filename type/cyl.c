@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylindre.c                                         :+:      :+:    :+:   */
+/*   cyl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/13 10:45:33 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 12:26:23 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "cyl.h"
 
-static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
+static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 {
 	double			t;
 	double			delta_sqrt;
@@ -44,9 +44,9 @@ static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
-	t_sphere_inter	s;
+	t_cyl_inter	s;
 	const t_v4d		*c = &obj->trans.w;
-	const double	radius = (double)((t_sphere*)obj->content)->radius;
+	const double	radius = (double)((t_cyl*)obj->content)->radius;
 
 	s.a = r->dir.x * r->dir.x + r->dir.y * r->dir.y + r->dir.z * r->dir.z;
 	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) +
@@ -55,10 +55,10 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	s.c = (((r->start.x - c->x) * (r->start.x - c->x)) +
 	((r->start.y - c->y) * (r->start.y - c->y)) + ((r->start.z - c->z) *
 	(r->start.z - c->z))) - radius * radius;
-	return (rt_sphere_solve(&s, r, v));
+	return (rt_cyl_solve(&s, r, v));
 }
 
-t_v4d			rt_cyl_normal(t_obj *obj, t_v4d *v)
+t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
 {
 	const t_v4d		*c = &obj->trans.w;
 

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:59:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/13 12:18:02 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cube(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_plan(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cone(t_obj *obj, size_t ac, char **av);
+int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
 

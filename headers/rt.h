@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 10:40:17 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/13 12:16:33 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			rt_rays(t_rt *rt);
 
 void			rt_node_free(t_obj *node);
 int				rt_node_foreach(t_obj *node, int mode,
-	int (*f)(t_obj*, int, void*), void *userdata);
+int				(*f)(t_obj*, int, void*), void *userdata);
 int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
@@ -87,6 +87,6 @@ int				rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v);
 int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v);
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v);
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v);
-t_v4d			rt_cyl_normal(t_obj *obj, t_v4d *v);
+t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v);
 
 #endif

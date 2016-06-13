@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/12 19:18:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/13 11:29:42 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 		(t_parser_cfg){SPHERE | CUBE, &yolo_setup_cube},
 		(t_parser_cfg){CAMERA, &yolo_setup_camera},
 		(t_parser_cfg){PLAN, &yolo_setup_plan},
-		(t_parser_cfg){CONE, &yolo_setup_cone}
+		(t_parser_cfg){CONE, &yolo_setup_cone},
+		(t_parser_cfg){CYL, &yolo_setup_cyl}
 	};
 
 	if (!ac)
