@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 09:37:59 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 13:58:06 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef enum			e_type
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
 	NOCHECKBOX = PLAN | CYL,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
-	LIGHTTYPE = SPOT | POINTLIGHT
+	LIGHTTYPE = SPOT | POINTLIGHT,
+	TEXTURE
 }						t_type;
 
 enum					e_stop
@@ -142,6 +143,7 @@ typedef struct			s_obj
 	void				*content;
 	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
 	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
+	int					texture;
 }						t_obj;
 
 #endif

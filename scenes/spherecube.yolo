@@ -15,16 +15,16 @@ CUBE				2			0		0		0						#b1e0b5
 		SPHERE 		0.4			-4		0		-4						#f0f452
 			CUBE	0.2			0		1		0						#2636a1
 			CUBE	0.2			0		-1		0						#2636a1
-		SPHERE 		0.4			4		0		-4						#f0f452
-			CUBE	0.2			0		1		0						#ff0000
-			CUBE	0.2			0		-1		0						#ff0000
+		SPHERE 		0.4			4		0		-4				#f0f452
+			CUBE	0.2			0		1		0			#ff0000
+			CUBE	0.2			0		-1		0			#ff0000
 	EMPTY
-		SPHERE		0.5			0		0		-25						#fa00fa
-		SPHERE		0.5			0		0		25						#fa40fa
-		SPHERE		0.5			25		0		0						#fa80fa
-		SPHERE		0.5			-25		0		0						#faa0fa
-POINTLIGHT						0		15		0						#ffffff
-CYL					0.4			2		0		2			0 1 0		#7831c6	4
-CYL					0.4			-2		0		2			0 1 0		#7831c6	4
-CYL					0.4			-2		0		-2			0 1 0		#7831c6	4
-CYL					0.4			2		0		-2			0 1 0		#7831c6	4
+		SPHERE		0.5			0		0		-25			#fa00fa
+		SPHERE		0.5			0		0		25			#fa40fa
+		SPHERE		0.5			25		0		0			#fa80fa
+		SPHERE		0.5			-25		0		0			#faa0fa
+POINTLIGHT						0		15		0			#ffffff
+CYL					0.4			2		0		2			#7831c6	0	1	0	4 1
+CYL					0.4			-2		0		2			#7831c6	0	1	0	4 1
+CYL					0.4			-2		0		-2			#7831c6	0	1	0	4 1 
+CYL					0.4			2		0		-2			#7831c6	0	1	0	4 1
