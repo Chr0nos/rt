@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 20:00:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 20:05:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			r->obj_intersect = obj;
 		}
 	}
-	r->ray->lenght = HUGE_VAL;
+	//r->ray->lenght = HUGE_VAL;
 	return (OK);
 }
 
