@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 16:55:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 18:37:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static t_obj	*yolo_parse_finalize(t_obj *root)
 	root->content = rt_obj_getcamera(root);
 	rt_node_foreach(root, PREFIX, &yolo_setup_realpos, NULL);
 	rt_node_foreach(root, PREFIX, &yolo_setup_type, NULL);
+	rt_bounds_update(root);
 	return (root);
 }
 

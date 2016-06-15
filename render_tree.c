@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/15 18:15:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/15 19:53:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 	ob->normal = obj->normal;
 	ob->id = obj->id;
 	ob->rotation = obj->rotation;
+	ob->parent = parent;
 	ob->hitbox = obj->hitbox;
 	ob->bounds = obj->hitbox;
 	rt_box_update(ob);
@@ -39,7 +40,6 @@ int		rt_rtree_count(t_obj *node, int mode, void *userdata)
 
 	(void)mode;
 	c = (t_rtree *)userdata;
-	//rt_box_update(node);
 	if (node->type & BOUNDED)
 		c->bnum += 1;
 	else if (node->type & NOCHECKBOX)
@@ -92,7 +92,7 @@ t_rtree	rt_render_tree(t_obj *node)
 	rtree.m_liter = &(rtree.light[1]);
 	rt_rtree_fill(node, &rtree, rtree.bounded, draw_make_matrix_m4_identity());
 	rt_bounds_update(rtree.bounded);
-	// ft_putendl("The End !");
-	// rt_debug(rtree.bounded, 0);
+	rt_debug(rtree.bounded, 0);
+	ft_putendl("The End !");
 	return (rtree);
 }
