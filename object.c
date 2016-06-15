@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 15:59:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/15 13:57:26 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ t_obj		*rt_obj_init(t_obj *obj, t_type type)
 	obj->inters = NULL;
 	obj->normal = NULL;
 	obj->parent = NULL;
+	obj->texture = 0;
 	return (obj);
 }
