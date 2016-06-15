@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 15:08:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 17:44:55 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,14 @@ int				raybox_check(t_ray *r, t_box *box)
 	tb[1] = (double)INFINITY;
 	if (check(&(box->xmin), (float)r->start.x, rx, tb))
 		return (0);
+	if (tb[1] < 0.0)
+		return (0);
+	r->lenght = (tb[0] > 0.0) ? tb[0] : tb[1];
 	if (check(&(box->ymin), (float)r->start.y, ry, tb))
 		return (0);
+	if (tb[1] < 0.0)
+		return (0);
+	r->lenght = (tb[0] > 0.0) ? tb[0] : tb[1];
 	if (check(&(box->zmin), (float)r->start.z, rz, tb))
 		return (0);
 	if (tb[1] < 0.0)

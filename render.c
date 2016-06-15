@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 17:01:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 17:57:16 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 }
 
 /*
-** called on EACH spot
-** by rt_render_foreach
-*/
+ * ** called on EACH spot
+ * ** by rt_render_foreach
+ * */
 
 int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -96,11 +96,11 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 
 	r = (t_render){
 		ray,
-		rt,
-		NULL,
-		HUGE_VAL,
-		0.0,
-		(t_v4d){0.0, 0.0, 0.0, 0.0}
+			rt,
+			NULL,
+			HUGE_VAL,
+			0.0,
+			(t_v4d){0.0, 0.0, 0.0, 0.0}
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);

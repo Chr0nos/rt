@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/13 16:42:53 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 17:58:27 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 	}
 	if (v)
 		*v = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
-		r->start.z + r->dir.z * t, 0.0};
+			r->start.z + r->dir.z * t, 0.0};
 	r->lenght = t;
 	return (1);
 }
@@ -68,5 +68,6 @@ t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
 {
 	const t_v4d		*c = &obj->trans.w;
 
-	return (draw_v4d_norm((t_v4d){v->x - c->x, v->y - c->y, v->z - c->z, 1.0}));
+	return (draw_v4d_norm((t_v4d){v->x - c->x, 2 * (v->y - c->y),
+				2 * ( v->z - c->z) - 1, 1.0}));
 }
