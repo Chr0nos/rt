@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 14:22:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 14:23:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	if (!(obj->type & VISIBLE) || obj == r->obj_intersect)
 		return (OK);
 	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
+	{
+		r->ray->lenght = HUGE_VAL;
 		return (STOP_NODE);
+	}
 	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
