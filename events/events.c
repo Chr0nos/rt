@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 17:42:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 01:07:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int				sdl_event(SDL_Event *event, t_rt *rt)
 			event->window.data2);
 		if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 			return (2);
+		rt->keyboard |= FORCE_DISPLAY;
 	}
 	else if (event->type == SDL_KEYDOWN)
 		return (keydown(event->key.keysym.sym, rt));

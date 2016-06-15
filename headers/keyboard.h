@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 22:26:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 03:56:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 23:52:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ enum	e_keyboard
 	FAST = 1 << 12,
 	ROLL_LEFT = 1 << 13,
 	ROLL_RIGHT = 1 << 14,
+	FULLSCREEN = 1 << 15,
 	ROLL = ROLL_LEFT | ROLL_RIGHT,
 	ROTATE = ROTATE_DOWN | ROTATE_LEFT | ROTATE_RIGHT | ROTATE_UP,
 	SIDE = LEFT | RIGHT | UP | DOWN | ZOOMIN | ZOOMOUT,
