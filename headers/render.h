@@ -6,18 +6,19 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 12:17:32 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 16:57:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 # include "forms.h"
+# include "rt.h"
 
 typedef struct 	s_render
 {
 	t_ray		*ray;
-	t_obj		*root;
+	t_rt		*rt;
 	t_obj		*obj_intersect;
 	double		lowest_lenght;
 	double		light_lenght;

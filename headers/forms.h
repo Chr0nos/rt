@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 09:37:59 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 16:11:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef enum			e_type
 	RADIUS = SPHERE | CUBE | CYL,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
 	NOCHECKBOX = PLAN | CYL,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
+	BOUNDED = CUBE | SPHERE | FACE | CONE,
 	LIGHTTYPE = SPOT | POINTLIGHT
 }						t_type;
 
