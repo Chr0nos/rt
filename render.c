@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 14:23:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:03:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 
 	(void)mode;
 	r = userdata;
-	if (!(obj->type & VISIBLE) || obj == r->obj_intersect)
+	if ((!(obj->type & VISIBLE)) || (obj == r->obj_intersect))
 		return (OK);
 	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
 	{
@@ -30,7 +30,7 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
 			;
-		else if (r->light_lenght < r->ray->lenght || r->ray->lenght < 0.000001)
+		else if (r->light_lenght <= r->ray->lenght)
 			;
 		else
 		{
@@ -79,13 +79,17 @@ int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, &r->intersection) == 0))
-			return (OK);
-		if (r->lowest_lenght < r->ray->lenght)
-			return (OK);
-		r->lowest_lenght = r->ray->lenght;
-		r->ray->color = ((t_cube*)obj->content)->color;
-		r->obj_intersect = obj;
+			;
+		else if (r->lowest_lenght < r->ray->lenght)
+			;
+		else
+		{
+			r->lowest_lenght = r->ray->lenght;
+			r->ray->color = ((t_cube*)obj->content)->color;
+			r->obj_intersect = obj;
+		}
 	}
+	r->ray->lenght = HUGE_VAL;
 	return (OK);
 }
 
