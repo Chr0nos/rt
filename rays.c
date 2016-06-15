@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 16:59:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 17:04:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void			rt_rays(t_rt *rt)
 		ft_putendl_fd("error: failed to malloc tree", 2);
 		return ;
 	}
-	rt_debug(rt->tree.light, 0);
-	ft_putendl("end");
 	cam = (t_obj*)rt->root->content;
 	camp = cam->content;
 	rt_update_camera(rt->sys.geometry, cam->content);
