@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 09:38:51 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 13:55:25 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@
 # define PLAN_OR_Y 4
 # define PLAN_OR_Z 5
 # define PLAN_COLOR 6
+# define PLAN_TEXTURE 7
 # define CONE_COLOR 4
 # define CYL_COLOR_POS 4
 # define CYL_OR_X 5
 # define CYL_OR_Y 6
 # define CYL_OR_Z 7
 # define CYL_HEIGHT 8
+# define CYL_TEXTURE 9
 # define MINFOV 5.0
 # define MAXFOV 180.0
 # include "rt.h"

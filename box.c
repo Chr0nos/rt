@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 12:12:34 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 17:44:55 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,9 @@ void			rt_box_update(t_obj *obj)
 		obj->hitbox = (t_box){p.x - r, p.x + r, p.y - r, p.y + r,
 			p.z - r, p.z + r};
 	}
-	else if (obj->type == CYL)
-	{
-		r = ((t_cyl*)(obj->content))->radius;
-		obj->hitbox = (t_box){p.x - r, p.x + r, p.y - r, p.y + r,
-			p.z - r, p.z + r};
-	}
 	else
+	{
 		obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	}
 }
