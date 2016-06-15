@@ -6,11 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/15 17:35:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 18:15:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "libft.h"
 
 t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 {
@@ -19,13 +20,16 @@ t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 	*iter = &((*iter)[1]);
 	ob = rt_obj_init(*iter, obj->type);
 	rt_obj_addchild(parent, ob)->trans = *mat;
-	ob->hitbox = obj->hitbox;
-	ob->bounds = obj->bounds;
+	// draw_putv4d(ob->trans.w, 3);
+	// ft_putchar('\n');
 	ob->content = obj->content;
 	ob->inters = obj->inters;
 	ob->normal = obj->normal;
 	ob->id = obj->id;
 	ob->rotation = obj->rotation;
+	ob->hitbox = obj->hitbox;
+	ob->bounds = obj->hitbox;
+	rt_box_update(ob);
 	return (ob);
 }
 
@@ -87,5 +91,8 @@ t_rtree	rt_render_tree(t_obj *node)
 	rtree.m_ubiter = &(rtree.unbounded[1]);
 	rtree.m_liter = &(rtree.light[1]);
 	rt_rtree_fill(node, &rtree, rtree.bounded, draw_make_matrix_m4_identity());
+	rt_bounds_update(rtree.bounded);
+	// ft_putendl("The End !");
+	// rt_debug(rtree.bounded, 0);
 	return (rtree);
 }
