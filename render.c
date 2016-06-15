@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 19:51:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/15 20:00:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,22 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
+	t_v4d		impact;
 
 	(void)mode;
+	impact = (t_v4d){0.0, 0.0, 0.0, 0.0};
 	r = userdata;
 	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
 		return (STOP_NODE);
 	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
 	{
-		if ((obj->inters) && (obj->inters(obj, r->ray, &r->intersection) == 0))
+		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
 			;
 		else
 		{
+			r->intersection = impact;
 			r->lowest_lenght = r->ray->lenght;
 			r->ray->color = ((t_cube*)obj->content)->color;
 			r->obj_intersect = obj;
