@@ -6,22 +6,19 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/15 17:39:42 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 17:58:27 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "cyl.h"
 
-static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v, t_v4d *c)
+static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 {
 	double			t;
 	double			delta_sqrt;
 	double			sa2;
-	t_v4d			test;
-	t_v4d			test2;
 
-	r->legnht = HUGE_VAL;
 	s->delta = s->b * s->b - 4.0 * s->a * s->c;
 	if (s->delta < 0.0)
 		return (0);
@@ -64,7 +61,7 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) + r->dir.y * (r->start.y - c->y)
 			+ r->dir.z * (r->start.z - c->z)) - (2 * tmp[1] * tmp[3] / tmp[0]);
 	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) / tmp[0]);
-	return (rt_cyl_solve(&s, r, v, c));
+	return (rt_cyl_solve(&s, r, v));
 }
 
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
