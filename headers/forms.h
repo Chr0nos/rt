@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 17:46:23 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 18:09:28 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef enum			e_type
 	NOCHECKBOX = PLAN | CYL,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
 	LIGHTTYPE = SPOT | POINTLIGHT,
-	TEXTURE
+	TEXTURE = CYL
 }						t_type;
 
 enum					e_stop

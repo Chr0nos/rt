@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 11:19:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/15 14:45:00 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/15 18:08:47 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av)
 	double	radius;
 	double	height;
 
-	if (ac < CYL_TEXTURE)
+	if (ac < CYL_TEXTURE + 1)
 	{
 		ft_putstr("error: failed to setup object type Cylinder\n");
 		return (1);
 	}
+	ft_puttab((const char**)(unsigned long)av);
 	ft_strtoupper(av[CYL_COLOR_POS]);
 	((t_cyl*)obj->content)->radius = (float)ft_atod(av[PROP_SIZE]);
 	((t_cyl*)obj->content)->height = (float)ft_atod(av[CYL_HEIGHT]);
