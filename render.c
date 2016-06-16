@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 10:29:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/16 18:20:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
 			;
-		else if (r->ray->lenght < 0.0000001)
+		else if (r->ray->lenght < 0.000005)
 			;
 		else if (r->light_lenght < r->ray->lenght)
 			;

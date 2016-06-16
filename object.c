@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 12:31:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 18:19:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "libft.h"
 
 t_obj		*rt_obj_nparent(t_obj *obj, unsigned int n)
 {
@@ -68,7 +69,12 @@ t_obj		*rt_obj_init(t_obj *obj, t_type type)
 
 t_obj		*rt_obj_rotate(t_obj *obj, const t_v4d radians)
 {
-	obj->rotation = radians;
+	const t_v4d		zero = (t_v4d){0.0, 0.0, 0.0, 0.0};
+
+	if (!ft_memcmp(&zero, &obj->rotation, sizeof(t_v4d)))
+		obj->rotation = radians;
+	else
+		obj->rotation = draw_v4d_add(radians, obj->rotation);
 	obj->trans = draw_matrix_multiply_axes_m4(radians,
 		(t_v4d){1.0, 1.0, 1.0, 1.0},
 		obj->trans.w);
