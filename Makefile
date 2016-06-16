@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/16 17:27:21 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/16 18:09:22 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ifeq ($(OPSYS), Darwin)
 	INC+=-I ./headers/mac
 else
 	SDLLINK=-lSDL2
-	ifeq (HOSTNAME,stark)
+	ifeq ($(HOSTNAME),stark)
 		INC+=-I./headers/mac
 	else
 		INC+=-I./headers/linux
