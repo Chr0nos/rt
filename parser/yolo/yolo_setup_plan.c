@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 18:15:36 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 12:33:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 14:19:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 		deg2rad(ft_atod(av[PLAN_OR_Z])),
 		0.0}
 	);
-	draw_putm4(obj->trans, 6);
 	return (0);
 }

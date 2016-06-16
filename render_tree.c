@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/15 19:53:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 13:59:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_rtree	rt_render_tree(t_obj *node)
 	rtree.m_liter = &(rtree.light[1]);
 	rt_rtree_fill(node, &rtree, rtree.bounded, draw_make_matrix_m4_identity());
 	rt_bounds_update(rtree.bounded);
-	rt_debug(rtree.bounded, 0);
-	ft_putendl("The End !");
+	//rt_debug(rtree.bounded, 0);
+	//ft_putendl("The End !");
 	return (rtree);
 }
