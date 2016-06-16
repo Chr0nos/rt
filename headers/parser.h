@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 12:42:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 16:02:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define PLAN_COLOR 6
 # define PLAN_TEXTURE 7
 # define CONE_COLOR 4
+# define CONE_ANGLE 5
 # define CYL_COLOR_POS 4
 # define CYL_OR_X 5
 # define CYL_OR_Y 6

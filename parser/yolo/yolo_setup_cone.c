@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 19:12:58 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/13 14:43:47 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/16 16:14:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,26 @@
 int					yolo_setup_cone(t_obj *obj, size_t ac, char **av)
 {
 	double			size;
+	double			angle;
 	t_v4d			bsize;
 
 	if (ac < 4)
 		return (1);
 	ft_strtoupper(av[S_COLOR_POS]);
 	size = ft_atod(av[PROP_SIZE]);
+	if ((ac < CONE_ANGLE) || ((angle = deg2rad(ft_atod(av[CONE_ANGLE]))) < 0.02)
+		|| (angle > 3.0))
+		angle = 1.0472;
 	((t_cone*)obj->content)->size = (float)size;
+	bsize = (t_v4d){angle, cos(angle / 2.0), sin(angle / 2.0), 0.0};
+	bsize.w = bsize.y / bsize.z;
+	((t_cone*)obj->content)->angle = bsize;
 	((t_cone*)obj->content)->color = yolo_setup_color(av[CONE_COLOR]);
-	bsize = (t_v4d){cos(1.0472) * size / 2.0,
-		sin(1.0472) * size / 2.0, size, 1.0};
+	bsize = (t_v4d){bsize.w * size,
+		bsize.w * size, size, 1.0};
 	obj->hitbox = (t_box){(float)(obj->trans.w.x - bsize.x),
 		(float)(obj->trans.w.x + bsize.x),
-		(float)(obj->trans.w.y - bsize.y),
-		(float)(obj->trans.w.y + bsize.y),
-		(float)(obj->trans.w.z),
-		(float)(obj->trans.w.z + size)};
+		(float)(obj->trans.w.y - size), (float)(obj->trans.w.y),
+		(float)(obj->trans.w.z - bsize.y), (float)(obj->trans.w.z + bsize.y)};
 	return (0);
 }

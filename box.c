@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 17:44:55 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/16 16:16:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,27 @@ int				raybox_check(t_ray *r, t_box *box)
 void			rt_box_update(t_obj *obj)
 {
 	const t_v4f		p = draw_convert_v4d_to_v4f(obj->trans.w);
-	float			r;
+	t_v4f			r;
 
 	if (obj->type == CUBE)
 	{
-		r = ((t_cube*)(obj->content))->size / 2.0f;
-		obj->hitbox = (t_box){p.x - r, p.x + r, p.y - r, p.y + r,
-			p.z - r, p.z + r};
+		r.x = ((t_cube*)(obj->content))->size / 2.0f;
+		obj->hitbox = (t_box){p.x - r.x, p.x + r.x, p.y - r.x, p.y + r.x,
+			p.z - r.x, p.z + r.x};
 	}
 	else if (obj->type == SPHERE)
 	{
-		r = ((t_sphere*)(obj->content))->radius;
-		obj->hitbox = (t_box){p.x - r, p.x + r, p.y - r, p.y + r,
-			p.z - r, p.z + r};
+		r.x = ((t_sphere*)(obj->content))->radius;
+		obj->hitbox = (t_box){p.x - r.x, p.x + r.x, p.y - r.x, p.y + r.x,
+			p.z - r.x, p.z + r.x};
+	}
+	else if (obj->type == CONE)
+	{
+		r.x = (float)(((t_cone *)(obj->content))->angle.w);
+		r.y = ((t_cone *)(obj->content))->size;
+		obj->hitbox = (t_box){p.x - r.x * r.y, p.x + r.x * r.y, p.y - r.y,
+			p.y, p.z - r.x * r.y, p.z + r.x * r.y};
 	}
 	else
-	{
 		obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	}
 }
