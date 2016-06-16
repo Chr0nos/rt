@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 10:40:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/16 19:17:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum			e_type
 	INVALID = 1 << 9,
 	CONE = 1 << 10,
 	CYL = 1 << 11,
-	RADIUS = SPHERE | CUBE | CYL,
+	RADIUS = SPHERE | CUBE | CYL | CONE,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
 	NOCHECKBOX = PLAN | CYL,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
