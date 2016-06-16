@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/16 16:11:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/16 17:25:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int		height_value(double dir, t_v4d ab, t_obj *obj, double *tb)
 	double		tmax;
 
 	tmax = ab.x;
-	tmin = tmax - ((t_cone *)obj->content)->size;
-	if (dir)
+	tmin = tmax - (double)(((t_cone *)obj->content)->size);
+	if ((int)dir)
 	{
 		tmin = tmin / dir;
 		tmax = tmax / dir;
@@ -53,7 +53,7 @@ static int		compute_value(double rdy, double dir, t_v4d ab, double *tb)
 	double		tmin;
 	double		tmax;
 
-	if (dir)
+	if ((int)dir)
 		set_value(&tmin, &tmax,
 			ab.x - ab.y / (ab.z - rdy / dir),
 			ab.x - ab.y / (-ab.z - rdy / dir));
