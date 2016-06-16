@@ -6,11 +6,12 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/16 14:53:08 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/16 17:27:21 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OPSYS=$(shell uname -s)
+HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rtv1
 FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
@@ -34,7 +35,11 @@ ifeq ($(OPSYS), Darwin)
 	INC+=-I ./headers/mac
 else
 	SDLLINK=-lSDL2
-	INC+=-I./headers/linux
+	ifeq (HOSTNAME,stark)
+		INC+=-I./headers/mac
+	else
+		INC+=-I./headers/linux
+	endif
 endif
 LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 
