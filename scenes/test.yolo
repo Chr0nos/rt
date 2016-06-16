@@ -12,7 +12,7 @@ CUBE 					10		0			0			0			255:0:0
 SPHERE					1		-10 		-10 		10			0:200:200
 
 #						Height	  x			y			z			Color		Angle
-CONE					5		 10			-5			0			#a31c1c		60.0
+CONE					5		 10			0			0			#a31c1c		10.0
 
 #						X	Y	Z		Orientation					Color
 PLAN					0 -10	0		0	0	3.15				#b36357
