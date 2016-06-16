@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 23:18:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 13:57:26 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/16 12:31:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,14 @@ t_obj		*rt_obj_init(t_obj *obj, t_type type)
 	obj->normal = NULL;
 	obj->parent = NULL;
 	obj->texture = 0;
+	return (obj);
+}
+
+t_obj		*rt_obj_rotate(t_obj *obj, const t_v4d radians)
+{
+	obj->rotation = radians;
+	obj->trans = draw_matrix_multiply_axes_m4(radians,
+		(t_v4d){1.0, 1.0, 1.0, 1.0},
+		obj->trans.w);
 	return (obj);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup_cyl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 11:19:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/15 18:08:47 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/16 12:50:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av)
 	double	radius;
 	double	height;
 
-	if (ac < CYL_TEXTURE + 1)
+	if (ac < CYL_TEXTURE)
 	{
 		ft_putstr("error: failed to setup object type Cylinder\n");
 		return (1);
@@ -29,13 +29,13 @@ int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av)
 	((t_cyl*)obj->content)->radius = (float)ft_atod(av[PROP_SIZE]);
 	((t_cyl*)obj->content)->height = (float)ft_atod(av[CYL_HEIGHT]);
 	((t_cyl*)obj->content)->color = yolo_setup_color(av[CYL_COLOR_POS]);
-	obj->texture = ft_atoi(av[CYL_TEXTURE]);
-	obj->rotation = (t_v4d){deg2rad(ft_atod(av[CYL_OR_X])),
+	if (ac > CYL_TEXTURE)
+		obj->texture = ft_atoi(av[CYL_TEXTURE]);
+	rt_obj_rotate(obj,
+		(t_v4d){deg2rad(ft_atod(av[CYL_OR_X])),
 		deg2rad(ft_atod(av[CYL_OR_Y])),
 		deg2rad(ft_atod(av[CYL_OR_Z])),
-		1.0};
-	obj->trans = draw_matrix_multiply_axes_m4(
-			obj->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
+		1.0});
 	draw_putm4(obj->trans, 6);
 	radius = (double)((t_cyl*)obj->content)->radius;
 	height = (double)((t_cyl*)obj->content)->height;

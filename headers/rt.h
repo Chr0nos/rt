@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 16:30:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/16 12:24:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_obj			*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj			*rt_obj_addchild(t_obj *parent, t_obj *child);
 t_obj			*rt_obj_delchild(t_obj *parent, t_obj *child);
 t_obj			*rt_obj_getcamera(t_obj *obj);
+t_obj			*rt_obj_rotate(t_obj *obj, const t_v4d radians);
 void			rt_update_camera(t_v2i geometry, t_camera *cam);
 int				camera_reset(t_rt *rt);
 

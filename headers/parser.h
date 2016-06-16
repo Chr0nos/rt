@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 13:55:25 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/16 12:42:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct		s_parser_cfg
 	unsigned int	type;
 	int				(*config)(t_obj *, size_t, char **);
 }					t_parser_cfg;
+
+typedef struct		s_parser_internal
+{
+	unsigned int	type;
+	int				(*inters)(struct s_obj *, t_ray *, t_v4d *);
+	t_v4d			(*normal)(struct s_obj *, t_v4d *);
+}					t_parser_internal;
 
 t_obj				*yolo_parse(const char *filepath);
 int					yolo_setup(t_obj *obj, size_t ac, char **av);
