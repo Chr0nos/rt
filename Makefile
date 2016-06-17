@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/17 15:05:08 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/17 21:12:10 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_cyl.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o render_tree.o \
-	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o
+	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o\
+	light.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o

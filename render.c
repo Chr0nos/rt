@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 17:44:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/17 21:18:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_ray		origin;
+	double		lnor;
 
 	(void)mode;
 	r = userdata;
@@ -56,12 +57,13 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r->ray->start = r->intersection;
 	r->light_lenght = draw_v4d_dist(obj->trans.w, r->ray->start);
 	r->ray->dir = draw_v4d_norm(draw_v4d_sub(obj->trans.w, r->ray->start));
-	if (r->ray->lenght > 0.000005)
+	lnor = rt_light_pow(r->obj_intersect, obj, r->ray->dir, r->ray->start);
+	if ((lnor > 0.0) && (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
 		rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_shadow_foreach, r);
 	}
-	origin.color = r->ray->color;
+	origin.color = draw_color_lerp(0x000000, r->ray->color, (float)lnor);
 	*r->ray = origin;
 	return (OK);
 }
