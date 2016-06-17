@@ -16,7 +16,6 @@
 
 typedef unsigned int	t_uint;
 typedef t_point			t_v2i;
-typedef t_vector		t_v3f;
 typedef t_m4			t_mattf;
 
 typedef enum			e_type
