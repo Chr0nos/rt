@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/16 18:09:22 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/17 11:29:30 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
 	SDLHERE=$(shell test -f $(SDLLIB))
-	ifneq (, $(SDLHERE))
+	ifeq (, $(SDLHERE))
 		SDLLINK=-L ~/.brew/lib/ -lSDL2
 		INC+=-I ~/.brew/include
 	else
