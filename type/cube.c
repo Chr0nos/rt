@@ -6,11 +6,18 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 12:36:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 16:57:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#define CUBE_XMIN 0
+#define CUBE_XMAX 1
+#define CUBE_YMIN 2
+#define CUBE_YMAX 3
+#define CUBE_ZMIN 4
+#define CUBE_ZMAX 5
+#define CUBE_SIDES 6
 
 static void	rt_cube_setpos(t_ray *r, t_v4d *v)
 {
@@ -33,8 +40,47 @@ int			rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	return (1);
 }
 
+static t_uint	rt_min_index(double *dist, t_uint size)
+{
+	double		lowest;
+	t_uint		id;
+
+	size--;
+	id = size;
+	lowest = dist[size--];
+	while (size--)
+	{
+		if (dist[size] < lowest)
+		{
+			lowest = dist[size];
+			id = size;
+		}
+	}
+	return (id);
+}
+
 t_v4d		rt_cube_normale(t_obj *obj, t_v4d *v)
 {
-	(void)v;
-	return (obj->trans.y);
+	t_uint			lowest_id;
+	double			dist[CUBE_SIDES];
+	const t_v4d		shit = draw_v4d_sub(*v, obj->trans.w);
+
+	dist[CUBE_XMAX] = draw_v4d_dist(obj->trans.x, shit);
+	dist[CUBE_YMAX] = draw_v4d_dist(obj->trans.y, shit);
+	dist[CUBE_ZMAX] = draw_v4d_dist(obj->trans.z, shit);
+	dist[CUBE_XMIN] = draw_v4d_dist(draw_v4d_inv(obj->trans.x), shit);
+	dist[CUBE_YMIN] = draw_v4d_dist(draw_v4d_inv(obj->trans.y), shit);
+	dist[CUBE_ZMIN] = draw_v4d_dist(draw_v4d_inv(obj->trans.z), shit);
+	lowest_id = rt_min_index(dist, CUBE_SIDES);
+	if (lowest_id == CUBE_XMAX)
+		return (obj->trans.x);
+	else if (lowest_id == CUBE_XMIN)
+		return (draw_v4d_inv(obj->trans.x));
+	else if (lowest_id == CUBE_YMAX)
+		return (obj->trans.y);
+	else if (lowest_id == CUBE_YMIN)
+		return (draw_v4d_inv(obj->trans.y));
+	else if (lowest_id == CUBE_ZMAX)
+		return (obj->trans.z);
+	return (draw_v4d_inv(obj->trans.z));
 }
