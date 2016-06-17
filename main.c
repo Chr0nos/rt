@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 14:17:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 15:01:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int				main(int ac, char **av)
 			ft_putendl_fd("error.", 2);
 			return (1);
 		}
-		//rt_debug(rt.root, 0);
-		//rt_debug(rt_obj_byid(rt.root, 2), 0);
 		if (rt.root->content)
 		{
 			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);

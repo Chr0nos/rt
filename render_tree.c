@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/16 13:59:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 15:01:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 	*iter = &((*iter)[1]);
 	ob = rt_obj_init(*iter, obj->type);
 	rt_obj_addchild(parent, ob)->trans = *mat;
-	// draw_putv4d(ob->trans.w, 3);
-	// ft_putchar('\n');
 	ob->content = obj->content;
 	ob->inters = obj->inters;
 	ob->normal = obj->normal;
@@ -92,7 +90,5 @@ t_rtree	rt_render_tree(t_obj *node)
 	rtree.m_liter = &(rtree.light[1]);
 	rt_rtree_fill(node, &rtree, rtree.bounded, draw_make_matrix_m4_identity());
 	rt_bounds_update(rtree.bounded);
-	//rt_debug(rtree.bounded, 0);
-	//ft_putendl("The End !");
 	return (rtree);
 }
