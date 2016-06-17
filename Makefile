@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/17 15:01:25 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/17 15:05:08 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
-	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) headers/*.h headers/**/*.h
+	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -119,7 +119,7 @@ pull:
 norme:
 ifeq ($(OPSYS),Darwin)
 	@printf "\e[33mChecking 42 Norme :\e[m\n"
-	@norminette $(ALLSRC) | awk 'BEGIN { FS=":"; filename="" }\
+	@norminette $(ALLSRC) headers/*.h | awk 'BEGIN { FS=":"; filename="" }\
 	 	$$1 == "Norme" { filename=$$2; }\
 		$$1 ~ /Error .+/ { \
 			if (filename != "") {\
