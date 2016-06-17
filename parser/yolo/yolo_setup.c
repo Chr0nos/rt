@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 16:55:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 16:06:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	if ((!obj->parent) || (obj->type == CAMERA))
 		return (OK);
-	//obj->trans.w = draw_v4d_add(obj->trans.w, obj->parent->trans.w);
 	obj->trans = draw_matrix_multiply_axes_m4(
 		obj->rotation,
 		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);

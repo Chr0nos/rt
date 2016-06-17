@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 18:15:36 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 14:19:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 16:06:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 		return (1);
 	ft_strtoupper(av[PLAN_COLOR]);
 	((t_plan*)obj->content)->color = yolo_setup_color(av[PLAN_COLOR]);
-	rt_obj_rotate(obj,(t_v4d){
+	rt_obj_rotate(obj, (t_v4d){
 		deg2rad(ft_atod(av[PLAN_OR_X])),
 		deg2rad(ft_atod(av[PLAN_OR_Y])),
 		deg2rad(ft_atod(av[PLAN_OR_Z])),
-		0.0}
-	);
+		0.0});
 	return (0);
 }

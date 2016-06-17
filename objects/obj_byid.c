@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:05:59 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 14:17:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 16:07:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_obj	*rt_obj_byid(t_obj *node, const unsigned int id)
 	obj = node->childs;
 	while (obj)
 	{
- 		ret = rt_obj_byid(obj, id);
+		ret = rt_obj_byid(obj, id);
 		if (ret)
 			return (ret);
 		obj = obj->next;

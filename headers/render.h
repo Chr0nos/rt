@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 16:57:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 16:08:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "forms.h"
 # include "rt.h"
 
-typedef struct 	s_render
+typedef struct	s_render
 {
 	t_ray		*ray;
 	t_rt		*rt;
