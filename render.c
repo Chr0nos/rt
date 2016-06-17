@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 16:08:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 17:44:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
-			;
-		else if (r->ray->lenght < 0.000005)
 			;
 		else if (r->light_lenght < r->ray->lenght)
 			;
@@ -58,8 +56,11 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r->ray->start = r->intersection;
 	r->light_lenght = draw_v4d_dist(obj->trans.w, r->ray->start);
 	r->ray->dir = draw_v4d_norm(draw_v4d_sub(obj->trans.w, r->ray->start));
-	rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
-	rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_shadow_foreach, r);
+	if (r->ray->lenght > 0.000005)
+	{
+		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
+		rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_shadow_foreach, r);
+	}
 	origin.color = r->ray->color;
 	*r->ray = origin;
 	return (OK);
@@ -102,7 +103,8 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 			NULL,
 			HUGE_VAL,
 			0.0,
-			(t_v4d){0.0, 0.0, 0.0, 0.0}
+			(t_v4d){0.0, 0.0, 0.0, 0.0},
+			0.0
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
