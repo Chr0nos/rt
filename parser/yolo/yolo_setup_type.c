@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 17:41:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 12:44:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 12:38:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		yolo_setup_type(t_obj *obj, int mode, void *userdata)
 		(t_parser_internal){PLAN, &rt_plane_inter, &rt_plane_normale},
 		(t_parser_internal){CONE, &rt_cone_inter, &rt_cone_normale},
 		(t_parser_internal){CYL, &rt_cyl_inter, &rt_cyl_normale},
-		(t_parser_internal){CUBE, &rt_cube_inter, NULL}
+		(t_parser_internal){CUBE, &rt_cube_inter, &rt_cube_normale}
 	};
 
 	(void)mode;

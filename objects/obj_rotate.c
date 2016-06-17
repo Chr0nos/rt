@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.c                                             :+:      :+:    :+:   */
+/*   obj_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 12:36:30 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/17 14:01:55 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/17 14:04:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	rt_cube_setpos(t_ray *r, t_v4d *v)
+t_obj		*rt_obj_rotate(t_obj *obj, const t_v4d radians)
 {
-	if (v)
-	{
-		*v = draw_v4d_add(r->start,
-			draw_v4d_mult(r->dir, (t_v4d){
-				r->lenght,
-				r->lenght,
-				r->lenght,
-				0.0
-			}));
-	}
-}
-
-int			rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v)
-{
-	(void)obj;
-	rt_cube_setpos(r, v);
-	return (1);
-}
-
-t_v4d		rt_cube_normale(t_obj *obj, t_v4d *v)
-{
-	(void)v;
-	return (obj->trans.y);
+	obj->rotation = draw_v4d_add(radians, obj->rotation);
+	obj->trans = draw_matrix_multiply_axes_m4(radians,
+		(t_v4d){1.0, 1.0, 1.0, 1.0},
+		obj->trans.w);
+	return (obj);
 }

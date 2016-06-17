@@ -1,40 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.c                                             :+:      :+:    :+:   */
+/*   obj_nparent.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 12:36:30 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/17 14:02:53 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/17 14:02:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	rt_cube_setpos(t_ray *r, t_v4d *v)
+t_obj		*rt_obj_nparent(t_obj *obj, unsigned int n)
 {
-	if (v)
-	{
-		*v = draw_v4d_add(r->start,
-			draw_v4d_mult(r->dir, (t_v4d){
-				r->lenght,
-				r->lenght,
-				r->lenght,
-				0.0
-			}));
-	}
-}
-
-int			rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v)
-{
-	(void)obj;
-	rt_cube_setpos(r, v);
-	return (1);
-}
-
-t_v4d		rt_cube_normale(t_obj *obj, t_v4d *v)
-{
-	(void)v;
-	return (obj->trans.y);
+	while ((n--) && (obj->parent))
+		obj = obj->parent;
+	return (obj);
 }

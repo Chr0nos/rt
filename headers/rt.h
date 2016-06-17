@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 12:24:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/17 12:35:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v);
 int				rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v);
 t_v4d			rt_plane_normale(t_obj *obj, t_v4d *v);
 int				rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v);
+t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v);
 int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v);
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v);
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v);
