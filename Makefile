@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/17 14:15:40 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/17 15:01:25 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,13 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
-	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o)
+	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) headers/*.h headers/**/*.h
+
+ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
+	$(YOLO:%.o=$(YOLODIR)/%.c) \
+	$(TYPE:%.o=$(TYPEDIR)/%.c) \
+	$(EVENT:%.o=$(EVENTDIR)/%.c) \
+	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -110,4 +116,22 @@ pull:
 	cd ./libs/libft && git pull origin master
 	cd ./libs/libdraw && git pull origin master
 
-.PHONY: all re clean fclean pull
+norme:
+ifeq ($(OPSYS),Darwin)
+	@printf "\e[33mChecking 42 Norme :\e[m\n"
+	@norminette $(ALLSRC) | awk 'BEGIN { FS=":"; filename="" }\
+	 	$$1 == "Norme" { filename=$$2; }\
+		$$1 ~ /Error .+/ { \
+			if (filename != "") {\
+				print "\n\033[1;31mErrors on :\033[0;36m"filename;\
+				filename=""\
+			} \
+			sub("Error ","",$$1);\
+			if ($$2 == " C++ comment") { print "\033[0;33m"$$1"\033[32m"$$2 }\
+			else { print "\033[0;33m"$$1"\033[0m"$$2 }\
+		}'
+else
+	@printf "\e[33mNo Norminette here\e[m\n"
+endif
+
+.PHONY: all re clean fclean pull norme
