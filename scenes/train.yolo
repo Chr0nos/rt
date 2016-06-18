@@ -1,7 +1,7 @@
 CAMERA		5	3	-15		1	-1.4	0	75
 
 PLAN								0	-3	-4	0	0	-1	#55f5c8
-PLAN								0	15	5	0	0	-1	#55c8ff
+PLAN								0	30	5	0	0	-1	#55c8ff
 
 #SPOT								-5	14	0	#ffffff
 
@@ -20,3 +20,4 @@ CUBE								2		0	0	10		100:100:100
 						SPHERE		0.7		0	7	0		#555555
 					SPHERE			0.8		0	8	0		#555555
 				SPHERE				0.9		0	10	0		#555555
+POINTLIGHT									0	20	0 100 200 #ffffff
