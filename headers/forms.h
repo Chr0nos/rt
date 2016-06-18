@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 19:17:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 07:41:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ typedef struct			s_sphere
 	unsigned int		color;
 	float				radius;
 }						t_sphere;
+
+typedef struct			s_plight
+{
+	unsigned int		color;
+	float				radius;
+	double				intensity;
+}						t_plight;
 
 typedef struct			s_camera
 {

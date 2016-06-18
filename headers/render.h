@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 17:15:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/17 21:31:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct	s_render
 	t_v4d		intersection;
 	double		light_power;
 }				t_render;
+
+double			rt_light_pow(t_render *r, t_obj *obj, t_obj *light, t_v4d lnor);
 
 #endif
