@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 11:19:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/18 13:03:46 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
 	dist[CUBE_ZMIN] = draw_v4d_dist(shit, (t_v4d){0.0, 0.0, -1.0, 0.0});
 	lowest_id = rt_min_index(dist, CUBE_SIDES);
 	if (lowest_id == CUBE_XMAX)
-		return (obj->trans.x);
+		return ((t_v4d){1.0, 0.0, 0.0, 0.0});
 	else if (lowest_id == CUBE_XMIN)
-		return (draw_v4d_inv(obj->trans.x));
+		return ((t_v4d){-1.0, 0.0, 0.0, 0.0});
 	else if (lowest_id == CUBE_YMAX)
-		return (obj->trans.y);
+		return ((t_v4d){0.0, 1.0, 0.0, 0.0});
 	else if (lowest_id == CUBE_YMIN)
-		return (draw_v4d_inv(obj->trans.y));
+		return ((t_v4d){0.0, -1.0, 0.0, 0.0});
 	else if (lowest_id == CUBE_ZMAX)
-		return (obj->trans.z);
-	return (draw_v4d_inv(obj->trans.z));
+		return ((t_v4d){0.0, 0.0, 1.0, 0.0});
+	return ((t_v4d){0.0, 0.0, -1.0, 0.0});
 }
