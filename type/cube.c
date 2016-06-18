@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 11:05:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 11:19:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
 	t_uint			lowest_id;
 	double			dist[CUBE_SIDES];
 	const t_v4d		shit = draw_v4d_mult(draw_v4d_sub(*v, obj->trans.w),
-		rt_mkvec(1.0 / ((t_cube *)obj->content)->size));
+		rt_mkvec(1.0 / (double)((t_cube *)obj->content)->size));
 
 	dist[CUBE_XMAX] = draw_v4d_dist(shit, (t_v4d){1.0, 0.0, 0.0, 0.0});
 	dist[CUBE_YMAX] = draw_v4d_dist(shit, (t_v4d){0.0, 1.0, 0.0, 0.0});
