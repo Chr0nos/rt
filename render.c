@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 07:12:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 14:58:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else
 		{
-			r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
+			// r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
+			r->light_power = 0.0;
 			return (STOP_ALL);
 		}
 	}
@@ -49,7 +50,7 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_ray		origin;
-	double		lnor;
+	double		lor;
 
 	(void)mode;
 	r = userdata;
@@ -57,13 +58,14 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r->ray->start = r->intersection;
 	r->light_lenght = draw_v4d_dist(obj->trans.w, r->ray->start);
 	r->ray->dir = draw_v4d_norm(draw_v4d_sub(obj->trans.w, r->ray->start));
-	lnor = rt_light_pow(r, r->obj_intersect, obj, r->ray->dir);
-	if ((lnor > 0.0) && (r->ray->lenght > 0.000005))
+	lor = r->light_power;
+	r->light_power = rt_light_pow(r, r->obj_intersect, obj, r->ray->dir);
+	if ((r->light_power > 0.0) && (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
 		rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_shadow_foreach, r);
 	}
-	origin.color = draw_color_lerp(0x000000, r->ray->color, (float)lnor);
+	r->light_power += lor;
 	*r->ray = origin;
 	return (OK);
 }
@@ -114,5 +116,6 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 	if (r.obj_intersect)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	ray->lenght = r.lowest_lenght;
-	return (ray->color);
+	return (draw_color_lerp(0x000000, r.ray->color,
+		(float)(r.light_power / MID_LIGHT_POWER)));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 16:02:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 14:09:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define CYL_OR_Z 7
 # define CYL_HEIGHT 8
 # define CYL_TEXTURE 9
+# define PLIGHT_POWER 3
+# define PLIGHT_RADIUS 4
+# define PLIGHT_COLOR 5
 # define MINFOV 5.0
 # define MAXFOV 180.0
 # include "rt.h"
@@ -55,5 +58,6 @@ int					yolo_setup_cone(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
+int					yolo_setup_plight(t_obj *obj, size_t ac, char **av);
 
 #endif
