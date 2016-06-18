@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 21:31:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:22:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			update_cube(t_box *a, const t_box *b);
 
 void			rt_update_camera(t_v2i geometry, t_camera *cam);
 int				camera_reset(t_rt *rt);
+void			camera_save(t_obj *camera);
 
 void			rt_box_update(t_obj *obj);
 void			rt_bounds_update(t_obj *node);

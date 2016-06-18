@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 07:41:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:12:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct			s_camera
 	t_v4d				raypos;
 	t_v4d				mdirx;
 	t_v4d				mdiry;
+	t_v4d				origin_rot;
 	t_m4				origin;
 	double				fov;
 	double				fovx;

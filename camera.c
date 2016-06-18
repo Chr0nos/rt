@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 07:42:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:23:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }
 
+void	camera_save(t_obj *camera)
+{
+	t_camera	*cam;
+
+	cam = camera->content;
+	cam->origin_rot = camera->rotation;
+	cam->origin = camera->trans;
+}
+
 int		camera_reset(t_rt *rt)
 {
 	t_obj		*obj;
@@ -77,6 +86,7 @@ int		camera_reset(t_rt *rt)
 	obj = rt->root->content;
 	cam = obj->content;
 	obj->trans = cam->origin;
+	obj->rotation = cam->origin_rot;
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }
