@@ -17,4 +17,4 @@ CONE					5		 10			0			0			#a31c1c		10.0
 #						X	Y	Z		Orientation					Color
 PLAN					0 -10	0		0	0	3.15				#b36357
 PLAN					0 -10	0		0	0	-3.15				#3da633
-POINTLIGHT				0  20	0		200.0	100.0
+POINTLIGHT				0  20	0		100.0		200.0
