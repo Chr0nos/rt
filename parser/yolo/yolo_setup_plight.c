@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/18 13:31:13 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/18 15:07:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 22:49:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int					yolo_setup_plight(t_obj *obj, size_t ac, char **av)
 		tmp = ft_atod(av[PLIGHT_RADIUS]);
 	((t_plight *)obj->content)->radius = (float)tmp;
 	if (ac <= PLIGHT_COLOR)
+	{
+		((t_plight *)obj->content)->color = 0xffffff;
 		return (0);
+	}
 	ft_strtoupper(av[PLIGHT_COLOR]);
 	((t_plight *)obj->content)->color = yolo_setup_color(av[PLIGHT_COLOR]);
 	return (0);
