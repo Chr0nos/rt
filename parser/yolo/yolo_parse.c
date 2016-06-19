@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 17:58:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 22:57:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static t_obj	*yolo_parse_obj(const char *opts, t_obj *obj)
 			ft_atod(split[2 + ofs]),
 			1.0
 		};
-		yolo_setup(obj, size - 1, split);
+		if (yolo_setup(obj, size - 1, split) != 0)
+			ft_printf("warning: failed to setup object %s\n", split[0]);
 	}
 	ft_free_tab(split, (unsigned int)size);
 	free(split);
