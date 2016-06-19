@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 19:12:58 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/16 19:10:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 22:45:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int					yolo_setup_cone(t_obj *obj, size_t ac, char **av)
 		return (1);
 	ft_strtoupper(av[S_COLOR_POS]);
 	size = ft_atod(av[PROP_SIZE]);
-	if ((ac < CONE_ANGLE) || ((angle = deg2rad(ft_atod(av[CONE_ANGLE]))) < 0.02)
+	if ((ac <= CONE_ANGLE) ||
+		((angle = deg2rad(ft_atod(av[CONE_ANGLE]))) < 0.02)
 		|| (angle > 3.0))
 		angle = 1.0472;
 	((t_cone*)obj->content)->size = (float)size;
