@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/17 14:55:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/19 15:59:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
 
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v)
 {
-	(void)v;
-	return (draw_v4d_norm(obj->trans.y));
+	t_v4d		nor;
+	double		tmp;
+
+	nor = draw_v4d_sub(*v, obj->trans.w);
+	nor.y = 0.0;
+	nor = draw_v4d_norm(nor);
+	tmp = ((t_cone *)obj->content)->angle.z;
+	nor = draw_v4d_mult(nor, draw_dtov4d(1.0 - tmp));
+	nor.y = tmp;
+	return (nor);
 }
