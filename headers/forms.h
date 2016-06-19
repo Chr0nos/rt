@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 15:12:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/19 17:08:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ typedef enum			e_type
 	INVALID = 1 << 9,
 	CONE = 1 << 10,
 	CYL = 1 << 11,
+	SUNLIGHT = 1 << 12,
 	RADIUS = SPHERE | CUBE | CYL | CONE,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
 	NOCHECKBOX = PLAN | CYL,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
-	LIGHTTYPE = SPOT | POINTLIGHT,
+	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 	TEXTURE = CYL
 }						t_type;
 

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/19 16:19:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 19:31:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
 {
 	const t_v4d		*c = &obj->trans.w;
 
-	return (draw_vector_transform_m4(draw_v4d_norm((t_v4d){
+	return (draw_v4d_norm((t_v4d){
 		v->x - c->x,
-		0.0,
-		v->z - c->z,
-		0.0}), &obj->trans));
+		2 * (v->y - c->y),
+		2 * (v->z - c->z) - 1,
+		1.0}));
 }

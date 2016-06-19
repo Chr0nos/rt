@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 14:58:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 19:26:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "rt.h"
 #include "render.h"
 
@@ -33,7 +34,6 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else
 		{
-			// r->ray->color = (r->ray->color >> 1) & 0x7f7f7f;
 			r->light_power = 0.0;
 			return (STOP_ALL);
 		}
@@ -55,11 +55,8 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	r = userdata;
 	origin = *r->ray;
-	r->ray->start = r->intersection;
-	r->light_lenght = draw_v4d_dist(obj->trans.w, r->ray->start);
-	r->ray->dir = draw_v4d_norm(draw_v4d_sub(obj->trans.w, r->ray->start));
 	lor = r->light_power;
-	r->light_power = rt_light_pow(r, r->obj_intersect, obj, r->ray->dir);
+	r->light_power = rt_light_pow(r, obj);
 	if ((r->light_power > 0.0) && (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
@@ -103,18 +100,22 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 
 	r = (t_render){
 		ray,
-			rt,
-			NULL,
-			HUGE_VAL,
-			0.0,
-			(t_v4d){0.0, 0.0, 0.0, 0.0},
-			0.0
+		rt,
+		NULL,
+		HUGE_VAL,
+		0.0,
+		(t_v4d){0.0, 0.0, 0.0, 0.0},
+		ray->dir,
+		rt->settings.ambiant_light
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
 	if (r.obj_intersect)
+	{
+		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
+	}
 	ray->lenght = r.lowest_lenght;
 	return (draw_color_lerp(0x000000, r.ray->color,
 		(float)(r.light_power / MID_LIGHT_POWER)));

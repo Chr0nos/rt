@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/19 15:59:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 19:36:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v)
 	nor.y = 0.0;
 	nor = draw_v4d_norm(nor);
 	tmp = ((t_cone *)obj->content)->angle.z;
-	nor = draw_v4d_mult(nor, draw_dtov4d(1.0 - tmp));
+	nor = draw_v4d_mult(nor, draw_dtov4d(1.0 - (tmp * tmp)));
 	nor.y = tmp;
 	return (nor);
 }

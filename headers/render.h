@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/17 21:31:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 18:31:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ typedef struct	s_render
 	double		lowest_lenght;
 	double		light_lenght;
 	t_v4d		intersection;
+	t_v4d		normal;
 	double		light_power;
 }				t_render;
 
-double			rt_light_pow(t_render *r, t_obj *obj, t_obj *light, t_v4d lnor);
+double			rt_light_pow(t_render *r, t_obj *light);
 
 #endif

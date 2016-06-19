@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   factory.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 15:03:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/19 18:01:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){CONE, sizeof(struct s_cone)},
 		(t_typesize){CAMERA, sizeof(struct s_camera)},
 		(t_typesize){CYL, sizeof(struct s_cyl)},
-		(t_typesize){POINTLIGHT | SPOT, sizeof(struct s_plight)}
+		(t_typesize){LIGHTTYPE, sizeof(struct s_plight)}
 	};
 
 	p = 7;

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 18:37:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/19 17:58:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static int		yolo_parse_lvl(char *line)
 	return (len);
 }
 
-static int		yolo_parse_line(char *line, int *lastlvl, t_obj **lastobj)
+static int		yolo_parse_line(char *line, int *lastlvl, t_obj **lastobj,
+	t_rtcfg *rset)
 {
 	const int	lvl = yolo_parse_lvl(line);
 	t_obj		*parent;
@@ -59,7 +60,7 @@ static int		yolo_parse_line(char *line, int *lastlvl, t_obj **lastobj)
 	char		*name_type;
 
 	line += lvl;
-	if (!*line)
+	if ((!*line) || yolo_parse_settings(line, rset))
 		return (0);
 	name_type = ft_strndup(line, ft_strsublenstr(line, " \t"));
 	type = rt_gettype(name_type);
@@ -87,7 +88,7 @@ static t_obj	*yolo_parse_finalize(t_obj *root)
 	return (root);
 }
 
-t_obj			*yolo_parse(const char *filepath)
+t_obj			*yolo_parse(const char *filepath, t_rtcfg *rset)
 {
 	int		fd;
 	int		lastlvl;
@@ -107,7 +108,7 @@ t_obj			*yolo_parse(const char *filepath)
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		if ((line[0] != '#') && (!ft_stronlystr(line, " \t")) &&
-			(yolo_parse_line(line, &lastlvl, &lastobj) < 0) &&
+			(yolo_parse_line(line, &lastlvl, &lastobj, rset) < 0) &&
 			(ft_mfree(1, line)))
 			break ;
 		free(line);

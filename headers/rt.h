@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 15:22:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/19 17:57:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,23 @@
 # define INFIX 2
 # define SUFFIX 4
 
+typedef enum			e_rendflag
+{
+	RTMODE = 1,
+	GLPREVMODE = 2,
+	GLRENDMODE = 3,
+	PTMODE = 4,
+	MODE = 0xff,
+	AO = 1 << 8,
+	ALT_LIGHT_EQ = 1 << 9
+}						t_rendflag;
+
+typedef struct	s_rtcfg
+{
+	double		ambiant_light;
+	t_rendflag	mode;
+}				t_rtcfg;
+
 typedef struct	s_rt
 {
 	t_draw		sys;
@@ -27,6 +44,7 @@ typedef struct	s_rt
 	t_rtree		tree;
 	int			keyboard;
 	int			mouse;
+	t_rtcfg		settings;
 }				t_rt;
 
 void			rt_puttype(int type);
