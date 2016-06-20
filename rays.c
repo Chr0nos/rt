@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/15 17:04:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/20 12:14:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
-			ray->dir = draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0});
-			ray->dir = draw_vector_transform_m4(ray->dir, &m);
+			ray->dir = draw_vector_transform_m4(
+				draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			draw_pxi(rt->sys.screen->pixels, px,
 				(unsigned int)rt->sys.geometry.x, rt_render(rt, ray));
 			rad.y -= rad.w;

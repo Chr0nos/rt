@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 19:26:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/20 12:21:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	}
-	ray->lenght = r.lowest_lenght;
+	//ray->lenght = r.lowest_lenght;
 	return (draw_color_lerp(0x000000, r.ray->color,
 		(float)(r.light_power / MID_LIGHT_POWER)));
 }
