@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:34:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:38:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			menu_display(t_rt *rt)
 
 	(void)size;
 	p = 0;
-	draw_reset_surface(rt->sys.screen, 0xb189ab);
+	draw_reset_surface(rt->sys.screen, 0xe97313);
 
 	px = (t_point){10, 10};
 	while (p < 6)
