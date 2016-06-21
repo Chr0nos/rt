@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 23:50:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 23:54:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				main(int ac, char **av)
 	t_rt	rt;
 
 	rt_configure(&rt);
-	if ((ac == 1) || (ls_isdir(av[1])))
+	if ((ac == 1) || (ls_isdir(av[1]) == 1))
 		menu_init(&rt, av[1]);
 	else if (ac >= 2)
 	{
