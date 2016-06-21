@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:56:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 21:20:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
+int				rt_event_resize(SDL_Event *event, t_rt *rt);
 
 void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);
