@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:26:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:31:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define INFIX 2
 # define SUFFIX 4
 
-typedef enum			e_rendflag
+typedef enum	e_rendflag
 {
 	RTMODE = 1,
 	GLPREVMODE = 2,
@@ -29,7 +29,7 @@ typedef enum			e_rendflag
 	MODE = 0xff,
 	AO = 1 << 8,
 	ALT_LIGHT_EQ = 1 << 9
-}						t_rendflag;
+}				t_rendflag;
 
 typedef struct	s_rtcfg
 {

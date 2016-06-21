@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 18:11:03 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/21 19:31:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct			s_obj
 	struct s_shaders	*shader;
 	int					texture;
 }						t_obj;
+
 t_obj					*rt_obj_init(t_obj *obj, t_type type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj					*rt_obj_addchild(t_obj *parent, t_obj *child);
