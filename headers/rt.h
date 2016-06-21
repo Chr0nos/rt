@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:31:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:56:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct	s_rtcfg
 	t_rendflag	mode;
 }				t_rtcfg;
 
+typedef struct	s_menu
+{
+	t_point		items;
+	t_point		thumb;
+}				t_menu;
+
 typedef struct	s_rt
 {
 	t_draw		sys;
@@ -47,6 +53,7 @@ typedef struct	s_rt
 	t_rtcfg		settings;
 	struct s_rt	*rts;
 	size_t		rts_size;
+	t_menu		menu;
 }				t_rt;
 
 void			rt_configure(t_rt *rt);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:38:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 20:00:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 
 void			menu_display(t_rt *rt)
 {
-	const size_t	size = rt->rts_size;
+	size_t			max_size = (size_t)(rt->menu.items.x * rt->menu.items.y);
+	size_t			size;
 	t_point			px;
 	size_t			p;
 
-	(void)size;
+	size = (rt->rts_size < max_size) ? rt->rts_size : max_size;
 	p = 0;
 	draw_reset_surface(rt->sys.screen, 0xe97313);
-
-	px = (t_point){10, 10};
-	while (p < 6)
+	px = (t_point){MENU_PADDING_X, MENU_PADDING_Y};
+	while (p < size)
 	{
 		rt_rays(&rt->rts[p]);
 		draw_blitsurface(rt->sys.screen, rt->rts[p].sys.screen, px);
-		if (((p + 1) % 3 == 0) && (p))
+		if (((p + 1) % (size_t)rt->menu.items.x == 0) && (p))
 		{
-			px.y += 12 + rt->rts[p].sys.geometry.y;
-			px.x = 10;
+			px.y += MENU_BORDER_Y + rt->rts[p].sys.geometry.y;
+			px.x = MENU_PADDING_X;
 		}
 		else
-			px.x += 12 + rt->rts[p].sys.geometry.x;
+			px.x += MENU_BORDER_X + rt->rts[p].sys.geometry.x;
 		p++;
 	}
 }

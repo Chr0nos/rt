@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:00:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:57:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,12 @@
 #include "menu.h"
 #include "parser.h"
 #include "keyboard.h"
-#define VIGN_X 4
-#define VIGN_Y 3
-//#define VIGN_PAD 30
 
 static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 {
 	size_t			p;
 	const t_point	*geometry = &rt->sys.geometry;
-	const t_point	subgeo = (t_point){
-		geometry->x / VIGN_X,
-		geometry->y / VIGN_Y
-	};
+	const t_point	subgeo = rt->menu.thumb;
 
 	ft_printf("sub geometry: {x: %d, y: %d}\n", subgeo.x, subgeo.y);
 	ft_printf("geometry: {x: %d, y: %d}\n", geometry->x, geometry->y);
