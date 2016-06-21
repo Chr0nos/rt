@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 13:40:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 14:05:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MENU_H
 # include "libft.h"
 
-t_list	*ls_dir(const char *path, const char *mask);
+int			menu_init(t_rt *rt);
+t_list		*ls_dir(const char *path, const char *mask);
 
 #endif

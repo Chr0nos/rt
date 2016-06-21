@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/20 12:14:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 14:19:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ static void		rt_debug_ray(t_ray *ray)
 		exit(0);
 }
 
-static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
+static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
+	t_m4 m)
 {
 	t_v2i			px;
 	t_v4d			rad;
+	t_camera		*camp;
 
 	(void)rt_debug_ray;
+	camp = ((t_obj*)rt->root->content)->content;
 	px.x = rt->sys.geometry.x;
 	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
 	while (px.x--)
@@ -43,7 +46,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, t_camera *camp, t_m4 m)
 		{
 			ray->dir = draw_vector_transform_m4(
 				draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
-			draw_pxi(rt->sys.screen->pixels, px,
+			draw_pxi(pixels, px,
 				(unsigned int)rt->sys.geometry.x, rt_render(rt, ray));
 			rad.y -= rad.w;
 		}
@@ -70,8 +73,7 @@ void			rt_rays(t_rt *rt)
 	camp->raypos = cam->trans.w;
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
-	rt_rays_pixels(rt, &ray, camp, cam->trans);
-	(void)rt_rays_pixels;
+	rt_rays_pixels(rt, &ray, rt->sys.screen->pixels, cam->trans);
 	rt->tree.memlen = 0;
 	free(rt->tree.bounded);
 }
