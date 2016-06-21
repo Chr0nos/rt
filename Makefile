@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/21 22:17:38 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/21 23:51:03 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o render_tree.o \
 	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
-	light.o shaders.o
+	light.o shaders.o configure.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o
@@ -63,7 +63,7 @@ OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 
 MENU_DIR=menu
-MENU=ls_dir.o init.o menu_display.o menu_move.o
+MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \

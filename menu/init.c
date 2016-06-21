@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 22:11:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 23:43:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ static void		menu_clean(size_t size, t_rt *rts)
 	free(rts);
 }
 
-int				menu_init(t_rt *rt)
+int				menu_init(t_rt *rt, const char *path)
 {
 	t_list		*files;
 	int			ret;
 
-	if (!(files = ls_dir("./scenes/", "*.yolo")))
+	if (!path)
+		path = "./scenes/";
+	if (!(files = ls_dir(path, "*.yolo")))
 		return (-2);
 	rt->rts_size = ft_lstsize(files);
 	if ((rt->rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
