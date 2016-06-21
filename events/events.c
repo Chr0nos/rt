@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 22:27:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 22:44:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int				movemyass(t_rt *rt)
 	m = obj->trans;
 	m.w = draw_vector_transform_m4(move_vec(k), &m);
 	obj->trans = m;
-	menu_move(rt);
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
 	return (k & (MOVE | FORCE_DISPLAY | MENU));
