@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 10:30:07 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/21 10:37:22 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/21 11:45:37 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "libft.h"
 #include <dirent.h>
 
-int	read_file(char	**av)
+int	read_file(char **av)
 {
-	DIR		*rep;
-	struct	dirent *file;
-	char	*new;
-	int		i;
+	DIR				*rep;
+	struct dirent	*file;
+	char			*new;
+	int				i;
 
 	i = 0;
 	if ((rep = opendir("./scenes/")) == NULL)

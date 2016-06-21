@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 13:03:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 11:51:50 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void		rt_cube_setpos(t_ray *r, t_v4d *v)
 	if (v)
 	{
 		*v = draw_v4d_add(r->start,
-			draw_v4d_mult(r->dir, (t_v4d){
-				r->lenght,
-				r->lenght,
-				r->lenght,
-				0.0
-			}));
+				draw_v4d_mult(r->dir, (t_v4d){
+					r->lenght,
+					r->lenght,
+					r->lenght,
+					0.0
+					}));
 	}
 }
 
@@ -66,11 +66,12 @@ static t_v4d	rt_mkvec(double a)
 
 t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
 {
+	const t_v4d		shit;
 	t_uint			lowest_id;
 	double			dist[CUBE_SIDES];
-	const t_v4d		shit = draw_v4d_mult(draw_v4d_sub(*v, obj->trans.w),
-		rt_mkvec(1.0 / (double)((t_cube *)obj->content)->size));
 
+	shit = draw_v4d_mult(draw_v4d_sub(*v, obj->trans.w),
+			rt_mkvec(1.0 / (double)((t_cube *)obj->content)->size));
 	dist[CUBE_XMAX] = draw_v4d_dist(shit, (t_v4d){1.0, 0.0, 0.0, 0.0});
 	dist[CUBE_YMAX] = draw_v4d_dist(shit, (t_v4d){0.0, 1.0, 0.0, 0.0});
 	dist[CUBE_ZMAX] = draw_v4d_dist(shit, (t_v4d){0.0, 0.0, 1.0, 0.0});
