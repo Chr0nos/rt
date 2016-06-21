@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 15:21:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 16:09:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 	const t_point	*geometry = &rt->sys.geometry;
 	const t_point	subgeo = (t_point){
 		geometry->x / VIGN_X - (VIGN_PAD * VIGN_X),
-		geometry->x / VIGN_Y - (VIGN_PAD * VIGN_Y)
+		geometry->y / VIGN_Y - (VIGN_PAD * VIGN_Y)
 	};
 
 	p = 0;
@@ -37,25 +37,12 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		{
 			rts[p].sys.screen = SDL_CreateRGBSurface(0, subgeo.x, subgeo.y,
 				24, 0xff0000, 0x00ff00, 0x0000ff, 0xff000000);
+			draw_reset_surface(rts[p].sys.screen, 0x30f0b0);
 			p++;
 		}
 		files = files->next;
 	}
 	return (0);
-}
-
-static void		menu_display(const size_t size, t_rt *rts, t_rt *rt)
-{
-	size_t	p;
-
-	(void)rt;
-	(void)rts;
-	p = 0;
-	while (p < size)
-	{
-
-		p++;
-	}
 }
 
 static void		menu_clean(size_t size, t_rt *rts)

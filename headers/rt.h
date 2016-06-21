@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 10:36:31 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/21 16:09:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_rt
 	t_rtcfg		settings;
 }				t_rt;
 
+int				rt_create_window(t_rt *rt);
 void			rt_puttype(int type);
 t_type			rt_gettype(const char *str);
 
