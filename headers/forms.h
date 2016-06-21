@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 17:08:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 18:10:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,22 +137,5 @@ typedef struct			s_box
 	float				zmin;
 	float				zmax;
 }						t_box;
-
-typedef struct			s_obj
-{
-	t_type				type;
-	t_uint				id;
-	t_mattf				trans;
-	t_v4d				rotation;
-	t_box				bounds;
-	t_box				hitbox;
-	struct s_obj		*parent;
-	struct s_obj		*childs;
-	struct s_obj		*next;
-	void				*content;
-	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
-	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
-	int					texture;
-}						t_obj;
 
 #endif

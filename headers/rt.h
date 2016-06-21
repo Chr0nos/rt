@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 16:09:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 18:10:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 # include "draw.h"
-# include "forms.h"
-# include "tree.h"
 # include "objects.h"
+# include "tree.h"
+
 # define PREFIX 1
 # define INFIX 2
 # define SUFFIX 4
