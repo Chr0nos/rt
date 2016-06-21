@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:57:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 22:11:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 {
 	size_t			p;
-	const t_point	*geometry = &rt->sys.geometry;
 	const t_point	subgeo = rt->menu.thumb;
 
-	ft_printf("sub geometry: {x: %d, y: %d}\n", subgeo.x, subgeo.y);
-	ft_printf("geometry: {x: %d, y: %d}\n", geometry->x, geometry->y);
 	p = 0;
 	while (files)
 	{
 		ft_memcpy(&rts[p], rt, sizeof(t_rt));
+		rts[p].keyboard ^= MENU;
 		rts[p].sys.geometry = subgeo;
 		rts[p].root = yolo_parse((const char*)files->content, &rts[p].settings);
 		if (rts[p].root)
@@ -64,7 +62,6 @@ int				menu_init(t_rt *rt)
 	rt->rts_size = ft_lstsize(files);
 	if ((rt->rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
 	{
-		rt->sys.geometry = (t_point){1024, 768};
 		ret = menu_configure_rts(rt, rt->rts, files);
 		rt->keyboard |= MENU;
 		ft_putendl("starting rt");

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   menu_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 21:33:17 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/21 22:16:23 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/21 22:23:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 #include "keyboard.h"
 #include "menu.h"
 
-int				display(t_rt *rt)
+void		menu_kb_copy(t_rt *rt)
 {
-	int		ret;
+	size_t		p;
 
-	if ((ret = movemyass(rt)) & QUIT)
-	{
-		ft_putendl("quit requested");
-		return (1);
-	}
-	if ((!(ret & FORCE_DISPLAY)) && (ret == 0) && (!(rt->keyboard & MENU)))
-		return (0);
-	if (ret & FORCE_DISPLAY)
-		rt->keyboard ^= FORCE_DISPLAY;
-	if (rt->keyboard & MENU)
-		menu_display(rt);
-	else
-		rt_rays(rt);
-	SDL_LockSurface(rt->sys.screen);
-	SDL_UpdateWindowSurface(rt->sys.win);
-	SDL_UnlockSurface(rt->sys.screen);
-	return (0);
+	p = rt->rts_size;
+	while (p--)
+		rt->rts[p].keyboard = rt->keyboard & ~MENU;
+}
+
+void			menu_move(t_rt *rt)
+{
+	size_t	p;
+
+	ft_putendl("mass move");
+	p = rt->rts_size;
+	while (p--)
+		movemyass(&rt->rts[p]);
+	rt->keyboard |= FORCE_DISPLAY;
 }

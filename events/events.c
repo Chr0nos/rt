@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 21:19:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 22:27:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "draw.h"
 #include "libft.h"
 #include "keyboard.h"
+#include "menu.h"
 
 static t_v4d	move_vec(int k)
 {
@@ -44,10 +45,10 @@ int				movemyass(t_rt *rt)
 
 	if (k & QUIT)
 		return (QUIT);
+	if (k & MENU)
+		return (k & MENU);
 	if (!rt->root)
 	{
-		if (k & MENU)
-			return (k & MENU);
 		ft_putendl_fd("error of doom ! i'm done whith that shit !", 2);
 		exit(1);
 	}
@@ -55,6 +56,7 @@ int				movemyass(t_rt *rt)
 	m = obj->trans;
 	m.w = draw_vector_transform_m4(move_vec(k), &m);
 	obj->trans = m;
+	menu_move(rt);
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
 	return (k & (MOVE | FORCE_DISPLAY | MENU));
