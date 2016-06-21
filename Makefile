@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/21 10:36:19 by dboudy           ###   ########.fr        #
+#    Updated: 2016/06/21 13:47:52 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o render_tree.o \
 	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o\
-	light.o miniature.o
+	light.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o
@@ -61,23 +61,29 @@ EVENT=mouse.o keyboard.o keybit.o events.o
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 
+MENU_DIR=menu
+MENU=ls_dir.o
+
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
-	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o)
+	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
+	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
 	$(TYPE:%.o=$(TYPEDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
-	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c)
+	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
+	$(MENU:%.o=$(MENU_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
 		$(OBJBUILDDIR)/$(TYPEDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
-		$(OBJBUILDDIR)/$(OBJECTS_DIR)
+		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
+		$(OBJBUILDDIR)/$(MENU_DIR)
 
 all: $(NAME)
 

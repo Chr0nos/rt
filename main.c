@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 11:33:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/21 13:49:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ static int		rt_start(t_rt *rt)
 	return (0);
 }
 
+static void		rt_configure(t_rt *rt)
+{
+	rt->mouse = 0;
+	rt->keyboard = FORCE_DISPLAY;
+	rt->settings = (t_rtcfg){0.0, RTMODE};
+}
+
 int				main(int ac, char **av)
 {
 	t_rt	rt;
 
-	if (ac >= 2 || ((ac = read_file(av)) && ac > 1))
+	if (ac >= 2)
 	{
-		rt.mouse = 0;
-		rt.keyboard = FORCE_DISPLAY;
-		rt.settings = (t_rtcfg){0.0, RTMODE};
+		rt_configure(&rt);
 		if (!(rt.root = yolo_parse(av[1], &(rt.settings))))
 		{
 			ft_putendl_fd("error.", 2);
