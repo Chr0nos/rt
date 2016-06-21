@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/10 03:48:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 17:14:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
+#include "menu.h"
 
 int				display(t_rt *rt)
 {
@@ -23,7 +24,10 @@ int				display(t_rt *rt)
 	{
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;
-		rt_rays(rt);
+		if (rt->keyboard & MENU)
+			menu_display(rt);
+		else
+			rt_rays(rt);
 		SDL_LockSurface(rt->sys.screen);
 		SDL_UpdateWindowSurface(rt->sys.win);
 		SDL_UnlockSurface(rt->sys.screen);

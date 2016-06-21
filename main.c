@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 16:08:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 17:16:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int				rt_create_window(t_rt *rt)
 		draw_quit(&rt->sys);
 		return (1);
 	}
+	draw_reset_surface(rt->sys.screen, COLOR_BLACK);
 	return (0);
 }
 
-static int		rt_start(t_rt *rt)
+int			rt_start(t_rt *rt)
 {
 	if (rt_create_window(rt))
 		return (1);
-	draw_reset_surface(rt->sys.screen, COLOR_BLACK);
 	SDL_UpdateWindowSurface(rt->sys.win);
 	while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
 		SDL_Delay(1);

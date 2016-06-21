@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 16:09:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 17:15:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "menu.h"
 #include "parser.h"
+#include "keyboard.h"
 #define VIGN_X 4
 #define VIGN_Y 3
 #define VIGN_PAD 30
@@ -58,19 +59,20 @@ static void		menu_clean(size_t size, t_rt *rts)
 int				menu_init(t_rt *rt)
 {
 	t_list		*files;
-	size_t		size;
 	t_rt		*rts;
 	int			ret;
 
 	if (!(files = ls_dir("./scenes/", "*.yolo")))
 		return (-2);
-	size = ft_lstsize(files);
-	if ((rts = malloc(sizeof(t_rt) * size)) != NULL)
+	rt->rts_size = ft_lstsize(files);
+	if ((rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
 	{
 		ret = menu_configure_rts(rt, rts, files);
 		//code utile ici
-		menu_display(size, rts, rt);
-		menu_clean(size, rts);
+		//rt_create_window(rt);
+		rt->keyboard |= MENU;
+		rt_start(rt);
+		menu_clean(rt->rts_size, rts);
 	}
 	else
 		ret = -1;
