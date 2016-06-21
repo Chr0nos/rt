@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 16:09:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 17:16:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ typedef struct	s_rt
 	int			keyboard;
 	int			mouse;
 	t_rtcfg		settings;
+	struct s_rt	*rts;
+	size_t		rts_size;
 }				t_rt;
 
 int				rt_create_window(t_rt *rt);
+int				rt_start(t_rt *rt);
 void			rt_puttype(int type);
 t_type			rt_gettype(const char *str);
 
