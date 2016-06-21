@@ -6,13 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/20 12:07:38 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/21 10:32:44 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "draw.h"
-#include "dirent.h"
 #include "libft.h"
 #include "keyboard.h"
 #include "parser.h"
@@ -49,41 +48,11 @@ static int		rt_start(t_rt *rt)
 	return (0);
 }
 
-static int	read_file(char	**av)
-{
-	DIR* rep = NULL;
-	struct dirent* fichier_lu = NULL;
-	int	i;
-
-	i = -1;
-	if ((rep = opendir("./scenes/")) == NULL)
-	{
-		ft_putendl_fd("opendir faile\n", 2);
-		exit(-1);
-	}
-	while ((fichier_lu = readdir(rep)) != NULL && i < 11)
-	{
-		if (fichier_lu->d_name[0] != '.')
-			av[++i] = ft_strdup(fichier_lu->d_name);
-		ft_printf("av[%d] = %s.\n", i, av[i]); // debug a sup a la fin.
-	}
-	if (closedir(rep) == -1)
-		exit(-1);
-	return (i);
-}
-
 int				main(int ac, char **av)
 {
 	t_rt	rt;
-	int		new_ac;
-	char	**new_av;
 
-	if (ac == 1)
-	{
-		new_av = (char**)ft_memalloc(sizeof(char**));
-		new_ac = read_file(new_av);
-	}
-	else if (ac >= 2)
+	if (ac >= 2 || ((ac = read_file(av)) && ac > 1))
 	{
 		rt.mouse = 0;
 		rt.keyboard = FORCE_DISPLAY;

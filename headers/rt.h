@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 17:57:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 10:36:31 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_rt
 
 void			rt_puttype(int type);
 t_type			rt_gettype(const char *str);
+
+int				read_file(char **av);
 
 int				getkeybit(const int keycode);
 int				keydown(int keycode, t_rt *rt);
