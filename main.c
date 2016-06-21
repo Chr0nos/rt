@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 17:16:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 18:36:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,13 @@ int			rt_start(t_rt *rt)
 	return (0);
 }
 
-static void		rt_configure(t_rt *rt)
+void			rt_configure(t_rt *rt)
 {
+	rt->sys.win = NULL;
+	rt->sys.screen = NULL;
+	rt->root = NULL;
+	rt->rts_size = 0;
+	rt->rts = NULL;
 	rt->mouse = 0;
 	rt->keyboard = FORCE_DISPLAY;
 	rt->settings = (t_rtcfg){0.0, RTMODE};

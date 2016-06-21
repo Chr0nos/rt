@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 01:07:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 18:10:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,20 @@ int				movemyass(t_rt *rt)
 
 	if (k & QUIT)
 		return (QUIT);
+	if (!rt->root)
+	{
+		if (k & MENU)
+			return (k & MENU);
+		ft_putendl_fd("error of doom ! i'm done whith that shit !", 2);
+		exit(1);
+	}
 	obj = (t_obj*)(rt->root->content);
 	m = obj->trans;
 	m.w = draw_vector_transform_m4(move_vec(k), &m);
 	obj->trans = m;
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
-	return (k & (MOVE | FORCE_DISPLAY));
+	return (k & (MOVE | FORCE_DISPLAY | MENU));
 }
 
 int				sdl_event(SDL_Event *event, t_rt *rt)

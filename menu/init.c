@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 17:15:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:00:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 #include "keyboard.h"
 #define VIGN_X 4
 #define VIGN_Y 3
-#define VIGN_PAD 30
+//#define VIGN_PAD 30
 
 static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 {
 	size_t			p;
 	const t_point	*geometry = &rt->sys.geometry;
 	const t_point	subgeo = (t_point){
-		geometry->x / VIGN_X - (VIGN_PAD * VIGN_X),
-		geometry->y / VIGN_Y - (VIGN_PAD * VIGN_Y)
+		geometry->x / VIGN_X,
+		geometry->y / VIGN_Y
 	};
 
+	ft_printf("sub geometry: {x: %d, y: %d}\n", subgeo.x, subgeo.y);
+	ft_printf("geometry: {x: %d, y: %d}\n", geometry->x, geometry->y);
 	p = 0;
 	while (files)
 	{
@@ -36,9 +38,11 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		rts[p].root = yolo_parse((const char*)files->content, &rts[p].settings);
 		if (rts[p].root)
 		{
-			rts[p].sys.screen = SDL_CreateRGBSurface(0, subgeo.x, subgeo.y,
-				24, 0xff0000, 0x00ff00, 0x0000ff, 0xff000000);
-			draw_reset_surface(rts[p].sys.screen, 0x30f0b0);
+			if ((rts[p].sys.screen = SDL_CreateRGBSurface(0, subgeo.x, subgeo.y,
+				32, 0xff0000, 0x00ff00, 0x0000ff, 0xff000000)))
+			{
+				draw_reset_surface(rts[p].sys.screen, 0x000000);
+			}
 			p++;
 		}
 		files = files->next;
@@ -59,20 +63,19 @@ static void		menu_clean(size_t size, t_rt *rts)
 int				menu_init(t_rt *rt)
 {
 	t_list		*files;
-	t_rt		*rts;
 	int			ret;
 
 	if (!(files = ls_dir("./scenes/", "*.yolo")))
 		return (-2);
 	rt->rts_size = ft_lstsize(files);
-	if ((rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
+	if ((rt->rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
 	{
-		ret = menu_configure_rts(rt, rts, files);
-		//code utile ici
-		//rt_create_window(rt);
+		rt->sys.geometry = (t_point){1024, 768};
+		ret = menu_configure_rts(rt, rt->rts, files);
 		rt->keyboard |= MENU;
+		ft_putendl("starting rt");
 		rt_start(rt);
-		menu_clean(rt->rts_size, rts);
+		menu_clean(rt->rts_size, rt->rts);
 	}
 	else
 		ret = -1;
