@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 18:19:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 18:23:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 #include "parser.h"
+#include "shaders.h"
 
 int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
 {
@@ -39,6 +40,8 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 		(t_parser_cfg){LIGHTTYPE, &yolo_setup_plight}
 	};
 
+	obj->shader = init_shader(1);
+	obj->shader->fragment_shader[0] = &rt_light_pow;
 	if (!ac)
 		return (1);
 	p = 6;
