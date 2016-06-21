@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/21 15:35:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/21 16:05:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_shaders			*init_shader(unsigned int nbr_fshaders)
 	return (0);
 }
 
-int					exec_fshaders(t_shaders *s, t_render *r)
+int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o)
 {
 	unsigned int	i;
 
 	i = 0;
 	while (i < s->nbr_fshaders)
 	{
-		s->fragment_shader[i](r);
+		s->fragment_shader[i](r, o);
 		++i;
 	}
 	if (i != 0)

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/21 15:35:36 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/21 16:05:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 typedef struct		s_shaders
 {
 	unsigned int	nbr_fshaders;
-	int				(*vertex_shader)(t_render *r);
-	int				(**fragment_shader)(t_render *r);
+	int				(*vertex_shader)(t_render *r, t_obj *o);
+	int				(**fragment_shader)(t_render *r, t_obj *o);
 }					t_shaders;
 t_shaders			*init_shader(unsigned int nbr_fshaders);
-int					exec_fshaders(t_shaders *s, t_render *r);
+int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o);
 #endif
