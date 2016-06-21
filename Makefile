@@ -6,7 +6,11 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/21 15:26:23 by alhote           ###   ########.fr        #
+#    Updated: 2016/06/21 15:44:39 by alhote           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+#    Updated: 2016/06/21 14:04:23 by snicolet         ###   ########.fr        #
+>>>>>>> master
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,23 +65,29 @@ EVENT=mouse.o keyboard.o keybit.o events.o
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 
+MENU_DIR=menu
+MENU=ls_dir.o init.o
+
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
-	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o)
+	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
+	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
 	$(TYPE:%.o=$(TYPEDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
-	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c)
+	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
+	$(MENU:%.o=$(MENU_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
 		$(OBJBUILDDIR)/$(TYPEDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
-		$(OBJBUILDDIR)/$(OBJECTS_DIR)
+		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
+		$(OBJBUILDDIR)/$(MENU_DIR)
 
 all: $(NAME)
 
