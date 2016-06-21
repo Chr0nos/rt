@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 10:30:07 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/21 13:47:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 14:47:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list	*ls_dir(const char *path, const char *mask)
 {
 	DIR				*dir;
 	t_list			*lst;
+	char			*str;
 	struct dirent	*file;
 
 	if (!(dir = opendir(path)))
@@ -36,8 +37,9 @@ t_list	*ls_dir(const char *path, const char *mask)
 		if ((ft_strcmp(file->d_name, "..")) && (ft_strcmp(file->d_name, ".")) &&
 			(ft_match(file->d_name, mask)))
 		{
+			str = ft_strjoin("./scenes/", file->d_name);
 			ft_lstpush_sort(&lst,
-				ft_lstnewstr(ft_strjoin("./scenes/", file->d_name)),
+				ft_lstnewlink(str, ft_strlen(str)),
 				&ft_lststrcmp);
 		}
 	}
