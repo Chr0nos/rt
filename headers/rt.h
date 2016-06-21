@@ -6,16 +6,16 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 17:49:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:26:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 # include "draw.h"
-# include "forms.h"
-# include "tree.h"
 # include "objects.h"
+# include "tree.h"
+
 # define PREFIX 1
 # define INFIX 2
 # define SUFFIX 4

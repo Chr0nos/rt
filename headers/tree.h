@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:18:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/13 17:02:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 17:43:19 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TREE_H
 # define TREE_H
 # include "forms.h"
+# include "objects.h"
 
 typedef struct		s_rendertree
 {
