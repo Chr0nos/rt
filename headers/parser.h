@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 17:59:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/21 16:03:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ typedef struct		s_parser_cfg
 	int				(*config)(t_obj *, size_t, char **);
 }					t_parser_cfg;
 
+typedef struct		s_parset_cfg
+{
+	const char		*name;
+	int				(*config)(char **, size_t, t_rtcfg *);
+}					t_parset_cfg;
+
 typedef struct		s_parser_internal
 {
 	unsigned int	type;
@@ -60,5 +66,7 @@ int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
 int					yolo_setup_plight(t_obj *obj, size_t ac, char **av);
+int					yolo_setting_ambiant(char **parms, size_t size,
+						t_rtcfg *rset);
 
 #endif
