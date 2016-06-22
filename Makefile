@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/21 10:36:19 by dboudy           ###   ########.fr        #
+#    Updated: 2016/06/21 23:51:03 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,38 +46,45 @@ LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
 YOLODIR=parser/yolo
 YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o yolo_setup_cone.o \
-	yolo_setup_cyl.o yolo_setup_plight.o yolo_parse_settings.o
+	yolo_setup_cyl.o yolo_setup_plight.o yolo_parse_settings.o \
+	yolo_setting_ambiant.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o render_tree.o \
-	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o\
-	light.o miniature.o
+	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
+	light.o shaders.o configure.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o
 
 EVENTDIR=events
-EVENT=mouse.o keyboard.o keybit.o events.o
+EVENT=mouse.o keyboard.o keybit.o events.o resize.o
 
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
+
+MENU_DIR=menu
+MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
-	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o)
+	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
+	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
 	$(TYPE:%.o=$(TYPEDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
-	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c)
+	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
+	$(MENU:%.o=$(MENU_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
 		$(OBJBUILDDIR)/$(TYPEDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
-		$(OBJBUILDDIR)/$(OBJECTS_DIR)
+		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
+		$(OBJBUILDDIR)/$(MENU_DIR)
 
 all: $(NAME)
 

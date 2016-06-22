@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 17:44:44 by alhote           ###   ########.fr       */
+/*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
+/*   Updated: 2016/06/21 18:24:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef SHADERS_H
+# define SHADERS_H
 # include "rt.h"
+# include "render.h"
 
-# define MID_LIGHT_POWER 100.0
-# define MAX_LIGHT_POWER 800.0
-
-typedef struct	s_render
+typedef struct		s_shaders
 {
-	t_ray		*ray;
-	t_rt		*rt;
-	t_obj		*obj_intersect;
-	double		lowest_lenght;
-	double		light_lenght;
-	t_v4d		intersection;
-	t_v4d		normal;
-	double		light_power;
-}				t_render;
+	unsigned int	nbr_fshaders;
+	int				(*vertex_shader)(t_render *r, t_obj *o);
+	double			(**fragment_shader)(t_render *r, t_obj *o);
+}					t_shaders;
 
-double			rt_light_pow(t_render *r, t_obj *light);
-
+t_shaders			*init_shader(unsigned int nbr_fshaders);
+int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o);
 #endif

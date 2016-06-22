@@ -6,21 +6,21 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 10:36:31 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/21 21:20:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 # include "draw.h"
-# include "forms.h"
-# include "tree.h"
 # include "objects.h"
+# include "tree.h"
+
 # define PREFIX 1
 # define INFIX 2
 # define SUFFIX 4
 
-typedef enum			e_rendflag
+typedef enum	e_rendflag
 {
 	RTMODE = 1,
 	GLPREVMODE = 2,
@@ -29,13 +29,19 @@ typedef enum			e_rendflag
 	MODE = 0xff,
 	AO = 1 << 8,
 	ALT_LIGHT_EQ = 1 << 9
-}						t_rendflag;
+}				t_rendflag;
 
 typedef struct	s_rtcfg
 {
 	double		ambiant_light;
 	t_rendflag	mode;
 }				t_rtcfg;
+
+typedef struct	s_menu
+{
+	t_point		items;
+	t_point		thumb;
+}				t_menu;
 
 typedef struct	s_rt
 {
@@ -45,8 +51,14 @@ typedef struct	s_rt
 	int			keyboard;
 	int			mouse;
 	t_rtcfg		settings;
+	struct s_rt	*rts;
+	size_t		rts_size;
+	t_menu		menu;
 }				t_rt;
 
+void			rt_configure(t_rt *rt);
+int				rt_create_window(t_rt *rt);
+int				rt_start(t_rt *rt);
 void			rt_puttype(int type);
 t_type			rt_gettype(const char *str);
 
@@ -57,6 +69,7 @@ int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
+int				rt_event_resize(SDL_Event *event, t_rt *rt);
 
 void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);

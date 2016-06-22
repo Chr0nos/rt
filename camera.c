@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/18 15:23:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 22:15:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
+#include "menu.h"
 
 t_obj	*rt_obj_getcamera(t_obj *obj)
 {

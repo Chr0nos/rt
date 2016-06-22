@@ -1,4 +1,5 @@
 CAMERA			5	2	-20.948437			20	0	0	75
+SETTING	AL:100
 
 SPHERE								1		0		0		0		255:0:0
 	SPHERE							1		1.5		0.1		0		0:255:0

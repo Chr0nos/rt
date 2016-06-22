@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/20 12:21:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/21 19:21:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	origin = *r->ray;
 	lor = r->light_power;
 	r->light_power = rt_light_pow(r, obj);
+	//exec_fshaders(r->obj_intersect->shader, r, obj)
 	if ((r->light_power > 0.0) && (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
@@ -106,7 +107,7 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir,
-		rt->settings.ambiant_light
+		0.0
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
@@ -116,7 +117,8 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	}
-	//ray->lenght = r.lowest_lenght;
+	ray->lenght = r.lowest_lenght;
 	return (draw_color_lerp(0x000000, r.ray->color,
-		(float)(r.light_power / MID_LIGHT_POWER)));
+		(float)(fmax(r.light_power / MID_LIGHT_POWER,
+			rt->settings.ambiant_light))));
 }
