@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 18:23:11 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/22 11:54:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 		(t_parser_cfg){LIGHTTYPE, &yolo_setup_plight}
 	};
 
-	obj->shader = init_shader(1);
-	obj->shader->fragment_shader[0] = &rt_light_pow;
 	if (!ac)
 		return (1);
 	p = 6;

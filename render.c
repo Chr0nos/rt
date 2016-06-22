@@ -6,13 +6,14 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 19:21:34 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/22 11:57:15 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
 #include "render.h"
+#include "shaders.h"
 
 int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -56,8 +57,8 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r = userdata;
 	origin = *r->ray;
 	lor = r->light_power;
-	r->light_power = rt_light_pow(r, obj);
-	//exec_fshaders(r->obj_intersect->shader, r, obj)
+	//r->light_power = rt_light_pow(r, obj);
+	exec_fshaders(r->obj_intersect->shader, r, obj);
 	if ((r->light_power > 0.0) && (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
