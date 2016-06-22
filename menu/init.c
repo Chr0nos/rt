@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:03:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 00:46:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 	return (0);
 }
 
-static void		menu_clean(size_t size, t_rt *rts)
+void			menu_clean(size_t size, t_rt *rts)
 {
 	while (size--)
 	{
 		rt_node_free(rts[size].root);
 		SDL_FreeSurface(rts[size].sys.screen);
+		rts[size].sys.screen = NULL;
 	}
 	free(rts);
 }

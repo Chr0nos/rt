@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:08:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 00:16:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,18 @@ int				menu_camera_reset(t_rt *rt)
 	return (0);
 }
 
-/*
 void			menu_display(t_rt *rt)
 {
 	size_t		p;
+	size_t		max;
 	SDL_Rect	*rect;
 
 	menu_degrade(rt->sys.screen, 0xe97313, COLOR_YELLOW);
-	p = rt->rts_size;
-	while (p--)
+	max = (size_t)(rt->menu.items.x * rt->menu.items.y);
+	if (rt->rts_size < max)
+		max = rt->rts_size;
+	p = 0;
+	while (p < max)
 	{
 		rect = &rt->menu.positions[p];
 		if (movemyass(&rt->rts[p]))
@@ -68,8 +71,8 @@ void			menu_display(t_rt *rt)
 	}
 	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
 }
-*/
 
+/*
 void			menu_display(t_rt *rt)
 {
 	size_t			max_size;
@@ -98,3 +101,4 @@ void			menu_display(t_rt *rt)
 	}
 	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
 }
+*/

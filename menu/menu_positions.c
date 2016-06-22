@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu_mouse.c                                       :+:      :+:    :+:   */
+/*   menu_positions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 19:26:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 23:57:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 00:40:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,36 @@ void	menu_update_positions(t_rt *rt)
 	SDL_Rect	rect;
 	size_t		p;
 
-	rect = (SDL_Rect){rt->menu.thumb.x, rt->menu.thumb.y,
-		MENU_PADDING_X, MENU_PADDING_Y};
+	rect = (SDL_Rect){MENU_PADDING_X, MENU_PADDING_Y,
+		rt->menu.thumb.x, rt->menu.thumb.y};
 	p = 0;
 	while (p < rt->rts_size)
 	{
+		rt->menu.positions[p] = rect;
 		if (((p + 1) % (size_t)rt->menu.items.x == 0) && (p))
 		{
 			rect.x = MENU_PADDING_X;
-			rect.y += MENU_BORDER_Y + rt->rts[p].sys.geometry.y;
+			rect.y += MENU_BORDER_Y + rt->menu.thumb.y;
 		}
 		else
-			rect.x += MENU_BORDER_X + rt->rts[p].sys.geometry.x;
-		rt->menu.positions[p] = rect;
+			rect.x += MENU_BORDER_X + rt->menu.thumb.x;
 		p++;
 	}
+}
+
+int		menu_position_id(t_rt *rt, int x, int y)
+{
+	const int 	last_id = rt->menu.items.y * rt->menu.items.x;
+	int			id;
+	SDL_Rect	*rect;
+
+	id = ((int)rt->rts_size > last_id) ? last_id : (int)rt->rts_size;
+	while (id--)
+	{
+		rect = &rt->menu.positions[id];
+		if ((x >= rect->x) && (x < (rect->x + rect->w)) &&
+			(y >= rect->y) && (y < (rect->y + rect->h)))
+			return (id);
+	}
+	return (-1);
 }
