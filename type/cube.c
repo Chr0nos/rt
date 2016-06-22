@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 11:51:50 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/22 11:48:07 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static t_v4d	rt_mkvec(double a)
 
 t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
 {
-	const t_v4d		shit;
+	t_v4d		shit;
 	t_uint			lowest_id;
 	double			dist[CUBE_SIDES];
 
