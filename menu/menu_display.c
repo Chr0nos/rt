@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 15:35:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 15:53:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void			menu_display(t_rt *rt)
 			px.x += MENU_BORDER_X + rt->rts[p].sys.geometry.x;
 		p++;
 	}
+	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
 }
