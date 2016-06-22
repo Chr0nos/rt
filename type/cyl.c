@@ -6,14 +6,14 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/19 19:31:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/22 16:52:06 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "cyl.h"
+#include "sphere.h"
 
-static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
+static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 {
 	double			t;
 	double			delta_sqrt;
@@ -44,7 +44,7 @@ static int		rt_cyl_solve(t_cyl_inter *s, t_ray *r, t_v4d *v)
 
 int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
-	t_cyl_inter		s;
+	t_sphere_inter		s;
 	double			tmp[4];
 	const t_v4d		*c = &obj->trans.w;
 	const t_v4d		*rot = &obj->rotation;
