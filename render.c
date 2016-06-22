@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 11:57:15 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/22 19:05:58 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir,
+		0.0,
 		0.0
 	};
 	ray->color = COLOR_BLACK;
@@ -119,7 +120,9 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	}
 	ray->lenght = r.lowest_lenght;
-	return (draw_color_lerp(0x000000, r.ray->color,
-		(float)(fmax(r.light_power / MID_LIGHT_POWER,
-			rt->settings.ambiant_light))));
+	//(r.light_power > r.specular_power ? r.ray->color : 0xFFFFFF)
+	//(r.light_power / MID_LIGHT_POWER > r.specular_power / MAX_LIGHT_POWER ? r.light_power / MID_LIGHT_POWER : r.specular_power / MAX_LIGHT_POWER)
+	//(r.light_power > r.specular_power ? MID_LIGHT_POWER : MAX_LIGHT_POWER)
+	return (draw_color_lerp_max(0x000000, r.ray->color, (r.specular_power / MID_LIGHT_POWER > 0.0 ? 0xFFFFFF : r.ray->color),
+		(float)(fmax((r.light_power + r.specular_power) / MID_LIGHT_POWER, rt->settings.ambiant_light))));
 }
