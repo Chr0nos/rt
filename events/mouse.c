@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:57:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 01:45:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 			*rt = tmp_rt;
 			rt->rts_size = 0;
 			rt->rts = NULL;
-			rt->keyboard ^= MENU;
+			rt->keyboard &= FULLSCREEN;
+			rt->keyboard |= FORCE_DISPLAY;
 		}
 	}
 	return (0);
