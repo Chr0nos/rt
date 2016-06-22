@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 15:18:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 18:43:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MENU_H
 # include "libft.h"
 # include "rt.h"
-# define MENU_ITEMS_X 3
 # define MENU_PADDING_X 10
 # define MENU_PADDING_Y 12
 # define MENU_BORDER_X 12
