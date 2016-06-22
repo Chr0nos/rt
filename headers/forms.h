@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 18:10:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/22 16:58:32 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ typedef enum			e_type
 	CONE = 1 << 10,
 	CYL = 1 << 11,
 	SUNLIGHT = 1 << 12,
-	RADIUS = SPHERE | CUBE | CYL | CONE,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL,
+	TORE = 1 << 13,
+	RADIUS = SPHERE | CUBE | CYL | CONE | TORE,
+	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE,
 	NOCHECKBOX = PLAN | CYL,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL,
+	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 	TEXTURE = CYL
 }						t_type;
@@ -90,6 +91,13 @@ typedef struct			s_cyl
 	float				radius;
 	float				height;
 }						t_cyl;
+
+typedef struct			s_tore
+{
+	unsigned int		color;
+	float				radius;
+	float				radius_2;
+}						t_tore;
 
 typedef struct			s_sphere
 {
