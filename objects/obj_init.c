@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 11:55:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/22 17:49:01 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_obj		*rt_obj_init(t_obj *obj, t_type type)
 	obj->normal = NULL;
 	obj->parent = NULL;
 	obj->texture = 0;
-	obj->shader = init_shader(1);
-	obj->shader->fragment_shader[0] = &rt_light_pow;
+	obj->shader = init_shader(2);
+	obj->shader->fragment_shader[0] = &rt_specular_pow;
+	obj->shader->fragment_shader[1] = &rt_light_pow;
 	return (obj);
 }
