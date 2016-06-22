@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 19:05:58 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/23 00:04:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 		else
 		{
 			r->light_power = 0.0;
+			r->specular_power = 0.0;
 			return (STOP_ALL);
 		}
 	}
@@ -51,20 +52,22 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_ray		origin;
-	double		lor;
+	t_v2d		lor;
 
 	(void)mode;
 	r = userdata;
 	origin = *r->ray;
-	lor = r->light_power;
+	lor = (t_v2d){r->light_power, r->specular_power};
 	//r->light_power = rt_light_pow(r, obj);
 	exec_fshaders(r->obj_intersect->shader, r, obj);
-	if ((r->light_power > 0.0) && (r->ray->lenght > 0.000005))
+	if ((r->light_power + r->specular_power > 0.0)
+		&& (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_shadow_foreach, r);
 		rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_shadow_foreach, r);
 	}
-	r->light_power += lor;
+	r->light_power += lor.x;
+	r->specular_power += lor.y;
 	*r->ray = origin;
 	return (OK);
 }
@@ -123,6 +126,8 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 	//(r.light_power > r.specular_power ? r.ray->color : 0xFFFFFF)
 	//(r.light_power / MID_LIGHT_POWER > r.specular_power / MAX_LIGHT_POWER ? r.light_power / MID_LIGHT_POWER : r.specular_power / MAX_LIGHT_POWER)
 	//(r.light_power > r.specular_power ? MID_LIGHT_POWER : MAX_LIGHT_POWER)
-	return (draw_color_lerp_max(0x000000, r.ray->color, (r.specular_power / MID_LIGHT_POWER > 0.0 ? 0xFFFFFF : r.ray->color),
-		(float)(fmax((r.light_power + r.specular_power) / MID_LIGHT_POWER, rt->settings.ambiant_light))));
+	return (draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,
+		(float)(fmax((r.light_power) / MID_LIGHT_POWER,
+			rt->settings.ambiant_light))), 0xffffff,
+		(float)(r.specular_power / MID_LIGHT_POWER)));
 }
