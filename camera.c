@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 22:15:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 15:18:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ int		camera_reset(t_rt *rt)
 	t_obj		*obj;
 	t_camera	*cam;
 
-	obj = rt->root->content;
+	if (rt->keyboard & MENU)
+		return (menu_camera_reset(rt));
+	if (!(obj = rt->root->content))
+		return (0);
 	cam = obj->content;
 	obj->trans = cam->origin;
 	obj->rotation = cam->origin_rot;

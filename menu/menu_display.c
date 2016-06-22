@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 11:55:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 15:35:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,27 @@ static void 	menu_degrade(SDL_Surface *surface,
 	}
 }
 
+int				menu_camera_reset(t_rt *rt)
+{
+	size_t	p;
+
+	p = rt->rts_size;
+	while (p--)
+		camera_reset(&rt->rts[p]);
+	return (0);
+}
+
 void			menu_display(t_rt *rt)
 {
-	size_t			max_size = (size_t)(rt->menu.items.x * rt->menu.items.y);
+	size_t			max_size;
 	size_t			size;
-	t_point			px;
 	size_t			p;
+	t_point			px;
 
+	max_size = (size_t)(rt->menu.items.x * rt->menu.items.y);
 	size = (rt->rts_size < max_size) ? rt->rts_size : max_size;
 	p = 0;
-	menu_degrade(rt->sys.screen, 0xe97313, 0x000000);
+	menu_degrade(rt->sys.screen, 0xe97313, COLOR_YELLOW);
 	px = (t_point){MENU_PADDING_X, MENU_PADDING_Y};
 	while (p < size)
 	{
