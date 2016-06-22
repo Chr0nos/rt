@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 18:43:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 23:57:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		menu_display(t_rt *rt);
 void		menu_move(t_rt *rt);
 void		menu_kb_copy(t_rt *rt);
 int			menu_camera_reset(t_rt *rt);
+void		menu_update_positions(t_rt *rt);
 t_list		*ls_dir(const char *path, const char *mask);
 int			ls_isdir(const char *path);
 

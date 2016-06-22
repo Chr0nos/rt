@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 17:14:52 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/22 23:39:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_menu
 {
 	t_point		items;
 	t_point		thumb;
+	SDL_Rect	*positions;
 }				t_menu;
 
 typedef struct	s_rt

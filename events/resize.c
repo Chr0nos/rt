@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 19:01:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 23:58:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		rt_event_resize_menu(t_rt *rt)
 		(rt->menu.thumb.x + MENU_BORDER_X);
 	rt->menu.items.y = (rt->sys.geometry.y + MENU_BORDER_Y - MENU_PADDING_Y) /
 		(rt->menu.thumb.y + MENU_BORDER_Y);
+	menu_update_positions(rt);
 }
 
 int		rt_event_resize(SDL_Event *event, t_rt *rt)

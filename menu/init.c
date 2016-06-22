@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 23:43:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 00:03:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 	size_t			p;
 	const t_point	subgeo = rt->menu.thumb;
 
+	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
+	menu_update_positions(rt);
 	p = 0;
 	while (files)
 	{
@@ -62,7 +64,9 @@ int				menu_init(t_rt *rt, const char *path)
 	if (!(files = ls_dir(path, "*.yolo")))
 		return (-2);
 	rt->rts_size = ft_lstsize(files);
-	if ((rt->rts = malloc(sizeof(t_rt) * rt->rts_size)) != NULL)
+	if ((rt->rts = malloc(
+		(sizeof(t_rt) * rt->rts_size) +
+		(sizeof(SDL_Rect) * rt->rts_size))) != NULL)
 	{
 		ret = menu_configure_rts(rt, rt->rts, files);
 		rt->keyboard |= MENU;
