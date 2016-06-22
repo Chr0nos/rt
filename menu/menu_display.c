@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 22:44:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/22 02:41:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #include "menu.h"
 #include "libft.h"
 #include "keyboard.h"
+
+static void 	menu_degrade(SDL_Surface *surface,
+	const unsigned int scolor, const unsigned int ecolor)
+{
+	int		line;
+	int		col;
+	float	pc;
+
+	col = surface->w;
+	while (col--)
+	{
+		pc = (float)surface->w / (float)col;
+		((unsigned int *)surface->pixels)[col] = draw_color_lerp(scolor, ecolor, pc);
+	}
+	line = surface->h;
+	while (line-- > 1)
+		ft_memcpy(
+			(unsigned int *)((unsigned long)surface->pixels + (unsigned int)(surface->w * line)),
+			surface->pixels,
+			(size_t)surface->w * sizeof(unsigned int));
+}
 
 void			menu_display(t_rt *rt)
 {
@@ -24,7 +45,8 @@ void			menu_display(t_rt *rt)
 
 	size = (rt->rts_size < max_size) ? rt->rts_size : max_size;
 	p = 0;
-	draw_reset_surface(rt->sys.screen, 0xe97313);
+	//draw_reset_surface(rt->sys.screen, 0xe97313);
+	menu_degrade(rt->sys.screen, 0x000000, 0xe97313);
 	px = (t_point){MENU_PADDING_X, MENU_PADDING_Y};
 	while (p < size)
 	{
