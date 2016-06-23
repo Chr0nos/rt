@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 14:54:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:32:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "keyboard.h"
 
-static void 	menu_degrade(SDL_Surface *surface,
+static void		menu_degrade(SDL_Surface *surface,
 	const unsigned int scolor, const unsigned int ecolor)
 {
 	int				line;
@@ -39,16 +39,6 @@ static void 	menu_degrade(SDL_Surface *surface,
 	}
 }
 
-int				menu_camera_reset(t_rt *rt)
-{
-	size_t	p;
-
-	p = rt->rts_size;
-	while (p--)
-		camera_reset(&rt->rts[p]);
-	return (0);
-}
-
 void			menu_display(t_rt *rt)
 {
 	size_t		p;
@@ -69,5 +59,5 @@ void			menu_display(t_rt *rt)
 			(t_point){rect->x, rect->y});
 		p++;
 	}
-	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE | FILTER);
+	rt->keyboard &= MENU_ALLOW;
 }
