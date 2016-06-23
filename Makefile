@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/23 16:23:33 by dboudy           ###   ########.fr        #
+#    Updated: 2016/06/23 17:23:19 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o
 
 FILTER_DIR=filter
-FILTER=filter.o rgb.o ymc.o
+FILTER=filter.o rgb.o ymc.o sepia.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
