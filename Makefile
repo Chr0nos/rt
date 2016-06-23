@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/23 11:25:31 by dboudy           ###   ########.fr        #
+#    Updated: 2016/06/23 16:23:33 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,8 @@ OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o
 
-FILTRE_DIR=filtre
-FILTRE=filtre.o rgb.o
+FILTER_DIR=filter
+FILTER=filter.o rgb.o ymc.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
@@ -74,7 +74,7 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
 	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
 	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o) \
-	$(FILTRE:%.o=$(OBJBUILDDIR)/$(FILTRE_DIR)/%.o)
+	$(FILTER:%.o=$(OBJBUILDDIR)/$(FILTER_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -82,7 +82,7 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
 	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
 	$(MENU:%.o=$(MENU_DIR)/%.c) \
-	$(FILTRE:%.o=$(FILTRE_DIR)/%.c)
+	$(FILTER:%.o=$(FILTER_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -90,7 +90,7 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
 		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
 		$(OBJBUILDDIR)/$(MENU_DIR) \
-		$(OBJBUILDDIR)/$(FILTRE_DIR)
+		$(OBJBUILDDIR)/$(FILTER_DIR)
 
 all: $(NAME)
 
