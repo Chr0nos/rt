@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 16:21:40 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 19:55:14 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
+			ray->count = 0;
 			ray->dir = draw_vector_transform_m4(
 				draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			draw_pxi(pixels, px, (unsigned int)rt->sys.geometry.x,

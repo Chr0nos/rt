@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 16:58:32 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 19:57:16 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct			s_ray
 	double				limit;
 	double				lenght;
 	unsigned int		color;
+	int					count;
 }						t_ray;
 
 typedef struct			s_box
