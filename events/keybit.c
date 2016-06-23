@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:42:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/13 15:49:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 14:23:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,12 @@ int			getkeybit(const int keycode)
 		{KC_W, ZOOMIN},
 		{KC_S, ZOOMOUT},
 		{KC_ESCAPE, QUIT},
-		{KC_SPACE, UP},
-		{KC_E, ROLL_RIGHT},
-		{KC_Q, ROLL_LEFT},
-		{KC_LCTRL, DOWN},
-		{KC_C, DOWN},
-		{KC_A, RIGHT},
-		{KC_D, LEFT},
-		{KC_UP, ROTATE_UP},
-		{KC_DOWN, ROTATE_DOWN},
-		{KC_LEFT, ROTATE_LEFT},
+		{KC_SPACE, UP},	{KC_E, ROLL_RIGHT},	{KC_Q, ROLL_LEFT}, {KC_LCTRL, DOWN},
+		{KC_C, DOWN}, {KC_A, RIGHT}, {KC_D, LEFT}, {KC_UP, ROTATE_UP},
+		{KC_DOWN, ROTATE_DOWN},	{KC_LEFT, ROTATE_LEFT},
 		{KC_RIGHT, ROTATE_RIGHT},
 		{KC_P, FORCE_DISPLAY},
-		{KC_LSHIFT, FAST}
+		{KC_LSHIFT, FAST},
 	};
 	unsigned int	p;
 

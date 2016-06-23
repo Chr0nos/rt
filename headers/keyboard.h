@@ -6,23 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 22:26:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 11:38:05 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 14:36:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_H
 # define KEYBOARD_H
-
-# define ZERO	48
-# define ONE	49
-# define TWO	50
-# define THREE	51
-# define FOUR	52
-# define FIVE	53
-# define SIX	54
-# define SEVEN	55
-# define EIGHT	56
-# define NINE	57
 
 enum	e_keyboard
 {
@@ -43,6 +32,10 @@ enum	e_keyboard
 	ROLL_RIGHT = 1 << 14,
 	FULLSCREEN = 1 << 15,
 	MENU = 1 << 16,
+	FILTER_RED = 1 << 17,
+	FILTER_GREEN = 1 << 18,
+	FILTER_BLUE = 1 << 19,
+	FILTER = FILTER_BLUE | FILTER_GREEN | FILTER_RED,
 	ROLL = ROLL_LEFT | ROLL_RIGHT,
 	ROTATE = ROTATE_DOWN | ROTATE_LEFT | ROTATE_RIGHT | ROTATE_UP,
 	SIDE = LEFT | RIGHT | UP | DOWN | ZOOMIN | ZOOMOUT,

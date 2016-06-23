@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 11:59:00 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 14:56:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ static int		togglefs(t_rt *rt)
 	return (0);
 }
 
+static int		togglefilters(t_rt *rt, int keycode)
+{
+	const int 	bit = 1 << (keycode - SDLK_1 + 17);
+	const char	stop = (rt->keyboard & bit) ? 1 : 0;
+
+	ft_printf("bit: %d\n", bit);
+	rt->keyboard &= ~FILTER;
+	rt->keyboard |= FORCE_DISPLAY;
+	if (!stop)
+		rt->keyboard |= bit;
+	ft_printf("keyboard: %d\n", rt->keyboard);
+	menu_kb_copy(rt);
+	return (0);
+}
+
 int				keydown(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
@@ -44,8 +59,8 @@ int				keydown(int keycode, t_rt *rt)
 		((t_obj*)rt->root->content)->trans;
 	else if (keycode == SDLK_f)
 		return (togglefs(rt));
-	else if (keycode <= NINE && keycode >= ZERO)
-		rt->filtre = keycode;
+	else if ((keycode >= SDLK_1) && (keycode <= SDLK_3))
+		return (togglefilters(rt, keycode));
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;

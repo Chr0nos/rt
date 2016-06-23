@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:16:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 14:54:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,36 +69,5 @@ void			menu_display(t_rt *rt)
 			(t_point){rect->x, rect->y});
 		p++;
 	}
-	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
+	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE | FILTER);
 }
-
-/*
-void			menu_display(t_rt *rt)
-{
-	size_t			max_size;
-	size_t			size;
-	size_t			p;
-	t_point			px;
-
-	max_size = (size_t)(rt->menu.items.x * rt->menu.items.y);
-	size = (rt->rts_size < max_size) ? rt->rts_size : max_size;
-	p = 0;
-	menu_degrade(rt->sys.screen, 0xe97313, COLOR_YELLOW);
-	px = (t_point){MENU_PADDING_X, MENU_PADDING_Y};
-	while (p < size)
-	{
-		if (movemyass(&rt->rts[p]))
-			rt_rays(&rt->rts[p]);
-		draw_blitsurface(rt->sys.screen, rt->rts[p].sys.screen, px);
-		if (((p + 1) % (size_t)rt->menu.items.x == 0) && (p))
-		{
-			px.y += MENU_BORDER_Y + rt->rts[p].sys.geometry.y;
-			px.x = MENU_PADDING_X;
-		}
-		else
-			px.x += MENU_BORDER_X + rt->rts[p].sys.geometry.x;
-		p++;
-	}
-	rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
-}
-*/

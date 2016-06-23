@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filtre.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:12:46 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/23 11:59:25 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 14:45:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 #include "rt.h"
 #include "keyboard.h"
 
-t_uint		filtre(t_uint c, int rt_filtre)
+t_uint		filtre(int keyboard, t_uint c)
 {
-	if (rt_filtre == ONE)
-		return (filtre_red(c));
-	else if (rt_filtre == TWO)
-		return (filtre_green(c));
-	else if (rt_filtre == THREE)
-		return (filtre_blue(c));
-	else
-		return (c);
+	int					p;
+	const t_filter_cfg	cfg[] = {
+		(t_filter_cfg){FILTER_RED, &filtre_red},
+		(t_filter_cfg){FILTER_GREEN, &filtre_green},
+		(t_filter_cfg){FILTER_BLUE, &filtre_blue}
+	};
+
+	p = 3;
+	while (p--)
+		if (keyboard & cfg[p].bit)
+			return (cfg[p].filter(c));
+	return (c);
 }

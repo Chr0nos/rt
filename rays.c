@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 11:44:44 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 14:47:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 			ray->dir = draw_vector_transform_m4(
 				draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			draw_pxi(pixels, px, (unsigned int)rt->sys.geometry.x,
-					filtre(rt_render(rt, ray), rt->filtre));
+					filtre(rt->keyboard, rt_render(rt, ray)));
 			rad.y -= rad.w;
 		}
 		rad.x -= rad.z;
