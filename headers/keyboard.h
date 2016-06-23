@@ -6,12 +6,23 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 22:26:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/21 17:02:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 11:38:05 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_H
 # define KEYBOARD_H
+
+# define ZERO	48
+# define ONE	49
+# define TWO	50
+# define THREE	51
+# define FOUR	52
+# define FIVE	53
+# define SIX	54
+# define SEVEN	55
+# define EIGHT	56
+# define NINE	57
 
 enum	e_keyboard
 {

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 23:39:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 11:37:22 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_rt
 	t_rtcfg		settings;
 	struct s_rt	*rts;
 	size_t		rts_size;
+	int			filtre;
 	t_menu		menu;
 }				t_rt;
 
@@ -62,8 +63,6 @@ int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);
 void			rt_puttype(int type);
 t_type			rt_gettype(const char *str);
-
-int				read_file(char **av);
 
 int				getkeybit(const int keycode);
 int				keydown(int keycode, t_rt *rt);
