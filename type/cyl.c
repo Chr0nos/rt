@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cyl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/22 16:52:06 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/23 19:31:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,16 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
 {
-	const t_v4d		*c = &obj->trans.w;
+	double		t;
+	t_v4d		r;
 
-	return (draw_v4d_norm((t_v4d){
-		v->x - c->x,
-		2 * (v->y - c->y),
-		2 * (v->z - c->z) - 1,
-		1.0}));
+	t = (-obj->trans.y.x * obj->trans.w.x - obj->trans.y.y * obj->trans.w.y
+		- obj->trans.y.z * obj->trans.w.z + v->x * obj->trans.y.x + v->y *
+		obj->trans.y.y + v->z * obj->trans.y.z) / (pow(obj->trans.y.x, 2) +
+		pow(obj->trans.y.y, 2) + pow(obj->trans.y.z, 2));
+	r = (t_v4d){v->x - (obj->trans.w.x + obj->trans.y.x * t),
+				v->y - (obj->trans.w.y + obj->trans.y.y * t),
+				v->z - (obj->trans.w.z + obj->trans.y.z * t),
+				0.0};
+	return (draw_v4d_norm(r));
 }
