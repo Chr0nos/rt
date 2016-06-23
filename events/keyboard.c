@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 14:56:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 15:55:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ static int		togglefilters(t_rt *rt, int keycode)
 	const int 	bit = 1 << (keycode - SDLK_1 + 17);
 	const char	stop = (rt->keyboard & bit) ? 1 : 0;
 
-	ft_printf("bit: %d\n", bit);
 	rt->keyboard &= ~FILTER;
 	rt->keyboard |= FORCE_DISPLAY;
 	if (!stop)
 		rt->keyboard |= bit;
-	ft_printf("keyboard: %d\n", rt->keyboard);
 	menu_kb_copy(rt);
 	return (0);
 }
