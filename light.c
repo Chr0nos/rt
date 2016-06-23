@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/22 19:03:37 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/23 19:12:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ double			rt_specular_pow(t_render *r, t_obj *light)
 	double			latt;
 	double			li;
 	t_v4d			reflect;
-	t_v4d			intertolight;
+	t_v4d			intelight;
 
-	intertolight = draw_v4d_norm(draw_v4d_sub(light->trans.w, r->intersection));
+	intelight = draw_v4d_norm(draw_v4d_sub(light->trans.w, r->intersection));
 	reflect = (t_v4d){
-		intertolight.x - 2.0 * draw_v4d_dot(intertolight, r->normal) * r->normal.x,
-		intertolight.y - 2.0 * draw_v4d_dot(intertolight, r->normal) * r->normal.y,
-		intertolight.z - 2.0 * draw_v4d_dot(intertolight, r->normal) * r->normal.z,
+		intelight.x - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.x,
+		intelight.y - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.y,
+		intelight.z - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.z,
 		0.0
 	};
 	latt = draw_v4d_dot(r->ray->dir, reflect);
