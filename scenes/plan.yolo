@@ -1,4 +1,5 @@
 CAMERA		-2.5	0	-14.5		0	0	0	75
+POINTLIGHT	0	0	0	200	100	#ffffff
 
 PLAN							-10	0	-0	0 0 10	#a0a00f
 CUBE		4					0	0	10		200:100:0
