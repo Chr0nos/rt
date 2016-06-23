@@ -25,14 +25,14 @@ double			rt_specular_pow(t_render *r, t_obj *light)
 	t_v4d			reflect;
 	t_v4d			intelight;
 
-	intelight = draw_v4d_norm(draw_v4d_sub(light->trans.w, r->intersection));
+	intelight = geo_normv4(geo_subv4(light->trans.w, r->intersection));
 	reflect = (t_v4d){
-		intelight.x - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.x,
-		intelight.y - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.y,
-		intelight.z - 2.0 * draw_v4d_dot(intelight, r->normal) * r->normal.z,
+		intelight.x - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.x,
+		intelight.y - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.y,
+		intelight.z - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.z,
 		0.0
 	};
-	latt = draw_v4d_dot(r->ray->dir, reflect);
+	latt = geo_dotv4(r->ray->dir, reflect);
 	li = 0.0;
 	if (latt > 0.0)
 	{
@@ -52,17 +52,17 @@ double			rt_light_pow(t_render *r, t_obj *light)
 	{
 		r->light_lenght = (double)INFINITY;
 		r->ray->dir = light->trans.y;
-		// latt = draw_v4d_len(draw_v4d_add(r->normal, r->ray->dir)) - 1.0;
+		// latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 	}
 	else
 	{
-		r->light_lenght = draw_v4d_dist(light->trans.w, r->ray->start);
-		r->ray->dir = draw_v4d_norm(
-			draw_v4d_sub(light->trans.w, r->ray->start));
+		r->light_lenght = geo_distv4(light->trans.w, r->ray->start);
+		r->ray->dir = geo_normv4(
+			geo_subv4(light->trans.w, r->ray->start));
 	}
-	r->ray->start = draw_v4d_add(
-		draw_v4d_mult(r->ray->dir, draw_dtov4d(0.0001)), r->ray->start);
-	latt = draw_v4d_dot(r->normal, r->ray->dir);
+	r->ray->start = geo_addv4(
+		geo_multv4(r->ray->dir, geo_dtov4d(0.0001)), r->ray->start);
+	latt = geo_dotv4(r->normal, r->ray->dir);
 	li = 0.0;
 	if (latt > 0.0)
 	{

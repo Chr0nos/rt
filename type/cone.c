@@ -25,7 +25,7 @@ static void		rt_cone_setv(t_v4d *v, t_ray *r, const double *t)
 
 static void		rt_cone_inter_init(t_v4d *ab, double *tb, t_ray *r, t_obj *obj)
 {
-	const t_v4d		e = draw_v4d_sub(r->start, obj->trans.w);
+	const t_v4d		e = geo_subv4(r->start, obj->trans.w);
 	const double	w = tan(((t_cone *)obj->content)->angle.x / 2.0);
 
 	tb[0] = (double)-INFINITY;
@@ -81,11 +81,11 @@ t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v)
 	t_v4d		nor;
 	double		tmp;
 
-	nor = draw_v4d_sub(*v, obj->trans.w);
+	nor = geo_subv4(*v, obj->trans.w);
 	nor.y = 0.0;
-	nor = draw_v4d_norm(nor);
+	nor = geo_normv4(nor);
 	tmp = ((t_cone *)obj->content)->angle.z;
-	nor = draw_v4d_mult(nor, draw_dtov4d(1.0 - (tmp * tmp)));
+	nor = geo_multv4(nor, geo_dtov4d(1.0 - (tmp * tmp)));
 	nor.y = tmp;
 	return (nor);
 }

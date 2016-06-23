@@ -23,8 +23,8 @@ static void		rt_cube_setpos(t_ray *r, t_v4d *v)
 {
 	if (v)
 	{
-		*v = draw_v4d_add(r->start,
-				draw_v4d_mult(r->dir, (t_v4d){
+		*v = geo_addv4(r->start,
+				geo_multv4(r->dir, (t_v4d){
 					r->lenght,
 					r->lenght,
 					r->lenght,
@@ -70,14 +70,14 @@ t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
 	t_uint			lowest_id;
 	double			dist[CUBE_SIDES];
 
-	shit = draw_v4d_mult(draw_v4d_sub(*v, obj->trans.w),
+	shit = geo_multv4(geo_subv4(*v, obj->trans.w),
 			rt_mkvec(1.0 / (double)((t_cube *)obj->content)->size));
-	dist[CUBE_XMAX] = draw_v4d_dist(shit, (t_v4d){1.0, 0.0, 0.0, 0.0});
-	dist[CUBE_YMAX] = draw_v4d_dist(shit, (t_v4d){0.0, 1.0, 0.0, 0.0});
-	dist[CUBE_ZMAX] = draw_v4d_dist(shit, (t_v4d){0.0, 0.0, 1.0, 0.0});
-	dist[CUBE_XMIN] = draw_v4d_dist(shit, (t_v4d){-1.0, 0.0, 0.0, 0.0});
-	dist[CUBE_YMIN] = draw_v4d_dist(shit, (t_v4d){0.0, -1.0, 0.0, 0.0});
-	dist[CUBE_ZMIN] = draw_v4d_dist(shit, (t_v4d){0.0, 0.0, -1.0, 0.0});
+	dist[CUBE_XMAX] = geo_distv4(shit, (t_v4d){1.0, 0.0, 0.0, 0.0});
+	dist[CUBE_YMAX] = geo_distv4(shit, (t_v4d){0.0, 1.0, 0.0, 0.0});
+	dist[CUBE_ZMAX] = geo_distv4(shit, (t_v4d){0.0, 0.0, 1.0, 0.0});
+	dist[CUBE_XMIN] = geo_distv4(shit, (t_v4d){-1.0, 0.0, 0.0, 0.0});
+	dist[CUBE_YMIN] = geo_distv4(shit, (t_v4d){0.0, -1.0, 0.0, 0.0});
+	dist[CUBE_ZMIN] = geo_distv4(shit, (t_v4d){0.0, 0.0, -1.0, 0.0});
 	lowest_id = rt_min_index(dist, CUBE_SIDES);
 	if (lowest_id == CUBE_XMAX)
 		return ((t_v4d){1.0, 0.0, 0.0, 0.0});

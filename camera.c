@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:07:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 22:04:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation.x += (dir & ROTATE_UP) ? -x : x;
 	if (dir & ROLL)
 		cam->rotation.z += (dir & ROLL_LEFT) ? -x : x;
-	cam->trans = draw_matrix_multiply_axes_m4(
+	cam->trans = geo_mk4_rotxyz(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }
 

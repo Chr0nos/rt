@@ -48,7 +48,7 @@ int				keydown(int keycode, t_rt *rt)
 	const int		keybit = getkeybit(keycode);
 
 	if (keycode == SDLK_o)
-		draw_putm4(((t_obj*)rt->root->content)->trans, 6);
+		geo_putm4(((t_obj*)rt->root->content)->trans, 6);
 	else if (keycode == SDLK_r)
 		return (camera_reset(rt));
 	else if (keycode == SDLK_y)

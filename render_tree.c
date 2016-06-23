@@ -52,7 +52,7 @@ void	rt_rtree_fill(t_obj *node, t_rtree *rtree, t_obj *parent, t_m4 mat)
 	t_obj		*obj;
 
 	obj = parent;
-	mat = draw_matrix_multiply_matrix_m4(mat, &node->trans);
+	mat = geo_mult_m4(mat, &node->trans);
 	if (node->type & BOUNDED)
 		obj = rt_rtree_push(&(rtree->m_biter), node, parent, &mat);
 	else if (node->type & NOCHECKBOX)
@@ -88,7 +88,7 @@ t_rtree	rt_render_tree(t_obj *node)
 	rtree.m_biter = rtree.bounded;
 	rtree.m_ubiter = &(rtree.unbounded[1]);
 	rtree.m_liter = &(rtree.light[1]);
-	rt_rtree_fill(node, &rtree, rtree.bounded, draw_make_matrix_m4_identity());
+	rt_rtree_fill(node, &rtree, rtree.bounded, geo_mk4_identity());
 	rt_bounds_update(rtree.bounded);
 	return (rtree);
 }

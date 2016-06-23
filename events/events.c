@@ -54,7 +54,7 @@ int				movemyass(t_rt *rt)
 	}
 	obj = (t_obj*)(rt->root->content);
 	m = obj->trans;
-	m.w = draw_vector_transform_m4(move_vec(k), &m);
+	m.w = geo_m4trans(move_vec(k), &m);
 	obj->trans = m;
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);

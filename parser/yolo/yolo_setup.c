@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 11:54:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/23 22:45:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int					yolo_setup_realpos(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	if ((!obj->parent) || (obj->type == CAMERA))
 		return (OK);
-	obj->trans = draw_matrix_multiply_axes_m4(
+	obj->trans = geo_mk4_rotxyz(
 		obj->rotation,
 		(t_v4d){1.0, 1.0, 1.0, 1.0}, obj->trans.w);
 	rt_box_update(obj);

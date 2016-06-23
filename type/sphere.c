@@ -62,5 +62,5 @@ t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v)
 {
 	const t_v4d		*c = &obj->trans.w;
 
-	return (draw_v4d_norm((t_v4d){v->x - c->x, v->y - c->y, v->z - c->z, 1.0}));
+	return (geo_normv4((t_v4d){v->x - c->x, v->y - c->y, v->z - c->z, 1.0}));
 }

@@ -20,9 +20,9 @@ static void		rt_debug_ray(t_ray *ray)
 	static int		limit = 42;
 
 	ft_putstr("start: ");
-	draw_putv4d(ray->start, 3);
+	geo_putv4d(ray->start, 3);
 	ft_putstr(" dir: ");
-	draw_putv4d(ray->dir, 5);
+	geo_putv4d(ray->dir, 5);
 	ft_putchar('\n');
 	if (!limit--)
 		exit(0);
@@ -45,8 +45,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
-			ray->dir = draw_vector_transform_m4(
-				draw_v4d_norm((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
+			ray->dir = geo_m4trans(
+				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			draw_pxi(pixels, px, (unsigned int)rt->sys.geometry.x,
 					filter(rt->keyboard, rt_render(rt, ray)));
 			rad.y -= rad.w;
