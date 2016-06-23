@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 17:43:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:04:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ int				keydown(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
 
-
 	if (keycode == SDLK_o)
 		draw_putm4(((t_obj*)rt->root->content)->trans, 6);
 	else if (keycode == SDLK_r)
 		return (camera_reset(rt));
 	else if (keycode == SDLK_y)
-		((t_camera*)((t_obj*)rt->root->content)->content)->origin =
-		((t_obj*)rt->root->content)->trans;
+		camera_save(rt);
 	else if (keycode == SDLK_f)
 		return (togglefs(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))

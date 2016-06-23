@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 15:18:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:07:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,19 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 }
 
-void	camera_save(t_obj *camera)
+void	camera_save(t_rt *rt)
 {
-	t_camera	*cam;
-
-	cam = camera->content;
-	cam->origin_rot = camera->rotation;
-	cam->origin = camera->trans;
+	if (rt->keyboard & MENU)
+	{
+		menu_camera_save(rt);
+		return ;
+	}
+	if ((!rt->root) || (!(t_obj*)rt->root->content))
+		return ;
+	((t_camera*)((t_obj*)rt->root->content)->content)->origin =
+		((t_obj*)rt->root->content)->trans;
+	((t_camera*)((t_obj*)rt->root->content)->content)->origin_rot =
+		((t_obj*)rt->root->content)->rotation;
 }
 
 int		camera_reset(t_rt *rt)
