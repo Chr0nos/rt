@@ -6,13 +6,21 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 15:52:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:10:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
 #include "menu.h"
+
+static int		sdl_flush(t_rt *rt)
+{
+	SDL_LockSurface(rt->sys.screen);
+	SDL_UpdateWindowSurface(rt->sys.win);
+	SDL_UnlockSurface(rt->sys.screen);
+	return (0);
+}
 
 int				display(t_rt *rt)
 {
@@ -30,7 +38,6 @@ int				display(t_rt *rt)
 		if (!(rt->keyboard & (MOVE | FORCE_DISPLAY)))
 			return (0);
 		menu_display(rt);
-		rt->keyboard = rt->keyboard & (MENU | FAST | MOVE);
 	}
 	else
 	{
@@ -38,8 +45,5 @@ int				display(t_rt *rt)
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;
 	}
-	SDL_LockSurface(rt->sys.screen);
-	SDL_UpdateWindowSurface(rt->sys.win);
-	SDL_UnlockSurface(rt->sys.screen);
-	return (0);
+	return (sdl_flush(rt));
 }
