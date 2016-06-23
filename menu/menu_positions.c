@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 19:26:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:40:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:31:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	menu_update_positions(t_rt *rt)
 
 int		menu_position_id(t_rt *rt, int x, int y)
 {
-	const int 	last_id = rt->menu.items.y * rt->menu.items.x;
+	const int	last_id = rt->menu.items.y * rt->menu.items.x;
 	int			id;
 	SDL_Rect	*rect;
 

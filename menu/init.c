@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:20:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:31:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int				menu_init(t_rt *rt, const char *path)
 	if (!(files = ls_dir(path, "*.yolo")))
 	{
 		ft_putendl_fd("nothing to do: empty directory", 2);
-		rt->keyboard |= QUIT;
 		return (-2);
 	}
 	rt->rts_size = ft_lstsize(files);
