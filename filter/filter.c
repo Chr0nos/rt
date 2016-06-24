@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:12:46 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/23 17:23:43 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/24 02:09:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "rt.h"
 #include "keyboard.h"
 
-t_uint		filter(int keyboard, t_uint c)
+void	*get_filter(int keyboard)
 {
 	int					p;
 	const t_filter_cfg	cfg[] = {
@@ -30,6 +30,20 @@ t_uint		filter(int keyboard, t_uint c)
 	p = 7;
 	while (p--)
 		if (keyboard & cfg[p].bit)
-			return (cfg[p].filter(c));
-	return (c);
+			return ((void*)cfg[p].filter);
+	return (NULL);
+}
+
+void		filter_apply(SDL_Surface *surface, int keyboard)
+{
+	t_uint			(*f)(t_uint);
+	unsigned int	*pixels;
+	size_t			p;
+
+	if (!(f = (t_uint(*)(t_uint))get_filter(keyboard)))
+		return ;
+	pixels = (unsigned int*)surface->pixels;
+	p = (size_t)(surface->w * surface->h);
+	while (p--)
+		pixels[p] = f(pixels[p]);
 }

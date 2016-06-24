@@ -6,12 +6,13 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:16:20 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/23 17:58:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/24 02:05:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILTER_H
 # define FILTER_H
+# include "SDL2/SDL.h"
 
 typedef unsigned int    t_uint;
 
@@ -21,7 +22,8 @@ typedef struct	s_filter_cfg
 	t_uint		(*filter)(t_uint);
 }				t_filter_cfg;
 
-t_uint          filter(int keyboard, t_uint color);
+void			filter_apply(SDL_Surface *surface, int keyboard);
+void			*get_filter(int keyboard);
 t_uint          filter_red(t_uint color);
 t_uint          filter_green(t_uint color);
 t_uint          filter_blue(t_uint color);
