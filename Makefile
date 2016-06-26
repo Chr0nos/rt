@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/23 22:58:29 by qloubier         ###   ########.fr        #
+#    Updated: 2016/06/26 18:17:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ else
 		INC+=-I./headers/linux
 	endif
 endif
-LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK)
+LINKER=$(FLAGS) -L $(LIBFT) -L $(DRAW) -ldraw -lft -lm $(SDLLINK) -lpthread
 
 YOLODIR=parser/yolo
 YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
@@ -64,7 +64,7 @@ OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \
-	menu_camera.o
+	menu_camera.o menu_degrade.o
 
 FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o

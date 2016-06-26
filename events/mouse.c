@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 01:45:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 18:32:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 			tmp_rt = rt->rts[id];
 			tmp_rt.sys = rt->sys;
 			rt->rts[id].root = NULL;
-			menu_clean(rt->rts_size, rt->rts);
+			menu_clean(rt);
 			*rt = tmp_rt;
 			rt->rts_size = 0;
 			rt->rts = NULL;

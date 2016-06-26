@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:31:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 20:07:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 
 	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
 	menu_update_positions(rt);
+	menu_init_background(rt);
 	p = 0;
 	while (files)
 	{
@@ -32,11 +33,8 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		rts[p].root = yolo_parse((const char*)files->content, &rts[p].settings);
 		if (rts[p].root)
 		{
-			if ((rts[p].sys.screen = SDL_CreateRGBSurface(0, subgeo.x, subgeo.y,
-				32, 0xff0000, 0x00ff00, 0x0000ff, 0xff000000)))
-			{
+			if ((rts[p].sys.screen = draw_make_surface(subgeo)))
 				draw_reset_surface(rts[p].sys.screen, 0x000000);
-			}
 			p++;
 		}
 		files = files->next;
@@ -44,15 +42,31 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 	return (0);
 }
 
-void			menu_clean(size_t size, t_rt *rts)
+void			menu_clean(t_rt *rt)
 {
+	size_t		size;
+
+	size = rt->rts_size;
 	while (size--)
 	{
-		rt_node_free(rts[size].root);
-		SDL_FreeSurface(rts[size].sys.screen);
-		rts[size].sys.screen = NULL;
+		rt_node_free(rt->rts[size].root);
+		SDL_FreeSurface(rt->rts[size].sys.screen);
+		rt->rts[size].sys.screen = NULL;
 	}
-	free(rts);
+	if (rt->menu.background)
+	{
+		SDL_FreeSurface(rt->menu.background);
+		rt->menu.background = NULL;
+	}
+	free(rt->rts);
+}
+
+void			menu_init_background(t_rt *rt)
+{
+	if (!(rt->menu.background = draw_make_surface(rt->sys.geometry)))
+		ft_putendl_fd("error: failed to malloc background surface", 2);
+	else
+		menu_degrade(rt->menu.background, 0xe97313, COLOR_YELLOW);
 }
 
 int				menu_init(t_rt *rt, const char *path)
@@ -72,11 +86,10 @@ int				menu_init(t_rt *rt, const char *path)
 		(sizeof(t_rt) * rt->rts_size) +
 		(sizeof(SDL_Rect) * rt->rts_size))) != NULL)
 	{
+		rt_create_window(rt);
 		ret = menu_configure_rts(rt, rt->rts, files);
 		rt->keyboard |= MENU;
-		ft_putendl("starting rt");
 		rt_start(rt);
-		menu_clean(rt->rts_size, rt->rts);
 	}
 	else
 		ret = -1;

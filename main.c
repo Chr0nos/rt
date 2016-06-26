@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:15:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 20:07:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int				rt_create_window(t_rt *rt)
 
 int				rt_start(t_rt *rt)
 {
-	if (rt_create_window(rt))
-		return (1);
 	SDL_UpdateWindowSurface(rt->sys.win);
 	while ((!sdl_loop(&rt->sys.events, rt)) && (!display(rt)))
 		SDL_Delay(1);
+	if (rt->keyboard & MENU)
+		menu_clean(rt->rts);
 	draw_quit(&rt->sys);
 	return (0);
 }
@@ -75,7 +75,8 @@ int				main(int ac, char **av)
 		{
 			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);
 			ft_putchar('\n');
-			rt_start(&rt);
+			if (!rt_create_window(&rt))
+				rt_start(&rt);
 		}
 		else
 			ft_putstr("no camera\n");
