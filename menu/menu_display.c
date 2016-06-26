@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/26 20:08:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 20:14:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void			menu_display(t_rt *rt)
 	size_t			max;
 
 	max = (size_t)(rt->menu.items.x * rt->menu.items.y);
-	ft_memcpy(rt->sys.screen->pixels, rt->menu.background->pixels,
-		size * sizeof(unsigned int));
+	if (rt->menu.background)
+		ft_memcpy(rt->sys.screen->pixels, rt->menu.background->pixels,
+			size * sizeof(unsigned int));
 	if (rt->rts_size < max)
 		max = rt->rts_size;
 	p = 0;
