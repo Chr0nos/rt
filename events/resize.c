@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 23:58:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:15:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		rt_event_resize_menu(t_rt *rt)
 	menu_update_positions(rt);
 }
 
-int		rt_event_resize(SDL_Event *event, t_rt *rt)
+int				rt_event_resize(SDL_Event *event, t_rt *rt)
 {
 	rt->sys.geometry = draw_make_px(event->window.data1,
 		event->window.data2);

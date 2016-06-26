@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:12:46 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/24 02:09:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:21:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	*get_filter(int keyboard)
 	return (NULL);
 }
 
-void		filter_apply(SDL_Surface *surface, int keyboard)
+void	filter_apply(SDL_Surface *surface, int keyboard)
 {
 	t_uint			(*f)(t_uint);
 	unsigned int	*pixels;
 	size_t			p;
 
-	if (!(f = (t_uint(*)(t_uint))get_filter(keyboard)))
+	if (!(f = (unsigned int(*)(t_uint))get_filter(keyboard)))
 		return ;
 	pixels = (unsigned int*)surface->pixels;
 	p = (size_t)(surface->w * surface->h);

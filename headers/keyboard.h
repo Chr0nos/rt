@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 22:26:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 18:44:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:24:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ enum	e_keyboard
 	FILTER_YELLOW = 1 << 21,
 	FILTER_CYAN = 1 << 22,
 	FILTER_SEPIA = 1 << 23,
-	FILTER = FILTER_BLUE | FILTER_GREEN | FILTER_RED | FILTER_MAGENTA \
-			 | FILTER_YELLOW | FILTER_CYAN | FILTER_SEPIA,
+	FILTER = FILTER_BLUE | FILTER_GREEN | FILTER_RED | FILTER_MAGENTA |
+	FILTER_YELLOW | FILTER_CYAN | FILTER_SEPIA,
 	ROLL = ROLL_LEFT | ROLL_RIGHT,
 	ROTATE = ROTATE_DOWN | ROTATE_LEFT | ROTATE_RIGHT | ROTATE_UP,
 	SIDE = LEFT | RIGHT | UP | DOWN | ZOOMIN | ZOOMOUT,

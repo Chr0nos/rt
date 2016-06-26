@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/26 15:28:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:34:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*
 ** /!\ DO NOT TOUCH the commented line /!\
 ** This is an alternative light calcule equation
+** latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 */
 
 double			rt_specular_pow(t_render *r, t_obj *light)
@@ -52,7 +53,6 @@ double			rt_light_pow(t_render *r, t_obj *light)
 	{
 		r->light_lenght = (double)INFINITY;
 		r->ray->dir = light->trans.y;
-		// latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 	}
 	else
 	{

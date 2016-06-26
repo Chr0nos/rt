@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 00:04:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:14:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	r = userdata;
 	origin = *r->ray;
 	lor = (t_v2d){r->light_power, r->specular_power};
-	//r->light_power = rt_light_pow(r, obj);
 	exec_fshaders(r->obj_intersect->shader, r, obj);
 	if ((r->light_power + r->specular_power > 0.0)
 		&& (r->ray->lenght > 0.000005))
@@ -111,8 +110,7 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir,
-		0.0,
-		0.0
+		0.0, 0.0
 	};
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
@@ -123,9 +121,6 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	}
 	ray->lenght = r.lowest_lenght;
-	//(r.light_power > r.specular_power ? r.ray->color : 0xFFFFFF)
-	//(r.light_power / MID_LIGHT_POWER > r.specular_power / MAX_LIGHT_POWER ? r.light_power / MID_LIGHT_POWER : r.specular_power / MAX_LIGHT_POWER)
-	//(r.light_power > r.specular_power ? MID_LIGHT_POWER : MAX_LIGHT_POWER)
 	return (draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,
 		(float)(fmax((r.light_power) / MID_LIGHT_POWER,
 			rt->settings.ambiant_light))), 0xffffff,

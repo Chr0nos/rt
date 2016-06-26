@@ -6,14 +6,14 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:20:49 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/23 16:39:01 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/26 16:19:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filter.h"
 #include "libft.h"
 
-t_uint		filter_magenta(t_uint	c)
+t_uint		filter_magenta(t_uint c)
 {
 	int	rgb[3];
 
@@ -26,7 +26,7 @@ t_uint		filter_magenta(t_uint	c)
 	return (((t_uint)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
 }
 
-t_uint		filter_yellow(t_uint	c)
+t_uint		filter_yellow(t_uint c)
 {
 	int	rgb[3];
 
@@ -39,7 +39,7 @@ t_uint		filter_yellow(t_uint	c)
 	return (((t_uint)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
 }
 
-t_uint		filter_cyan(t_uint	c)
+t_uint		filter_cyan(t_uint c)
 {
 	int	rgb[3];
 

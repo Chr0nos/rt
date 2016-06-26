@@ -6,14 +6,14 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 17:14:46 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/23 17:25:36 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/26 16:18:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filter.h"
 #include "libft.h"
 
-t_uint	filter_sepia(t_uint	c)
+t_uint		filter_sepia(t_uint c)
 {
 	int		in_rgb[3];
 	int		out_rgb[3];

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:04:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 16:16:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		togglefs(t_rt *rt)
 
 static int		togglefilters(t_rt *rt, int keycode)
 {
-	const int 	bit = 1 << (keycode - SDLK_1 + 17);
+	const int	bit = 1 << (keycode - SDLK_1 + 17);
 	const char	stop = (rt->keyboard & bit) ? 1 : 0;
 
 	rt->keyboard &= ~FILTER;
