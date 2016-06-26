@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/23 19:12:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/26 15:28:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double			rt_specular_pow(t_render *r, t_obj *light)
 	};
 	latt = geo_dotv4(r->ray->dir, reflect);
 	li = 0.0;
-	if (latt > 0.0)
+	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
 		li = pow(latt, 20) * (((t_plight *)light->content)->intensity);
 		r->specular_power += li;
