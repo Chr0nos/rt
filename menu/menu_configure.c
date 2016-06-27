@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 13:43:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 18:55:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,24 @@
 #include "keyboard.h"
 #include "parser.h"
 
+static void	menu_configure_thumbs_size(t_rt *rt)
+{
+	int				d;
+	const t_point	*geo = &rt->sys.geometry;
+
+	d = rt->menu.thumb.x + MENU_BORDER_X;
+	rt->menu.items.x = (d) ? (geo->x + MENU_BORDER_X - MENU_PADDING_X) / d : 0;
+	d = rt->menu.thumb.y + MENU_BORDER_Y;
+	rt->menu.items.y = (d) ? (geo->y + MENU_BORDER_Y - MENU_PADDING_Y) / d : 0;
+}
+
 int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 {
 	size_t			p;
 	const t_point	subgeo = rt->menu.thumb;
 
 	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
+	menu_configure_thumbs_size(rt);
 	menu_update_positions(rt);
 	menu_background_init(rt);
 	p = 0;
