@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 18:38:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 23:16:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	unsigned char			alpha;
 	unsigned int			oc;
-	float					pwf;
 	t_ray					nray;
 
 	if ((!r->obj_intersect) || (!ray->power))
@@ -111,11 +110,10 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	alpha = (((t_cube*)r->obj_intersect->content)->color & 0xff000000) >> 24;
 	if (!alpha)
 		return (ray->color);
-	pwf = (float)alpha / 255.0f;
 	nray = *ray;
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
 		geo_dtov4d(0.01)));
-	return (draw_color_lerp(oc, rt_render(rt, &nray), pwf));
+	return (draw_color_lerp(oc, rt_render(rt, &nray), (float)alpha / 255.0f));
 }
 
 t_uint			rt_render(t_rt *rt, t_ray *ray)
