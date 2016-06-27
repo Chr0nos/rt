@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/26 20:07:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 13:08:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 
 	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
 	menu_update_positions(rt);
-	menu_init_background(rt);
+	menu_background_init(rt);
 	p = 0;
 	while (files)
 	{
 		ft_memcpy(&rts[p], rt, sizeof(t_rt));
-		rts[p].keyboard ^= MENU;
+		rts[p].keyboard &= ~MENU;
 		rts[p].sys.geometry = subgeo;
 		rts[p].root = yolo_parse((const char*)files->content, &rts[p].settings);
 		if (rts[p].root)
@@ -37,6 +37,8 @@ static int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 				draw_reset_surface(rts[p].sys.screen, 0x000000);
 			p++;
 		}
+		else
+			rts[p].sys.screen = NULL;
 		files = files->next;
 	}
 	return (0);
@@ -46,6 +48,7 @@ void			menu_clean(t_rt *rt)
 {
 	size_t		size;
 
+ft_putendl("clean");
 	size = rt->rts_size;
 	while (size--)
 	{
@@ -59,14 +62,7 @@ void			menu_clean(t_rt *rt)
 		rt->menu.background = NULL;
 	}
 	free(rt->rts);
-}
-
-void			menu_init_background(t_rt *rt)
-{
-	if (!(rt->menu.background = draw_make_surface(rt->sys.geometry)))
-		ft_putendl_fd("error: failed to malloc background surface", 2);
-	else
-		menu_degrade(rt->menu.background, 0xe97313, COLOR_YELLOW);
+	rt->rts_size = 0;
 }
 
 int				menu_init(t_rt *rt, const char *path)

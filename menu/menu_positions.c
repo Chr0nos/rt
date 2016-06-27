@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/22 19:26:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:31:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 12:50:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	menu_update_positions(t_rt *rt)
 	SDL_Rect	rect;
 	size_t		p;
 
+	if ((!rt->menu.items.x) || (!rt->menu.items.y))
+		return ;
 	rect = (SDL_Rect){MENU_PADDING_X, MENU_PADDING_Y,
 		rt->menu.thumb.x, rt->menu.thumb.y};
 	p = 0;

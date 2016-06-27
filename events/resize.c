@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/26 18:30:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 13:07:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 
 static void		rt_event_resize_menu(t_rt *rt)
 {
-	rt->menu.items.x = (rt->sys.geometry.x + MENU_BORDER_X - MENU_PADDING_X) /
-		(rt->menu.thumb.x + MENU_BORDER_X);
-	rt->menu.items.y = (rt->sys.geometry.y + MENU_BORDER_Y - MENU_PADDING_Y) /
-		(rt->menu.thumb.y + MENU_BORDER_Y);
-	SDL_FreeSurface(rt->menu.background);
-	menu_init_background(rt);
+	const t_point	*geo = &rt->sys.geometry;
+	int				d;
+
+	d = rt->menu.thumb.x + MENU_BORDER_X;
+	rt->menu.items.x = (d) ? (geo->x + MENU_BORDER_X - MENU_PADDING_X) / d : 0;
+	d = rt->menu.thumb.y + MENU_BORDER_Y;
+	rt->menu.items.y = (d) ? (geo->y + MENU_BORDER_Y - MENU_PADDING_Y) / d : 0;
+	menu_background_update(rt);
 	menu_update_positions(rt);
 }
 
