@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/24 02:09:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 16:49:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 #include "filter.h"
 #include <unistd.h>
 
-static void		rt_debug_ray(t_ray *ray)
-{
-	static int		limit = 42;
-
-	ft_putstr("start: ");
-	geo_putv4d(ray->start, 3);
-	ft_putstr(" dir: ");
-	geo_putv4d(ray->dir, 5);
-	ft_putchar('\n');
-	if (!limit--)
-		exit(0);
-}
-
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_m4 m)
 {
@@ -35,7 +22,6 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_v4d			rad;
 	t_camera		*camp;
 
-	(void)rt_debug_ray;
 	camp = ((t_obj*)rt->root->content)->content;
 	px.x = rt->sys.geometry.x;
 	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
