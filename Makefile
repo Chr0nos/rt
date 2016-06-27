@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/27 13:09:26 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/27 13:43:24 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o
 
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \
-	menu_camera.o menu_degrade.o menu_background.o
+	menu_camera.o menu_degrade.o menu_background.o menu_clean.o menu_configure.o
 
 FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o
