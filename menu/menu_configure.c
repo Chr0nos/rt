@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 18:55:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 19:05:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "keyboard.h"
 #include "parser.h"
 
-static void	menu_configure_thumbs_size(t_rt *rt)
+void	menu_configure_thumbs_size(t_rt *rt)
 {
 	int				d;
 	const t_point	*geo = &rt->sys.geometry;

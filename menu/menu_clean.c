@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:22:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 13:29:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 19:04:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void			menu_clean(t_rt *rt)
 
 	ft_putendl("menu clean");
 	size = rt->rts_size;
+	rt->rts_size = 0;
 	while (size--)
 	{
 		rt_node_free(rt->rts[size].root);
@@ -32,5 +33,4 @@ void			menu_clean(t_rt *rt)
 		rt->menu.background = NULL;
 	}
 	free(rt->rts);
-	rt->rts_size = 0;
 }
