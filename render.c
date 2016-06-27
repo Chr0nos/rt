@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/26 16:14:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 18:38:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "render.h"
 #include "shaders.h"
 
-int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
+int				rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 
@@ -48,7 +48,7 @@ int			rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
 ** by rt_render_foreach
 */
 
-int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
+int				rt_light_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_ray		origin;
@@ -71,7 +71,7 @@ int			rt_light_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
+int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_v4d		impact;
@@ -98,7 +98,27 @@ int			rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-t_uint		rt_render(t_rt *rt, t_ray *ray)
+ unsigned int	rt_render_opacity(t_rt *rt, t_ray *ray, t_render *r)
+{
+	unsigned char			alpha;
+	unsigned int			oc;
+	float					pwf;
+	t_ray					nray;
+
+	if ((!r->obj_intersect) || (!ray->power))
+		return (ray->color);
+	oc = ray->color;
+	alpha = (((t_cube*)r->obj_intersect->content)->color & 0xff000000) >> 24;
+	if (!alpha)
+		return (ray->color);
+	pwf = (float)alpha / 255.0f;
+	nray = *ray;
+	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
+		geo_dtov4d(0.01)));
+	return (draw_color_lerp(oc, rt_render(rt, &nray), pwf));
+}
+
+t_uint			rt_render(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
@@ -121,8 +141,10 @@ t_uint		rt_render(t_rt *rt, t_ray *ray)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
 	}
 	ray->lenght = r.lowest_lenght;
-	return (draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,
+	ray->color = draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,
 		(float)(fmax((r.light_power) / MID_LIGHT_POWER,
 			rt->settings.ambiant_light))), 0xffffff,
-		(float)(r.specular_power / MID_LIGHT_POWER)));
+		(float)(r.specular_power / MID_LIGHT_POWER));
+	//return (ray->color);
+	return (rt_render_opacity(rt, ray, &r));
 }

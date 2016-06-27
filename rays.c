@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 16:49:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/27 17:14:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			rt_rays(t_rt *rt)
 	camp->raypos = cam->trans.w;
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
+	ray.power = 0xff;
 	rt_rays_pixels(rt, &ray, rt->sys.screen->pixels, cam->trans);
 	rt->tree.memlen = 0;
 	free(rt->tree.bounded);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:57:16 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/27 17:16:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct			s_ray
 	t_v4d				dir;
 	double				limit;
 	double				lenght;
+	unsigned char		power;
 	unsigned int		color;
 	int					count;
 }						t_ray;
