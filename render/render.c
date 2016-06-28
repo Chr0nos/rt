@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:22:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:57:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	t_render	r;
 
 	r = (t_render){
-		ray,
-		rt,
+		ray, rt,
 		NULL,
 		HUGE_VAL,
 		0.0,
