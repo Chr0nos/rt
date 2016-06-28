@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 17:13:41 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/28 17:17:23 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,9 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
+	/*
+	** appel et emplacement de rt_checker temporaire
+	*/
 	rt_checker(&r, NULL);
 	if (r.obj_intersect)
 	{
