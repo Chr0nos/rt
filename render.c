@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 23:16:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 00:36:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	unsigned int			oc;
 	t_ray					nray;
 
-	if ((!r->obj_intersect) || (!ray->power))
+	if (!r->obj_intersect)
 		return (ray->color);
 	oc = ray->color;
 	alpha = (((t_cube*)r->obj_intersect->content)->color & 0xff000000) >> 24;
