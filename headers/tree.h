@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:18:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/21 17:43:19 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/28 18:55:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ typedef struct		s_rendertree
 	t_obj			*m_liter;
 }					t_rtree;
 
-int					rt_rtree_count(t_obj *node, int mode, void *userdata);
-t_obj				*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent,
-						t_m4 *mat);
-void				rt_rtree_fill(t_obj *node, t_rtree *rtree, t_obj *parent,
-						t_m4 mat);
 t_rtree				rt_render_tree(t_obj *node);
 
 #endif
