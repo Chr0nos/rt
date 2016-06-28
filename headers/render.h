@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 18:04:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 01:13:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_render
 
 double			rt_light_pow(t_render *r, t_obj *light);
 double			rt_specular_pow(t_render *r, t_obj *light);
-unsigned int	rt_render_opacity(t_rt *rt, t_ray *ray, t_render *r);
+unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
+	const t_render *r);
 
 #endif
