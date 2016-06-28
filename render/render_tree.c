@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/28 12:19:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:49:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	rt_rtree_fill(t_obj *node, t_rtree *rtree, t_obj *parent, t_m4 mat)
 	t_obj		*obj;
 
 	obj = parent;
-	//mat = geo_mult_m4(mat, &node->trans);
 	mat = geo_mult_m4(node->trans, &mat);
 	if (node->type & BOUNDED)
 		obj = rt_rtree_push(&(rtree->m_biter), node, parent, &mat);

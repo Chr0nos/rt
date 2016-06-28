@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:17:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:26:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_render
 	double		specular_power;
 }				t_render;
 
+t_uint			rt_render(t_rt *rt, t_ray *ray);
 double			rt_light_pow(t_render *r, t_obj *light);
 double			rt_specular_pow(t_render *r, t_obj *light);
 double			rt_checker(t_render *r, t_obj *light);

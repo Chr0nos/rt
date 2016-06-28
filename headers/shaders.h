@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/23 20:03:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/28 18:47:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ typedef struct		s_shaders
 t_shaders			*init_shader(unsigned int nbr_fshaders);
 int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o);
 double				rt_reflection(t_render *r, t_obj *light);
+
 #endif
