@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 17:19:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:51:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct			s_obj
 	int					texture;
 }						t_obj;
 
-t_obj					*rt_obj_init(t_obj *obj, t_type type);
+t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj					*rt_obj_addchild(t_obj *parent, t_obj *child);
 t_obj					*rt_obj_delchild(t_obj *parent, t_obj *child);

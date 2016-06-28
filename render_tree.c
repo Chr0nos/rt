@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/17 15:01:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:53:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent, t_m4 *mat)
 	t_obj		*ob;
 
 	*iter = &((*iter)[1]);
-	ob = rt_obj_init(*iter, obj->type);
+	ob = rt_obj_init(*iter, obj->type | NOSHADER);
 	rt_obj_addchild(parent, ob)->trans = *mat;
+	ob->shader = obj->shader;
 	ob->content = obj->content;
 	ob->inters = obj->inters;
 	ob->normal = obj->normal;

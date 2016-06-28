@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 17:19:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 11:51:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "render.h"
 #include "shaders.h"
 
-t_obj		*rt_obj_init(t_obj *obj, t_type type)
+t_obj		*rt_obj_init(t_obj *obj, int type)
 {
 	obj->id = 0;
-	obj->type = type;
+	obj->type = (t_type)(type & ~NOSHADER);
 	obj->next = NULL;
 	obj->childs = NULL;
 	obj->content = NULL;
@@ -29,8 +29,13 @@ t_obj		*rt_obj_init(t_obj *obj, t_type type)
 	obj->normal = NULL;
 	obj->parent = NULL;
 	obj->texture = 0;
-	obj->shader = init_shader(2);
-	obj->shader->fragment_shader[0] = &rt_specular_pow;
-	obj->shader->fragment_shader[1] = &rt_light_pow;
+	if (!(type & NOSHADER))
+	{
+		obj->shader = init_shader(2);
+		obj->shader->fragment_shader[0] = &rt_specular_pow;
+		obj->shader->fragment_shader[1] = &rt_light_pow;
+	}
+	else
+		obj->shader = NULL;
 	return (obj);
 }
