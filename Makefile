@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/28 18:26:19 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/28 21:53:25 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,10 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
-	light.o shaders.o configure.o refract.o texture.o
+	light.o shaders.o configure.o texture.o
 
 RENDER_DIR=render
-RENDER=render.o render_light.o render_shadow.o render_tree.o
+RENDER=render.o render_light.o render_shadow.o render_tree.o refract.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o
