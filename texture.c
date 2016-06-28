@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 14:42:09 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/28 17:11:19 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/28 18:06:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "libft.h"
+
+//CODE ILLISIBLE : a modifier !!! (ou delete)
 
 double		rt_checker(t_render *r, t_obj *light)
 {
