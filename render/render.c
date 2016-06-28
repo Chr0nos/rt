@@ -6,40 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:06:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:22:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "render.h"
-
-int				rt_shadow_foreach(t_obj *obj, int mode, void *userdata)
-{
-	t_render	*r;
-
-	(void)mode;
-	r = userdata;
-	if (obj == r->obj_intersect)
-		return (OK);
-	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
-	{
-		return (STOP_NODE);
-	}
-	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
-	{
-		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
-			;
-		else if (r->light_lenght < r->ray->lenght)
-			;
-		else
-		{
-			r->light_power = 0.0;
-			r->specular_power = 0.0;
-			return (STOP_ALL);
-		}
-	}
-	return (OK);
-}
 
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -88,7 +60,7 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
-		rt_node_foreach(rt->tree.light, INFIX, &rt_light_foreach, &r);
+		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 	}
 	ray->lenght = r.lowest_lenght;
 	ray->color = draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,

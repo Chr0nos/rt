@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/28 18:04:09 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/28 18:23:16 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,11 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setting_ambiant.o yolo_setup_tore.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o render_tree.o \
-	rays.o bounds.o node.o puttype.o putbounds.o render.o rad2deg.o display.o \
-	light.o shaders.o configure.o refract.o render_light.o texture.o
+	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
+	light.o shaders.o configure.o refract.o texture.o
+
+RENDER_DIR=render
+RENDER=render.o render_light.o render_shadow.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o
@@ -75,7 +78,8 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
 	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
 	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o) \
-	$(FILTER:%.o=$(OBJBUILDDIR)/$(FILTER_DIR)/%.o)
+	$(FILTER:%.o=$(OBJBUILDDIR)/$(FILTER_DIR)/%.o) \
+	$(RENDER:%.o=$(OBJBUILDDIR)/$(RENDER_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -83,7 +87,8 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
 	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
 	$(MENU:%.o=$(MENU_DIR)/%.c) \
-	$(FILTER:%.o=$(FILTER_DIR)/%.c)
+	$(FILTER:%.o=$(FILTER_DIR)/%.c) \
+	$(RENDER:%.o=$(RENDE_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -91,7 +96,8 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
 		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
 		$(OBJBUILDDIR)/$(MENU_DIR) \
-		$(OBJBUILDDIR)/$(FILTER_DIR)
+		$(OBJBUILDDIR)/$(FILTER_DIR) \
+		$(OBJBUILDDIR)/$(RENDER_DIR)
 
 all: $(NAME)
 

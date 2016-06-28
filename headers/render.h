@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:03:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:17:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
 	const t_render *r);
 unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
 	const t_render *r);
-int				rt_light_foreach(t_obj *obj, int mode, void *userdata);
+int				rt_render_light(t_obj *obj, int mode, void *userdata);
+int				rt_render_shadow(t_obj *obj, int mode, void *userdata);
+int				rt_render_foreach(t_obj *obj, int mode, void *userdata);
 
 #endif
