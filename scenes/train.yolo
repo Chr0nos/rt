@@ -1,6 +1,6 @@
 SETTING AL:30
 CAMERA		5	3	-15		1	-1.4	0	75
-	SPHERE	1 	0 0 5 #30ff0000
+	CUBE	1 	0 0 5 #90ff0000
 
 PLAN								0	-2	-4	0	0	0	#5affa5
 PLAN								0	0	200	90	-5	0	#5588ff
