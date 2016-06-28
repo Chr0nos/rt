@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 01:13:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 13:30:42 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,12 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
- unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
+unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 {
 	unsigned char			alpha;
 	t_ray					nray;
+	double					cos0[2];
+	double					coef;
 
 	if (!r->obj_intersect)
 		return (ray->color);
@@ -111,6 +113,18 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	nray = *ray;
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
 		geo_dtov4d(0.01)));
+	cos0[0] = geo_dotv4(r->normal, geo_invv4(ray->dir));
+	cos0[1] = sqrt(1 - pow(1.0 / r->obj_intersect->refractive_index, 2.0) *
+			(1 - pow(cos0[0], 2.0)));
+	coef = (cos0[0] > 0.0 ? -1.0 : 1.0);
+	nray.dir = (t_v4d) {
+		(1.0 / r->obj_intersect->refractive_index) * ray->dir.x +
+		((1.0 / r->obj_intersect->refractive_index) * cos0[0] + cos0[1] * coef)
+		* r->normal.x, (1.0 / r->obj_intersect->refractive_index) * ray->dir.y
+		+ ((1.0 / r->obj_intersect->refractive_index) * cos0[0] + cos0[1] *
+		coef) * r->normal.y, (1.0 / r->obj_intersect->refractive_index) *
+		ray->dir.z + ((1.0 / r->obj_intersect->refractive_index) * cos0[0] +
+		cos0[1] * coef) * r->normal.z, 0.0 };
 	return (draw_color_lerp(ray->color, rt_render(rt, &nray),
 		(float)alpha / 255.0f));
 }
