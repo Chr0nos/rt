@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 00:36:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 01:08:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,19 +101,18 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
  unsigned int	rt_render_opacity(t_rt *rt, t_ray *ray, t_render *r)
 {
 	unsigned char			alpha;
-	unsigned int			oc;
 	t_ray					nray;
 
 	if (!r->obj_intersect)
 		return (ray->color);
-	oc = ray->color;
 	alpha = (((t_cube*)r->obj_intersect->content)->color & 0xff000000) >> 24;
 	if (!alpha)
 		return (ray->color);
 	nray = *ray;
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
 		geo_dtov4d(0.01)));
-	return (draw_color_lerp(oc, rt_render(rt, &nray), (float)alpha / 255.0f));
+	return (draw_color_lerp(ray->color, rt_render(rt, &nray),
+		(float)alpha / 255.0f));
 }
 
 t_uint			rt_render(t_rt *rt, t_ray *ray)
