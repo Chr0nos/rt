@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/28 10:42:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 22:39:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_shaders			*init_shader(unsigned int nbr_fshaders)
 	if ((s = malloc(sizeof(t_shaders) + (sizeof(void*) * nbr_fshaders))))
 	{
 		s->fragment_shader = \
-		(double(**)(t_render*, t_obj*))((unsigned long)s + sizeof(t_shaders));
+		(void(**)(t_render*, t_obj*))((unsigned long)s + sizeof(t_shaders));
 		s->nbr_fshaders = nbr_fshaders;
 		s->vertex_shader = 0;
 		return (s);

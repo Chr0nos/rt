@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_light.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:47:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:23:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 22:54:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				rt_render_light(t_obj *obj, int mode, void *userdata)
 	origin = *r->ray;
 	lor = (t_v2d){r->light_power, r->specular_power};
 	exec_fshaders(r->obj_intersect->shader, r, obj);
-	if ((r->light_power + r->specular_power > 0.0)
+	if ((r->ray->color > 0)
 		&& (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_render_shadow, r);
@@ -38,6 +38,7 @@ int				rt_render_light(t_obj *obj, int mode, void *userdata)
 	}
 	r->light_power += lor.x;
 	r->specular_power += lor.y;
+	origin.color = r->ray->color;
 	*r->ray = origin;
 	return (OK);
 }

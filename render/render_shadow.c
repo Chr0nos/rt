@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_shadow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 18:14:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:14:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 22:08:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 		{
 			r->light_power = 0.0;
 			r->specular_power = 0.0;
+			r->ray->color = 0;
 			return (STOP_ALL);
 		}
 	}
