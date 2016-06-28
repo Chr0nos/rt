@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 19:19:00 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/28 10:40:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ void	rt_node_free(t_obj *node)
 	if (node->parent)
 		rt_obj_delchild(node->parent, node);
 	if (node->shader)
-	{
-		free(node->shader->fragment_shader);
 		free(node->shader);
-	}
 	free(node);
 }
