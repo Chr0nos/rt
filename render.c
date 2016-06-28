@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:03:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/28 18:06:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,6 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	ray->color = COLOR_BLACK;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
-	/*
-	** appel et emplacement de rt_checker temporaire
-	*/
-	rt_checker(&r, NULL);
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
@@ -99,6 +95,5 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 		(float)(fmax((r.light_power) / MID_LIGHT_POWER,
 			rt->settings.ambiant_light))), 0xffffff,
 		(float)(r.specular_power / MID_LIGHT_POWER));
-	//return (ray->color);
 	return (rt_render_opacity(rt, ray, &r));
 }
