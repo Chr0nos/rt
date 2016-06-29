@@ -6,11 +6,12 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 18:14:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 22:08:43 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:01:57 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "shaders.h"
 
 int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 {
@@ -32,9 +33,7 @@ int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 			;
 		else
 		{
-			r->light_power = 0.0;
-			r->specular_power = 0.0;
-			r->ray->color = 0;
+			shaders_activate_only(r->obj_intersect->shader, 0);
 			return (STOP_ALL);
 		}
 	}

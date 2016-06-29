@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:40:58 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:05:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_obj		*rt_obj_init(t_obj *obj, int type)
 	if (!(type & NOSHADER))
 	{
 		obj->shader = init_shaders(2);
+		//obj->shader->shader[1] = init_shader(&rt_specular_pow, 0x000000, '+');
 		obj->shader->shader[1] = init_shader(&rt_light_pow, 0x000000, '*');
 		obj->shader->shader[0] = init_shader(&shader_ambiant, 0x000000, '+');
 	}

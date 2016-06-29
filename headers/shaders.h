@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/29 19:07:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:01:25 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct		s_shader
 {
+	int				enabled;
 	unsigned int	color_render;
 	unsigned int	color_base;
 	char			operator;
@@ -39,7 +40,11 @@ unsigned int		compute_color_shaders(t_shaders *s);
 double				rt_reflection(t_render *r, t_obj *light);
 void				rt_light_pow(t_shader *s, t_render *r, t_obj *light);
 void				rt_specular_pow(t_shader *s, t_render *r, t_obj *light);
-void				shader_damier(t_render *r, t_obj *light);
+void				shader_damier(t_shader *s, t_render *r, t_obj *light);
 void				shader_ambiant(t_shader *s, t_render *r, t_obj *light);
+unsigned int		blend_add(unsigned int a, unsigned int b);
+unsigned int		blend_multiply(unsigned int a, unsigned int b);
+void				shaders_activate_only(t_shaders *s, unsigned int n);
+void				shaders_activate_all(t_shaders *s);
 
 #endif

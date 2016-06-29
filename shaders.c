@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/29 19:32:01 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:01:27 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
 
 	if ((s = malloc(sizeof(t_shader))))
 	{
+		s->enabled = 1;
 		s->color_base = color;
 		s->color_render = color;
 		s->operator = operator;
@@ -71,21 +72,45 @@ unsigned int		compute_color_shaders(t_shaders *s)
 	color = 0;
 	while (i < s->nbr_fshaders)
 	{
-		if (!i)
-			color = s->shader[i]->color_render;
-		else
+		if (s->shader[i]->enabled)
 		{
-			if (s->shader[i]->operator == '+')
-				color += s->shader[i]->color_render;
-			else if (s->shader[i]->operator == '-')
-				color -= s->shader[i]->color_render;
-			else if (s->shader[i]->operator == '*')
-				color *= s->shader[i]->color_render;
-			else if (s->shader[i]->operator == '/')
-				color /= s->shader[i]->color_render;
+			if (!i)
+				color = s->shader[i]->color_render;
+			else
+			{
+				if (s->shader[i]->operator == '+')
+					color = blend_add(color, s->shader[i]->color_render);
+				else if (s->shader[i]->operator == '-')
+					color -= s->shader[i]->color_render;
+				else if (s->shader[i]->operator == '*')
+					color = blend_multiply(color, s->shader[i]->color_render);
+				else if (s->shader[i]->operator == '/')
+					color /= s->shader[i]->color_render;
+			}
 			s->shader[i]->color_render = s->shader[i]->color_base;
 		}
 		++i;
 	}
 	return ((color > 0xFFFFFF ? 0xFFFFFF : color));
+}
+
+void				shaders_activate_all(t_shaders *s)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < s->nbr_fshaders)
+		s->shader[i++]->enabled = 1;
+}
+
+void				shaders_activate_only(t_shaders *s, unsigned int n)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < s->nbr_fshaders)
+		if (i == n)
+			s->shader[i++]->enabled = 1;
+		else
+			s->shader[i++]->enabled = 0;
 }

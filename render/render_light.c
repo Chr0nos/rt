@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:47:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 22:54:39 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:01:49 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int				rt_render_light(t_obj *obj, int mode, void *userdata)
 	r = userdata;
 	origin = *r->ray;
 	lor = (t_v2d){r->light_power, r->specular_power};
-	exec_fshaders(r->obj_intersect->shader, r, obj);
 	if ((r->ray->color > 0)
 		&& (r->ray->lenght > 0.000005))
 	{
 		rt_node_foreach(r->rt->tree.bounded, INFIX, &rt_render_shadow, r);
 		rt_node_foreach(r->rt->tree.unbounded, INFIX, &rt_render_shadow, r);
 	}
+	exec_fshaders(r->obj_intersect->shader, r, obj);
 	r->light_power += lor.x;
 	r->specular_power += lor.y;
 	origin.color = r->ray->color;

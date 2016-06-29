@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/29 19:39:32 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 23:17:31 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
 		li = pow(latt, 20) * (((t_plight *)light->content)->intensity);
-		r->ray->color = draw_color_lerp(r->ray->color, 0xFFFFFF, (float)
-		(li / MID_LIGHT_POWER));
+		s->color_render = ((unsigned int)(li) << 16) +
+						((unsigned int)(li) << 8) +
+						((unsigned int)(li));
 	}
 }
 
@@ -68,7 +69,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	if (latt > 0.0)
 	{
 		li = latt * (((t_plight *)light->content)->intensity);
-		s->color_render = ((unsigned int)(li) << 16) +
+		s->color_render += ((unsigned int)(li) << 16) +
 						((unsigned int)(li) << 8) +
 						((unsigned int)(li));
 	}
