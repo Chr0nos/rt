@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 17:10:43 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/29 12:15:36 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int					yolo_setup_tore(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
 int					yolo_setup_plight(t_obj *obj, size_t ac, char **av);
+int					yolo_setup_texture(t_obj *obj, char **av, int index);
 int					yolo_setting_ambiant(char **parms, size_t size,
 						t_rtcfg *rset);
 

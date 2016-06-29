@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 13:23:50 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 12:18:22 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_obj		*rt_obj_init(t_obj *obj, int type)
 	obj->normal = NULL;
 	obj->parent = NULL;
 	obj->refractive_index = 1.05;
-	obj->texture = 0;
 	if (!(type & VISIBLE))
 		type |= NOSHADER;
 	if (!(type & NOSHADER))

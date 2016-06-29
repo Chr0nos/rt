@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/28 21:53:25 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/29 12:14:07 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ YOLODIR=parser/yolo
 YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o yolo_setup_cone.o \
 	yolo_setup_cyl.o yolo_setup_plight.o yolo_parse_settings.o \
-	yolo_setting_ambiant.o yolo_setup_tore.o
+	yolo_setting_ambiant.o yolo_setup_tore.o yolo_setup_texture.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
