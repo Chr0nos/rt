@@ -1,7 +1,15 @@
 CAMERA
-	rot: 3.461165 3.568181 -12.239260
-	pos: -5 0 0
-	al: 100
+	pos: 3.461165 3.568181 -12.239260
+	rot: 0 0
+	al: 30
+	fov: 75
+
+POINTLIGHT
+	pos: 0 15 0
+	color: #ffffff
+	radius: 100
+	intensity: 100
+
 CUBE
 	pos: 0 0 0
 	rot: 0 0 0
@@ -15,3 +23,6 @@ CUBE
 		size: 1
 		pos: 10 10 10
 		color: #ff0000
+PLAN
+	pos: 0 -10 0
+	color: #344271

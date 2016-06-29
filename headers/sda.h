@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:35:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 20:35:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ enum					e_sda_cfgbit
 		SDB_ROT = 1 << 2,
 		SDB_FOV = 1 << 3,
 		SDB_SIZE = 1 << 4,
-		SDB_AL = 1 << 5
+		SDB_AL = 1 << 5,
+		SDB_INTEN = 1 << 6
 };
 
 enum					e_sda_setting
 {
-		SDA_COLOR = VISIBLE,
+		SDA_COLOR = VISIBLE | LIGHTTYPE,
 		SDA_POS = ~0,
 		SDA_ROT = ~0,
 		SDA_AL = SETTING | CAMERA,
 		SDA_FOV = CAMERA,
-		SDA_SIZE = (SPHERE | CUBE | CONE | CYL)
+		SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE),
+		SDA_INTEN = LIGHTTYPE
 };
 
 typedef struct			s_sda_cfg
@@ -61,5 +63,6 @@ int			sda_setup_al(t_rt *rt, t_obj *obj, char **av);
 int			sda_setup_rot(t_rt *rt, t_obj *obj, char **av);
 int			sda_setup_fov(t_rt *rt, t_obj *obj, char **av);
 int			sda_setup_size(t_rt *rt, t_obj *obj, char **av);
+int			sda_setup_intensity(t_rt *rt, t_obj *obj, char **av);
 
 #endif
