@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 14:22:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 19:07:23 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ typedef struct	s_render
 }				t_render;
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);
-void			rt_light_pow(t_render *r, t_obj *light);
-void			rt_specular_pow(t_render *r, t_obj *light);
-void			shader_damier(t_render *r, t_obj *light);
 unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
 	const t_render *r);
 int				rt_render_light(t_obj *obj, int mode, void *userdata);

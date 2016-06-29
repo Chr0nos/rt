@@ -6,12 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/28 23:04:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 19:39:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "render.h"
+#include "shaders.h"
 
 /*
 ** /!\ DO NOT TOUCH the commented line /!\
@@ -19,13 +20,14 @@
 ** latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 */
 
-void			rt_specular_pow(t_render *r, t_obj *light)
+void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 {
 	double			latt;
 	double			li;
 	t_v4d			reflect;
 	t_v4d			intelight;
 
+	(void)s;
 	intelight = geo_normv4(geo_subv4(light->trans.w, r->intersection));
 	reflect = (t_v4d){
 		intelight.x - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.x,
@@ -43,11 +45,10 @@ void			rt_specular_pow(t_render *r, t_obj *light)
 	}
 }
 
-void			rt_light_pow(t_render *r, t_obj *light)
+void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 {
 	double			latt;
 	double			li;
-	t_cube			*c;
 
 	r->ray->start = r->intersection;
 	if (light->type == SUNLIGHT)
@@ -67,8 +68,8 @@ void			rt_light_pow(t_render *r, t_obj *light)
 	if (latt > 0.0)
 	{
 		li = latt * (((t_plight *)light->content)->intensity);
-		c = r->obj_intersect->content;
-		r->ray->color = draw_color_lerp(r->ray->color, c->color, (float)
-		(li / MID_LIGHT_POWER));
+		s->color_render = ((unsigned int)(li) << 16) +
+						((unsigned int)(li) << 8) +
+						((unsigned int)(li));
 	}
 }

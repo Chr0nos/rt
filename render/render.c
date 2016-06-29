@@ -6,12 +6,13 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 22:56:11 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 19:13:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "render.h"
+#include "shaders.h"
 
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -60,6 +61,7 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
+		r.ray->color = compute_color_shaders(r.obj_intersect->shader);
 	}
 	ray->lenght = r.lowest_lenght;
 	/*ray->color = draw_color_lerp(draw_color_lerp(0x000000, r.ray->color,
