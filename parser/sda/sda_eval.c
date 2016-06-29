@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 18:19:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 22:44:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static void		sda_mkobj(const char *s, int lvl, int *last_lvl,
 	t_obj			*parent;
 
 	if (type == INVALID)
+	{
+		ft_printf("warning: INVALID object type for %s : ignoring\n", s);
 		return ;
+	}
 	if ((*last_lvl < lvl) || ((*current_obj)->type == ROOT))
 		parent = *current_obj;
 	else
@@ -67,7 +70,8 @@ int			sda_eval(const char *line, t_rt *rt, t_obj *root, const int lvl)
 	if (!sda_spliter(line, &av, &ac))
 		return (-1);
 	ret = 0;
-	if ((!ac) || (!av[0]) || (av[0][0] == '#'))
+	if ((!ac) || (!av[0]) || (av[0][0] == '#') ||
+		(av[0][0] == '}') || (av[0][0] == '{'))
 		;
 	else if (sda_isobj(av[0]) > 0)
 		sda_mkobj(av[0], lvl, &last_lvl, &current_obj);
