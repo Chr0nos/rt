@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/09 17:55:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 22:14:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void			rt_debug(t_obj *item, unsigned int level)
 	rt_putnchar('\t', level + 1);
 	ft_putstr("bounds: ");
 	rt_putbounds(item, 3);
+	rt_putnchar('\t', level + 1);
+	ft_putstr("config: ");
+	rt_putbits((unsigned int)item->cfgbits);
+	write(1, "\n", 1);
 	if (item->childs)
 	{
 		write(1, "\n", 1);

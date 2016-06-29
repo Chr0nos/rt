@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 20:35:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 21:45:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_obj					*sda_parse(const char *filepath, t_rt *rt);
 int						sda_eval(const char *line, t_rt *rt, t_obj *root,
 	const int lvl);
 int						sda_settings(t_obj *obj, t_rt *rt, int ac, char **av);
+void					sda_settings_init(t_sda_cfg *cfg);
+void					sda_set_defaults(t_obj *root);
 
 /*
 ** configure functions

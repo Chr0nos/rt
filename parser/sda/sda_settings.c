@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 20:40:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 21:27:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #define SDA_SETUP_TYPES 8
 
-static void	sda_settings_init(t_sda_cfg *cfg)
+void		sda_settings_init(t_sda_cfg *cfg)
 {
 	cfg[0] = (t_sda_cfg){"color:", &sda_setup_color, SDA_COLOR, 1, SDB_COLOR};
 	cfg[1] = (t_sda_cfg){"pos:", &sda_setup_pos, SDA_POS, 3, SDB_POS};

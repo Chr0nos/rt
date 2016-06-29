@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 12:01:06 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/29 22:11:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_rt
 	t_menu		menu;
 }				t_rt;
 
+void			rt_putbits(unsigned int bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 20:18:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 21:48:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_obj			*sda_parse(const char *filepath, t_rt *rt)
 	root = sda_parse_fd(fd, rt, rt_factory_alloc(ROOT, NULL));
 	close(fd);
 	yolo_parse_finalize(root);
+	sda_set_defaults(root);
 	camera_save(rt);
 	rt_debug(root, 0);
 	geo_putm4(((t_obj*)root->content)->trans, 6);
