@@ -2,7 +2,7 @@ CAMERA
 	pos: 3.461165 3.568181 -12.239260
 	rot: 0 0 0
 	al: 30
-	fov: 75
+	#fov: 75
 
 POINTLIGHT
 	pos: 0 15 0
