@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 18:14:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 19:02:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 22:29:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "parser.h"
 #include "libft.h"
 
-static void	yolo_camera_save(t_obj *camera)
+void		yolo_camera_save(t_obj *camera)
 {
 	t_camera	*cam;
 

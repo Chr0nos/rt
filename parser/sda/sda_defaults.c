@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 22:19:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 22:30:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "sda.h"
 #include "libft.h"
 #include "unistd.h"
+#include "parser.h"
 
 static void sda_set_camera_default(t_obj *obj)
 {
@@ -22,6 +23,7 @@ static void sda_set_camera_default(t_obj *obj)
 	cam = obj->content;
 	if (!(obj->cfgbits & SDB_FOV))
 		cam->fov = -49.124;
+	yolo_camera_save(obj);
 }
 
 static int 	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)

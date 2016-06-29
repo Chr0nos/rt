@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 18:21:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 22:30:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int					yolo_setup_plight(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_texture(t_obj *obj, char **av, int index);
 int					yolo_setting_ambiant(char **parms, size_t size,
 						t_rtcfg *rset);
+void				yolo_camera_save(t_obj *camera);
 
 #endif
