@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 12:16:32 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/29 17:56:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum			e_type
 	CYL = 1 << 11,
 	SUNLIGHT = 1 << 12,
 	TORE = 1 << 13,
+	SETTING = 1 << 14,
 	NOSHADER = 1 << 28,
 	RADIUS = SPHERE | CUBE | CYL | CONE | TORE,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE,

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/26 20:07:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 18:15:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "keyboard.h"
 #include "parser.h"
 #include "menu.h"
+#include "sda.h"
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
 {
@@ -66,7 +67,8 @@ int				main(int ac, char **av)
 		menu_init(&rt, av[1]);
 	else if (ac >= 2)
 	{
-		if (!(rt.root = yolo_parse(av[1], &(rt.settings))))
+		if (!(rt.root = sda_parse(av[1], &rt)))
+		//if (!(rt.root = yolo_parse(av[1], &(rt.settings))))
 		{
 			ft_putendl_fd("error.", 2);
 			return (1);

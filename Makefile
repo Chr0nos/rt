@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/29 12:14:07 by dboudy           ###   ########.fr        #
+#    Updated: 2016/06/29 18:59:11 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,11 @@ YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_cyl.o yolo_setup_plight.o yolo_parse_settings.o \
 	yolo_setting_ambiant.o yolo_setup_tore.o yolo_setup_texture.o
 
+SDA_DIR=parser/sda
+SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
+	sda_setup_color.o sda_setup_al.o sda_setup_rot.o sda_setup_fov.o \
+	sda_setup_size.o
+
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	light.o shaders.o configure.o texture.o
@@ -74,6 +79,7 @@ FILTER=filter.o rgb.o ymc.o sepia.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
+	$(SDA:%.o=$(OBJBUILDDIR)/$(SDA_DIR)/%.o) \
 	$(TYPE:%.o=$(OBJBUILDDIR)/$(TYPEDIR)/%.o) \
 	$(EVENT:%.o=$(OBJBUILDDIR)/$(EVENTDIR)/%.o) \
 	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
@@ -83,6 +89,7 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
+	$(SDA:%.o=$(SDA_DIR)/%.c) \
 	$(TYPE:%.o=$(TYPEDIR)/%.c) \
 	$(EVENT:%.o=$(EVENTDIR)/%.c) \
 	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
@@ -92,6 +99,7 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
+		$(OBJBUILDDIR)/$(SDA_DIR) \
 		$(OBJBUILDDIR)/$(TYPEDIR) \
 		$(OBJBUILDDIR)/$(EVENTDIR) \
 		$(OBJBUILDDIR)/$(OBJECTS_DIR) \

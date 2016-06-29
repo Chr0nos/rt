@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   yolo_setting_ambiant.c                             :+:      :+:    :+:   */
+/*   sda_setup_rot.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/21 15:54:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/29 19:41:20 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/29 18:33:44 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/29 18:42:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <math.h>
-#include "parser.h"
-#include "render.h"
+#include "sda.h"
 #include "libft.h"
 
-int			yolo_setting_ambiant(char **parms, size_t size, t_rtcfg *rset)
+int			sda_setup_rot(t_rt *rt, t_obj *obj, char **av)
 {
-	if (size < 2)
-		return (0);
-	rset->ambiant_light = fmin(1.0, ft_atod(parms[1]) / MID_LIGHT_POWER);
+	(void)rt;
+	rt_obj_rotate(obj,
+		(t_v4d){deg2rad(ft_atod(av[0])),
+		deg2rad(ft_atod(av[1])),
+		deg2rad(ft_atod(av[2])),
+		1.0});
 	return (1);
 }

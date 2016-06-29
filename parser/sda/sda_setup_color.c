@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   yolo_setting_ambiant.c                             :+:      :+:    :+:   */
+/*   sda_setup_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/21 15:54:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/29 19:41:20 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/29 17:15:50 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/29 17:16:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <math.h>
-#include "parser.h"
-#include "render.h"
+#include "sda.h"
 #include "libft.h"
 
-int			yolo_setting_ambiant(char **parms, size_t size, t_rtcfg *rset)
+int			sda_setup_color(t_rt *rt, t_obj *obj, char **av)
 {
-	if (size < 2)
+	(void)rt;
+	if (av[0][0] != '#')
 		return (0);
-	rset->ambiant_light = fmin(1.0, ft_atod(parms[1]) / MID_LIGHT_POWER);
+	ft_strtoupper(av[0]);
+	((t_cube*)obj->content)->color =
+		(unsigned int)ft_basetoul((const char*)&av[0][1], "0123456789ABCDEF");
 	return (1);
 }

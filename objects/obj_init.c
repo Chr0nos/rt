@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 12:18:22 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/29 19:29:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 t_obj		*rt_obj_init(t_obj *obj, int type)
 {
 	obj->id = 0;
+	obj->cfgbits = 0;
 	obj->type = (t_type)(type & ~NOSHADER);
 	obj->next = NULL;
 	obj->childs = NULL;

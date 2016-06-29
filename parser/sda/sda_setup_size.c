@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   yolo_setting_ambiant.c                             :+:      :+:    :+:   */
+/*   sda_setup_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/21 15:54:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/29 19:41:20 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/29 18:57:31 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/29 18:59:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <math.h>
-#include "parser.h"
-#include "render.h"
+#include "sda.h"
 #include "libft.h"
 
-int			yolo_setting_ambiant(char **parms, size_t size, t_rtcfg *rset)
+int			sda_setup_size(t_rt *rt, t_obj *obj, char **av)
 {
-	if (size < 2)
-		return (0);
-	rset->ambiant_light = fmin(1.0, ft_atod(parms[1]) / MID_LIGHT_POWER);
+	(void)rt;
+	((t_cube*)obj->content)->size = (float)ft_atod(av[0]);
 	return (1);
 }

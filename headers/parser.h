@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 12:15:36 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/29 18:21:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_parser_internal
 }					t_parser_internal;
 
 t_obj				*yolo_parse(const char *filepath, t_rtcfg *rset);
+t_obj				*yolo_parse_finalize(t_obj *root);
 int					yolo_parse_settings(char *line, t_rtcfg *rset);
 int					yolo_setup(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cube(t_obj *obj, size_t ac, char **av);
