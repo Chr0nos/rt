@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 13:44:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 01:34:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int				menu_init(t_rt *rt, const char *path)
 {
 	t_list		*files;
 	int			ret;
+	const char	*masks[2] = {"*.yolo", "*.sda"};
 
 	if (!path)
 		path = "./scenes/";
-	if (!(files = ls_dir(path, "*.yolo")))
+	if (!(files = ls_dir(path, (const char **)(unsigned long)masks, 2)))
 	{
 		ft_putendl_fd("nothing to do: empty directory", 2);
 		return (-2);

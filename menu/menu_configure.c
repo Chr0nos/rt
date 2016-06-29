@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 19:05:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 01:24:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		ft_memcpy(&rts[p], rt, sizeof(t_rt));
 		rts[p].keyboard &= ~MENU;
 		rts[p].sys.geometry = subgeo;
-		rts[p].root = yolo_parse((const char*)files->content, &rts[p].settings);
+		rts[p].root = rt_parser((const char *)files->content, &rts[p]);
 		if (rts[p].root)
 		{
 			if ((rts[p].sys.screen = draw_make_surface(subgeo)))

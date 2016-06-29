@@ -2,7 +2,7 @@ CAMERA
 {
 	pos: 3.461165 3.568181 -12.239260
 	rot: 0 0 0
-	al: 30
+	al: 10
 	#fov: 75
 }
 
@@ -18,7 +18,7 @@ CUBE
 {
 	pos: 0 0 0
 	rot: 0 0 0
-	color: #40af90
+	color: #b040af90
 	size: 2
 	EMPTY
 	{
