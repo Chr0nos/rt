@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 11:19:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/17 16:06:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 11:10:31 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av)
 	((t_cyl*)obj->content)->radius = (float)ft_atod(av[PROP_SIZE]);
 	((t_cyl*)obj->content)->height = (float)ft_atod(av[CYL_HEIGHT]);
 	((t_cyl*)obj->content)->color = yolo_setup_color(av[CYL_COLOR_POS]);
-	if (ac > CYL_TEXTURE)
-		obj->texture = ft_atoi(av[CYL_TEXTURE]);
-	else
-		obj->texture = -1;
+	if (av[CYL_TEXTURE] != NULL)
+		yolo_setup_texture(obj, av, CYL_TEXTURE);
 	rt_obj_rotate(obj,
 		(t_v4d){deg2rad(ft_atod(av[CYL_OR_X])),
 		deg2rad(ft_atod(av[CYL_OR_Y])),

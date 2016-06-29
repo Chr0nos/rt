@@ -6,39 +6,45 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 14:42:09 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/28 18:06:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 12:13:26 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "texture.h"
 #include "libft.h"
 
 //CODE ILLISIBLE : a modifier !!! (ou delete)
 
-double		rt_checker(t_render *r, t_obj *light)
+static t_uint		rt_checker(t_obj *obj, t_render *r)
 {
-	t_uint p[3];
-	t_uint	color[2];
+	t_v4d	tmp;
 
-	(void)light;
-	color[0] = (t_uint)(r->ray->color - r->ray->color * 0.5);
-	color[1] = (t_uint)(r->ray->color + r->ray->color * 0.5);
-	p[0] = (t_uint)(r->intersection.x / 2);
-	p[1] = (t_uint)(r->intersection.y / 2);
-	p[2] = (t_uint)(r->intersection.z / 2);
-	if ((p[2] % 2))
+	tmp = (t_v4d){ft_fabs(r->intersection.x / TILE_SIZE),
+		ft_fabs(r->intersection.y / TILE_SIZE),
+		ft_fabs(r->intersection.z / TILE_SIZE), 0};
+	if (ft_ispair((int)tmp.z))
 	{
-		if ((p[0] % 2 && p[1] % 2) || (!(p[0] % 2) && !(p[1] % 2)))
-			r->ray->color = color[0];
+		if ((ft_isodd((int)tmp.x) && ft_isodd((int)tmp.y))
+				|| (ft_ispair((int)tmp.x) && ft_ispair((int)tmp.y)))
+			return (((t_text *)obj->content)->color1);
 		else
-			r->ray->color = color[1];
+			return (((t_text *)obj->content)->color2);
 	}
 	else
 	{
-		if ((p[0] % 2 && p[1] % 2) || (!(p[0] % 2) && !(p[1] % 2)))
-			r->ray->color = color[1];
+		if ((ft_isodd((int)tmp.x) && ft_isodd((int)tmp.y))
+				|| (ft_ispair((int)tmp.x) && ft_ispair((int)tmp.y)))
+			return (((t_text *)obj->content)->color2);
 		else
-			r->ray->color = color[0];
+			return (((t_text *)obj->content)->color1);
 	}
-	return (0);
+}
+
+t_uint	apply_texture(t_obj *obj, t_render *r)
+{
+	if (((t_text *)obj->content)->type == CHECKER)
+		return (rt_checker(obj, r));
+	else
+		return (r->ray->color);
 }

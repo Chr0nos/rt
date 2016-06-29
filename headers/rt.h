@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:16:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 12:01:06 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
 t_uint			rt_sizeobj(t_type type);
 
+t_uint			rt_render(t_rt *rt, t_ray *ray);
+
 int				check_cube(const t_box *a, const t_box *b);
 void			update_cube(t_box *a, const t_box *b);
 
@@ -97,7 +99,6 @@ int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_realpos(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_type(t_obj *obj, int mode, void *userdata);
 
-t_uint			rt_render(t_rt *rt, t_ray *ray);
 
 double			rad2deg(double rad);
 float			rad2degf(float rad);

@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 11:44:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 12:16:32 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORMS_H
 # define FORMS_H
 # include "draw.h"
+# include "texture.h"
 
 typedef unsigned int	t_uint;
 typedef t_point			t_v2i;
@@ -40,7 +41,6 @@ typedef enum			e_type
 	NOCHECKBOX = PLAN | CYL,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
-	TEXTURE = CYL
 }						t_type;
 
 enum					e_stop
@@ -70,45 +70,47 @@ typedef struct			s_typesize
 
 typedef struct			s_cube
 {
-	unsigned int		color;
+	t_uint				color;
 	float				size;
 }						t_cube;
 
 typedef struct			s_plan
 {
-	unsigned int		color;
+	t_uint				color;
+	t_text				texture;
 }						t_plan;
 
 typedef struct			s_cone
 {
-	unsigned int		color;
+	t_uint				color;
 	float				size;
 	t_v4d				angle;
 }						t_cone;
 
 typedef struct			s_cyl
 {
-	unsigned int		color;
+	t_uint				color;
 	float				radius;
 	float				height;
+	t_text				texture;
 }						t_cyl;
 
 typedef struct			s_tore
 {
-	unsigned int		color;
+	t_uint				color;
 	float				radius;
 	float				radius_2;
 }						t_tore;
 
 typedef struct			s_sphere
 {
-	unsigned int		color;
+	t_uint				color;
 	float				radius;
 }						t_sphere;
 
 typedef struct			s_plight
 {
-	unsigned int		color;
+	t_uint				color;
 	float				radius;
 	double				intensity;
 }						t_plight;
@@ -134,7 +136,7 @@ typedef struct			s_ray
 	t_v4d				dir;
 	double				limit;
 	double				lenght;
-	unsigned int		color;
+	t_uint				color;
 	int					count;
 }						t_ray;
 

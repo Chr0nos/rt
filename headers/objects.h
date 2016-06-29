@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 12:47:20 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/29 11:38:38 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct			s_obj
 	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
 	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
 	struct s_shaders	*shader;
-	int					texture;
 	double				refractive_index;
 }						t_obj;
 
