@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/29 23:01:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 16:11:58 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_shaders			*init_shaders(unsigned int nbr_fshaders)
 }
 
 t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
-	t_obj *o), unsigned int color, char operator)
+	t_obj *o), unsigned int color, unsigned int
+	(*blend)(unsigned int a, unsigned int b))
 {
 	t_shader	*s;
 
@@ -37,7 +38,7 @@ t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
 		s->enabled = 1;
 		s->color_base = color;
 		s->color_render = color;
-		s->operator = operator;
+		s->blend = blend;
 		s->exec = shader;
 		return (s);
 	}
@@ -78,14 +79,8 @@ unsigned int		compute_color_shaders(t_shaders *s)
 				color = s->shader[i]->color_render;
 			else
 			{
-				if (s->shader[i]->operator == '+')
-					color = blend_add(color, s->shader[i]->color_render);
-				else if (s->shader[i]->operator == '-')
-					color -= s->shader[i]->color_render;
-				else if (s->shader[i]->operator == '*')
-					color = blend_multiply(color, s->shader[i]->color_render);
-				else if (s->shader[i]->operator == '/')
-					color /= s->shader[i]->color_render;
+				color = s->shader[i]->blend(color,
+					s->shader[i]->color_render);
 			}
 			s->shader[i]->color_render = s->shader[i]->color_base;
 		}

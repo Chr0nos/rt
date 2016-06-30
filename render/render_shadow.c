@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 18:14:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 23:01:57 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 16:12:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 			;
 		else
 		{
-			shaders_activate_only(r->obj_intersect->shader, 0);
+			r->ray->shadow = 1;
 			return (STOP_ALL);
 		}
 	}
