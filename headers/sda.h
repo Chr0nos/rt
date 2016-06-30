@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 02:05:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 02:36:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ enum					e_sda_cfgbit
 		SDB_FOV = 1 << 3,
 		SDB_SIZE = 1 << 4,
 		SDB_AL = 1 << 5,
-		SDB_INTEN = 1 << 6
+		SDB_INTEN = 1 << 6,
+		SDB_REFRACT = 1 << 7
 };
 
 enum					e_sda_setting
@@ -35,7 +36,8 @@ enum					e_sda_setting
 		SDA_AL = SETTING | CAMERA,
 		SDA_FOV = CAMERA,
 		SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE),
-		SDA_INTEN = LIGHTTYPE
+		SDA_INTEN = LIGHTTYPE,
+		SDA_REFRACT = VISIBLE
 };
 
 typedef struct			s_sda_cfg
@@ -66,5 +68,6 @@ int						sda_setup_rot(t_rt *rt, t_obj *obj, char **av);
 int						sda_setup_fov(t_rt *rt, t_obj *obj, char **av);
 int						sda_setup_size(t_rt *rt, t_obj *obj, char **av);
 int						sda_setup_intensity(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_refract(t_rt *rt, t_obj *obj, char **av);
 
 #endif

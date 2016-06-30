@@ -16,6 +16,7 @@ CUBE
 {
 	color: #b040af90
 	size: 2
+	refract: 4.541
 	EMPTY
 	{
 		SPHERE
