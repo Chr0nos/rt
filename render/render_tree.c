@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/28 18:57:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 18:05:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent,
 	ob->parent = parent;
 	ob->hitbox = obj->hitbox;
 	ob->bounds = obj->hitbox;
+	ob->refractive_index = obj->refractive_index;
 	rt_box_update(ob);
 	return (ob);
 }
