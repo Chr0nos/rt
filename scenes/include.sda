@@ -1,9 +1,14 @@
+CAMERA
+	pos: 3.461165 3.568181 -12.239260
+	al: 150
 CUBE
 	pos: 4 4 0
 	size: 2
 	color: #f0f0f0
 EMPTY
 	include: ./scenes/spherecube.sda
+EMPTY
+	include: ./scenes/sapin.sda
 SPHERE
 	pos: 6 4 0
 	color: #10d3eb45

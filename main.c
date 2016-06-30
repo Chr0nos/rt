@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:21:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 20:27:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,12 @@ int				main(int ac, char **av)
 		menu_init(&rt, av[1]);
 	else if (ac >= 2)
 	{
-		//if (!(rt.root = sda_parse(av[1], &rt)))
-		//if (!(rt.root = yolo_parse(av[1], &(rt.settings))))
 		if (!(rt.root = rt_parser(av[1], &rt)))
 		{
 			ft_putendl_fd("error.", 2);
 			return (1);
 		}
-		if (rt.root->content)
+		if (rt_checkcamera(&rt))
 		{
 			//rt_debug(rt.root, 0);
 			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 17:45:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 19:16:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 #include "libft.h"
 #include "unistd.h"
 #include "parser.h"
+
+static void	sda_set_cone_default(t_obj *obj)
+{
+	t_cone	*cone;
+
+	cone = obj->content;
+	if (!(obj->cfgbits & SDB_ANGLE))
+	{
+		cone->angle = (t_v4d){
+			1.0,
+			0.87758256189,
+			0.4794255386,
+			1.83048772173
+		};
+	}
+}
 
 static void	sda_set_lights_default(t_obj *obj)
 {
@@ -44,6 +60,8 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		sda_set_camera_default(obj);
 	else if (obj->type & LIGHTTYPE)
 		sda_set_lights_default(obj);
+	else if (obj->type == CONE)
+		sda_set_cone_default(obj);
 	if ((obj->type & SDA_SIZE) && (!(obj->cfgbits & SDB_SIZE)))
 		((t_cube*)obj->content)->size = 1.0;
 	return (OK);

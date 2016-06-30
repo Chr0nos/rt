@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/30 18:20:36 by alhote           ###   ########.fr        #
+#    Updated: 2016/06/30 19:58:51 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
-NAME=rtv1
+NAME=rt
 FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
@@ -54,12 +54,12 @@ SDA_DIR=parser/sda
 SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 	sda_setup_color.o sda_setup_al.o sda_setup_rot.o sda_setup_fov.o \
 	sda_setup_size.o sda_setup_intensity.o sda_defaults.o sda_setup_refract.o \
-	sda_setup_include.o
+	sda_setup_include.o sda_setup_angle.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	light.o shaders.o configure.o damier.o ambiant.o blend.o putbits.o \
-	parser/parser.o
+	parser/parser.o check_camera.o
 
 RENDER_DIR=render
 RENDER=render.o render_light.o render_shadow.o render_tree.o refract.o

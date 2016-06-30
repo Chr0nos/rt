@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/30 18:18:06 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 19:56:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_uint			rt_sizeobj(t_type type);
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);
 
+int				rt_checkcamera(t_rt *rt);
 int				check_cube(const t_box *a, const t_box *b);
 void			update_cube(t_box *a, const t_box *b);
 
