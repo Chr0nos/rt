@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:57:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 20:10:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int				movemyass(t_rt *rt)
 	if (k & MENU)
 		return (k & MENU);
 	if (!rt_checkcamera(rt))
-		return (0);
-	if (!rt->root)
 	{
 		ft_putendl_fd("error of doom ! i'm done whith that shit !", 2);
 		exit(1);
