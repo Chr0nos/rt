@@ -4,6 +4,8 @@ CUBE
 	color: #f0f0f0
 EMPTY
 	include: ./scenes/spherecube.sda
+EMPTY
+	include: ./scenes/sapin.sda
 SPHERE
 	pos: 6 4 0
 	color: #10d3eb45

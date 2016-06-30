@@ -1,0 +1,23 @@
+CUBE
+	color: #663300
+	size: 2
+	CONE
+		size: 5.5
+		pos: 0 6 0
+		color: #003300
+		CONE
+			size: 4
+			pos: 0 2 0
+			color: #003300
+			CONE
+				size: 3
+				pos: 0 1.5 0
+				color: #003300
+				CONE
+					size: 2
+					pos: 0 1 0
+					color: #003300
+					CONE
+						size: 1
+						pos: 0 0.7 0
+						color: #003300
