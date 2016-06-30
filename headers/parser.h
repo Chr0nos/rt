@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:20:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:06:08 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # define CYL_OR_X 5
 # define CYL_OR_Y 6
 # define CYL_OR_Z 7
-# define CYL_HEIGHT 8
-# define CYL_TEXTURE 9
+# define CYL_TEXTURE 8
 # define TORE_COLOR 3
 # define TORE_R1 0
 # define TORE_R2 4
@@ -66,6 +65,7 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cube(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_plan(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cone(t_obj *obj, size_t ac, char **av);
+int					yolo_setup_cone_inf(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_tore(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);

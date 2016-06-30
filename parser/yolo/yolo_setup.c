@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 20:51:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 22:45:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:05:08 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ int					yolo_setup(t_obj *obj, size_t ac, char **av)
 		(t_parser_cfg){CAMERA, &yolo_setup_camera},
 		(t_parser_cfg){PLAN, &yolo_setup_plan},
 		(t_parser_cfg){CONE, &yolo_setup_cone},
+		(t_parser_cfg){CONE_INF, &yolo_setup_cone_inf},
 		(t_parser_cfg){CYL, &yolo_setup_cyl},
 		(t_parser_cfg){LIGHTTYPE, &yolo_setup_plight}
 	};
 
 	if (!ac)
 		return (1);
-	p = 6;
+	p = 7;
 	while (p--)
 		if (obj->type & parse[p].type)
 			return (parse[p].config(obj, ac, av));

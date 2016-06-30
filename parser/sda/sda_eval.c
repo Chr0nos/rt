@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:32:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 17:07:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	sda_isobj(const char *line)
 		return (0);
 	while (*line)
 	{
-		if ((*line < 'A') || (*line > 'Z'))
+		if ((((*line < 'A') || (*line > 'Z'))) && (*line != '_'))
 			return (0);
 		line++;
 	}

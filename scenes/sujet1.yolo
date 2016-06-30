@@ -6,7 +6,7 @@ POINTLIGHT			-12	4	-18	110	500			#ffffff
 PLAN								0	0	-4	0	0	0	#BBACAC
 PLAN								0	0	7	90	-5	0	#2C75FF
 
-CONE					2		5		2		0		#EDFF0C
-CYL						1		-5		0		0		#FD3F92  	1	1	0	1	1
+CONE_INF				0.3		4		3		1		#EDFF0C		1	-1	0	1
+CYL						1		-5		0		0		#FD3F92  	1	1	0	1
 	SPHERE				2		-2		2		-2		255:0:0
 	SPHERE				2		12		2		-2		0:255:0
