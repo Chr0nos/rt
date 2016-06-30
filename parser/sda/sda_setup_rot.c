@@ -6,16 +6,16 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 18:33:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 18:42:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 15:25:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 
-int			sda_setup_rot(t_rt *rt, t_obj *obj, char **av)
+int			sda_setup_rot(t_sda *e, t_obj *obj, char **av)
 {
-	(void)rt;
+	(void)e;
 	rt_obj_rotate(obj,
 		(t_v4d){deg2rad(ft_atod(av[0])),
 		deg2rad(ft_atod(av[1])),

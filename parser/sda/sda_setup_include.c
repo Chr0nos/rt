@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sda_setup_refract.c                                :+:      :+:    :+:   */
+/*   sda_setup_include.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/30 02:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:25:11 by snicolet         ###   ########.fr       */
+/*   Created: 2016/06/30 13:57:04 by snicolet          #+#    #+#             */
+/*   Updated: 2016/06/30 15:35:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#include "rt.h"
+#include <stdlib.h>
 
-int			sda_setup_refract(t_sda *e, t_obj *obj, char **av)
+int		sda_setup_include(t_sda *e, t_obj *obj, char **av)
 {
-	(void)e;
-	obj->refractive_index = ft_atod(av[0]);
+	char	*filepath;
+
+	(void)obj;
+	filepath = ft_strunsplit((const char **)(unsigned long)&av[0], ' ');
+	if (!sda_parse_rawtree(filepath, e->rt, obj, e->last_lvl + 1))
+	{
+		ft_putstr_fd("error: failed to include file: ", 2);
+		ft_putstr_fd(filepath, 2);
+		free(filepath);
+		return (-1);
+	}
+	free(filepath);
 	return (1);
 }
