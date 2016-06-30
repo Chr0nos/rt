@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/30 16:35:25 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 19:45:44 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	unsigned int	color;
 
 	(void)s;
-	intelight = geo_normv4(geo_subv4(r->intersection, light->trans.w));
+	intelight = geo_normv4(geo_subv4(light->trans.w, r->intersection));
 	reflect = (t_v4d){
 		intelight.x - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.x,
 		intelight.y - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.y,
@@ -40,7 +40,8 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	li = 0.0;
 	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
-		li = pow(latt, 20) * (((t_plight *)light->content)->intensity);
+		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity))
+			/ MID_LIGHT_POWER * 255.0;
 		color = to_rgb((unsigned int)li, (unsigned int)li, (unsigned int)li);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
@@ -69,7 +70,8 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	latt = geo_dotv4(r->normal, r->ray->dir);
 	if (latt > 0.0)
 	{
-		li = latt * (((t_plight *)light->content)->intensity) * 2;
+		li = (latt * (((t_plight *)light->content)->intensity))
+			/ MID_LIGHT_POWER * 255.0;
 		color = to_rgb((unsigned int)li, (unsigned int)li, (unsigned int)li);
 		s->color_render = blend_lighten(s->color_render, color);
 	}

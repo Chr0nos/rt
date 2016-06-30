@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/30 17:09:02 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 19:58:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,29 @@ unsigned int		to_rgb(unsigned int r, unsigned int g, unsigned int b)
 	g = (g > 255 ? 255 : g);
 	b = (b > 255 ? 255 : b);
 	return ((r << 16) | (g << 8) | (b));
+}
+
+unsigned int		blend_spec(unsigned int a, unsigned int b)
+{
+	float	ratio;
+
+	ratio = (float)(R(b)) / 255.0f;
+	return (draw_color_lerp(a, 0xffffff, ratio));
+}
+
+unsigned int		blend_overlay(unsigned int a, unsigned int b)
+{
+	unsigned int	red;
+	unsigned int	green;
+	unsigned int	blue;
+
+	red = ((R(b) < 128) ? (2 * R(a) * R(b) / 255) : (255 - 2 * (255 - R(a))
+	* (255 - R(b)) / 255));
+	green = ((G(b) < 128) ? (2 * G(a) * G(b) / 255) : (255 - 2 * (255 - G(a))
+	* (255 - G(b)) / 255));
+	blue = ((B(b) < 128) ? (2 * B(a) * B(b) / 255) : (255 - 2 * (255 - B(a))
+	* (255 - B(b)) / 255));
+	return (to_rgb(red, green, blue));
 }
 
 unsigned int		blend_lighten(unsigned int a, unsigned int b)
