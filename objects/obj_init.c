@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 18:16:36 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 20:51:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_obj		*rt_obj_init(t_obj *obj, int type)
 	{
 		obj->shader = init_shaders(3);
 		obj->shader->shader[2] = init_shader(&rt_specular_pow, 0x000000,
-			&blend_lighten);
+			&blend_add);
 		obj->shader->shader[1] = init_shader(&rt_light_pow, 0x000000,
 			&blend_multiply);
 		obj->shader->shader[0] = init_shader(&shader_ambiant, 0x000000,

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 18:14:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 16:12:52 by alhote           ###   ########.fr       */
+/*   Updated: 2016/06/30 21:08:06 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 	{
 		if ((obj->inters) && (obj->inters(obj, r->ray, NULL) == 0))
 			;
-		else if (r->light_lenght < r->ray->lenght)
+		else if (r->light_lenght < geo_distv4(obj->trans.w, r->intersection))
 			;
 		else
 		{
