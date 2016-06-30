@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 20:10:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 22:41:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int				movemyass(t_rt *rt)
 	obj->trans = m;
 	if (k & (ROTATE | ROLL))
 		camera_rotate(rt, 0.1, k);
-	return (k & (MOVE | FORCE_DISPLAY | MENU));
+	if (k & AMBIANT)
+		rt->settings.ambiant_light += (k & AMBIANT_LESS) ? -10.0 : 10.0;
+	return (k & (MOVE | FORCE_DISPLAY | MENU | AMBIANT));
 }
 
 int				sdl_event(SDL_Event *event, t_rt *rt)
