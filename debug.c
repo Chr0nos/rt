@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:50:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 18:59:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 #include <unistd.h>
+#include "sda.h"
 
 static void		rt_putnchar(char c, unsigned int n)
 {

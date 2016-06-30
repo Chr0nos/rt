@@ -2,9 +2,10 @@ CAMERA
 	pos: 0 1 -10
 	al: 55
 	POINTLIGHT
-CUBE
-	color: #a0ff0000
+CONE
+	color: #ff0000
 	refract: 1.0
+	#angle: 1.0
 	SPHERE
 		pos: 2 2 0
 		color: #3d2365
