@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:56:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 23:08:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 		{
 			if (!rt_checkcamera(&rt->rts[id]))
 				return (0);
-			ft_printf("menu: opening id: %d\n");
+			ft_printf("menu: opening id: %d\n", id);
 			tmp_rt = rt->rts[id];
 			tmp_rt.sys = rt->sys;
 			rt->rts[id].root = NULL;
