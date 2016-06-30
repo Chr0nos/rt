@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 16:29:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 17:45:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	sda_set_lights_default(t_obj *obj)
 		((t_plight*)obj->content)->radius = 100.0;
 }
 
-static void sda_set_camera_default(t_obj *obj)
+static void	sda_set_camera_default(t_obj *obj)
 {
 	t_camera	*cam;
 
@@ -36,7 +36,7 @@ static void sda_set_camera_default(t_obj *obj)
 	yolo_camera_save(obj);
 }
 
-static int 	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
+static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 {
 	(void)mode;
 	(void)userdata;

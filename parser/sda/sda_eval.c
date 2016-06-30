@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 17:07:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 17:47:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "stdlib.h"
 
-static int	sda_isobj(const char *line)
+static int		sda_isobj(const char *line)
 {
 	if (!*line)
 		return (0);
@@ -27,7 +27,7 @@ static int	sda_isobj(const char *line)
 	return (1);
 }
 
-static int	sda_spliter(const char *line, char ***av, int *ac)
+static int		sda_spliter(const char *line, char ***av, int *ac)
 {
 	*av = ft_strsplitstr(line, " \t");
 	*ac = (int)ft_tabcount((void **)*av);
@@ -56,7 +56,7 @@ static void		sda_mkobj(const char *s, int lvl, int *last_lvl,
 	*last_lvl = lvl;
 }
 
-int			sda_eval(const char *line, t_sda *e, const int lvl)
+int				sda_eval(const char *line, t_sda *e, const int lvl)
 {
 	char			**av;
 	int				ac;

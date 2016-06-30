@@ -2,10 +2,8 @@ CAMERA
 	pos: 0 1 -10
 	al: 5
 	POINTLIGHT
-CONE_INF
+CUBE
 	color: #ff0000
-	rot: 1 1 0
-	size: 0.5
 PLAN
 	pos: 0 -10 0
 	color: #00f0f0

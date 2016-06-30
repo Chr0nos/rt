@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yolo_setup_texture.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 10:57:42 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/29 12:17:53 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/06/30 17:45:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int		yolo_setup_texture(t_obj *obj, char **av, int index)
 {
-	if (av[index] && av[index + 1] && av[index +2])
+	if (av[index] && av[index + 1] && av[index + 2])
 	{
 		((t_text *)obj->content)->type = ft_atoi(av[index]);
 		ft_strtoupper(av[index + 1]);
