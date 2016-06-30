@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/19 18:01:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:00:47 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){PLAN, sizeof(struct s_plan)},
 		(t_typesize){SPHERE, sizeof(struct s_sphere)},
 		(t_typesize){CONE, sizeof(struct s_cone)},
+		(t_typesize){CONE_INF, sizeof(struct s_cone_inf)},
 		(t_typesize){CAMERA, sizeof(struct s_camera)},
 		(t_typesize){CYL, sizeof(struct s_cyl)},
 		(t_typesize){LIGHTTYPE, sizeof(struct s_plight)}
 	};
 
-	p = 7;
+	p = 8;
 	while (p--)
 		if (type & sizes[p].type)
 			return (sizeof(t_obj) + (unsigned int)sizes[p].size);

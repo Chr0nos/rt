@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 17:56:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 11:35:11 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef enum			e_type
 	SUNLIGHT = 1 << 12,
 	TORE = 1 << 13,
 	SETTING = 1 << 14,
+	CONE_INF = 1 << 15,
 	NOSHADER = 1 << 28,
-	RADIUS = SPHERE | CUBE | CYL | CONE | TORE,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE,
-	NOCHECKBOX = PLAN | CYL,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE,
+	RADIUS = SPHERE | CUBE | CYL | CONE | TORE | CONE_INF,
+	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE | CONE_INF,
+	NOCHECKBOX = PLAN | CYL | CONE_INF,
+	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 }						t_type;
 
@@ -88,11 +89,16 @@ typedef struct			s_cone
 	t_v4d				angle;
 }						t_cone;
 
+typedef struct			s_cone_inf
+{
+	t_uint				color;
+	float				size;
+}						t_cone_inf;
+
 typedef struct			s_cyl
 {
 	t_uint				color;
 	float				radius;
-	float				height;
 	t_text				texture;
 }						t_cyl;
 
