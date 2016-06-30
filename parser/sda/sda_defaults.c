@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:57:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 16:29:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int 	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		sda_set_camera_default(obj);
 	else if (obj->type & LIGHTTYPE)
 		sda_set_lights_default(obj);
+	if ((obj->type & SDA_SIZE) && (!(obj->cfgbits & SDB_SIZE)))
+		((t_cube*)obj->content)->size = 1.0;
 	return (OK);
 }
 

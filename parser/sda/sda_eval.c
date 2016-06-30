@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 22:44:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 15:32:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,12 @@ static void		sda_mkobj(const char *s, int lvl, int *last_lvl,
 	*last_lvl = lvl;
 }
 
-int			sda_eval(const char *line, t_rt *rt, t_obj *root, const int lvl)
+int			sda_eval(const char *line, t_sda *e, const int lvl)
 {
-	static t_obj	*current_obj = NULL;
-	static int		last_lvl = 0;
 	char			**av;
 	int				ac;
 	int				ret;
 
-	if (!current_obj)
-		current_obj = root;
 	line += lvl;
 	if (!sda_spliter(line, &av, &ac))
 		return (-1);
@@ -74,8 +70,9 @@ int			sda_eval(const char *line, t_rt *rt, t_obj *root, const int lvl)
 		(av[0][0] == '}') || (av[0][0] == '{'))
 		;
 	else if (sda_isobj(av[0]) > 0)
-		sda_mkobj(av[0], lvl, &last_lvl, &current_obj);
-	else if ((current_obj) && (sda_settings(current_obj, rt, ac, av)) >= 0)
+		sda_mkobj(av[0], lvl + e->lvl_offset, &e->last_lvl, &e->current_obj);
+	else if ((e->current_obj) &&
+		(sda_settings(e, ac, av)) >= 0)
 		;
 	else
 		ret = -1;

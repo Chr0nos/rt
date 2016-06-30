@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 02:37:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 15:30:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#define SDA_SETUP_TYPES 9
+#define SDA_SETUP_TYPES 10
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
@@ -27,6 +27,8 @@ void		sda_settings_init(t_sda_cfg *cfg)
 		SDB_INTEN};
 	cfg[8] = (t_sda_cfg){"refract:", &sda_setup_refract, SDA_REFRACT, 1,
 		SDB_REFRACT};
+	cfg[9] = (t_sda_cfg){"include:", &sda_setup_include, SDA_INCLUDE, 1,
+		SDB_INCLUDE};
 }
 
 static int	sda_warning(t_obj *obj, const char *msg, const char *opt, int ret)
@@ -38,7 +40,7 @@ static int	sda_warning(t_obj *obj, const char *msg, const char *opt, int ret)
 	return (ret);
 }
 
-int			sda_settings(t_obj *obj, t_rt *rt, int ac, char **av)
+int			sda_settings(t_sda *e, int ac, char **av)
 {
 	int					p;
 	int					ret;
@@ -50,15 +52,16 @@ int			sda_settings(t_obj *obj, t_rt *rt, int ac, char **av)
 	{
 		if (!ft_strcmp(cfg[p].str, av[0]))
 		{
-			if (!((int)obj->type & cfg[p].obj_valid_type))
-				return (sda_warning(obj, "not eligible", av[0], -1));
+			if (!((int)e->current_obj->type & cfg[p].obj_valid_type))
+				return (sda_warning(e->current_obj, "not eligible", av[0], -1));
 			else if (!cfg[p].config)
 				return (0);
 			else if (ac - 2 < cfg[p].argc)
-				return (sda_warning(obj, "missing params", av[0], -3));
-			ret = cfg[p].config(rt, obj, &av[1]);
+				return (sda_warning(e->current_obj, "missing params",
+					av[0], -3));
+			ret = cfg[p].config(e, e->current_obj, &av[1]);
 			if (ret >= 0)
-				obj->cfgbits |= cfg[p].bit;
+				e->current_obj->cfgbits |= cfg[p].bit;
 			return (ret);
 		}
 	}

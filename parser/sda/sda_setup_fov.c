@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 18:45:59 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 18:56:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 15:24:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #define MINFOV 5.0
 #define MAXFOV 180.0
 
-int			sda_setup_fov(t_rt *rt, t_obj *obj, char **av)
+int			sda_setup_fov(t_sda *e, t_obj *obj, char **av)
 {
 	double	fov;
 
-	(void)rt;
+	(void)e;
 	fov = ft_atod(av[0]);
 	if ((fov == 0.0) || (fov < MINFOV) || (fov > MAXFOV))
 		fov = 49.124;
