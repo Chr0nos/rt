@@ -2,8 +2,13 @@ CAMERA
 	pos: 0 1 -10
 	al: 55
 	POINTLIGHT
+<<<<<<< HEAD
+CYL
+	color: #a0ff0000
+=======
 CONE
 	color: #ff0000
+>>>>>>> e422e7f4ae60d8b03d436de93a6f9af45a0ac637
 	refract: 1.0
 	#angle: 1.0
 	SPHERE
