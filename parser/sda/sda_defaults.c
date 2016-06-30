@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:08:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 19:16:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static void	sda_set_cone_default(t_obj *obj)
 			1.0,
 			0.87758256189,
 			0.4794255386,
-			0.0
+			1.83048772173
 		};
-		cone->angle.w = cone->angle.y / cone->angle.z;
 	}
 }
 
