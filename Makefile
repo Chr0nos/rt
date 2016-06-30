@@ -6,14 +6,14 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/06/30 18:52:06 by snicolet         ###   ########.fr        #
+#    Updated: 2016/06/30 19:30:21 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
-NAME=rtv1
+NAME=RT
 FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
