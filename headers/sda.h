@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 21:45:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 02:05:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void					sda_set_defaults(t_obj *root);
 ** configure functions
 */
 
-int			sda_setup_color(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_pos(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_al(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_rot(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_fov(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_size(t_rt *rt, t_obj *obj, char **av);
-int			sda_setup_intensity(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_color(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_pos(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_al(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_rot(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_fov(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_size(t_rt *rt, t_obj *obj, char **av);
+int						sda_setup_intensity(t_rt *rt, t_obj *obj, char **av);
 
 #endif

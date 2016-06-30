@@ -1,7 +1,7 @@
 CAMERA
 {
 	pos: 3.461165 3.568181 -12.239260
-	rot: 0 0 0
+	#rot: 0 0 0
 	al: 10
 	#fov: 75
 }
@@ -9,15 +9,11 @@ CAMERA
 POINTLIGHT
 {
 	pos: 0 15 0
-	color: #ffffff
-	radius: 100
-	intensity: 100
 }
 
+#un cube avec une sphere dedans et une autre un peu plus loin
 CUBE
 {
-	pos: 0 0 0
-	rot: 0 0 0
 	color: #b040af90
 	size: 2
 	EMPTY
@@ -37,8 +33,24 @@ CUBE
 	}
 }
 
-PLAN
+#les 3 plans inclines
+EMPTY
 {
-	pos: 0 -10 0
-	color: #344271
+	PLAN
+	{
+		pos: 0 -10 0
+		color: #344271
+	}
+	PLAN
+	{
+		pos: -10 0 15
+		rot: 0 0 40
+		color: #688fb3
+	}
+	PLAN
+	{
+		pos: -40 15 40
+		rot: 40 0 0
+		color: #52d50b
+	}
 }
