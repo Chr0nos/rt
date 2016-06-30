@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_shadow.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 18:14:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 18:14:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 16:12:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "shaders.h"
 
 int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 {
@@ -32,8 +33,7 @@ int				rt_render_shadow(t_obj *obj, int mode, void *userdata)
 			;
 		else
 		{
-			r->light_power = 0.0;
-			r->specular_power = 0.0;
+			r->ray->shadow = 1;
 			return (STOP_ALL);
 		}
 	}

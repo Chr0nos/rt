@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 10:40:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/29 19:01:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
-#include "shaders.h"
 
 int		rt_node_display(t_obj *obj, int mode, void *userdata)
 {

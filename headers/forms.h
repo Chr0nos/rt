@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 22:01:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:35:11 by dboudy           ###   ########.fr       */
+/*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
+/*   Updated: 2016/06/30 18:19:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct			s_ray
 	double				limit;
 	double				lenght;
 	t_uint				color;
+	int					shadow;
 	int					count;
 }						t_ray;
 
