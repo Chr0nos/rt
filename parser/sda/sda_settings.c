@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:30:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 16:54:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ void		sda_settings_init(t_sda_cfg *cfg)
 		SDB_INCLUDE};
 }
 
-static int	sda_warning(t_obj *obj, const char *msg, const char *opt, int ret)
+static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
 {
-	ft_printf("warning: obj: %d: options: [%s] -> %s\n",
-		(int)obj->id,
-		opt,
-		msg);
+	ft_putstr("warning: obj: ");
+	rt_node_display(e->current_obj, 0, NULL);
+	ft_printf("options: [%s] -> %s (fd: %d)\n", opt, msg, e->fd);
 	return (ret);
 }
 
@@ -53,11 +52,11 @@ int			sda_settings(t_sda *e, int ac, char **av)
 		if (!ft_strcmp(cfg[p].str, av[0]))
 		{
 			if (!((int)e->current_obj->type & cfg[p].obj_valid_type))
-				return (sda_warning(e->current_obj, "not eligible", av[0], -1));
+				return (sda_warning(e, "not eligible", av[0], -1));
 			else if (!cfg[p].config)
 				return (0);
 			else if (ac - 2 < cfg[p].argc)
-				return (sda_warning(e->current_obj, "missing params",
+				return (sda_warning(e, "missing params",
 					av[0], -3));
 			ret = cfg[p].config(e, e->current_obj, &av[1]);
 			if (ret >= 0)

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:35:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 16:53:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ enum					e_sda_setting
 
 typedef struct			s_sda_eval
 {
+	int					fd;
 	t_rt				*rt;
 	t_obj				*root;
 	t_obj				*current_obj;
