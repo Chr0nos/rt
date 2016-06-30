@@ -2,8 +2,12 @@ CUBE
 	pos: 4 4 0
 	size: 2
 	color: #f0f0f0
-	EMPTY
-		include: ./scenes/spherecube.sda
+EMPTY
+	include: ./scenes/spherecube.sda
 SPHERE
 	pos: 6 4 0
-	color: #d3eb45
+	color: #10d3eb45
+	refract: 1.333
+	POINTLIGHT
+		pos: 2 2 0
+		color: #ff0000
