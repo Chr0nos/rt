@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   obj_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:29:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/06/30 18:16:36 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "render.h"
 #include "shaders.h"
 
 t_obj		*rt_obj_init(t_obj *obj, int type)
@@ -34,9 +32,13 @@ t_obj		*rt_obj_init(t_obj *obj, int type)
 		type |= NOSHADER;
 	if (!(type & NOSHADER))
 	{
-		obj->shader = init_shader(2);
-		obj->shader->fragment_shader[0] = &rt_specular_pow;
-		obj->shader->fragment_shader[1] = &rt_light_pow;
+		obj->shader = init_shaders(3);
+		obj->shader->shader[2] = init_shader(&rt_specular_pow, 0x000000,
+			&blend_lighten);
+		obj->shader->shader[1] = init_shader(&rt_light_pow, 0x000000,
+			&blend_multiply);
+		obj->shader->shader[0] = init_shader(&shader_ambiant, 0x000000,
+			&blend_add);
 	}
 	else
 		obj->shader = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/20 17:37:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:08:25 by dboudy           ###   ########.fr       */
+/*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
+/*   Updated: 2016/06/30 18:18:06 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_realpos(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_type(t_obj *obj, int mode, void *userdata);
-
 
 double			rad2deg(double rad);
 float			rad2degf(float rad);
