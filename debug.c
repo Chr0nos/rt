@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 18:59:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/01 19:17:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 #include "libft.h"
 #include <unistd.h>
 #include "sda.h"
+#include "objects.h"
 
 static void		rt_putnchar(char c, unsigned int n)
 {
 	while (n--)
 		write(1, &c, 1);
+}
+
+static void		rt_debug_pstr(const char *s, unsigned int lvl)
+{
+	rt_putnchar('\t', lvl);
+	ft_putstr(s);
 }
 
 static void		rt_debug_childs(t_obj *item, unsigned int level)
@@ -58,29 +65,50 @@ static void		rt_debug_color(unsigned int level, unsigned int color)
 		(color >> 8) & 0xff, color & 0xff, hex);
 }
 
+
+static void		rt_debug_rot(t_obj *obj, unsigned int lvl)
+{
+	char	*av[6];
+
+	av[0] = ft_dtoa(obj->rotation.x, 6);
+	av[1] = ft_dtoa(obj->rotation.y, 6);
+	av[2] = ft_dtoa(obj->rotation.z, 6);
+	av[3] = ft_dtoa(rad2deg(obj->rotation.x), 6);
+	av[4] = ft_dtoa(rad2deg(obj->rotation.y), 6);
+	av[5] = ft_dtoa(rad2deg(obj->rotation.z), 6);
+	rt_putnchar('\t', lvl + 1);
+	ft_printf("rotation rad: {%s, %s, %s}\n", av[0], av[1], av[2]);
+	rt_putnchar('\t', lvl + 1);
+	ft_printf("rotation deg: {%s, %s, %s}\n", av[3], av[4], av[5]);
+	ft_free_tab(av, 6);
+}
+
+static void		rt_debug_elems(t_obj *obj, unsigned int lvl)
+{
+	if (obj->type != ROOT)
+	{
+		rt_putnchar('\t', lvl + 1);
+		rt_debug_pos(obj);
+		write(1, "\n", 1);
+	}
+	if (obj->cfgbits & SDB_COLOR)
+		rt_debug_color(lvl, *(unsigned int*)obj->content);
+	rt_debug_pstr("bounds: ", lvl + 1);
+	rt_putbounds(obj, 3);
+	if (obj->cfgbits & SDB_ROT)
+		rt_debug_rot(obj, lvl);
+	rt_debug_pstr("config: ", lvl + 1);
+	rt_putbits((unsigned int)obj->cfgbits);
+}
+
 void			rt_debug(t_obj *item, unsigned int level)
 {
 	if (!item)
 		return ;
-	rt_putnchar('\t', level);
-	ft_putstr("- type: ");
+	rt_debug_pstr("- type: ", level);
 	rt_puttype(item->type);
-	ft_printf("[%d]", (int)item->id);
-	ft_putstr("\n");
-	if (item->type != ROOT)
-	{
-		rt_putnchar('\t', level + 1);
-		rt_debug_pos(item);
-		write(1, "\n", 1);
-	}
-	if (item->type & (VISIBLE | LIGHTTYPE))
-		rt_debug_color(level, *(unsigned int*)item->content);
-	rt_putnchar('\t', level + 1);
-	ft_putstr("bounds: ");
-	rt_putbounds(item, 3);
-	rt_putnchar('\t', level + 1);
-	ft_putstr("config: ");
-	rt_putbits((unsigned int)item->cfgbits);
+	ft_printf("[%d]\n", (int)item->id);
+	rt_debug_elems(item, level);
 	write(1, "\n", 1);
 	if (item->childs)
 	{
