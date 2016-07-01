@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/01 20:23:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/01 20:37:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_shaders			*init_shaders(unsigned int nbr_fshaders)
 {
 	t_shaders	*s;
 
-	if ((s = malloc(sizeof(t_shaders) + (sizeof(t_shader) * nbr_fshaders))))
+	if ((s = malloc(sizeof(t_shaders) + (sizeof(t_shader*) * nbr_fshaders))))
 	{
 		s->shader = (t_shader**)((unsigned long)s + sizeof(t_shaders));
 		s->nbr_fshaders = nbr_fshaders;
