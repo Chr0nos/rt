@@ -5,9 +5,12 @@ CAMERA
 CUBE
 	color: #a0ff0000
 	refract: 1.0
+	rot: 1 0 0
 	SPHERE
 		pos: 2 2 0
 		color: #3d2365
+		POINTLIGHT
+			pos: 4 0 0
 PLAN
 	pos: 0 -10 0
 	color: #00f0f0

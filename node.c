@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:01:34 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/01 20:29:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
+#include "shaders.h"
 
-int		rt_node_display(t_obj *obj, int mode, void *userdata)
+int			rt_node_display(t_obj *obj, int mode, void *userdata)
 {
 	(void)userdata;
 	(void)mode;
@@ -30,7 +31,7 @@ int		rt_node_display(t_obj *obj, int mode, void *userdata)
 ** rt_node_foreach(root, PREFIX, &count);
 */
 
-int		rt_node_count(t_obj *node, int mode, void *userdata)
+int			rt_node_count(t_obj *node, int mode, void *userdata)
 {
 	(void)node;
 	(void)mode;
@@ -38,7 +39,7 @@ int		rt_node_count(t_obj *node, int mode, void *userdata)
 	return (0);
 }
 
-int		rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
+int			rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
 	void *userdata)
 {
 	t_obj		*obj;
@@ -65,7 +66,17 @@ int		rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
 	return (0);
 }
 
-void	rt_node_free(t_obj *node)
+static void	rt_node_free_shaders(t_shaders *shaders)
+{
+	unsigned int	p;
+
+	p = 0;
+	while (p < shaders->nbr_fshaders)
+		free(shaders->shader[p++]);
+	free(shaders);
+}
+
+void		rt_node_free(t_obj *node)
 {
 	t_obj	*obj;
 	t_obj	*tmp;
@@ -82,6 +93,6 @@ void	rt_node_free(t_obj *node)
 	if (node->parent)
 		rt_obj_delchild(node->parent, node);
 	if (node->shader)
-		free(node->shader);
+		rt_node_free_shaders(node->shader);
 	free(node);
 }
