@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/01 20:29:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/04 18:22:19 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,16 @@ int			rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
 
 static void	rt_node_free_shaders(t_shaders *shaders)
 {
-	unsigned int	p;
+	t_shader	*s;
+	t_shader	*next;
 
-	p = 0;
-	while (p < shaders->nbr_fshaders)
-		free(shaders->shader[p++]);
+	s = shaders->shader;
+	while (s)
+	{
+		next = s->next;
+		free(s);
+		s = next;
+	}
 	free(shaders);
 }
 

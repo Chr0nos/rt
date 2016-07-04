@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/01 20:37:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/04 19:34:37 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 
-t_shaders			*init_shaders(unsigned int nbr_fshaders)
+t_shaders			*init_shaders(void)
 {
 	t_shaders	*s;
 
-	if ((s = malloc(sizeof(t_shaders) + (sizeof(t_shader*) * nbr_fshaders))))
+	if ((s = malloc(sizeof(t_shaders))))
 	{
-		s->shader = (t_shader**)((unsigned long)s + sizeof(t_shaders));
-		s->nbr_fshaders = nbr_fshaders;
+		s->shader = 0;
 		s->vertex_shader = 0;
 		return (s);
 	}
 	return (0);
 }
 
-t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
+t_shader			*init_shader(t_shaders *shaders,
+	void (*shader)(t_shader *s, t_render *r,
 	t_obj *o), unsigned int color, unsigned int
 	(*blend)(unsigned int a, unsigned int b))
 {
 	t_shader	*s;
+	t_shader	*sh;
 
 	if ((s = malloc(sizeof(t_shader))))
 	{
@@ -39,6 +40,16 @@ t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
 		s->color_render = color;
 		s->blend = blend;
 		s->exec = shader;
+		s->next = 0;
+		if (!shaders->shader)
+			shaders->shader = s;
+		else
+		{
+			sh = shaders->shader;
+			while (sh->next)
+				sh = sh->next;
+			sh->next = s;
+		}
 		return (s);
 	}
 	return (NULL);
@@ -46,65 +57,42 @@ t_shader			*init_shader(void (*shader)(t_shader *s, t_render *r,
 
 int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o)
 {
-	unsigned int	i;
+	t_shader		*shader;
 
 	if (!s)
 		return (1);
-	i = 0;
 	r->light_power = 0;
 	r->specular_power = 0;
-	while (i < s->nbr_fshaders)
+	shader = s->shader;
+	while (shader)
 	{
-		s->shader[i]->exec(s->shader[i], r, o);
-		++i;
+		shader->exec(shader, r, o);
+		shader = shader->next;
 	}
-	return ((i != 0));
+	return (0);
 }
 
 unsigned int		compute_color_shaders(t_shaders *s)
 {
-	unsigned int	i;
 	unsigned int	color;
+	t_shader		*shader;
 
 	if (!s)
 		return (1);
-	i = 0;
 	color = 0;
-	while (i < s->nbr_fshaders)
+	shader = s->shader;
+	if (shader)
+		color = shader->color_render;
+	shader = shader->next;
+	while (shader)
 	{
-		if (s->shader[i]->enabled)
+		if (shader->enabled)
 		{
-			if (!i)
-				color = s->shader[i]->color_render;
-			else
-			{
-				color = s->shader[i]->blend(color,
-					s->shader[i]->color_render);
-			}
-			s->shader[i]->color_render = s->shader[i]->color_base;
+			color = shader->blend(color,
+				shader->color_render);
+			shader->color_render = shader->color_base;
 		}
-		++i;
+		shader = shader->next;
 	}
-	return ((color > 0xFFFFFF ? 0xFFFFFF : color));
-}
-
-void				shaders_activate_all(t_shaders *s)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < s->nbr_fshaders)
-		s->shader[i++]->enabled = 1;
-}
-
-void				shaders_activate_only(t_shaders *s, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < s->nbr_fshaders)
-	{
-		s->shader[i]->enabled = (i == n) ? 1 : 0;
-		i++;
-	}
+	return (color);
 }
