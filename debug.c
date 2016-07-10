@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/01 19:17:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/10 17:13:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ static void		rt_debug_pos(t_obj *obj)
 
 static void		rt_debug_color(unsigned int level, unsigned int color)
 {
-	char		hex[10];
+	char		hex[12];
 	const char	*ba = "0123456789ABCEDF";
 
 	ft_itobase((int)color, hex, 16, ba);
 	ft_stralign_right(hex, 6);
 	ft_strreplace(hex, ' ', '0');
+	if (hex[0] == '-')
+		ft_memmove(hex, &hex[1], 11);
 	rt_putnchar('\t', level + 1);
 	ft_printf("color: [%d:%d:%d] (#%s)\n", (color >> 16) & 0xff,
 		(color >> 8) & 0xff, color & 0xff, hex);
