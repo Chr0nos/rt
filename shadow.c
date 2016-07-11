@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/11 19:58:21 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/11 20:25:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	ray.dir = geo_subv4(light->trans.w, r->intersection);
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
 		geo_dtov4d(0.00001)));
+	ray.lenght = (double)INFINITY;
 	sw = (t_render){
 			&ray, r->rt,
 			NULL,
