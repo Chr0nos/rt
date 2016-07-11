@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 00:36:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/11 11:56:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 void			rt_rays(t_rt *rt)
 {
 	t_obj		*cam;
-	t_camera	*camp;
 	t_ray		ray;
 
 	rt->tree = rt_render_tree(rt->root);
@@ -56,10 +55,9 @@ void			rt_rays(t_rt *rt)
 		return ;
 	}
 	cam = (t_obj*)rt->root->content;
-	camp = cam->content;
 	rt_update_camera(rt->sys.geometry, cam->content);
 	ray.start = cam->trans.w;
-	camp->raypos = cam->trans.w;
+	((t_camera*)cam->content)->raypos = cam->trans.w;
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
 	rt_rays_pixels(rt, &ray, rt->sys.screen->pixels, cam->trans);
