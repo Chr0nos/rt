@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/04 19:34:37 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/07/11 18:22:13 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ unsigned int		compute_color_shaders(t_shaders *s)
 	{
 		if (shader->enabled)
 		{
-			color = shader->blend(color,
-				shader->color_render);
+			color = shader->blend(shader->color_render, color);
 			shader->color_render = shader->color_base;
 		}
 		shader = shader->next;

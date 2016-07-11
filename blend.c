@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/30 19:58:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/11 18:27:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ unsigned int		to_rgb(unsigned int r, unsigned int g, unsigned int b)
 	return ((r << 16) | (g << 8) | (b));
 }
 
-unsigned int		blend_spec(unsigned int a, unsigned int b)
+unsigned int		blend_normal(unsigned int a, unsigned int b)
 {
-	float	ratio;
-
-	ratio = (float)(R(b)) / 255.0f;
-	return (draw_color_lerp(a, 0xffffff, ratio));
+	(void)b;
+	return (a);
 }
 
 unsigned int		blend_overlay(unsigned int a, unsigned int b)
