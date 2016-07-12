@@ -42,7 +42,7 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	{
 		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity))
 			/ MID_LIGHT_POWER * 255.0;
-		color = to_rgb((unsigned int)li, (unsigned int)li, (unsigned int)li);
+		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
 }
@@ -77,7 +77,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	if (latt > 0.0)
 	{
 		li = (latt * (((t_plight *)light->content)->intensity)) * 2.0;
-		color = to_rgb((unsigned int)li, (unsigned int)li, (unsigned int)li);
+		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
 }

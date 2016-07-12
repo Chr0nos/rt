@@ -17,5 +17,6 @@
 void			shader_ambiant(t_shader *s, t_render *r, t_obj *light)
 {
 	(void)light;
-	s->color_render = ((t_cube*)(r->obj_intersect->content))->color;
+	s->color_render = blend_multiply(
+	((t_cube*)(r->obj_intersect->content))->color, 0xFFFFFF);
 }

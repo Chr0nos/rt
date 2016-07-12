@@ -37,6 +37,11 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
 	if (sw.obj_intersect && geo_distv4(light->trans.w, r->intersection)
 	> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
-		s->color_render = blend_multiply(0x101010,
-			((t_cube*)(r->obj_intersect->content))->color);
+	{
+		s->color_render = blend_sub(s->color_render, 0x22000000);
+		disable_nexts(s);
+	}
+	/*else if (!sw.obj_intersect || geo_distv4(light->trans.w, r->intersection)
+        < geo_distv4(sw.obj_intersect->trans.w, r->intersection))
+		s->color_render = blend_add(0xFFFFFF, s->color_render);*/
 }

@@ -88,10 +88,25 @@ unsigned int		compute_color_shaders(t_shaders *s)
 	{
 		if (shader->enabled)
 		{
-			color = shader->blend(shader->color_render, color);
+			color = shader->blend(shader->color_render, color) & 0x00FFFFFF;
 			shader->color_render = shader->color_base;
 		}
+		shader->enabled = 1;
 		shader = shader->next;
 	}
 	return (color);
+}
+
+void			disable_nexts(t_shader *s)
+{
+	t_shader	*shader;
+	
+	shader = 0;	
+	if (s->next)
+		shader = s->next;
+	while (shader)
+	{
+		shader->enabled = 0;
+		shader = shader->next;
+	}
 }

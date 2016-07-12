@@ -19,10 +19,10 @@ static void		rt_obj_init_shader(t_obj *obj)
 		&blend_add);
 	init_shader(obj->shader, &rt_light_pow, 0x000000,
 		&blend_multiply);
+	init_shader(obj->shader, &shader_shadow, 0xFF000000,
+		&blend_normal);
 	init_shader(obj->shader, &rt_specular_pow, 0x000000,
 		&blend_add);
-	init_shader(obj->shader, &shader_shadow, 0xFFFFFF,
-			&blend_darken);
 }
 
 t_obj			*rt_obj_init(t_obj *obj, int type)
