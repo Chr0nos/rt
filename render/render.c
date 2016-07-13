@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/11 20:24:20 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 16:39:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		{
 			r->intersection = impact;
 			r->lowest_lenght = r->ray->lenght;
-			//r->ray->color = ((t_cube*)obj->content)->color;
 			r->obj_intersect = obj;
 		}
 	}
@@ -55,7 +54,6 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 		0.0, 0.0
 	};
 	ray->color = COLOR_BLACK;
-	ray->shadow = 0;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
 	if (r.obj_intersect)
@@ -65,5 +63,5 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 		r.ray->color = compute_color_shaders(r.obj_intersect->shader);
 	}
 	ray->lenght = r.lowest_lenght;
-	return ((ray->shadow ? 0 : rt_render_opacity(rt, ray, &r)));
+	return (rt_render_opacity(rt, ray, &r));
 }
