@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/13 17:40:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 20:24:44 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,4 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 		s->color_render = blend_sub(s->color_render, 0x111111);
 		//disable_nexts(s);
 	}
-	/*else if (!sw.obj_intersect || geo_distv4(light->trans.w, r->intersection)
-        < geo_distv4(sw.obj_intersect->trans.w, r->intersection))
-		s->color_render = blend_add(0xFFFFFF, s->color_render);*/
 }
