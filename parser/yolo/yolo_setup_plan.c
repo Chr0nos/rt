@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 18:15:36 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 11:11:03 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/13 17:59:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,5 @@ int			yolo_setup_plan(t_obj *obj, size_t ac, char **av)
 		deg2rad(ft_atod(av[PLAN_OR_Y])),
 		deg2rad(ft_atod(av[PLAN_OR_Z])),
 		0.0});
-	if (av[PLAN_TEXTURE] != NULL)
-		yolo_setup_texture(obj, av, PLAN_TEXTURE);
 	return (0);
 }

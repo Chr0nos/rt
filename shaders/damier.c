@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   damier.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 14:42:09 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/29 21:47:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 17:59:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "texture.h"
 #include "libft.h"
 #include "shaders.h"
+#define TILE_SIZE 2.0
 
 void			shader_damier(t_shader *s, t_render *r, t_obj *light)
 {
