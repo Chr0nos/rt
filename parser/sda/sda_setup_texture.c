@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 18:02:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 20:48:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 21:05:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int					sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 	ret = 0;
 	filepath = ft_strunsplit((const char **)(unsigned long)av, ' ');
 	if ((tex = texture_search(e->rt->textures, filepath)))
+	{
 		ret = 1;
+		free(filepath);
+	}
 	else if ((tex = texture_create(&e->rt->textures, filepath)))
 		ret = 1;
 	else
