@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/13 16:32:15 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/13 16:47:10 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	parser/parser.o check_camera.o
 
 RENDER_DIR=render
-RENDER=render.o render_light.o render_shadow.o render_tree.o refract.o
+RENDER=render.o render_light.o render_tree.o refract.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o
