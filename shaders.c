@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/11 18:22:13 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 15:06:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_shaders			*init_shaders(void)
 
 t_shader			*init_shader(t_shaders *shaders,
 	void (*shader)(t_shader *s, t_render *r,
-	t_obj *o), unsigned int color, unsigned int
+	t_obj *o), void *data, unsigned int color, unsigned int
 	(*blend)(unsigned int a, unsigned int b))
 {
 	t_shader	*s;
@@ -38,6 +38,7 @@ t_shader			*init_shader(t_shaders *shaders,
 		s->enabled = 1;
 		s->color_base = color;
 		s->color_render = color;
+		s->content = data;
 		s->blend = blend;
 		s->exec = shader;
 		s->next = 0;
@@ -100,8 +101,8 @@ unsigned int		compute_color_shaders(t_shaders *s)
 void			disable_nexts(t_shader *s)
 {
 	t_shader	*shader;
-	
-	shader = 0;	
+
+	shader = 0;
 	if (s->next)
 		shader = s->next;
 	while (shader)
