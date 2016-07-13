@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 11:58:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 13:38:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 17:06:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_obj		*rt_obj_copy(const t_obj *src, t_obj *parent)
 	obj->childs = NULL;
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	obj->next = NULL;
+	obj->name = NULL;
 	rt_obj_init_shader(obj);
 	obj->id = rt_factory_getuid();
 	return (obj);
