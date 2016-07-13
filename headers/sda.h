@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 11:53:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 15:15:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum					e_sda_cfgbit
 		SDB_REFRACT = 1 << 7,
 		SDB_INCLUDE = 1 << 8,
 		SDB_ANGLE = 1 << 9,
-		SDB_COPY = 1 << 10,
+		SDB_COPY = 1 << 10
 };
 
 enum					e_sda_setting

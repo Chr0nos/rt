@@ -6,55 +6,11 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 15:06:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 15:22:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
-
-t_shaders			*init_shaders(void)
-{
-	t_shaders	*s;
-
-	if ((s = malloc(sizeof(t_shaders))))
-	{
-		s->shader = 0;
-		s->vertex_shader = 0;
-		return (s);
-	}
-	return (0);
-}
-
-t_shader			*init_shader(t_shaders *shaders,
-	void (*shader)(t_shader *s, t_render *r,
-	t_obj *o), void *data, unsigned int color, unsigned int
-	(*blend)(unsigned int a, unsigned int b))
-{
-	t_shader	*s;
-	t_shader	*sh;
-
-	if ((s = malloc(sizeof(t_shader))))
-	{
-		s->enabled = 1;
-		s->color_base = color;
-		s->color_render = color;
-		s->content = data;
-		s->blend = blend;
-		s->exec = shader;
-		s->next = 0;
-		if (!shaders->shader)
-			shaders->shader = s;
-		else
-		{
-			sh = shaders->shader;
-			while (sh->next)
-				sh = sh->next;
-			sh->next = s;
-		}
-		return (s);
-	}
-	return (NULL);
-}
 
 int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o)
 {
@@ -80,7 +36,7 @@ unsigned int		compute_color_shaders(t_shaders *s)
 
 	if (!s)
 		return (1);
-	color = 0;
+	color = COLOR_BLACK;
 	shader = s->shader;
 	if (shader)
 		color = shader->color_render;
@@ -89,7 +45,7 @@ unsigned int		compute_color_shaders(t_shaders *s)
 	{
 		if (shader->enabled)
 		{
-			color = shader->blend(shader->color_render, color) & 0x00FFFFFF;
+			color = shader->blend(shader->color_render, color);
 			shader->color_render = shader->color_base;
 		}
 		shader->enabled = 1;
@@ -98,11 +54,11 @@ unsigned int		compute_color_shaders(t_shaders *s)
 	return (color);
 }
 
-void			disable_nexts(t_shader *s)
+void			shaders_disable_nexts(t_shader *s)
 {
 	t_shader	*shader;
 
-	shader = 0;
+	shader = NULL;
 	if (s->next)
 		shader = s->next;
 	while (shader)

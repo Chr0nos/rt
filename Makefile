@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/13 13:07:47 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/13 15:26:38 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
-	light.o shaders.o configure.o damier.o ambiant.o blend.o putbits.o \
+	light.o configure.o damier.o ambiant.o blend.o putbits.o \
 	parser/parser.o check_camera.o shadow.o
 
 RENDER_DIR=render
@@ -80,6 +80,9 @@ MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \
 FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o
 
+SHADER_DIR=shaders
+SHADER=shaders.o shaders_init.o
+
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(SDA:%.o=$(OBJBUILDDIR)/$(SDA_DIR)/%.o) \
@@ -88,7 +91,8 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(OBJECTS:%.o=$(OBJBUILDDIR)/$(OBJECTS_DIR)/%.o) \
 	$(MENU:%.o=$(OBJBUILDDIR)/$(MENU_DIR)/%.o) \
 	$(FILTER:%.o=$(OBJBUILDDIR)/$(FILTER_DIR)/%.o) \
-	$(RENDER:%.o=$(OBJBUILDDIR)/$(RENDER_DIR)/%.o)
+	$(RENDER:%.o=$(OBJBUILDDIR)/$(RENDER_DIR)/%.o) \
+	$(SHADER:%.o=$(OBJBUILDDIR)/$(SHADER_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -98,7 +102,8 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(OBJECTS:%.o=$(OBJECTS_DIR)/%.c) \
 	$(MENU:%.o=$(MENU_DIR)/%.c) \
 	$(FILTER:%.o=$(FILTER_DIR)/%.c) \
-	$(RENDER:%.o=$(RENDE_DIR)/%.c)
+	$(RENDER:%.o=$(RENDER_DIR)/%.c) \
+	$(SHADER:%.o=$(SHADER_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -108,7 +113,8 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(OBJECTS_DIR) \
 		$(OBJBUILDDIR)/$(MENU_DIR) \
 		$(OBJBUILDDIR)/$(FILTER_DIR) \
-		$(OBJBUILDDIR)/$(RENDER_DIR)
+		$(OBJBUILDDIR)/$(RENDER_DIR) \
+		$(OBJBUILDDIR)/$(SHADER_DIR)
 
 all: $(NAME)
 

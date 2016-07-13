@@ -61,7 +61,6 @@ CUBE
 
 #pair of lines
 EMPTY
-	name:
 	pos: 0 0 2
 	copy: 4
 	EMPTY
