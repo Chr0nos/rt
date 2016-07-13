@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/13 20:24:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 21:33:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
 	{
 		s->color_render = blend_sub(s->color_render, 0x111111);
-		//disable_nexts(s);
+		shaders_disable_nexts(s);
 	}
 }
