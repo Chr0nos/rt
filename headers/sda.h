@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 16:22:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 18:49:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ enum					e_sda_cfgbit
 		SDB_INCLUDE = 1 << 8,
 		SDB_ANGLE = 1 << 9,
 		SDB_COPY = 1 << 10,
-		SDB_NAME = 1 << 11
+		SDB_NAME = 1 << 11,
+		SDB_TEXTURE = 1 << 12
 };
 
 enum					e_sda_setting
@@ -45,7 +46,8 @@ enum					e_sda_setting
 		SDA_INCLUDE = EMPTY,
 		SDA_ANGLE = CONE,
 		SDA_COPY = EMPTY,
-		SDA_NAME = ~0
+		SDA_NAME = ~0,
+		SDA_TEXTURE = SPHERE
 };
 
 typedef struct			s_sda_eval
@@ -66,7 +68,6 @@ typedef struct			s_sda_cfg
 	int					argc;
 	int					bit;
 }						t_sda_cfg;
-
 
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
@@ -94,5 +95,6 @@ int						sda_setup_include(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_angle(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_copy(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_name(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_texture(t_sda *e, t_obj *obj, char **av);
 
 #endif

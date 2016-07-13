@@ -12,6 +12,7 @@ PLAN
 SPHERE
 	color: #88ff0000
 	pos: 3.0 1.0 3.0
+	texture: ./texture.jpg
 CUBE
 	name: lb
 	color: #ffffff

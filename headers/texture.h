@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 11:42:16 by dboudy            #+#    #+#             */
-/*   Updated: 2016/07/13 17:51:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 18:48:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 typedef struct			s_texture
 {
 	struct s_texture	*next;
-	SDL_Surface			*texture;
-	unsigned int		*pixels;
+	SDL_Surface			*surface;
+	char				*filepath;
 }						t_texture;
 
 #endif
