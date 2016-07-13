@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 17:56:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 21:24:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_rtcfg
 {
 	double		ambiant_light;
 	t_rendflag	mode;
+	char		max_reflects;
 }				t_rtcfg;
 
 typedef struct	s_menu
