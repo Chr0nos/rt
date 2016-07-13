@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/30 18:19:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 17:56:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct			s_cube
 typedef struct			s_plan
 {
 	t_uint				color;
-	t_text				texture;
 }						t_plan;
 
 typedef struct			s_cone
@@ -99,7 +98,6 @@ typedef struct			s_cyl
 {
 	t_uint				color;
 	float				radius;
-	t_text				texture;
 }						t_cyl;
 
 typedef struct			s_tore

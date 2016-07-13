@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 12:08:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 17:56:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_H
 # include "draw.h"
 # include "objects.h"
+# include "texture.h"
 # include "tree.h"
 
 # define PREFIX 1
@@ -56,6 +57,7 @@ typedef struct	s_rt
 	struct s_rt	*rts;
 	size_t		rts_size;
 	t_menu		menu;
+	t_texture	*textures;
 }				t_rt;
 
 void			rt_putbits(unsigned int bits);

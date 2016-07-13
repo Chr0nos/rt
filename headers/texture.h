@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 11:42:16 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/29 12:02:50 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/13 17:51:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURE_H
 # define TEXTURE_H
+# include <SDL2/SDL.h>
 
-# define CHECKER	1
-# define TILE_SIZE	3.0
-
-typedef struct		s_text
+typedef struct			s_texture
 {
-	int				type;
-	unsigned int	color1;
-	unsigned int	color2;
-}					t_text;
+	struct s_texture	*next;
+	SDL_Surface			*texture;
+	unsigned int		*pixels;
+}						t_texture;
 
 #endif
