@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 15:15:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 16:22:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ enum					e_sda_cfgbit
 		SDB_REFRACT = 1 << 7,
 		SDB_INCLUDE = 1 << 8,
 		SDB_ANGLE = 1 << 9,
-		SDB_COPY = 1 << 10
+		SDB_COPY = 1 << 10,
+		SDB_NAME = 1 << 11
 };
 
 enum					e_sda_setting
@@ -43,7 +44,8 @@ enum					e_sda_setting
 		SDA_REFRACT = VISIBLE,
 		SDA_INCLUDE = EMPTY,
 		SDA_ANGLE = CONE,
-		SDA_COPY = EMPTY
+		SDA_COPY = EMPTY,
+		SDA_NAME = ~0
 };
 
 typedef struct			s_sda_eval
@@ -91,5 +93,6 @@ int						sda_setup_refract(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_include(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_angle(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_copy(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_name(t_sda *e, t_obj *obj, char **av);
 
 #endif
