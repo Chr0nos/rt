@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 18:02:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 21:05:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 21:10:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int					sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 		free(filepath);
 		ret = -1;
 	}
-	((t_sphere*)obj->content)->texture = tex;
+	if (obj->type == PLAN)
+		((t_plan*)obj->content)->texture = tex;
+	else
+		((t_sphere*)obj->content)->texture = tex;
 	return (ret);
 }
