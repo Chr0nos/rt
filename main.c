@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 20:27:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 11:35:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 
 int				rt_create_window(t_rt *rt)
 {
-	if (draw_init(&rt->sys, draw_make_px(1024, 768), "RTv1") < 0)
+	if (draw_init(&rt->sys, draw_make_px(1024, 768), "Rt") < 0)
 		return (1);
 	if (draw_init_openglcontext(&rt->sys))
 		return (1);
