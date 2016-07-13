@@ -3,6 +3,7 @@ CAMERA
 	rot: 45 0 0
 	al: 25
 	POINTLIGHT
+		intensity: 150
 
 PLAN
 	pos: 0 -3 0
@@ -57,16 +58,18 @@ CUBE
 							CUBE
 								color: #ffffff
 								pos: 1 0 0
+
+#pair of lines
 EMPTY
-	copy: 4
+	name:
 	pos: 0 0 2
+	copy: 4
 	EMPTY
 		copy: 12
+
+EMPTY
+	pos: 0 0 2
+	copy: 20
 	EMPTY
-		copy: 4
 		pos: 0 0 2
-		EMPTY
-			copy: 12
-		EMPTY
-			copy: 4
-			pos: 0 0 2
+		copy: 20
