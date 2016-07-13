@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/13 15:26:38 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/13 15:28:31 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,8 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
-	light.o configure.o damier.o ambiant.o blend.o putbits.o \
-	parser/parser.o check_camera.o shadow.o
+	configure.o blend.o putbits.o \
+	parser/parser.o check_camera.o
 
 RENDER_DIR=render
 RENDER=render.o render_light.o render_shadow.o render_tree.o refract.o
@@ -81,7 +81,7 @@ FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o
 
 SHADER_DIR=shaders
-SHADER=shaders.o shaders_init.o
+SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
