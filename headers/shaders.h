@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/11 18:25:54 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 15:06:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_shaders
 t_shaders			*init_shaders(void);
 t_shader			*init_shader(t_shaders *shaders,
 	void (*shader)(t_shader *s, t_render *r,
-	t_obj *o), unsigned int color, unsigned int
+	t_obj *o), void *data, unsigned int color, unsigned int
 	(*blend)(unsigned int a, unsigned int b));
 int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o);
 unsigned int		compute_color_shaders(t_shaders *s);
