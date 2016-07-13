@@ -6,20 +6,18 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 15:22:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 17:26:48 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 
-int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o)
+int					shaders_exec(t_shaders *s, t_render *r, t_obj *o)
 {
 	t_shader		*shader;
 
 	if (!s)
 		return (1);
-	r->light_power = 0;
-	r->specular_power = 0;
 	shader = s->shader;
 	while (shader)
 	{
@@ -29,7 +27,7 @@ int					exec_fshaders(t_shaders *s, t_render *r, t_obj *o)
 	return (0);
 }
 
-unsigned int		compute_color_shaders(t_shaders *s)
+unsigned int		shaders_compute_color(t_shaders *s)
 {
 	unsigned int	color;
 	t_shader		*shader;

@@ -9,6 +9,9 @@ PLAN
 	pos: 0 -3 0
 	color: #1f0f4a
 
+SPHERE
+	color: #88ff0000
+	pos: 3.0 1.0 3.0
 CUBE
 	name: lb
 	color: #ffffff

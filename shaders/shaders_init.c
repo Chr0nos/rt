@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   shaders_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 15:20:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 15:21:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 17:31:33 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 
-t_shaders			*init_shaders(void)
+t_shaders			*shaders_init(void)
 {
 	t_shaders	*s;
 
@@ -25,9 +25,9 @@ t_shaders			*init_shaders(void)
 	return (NULL);
 }
 
-t_shader			*init_shader(t_shaders *shaders,
+t_shader			*shader_init(t_shaders *shaders,
 	void (*shader)(t_shader *s, t_render *r,
-	t_obj *o), void *data, unsigned int color, unsigned int
+	t_obj *o), unsigned int color, unsigned int
 	(*blend)(unsigned int a, unsigned int b))
 {
 	t_shader	*s;
@@ -38,7 +38,7 @@ t_shader			*init_shader(t_shaders *shaders,
 		s->enabled = 1;
 		s->color_base = color;
 		s->color_render = color;
-		s->content = data;
+		s->content = NULL;
 		s->blend = blend;
 		s->exec = shader;
 		s->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 19:07:23 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 17:25:29 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct	s_render
 	double		light_lenght;
 	t_v4d		intersection;
 	t_v4d		normal;
-	double		light_power;
-	double		specular_power;
 }				t_render;
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);
