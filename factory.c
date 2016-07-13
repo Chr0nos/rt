@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:00:47 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/13 12:07:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ unsigned int		rt_sizeobj(t_type type)
 	return (sizeof(t_obj));
 }
 
-t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
+unsigned int		rt_factory_getuid(void)
 {
 	static t_uint		lastid = 1;
+
+	return (lastid++);
+}
+
+t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
+{
 	const t_uint		size = rt_sizeobj(type);
 	t_obj				*obj;
 
@@ -51,7 +57,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 		rt_box_update(obj);
 		return (obj);
 	}
-	obj->id = lastid++;
+	obj->id = rt_factory_getuid();
 	obj->parent = parent;
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	if (type & VISIBLE)

@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:01:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 11:53:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#define SDA_SETUP_TYPES 10
+#define SDA_SETUP_TYPES 11
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
@@ -29,6 +29,7 @@ void		sda_settings_init(t_sda_cfg *cfg)
 	cfg[8] = (t_sda_cfg){"include:", &sda_setup_include, SDA_INCLUDE, 1,
 		SDB_INCLUDE};
 	cfg[9] = (t_sda_cfg){"angle:", &sda_setup_angle, SDA_ANGLE, 1, SDB_ANGLE};
+	cfg[10] = (t_sda_cfg){"copy:", &sda_setup_copy, SDA_COPY, 1, SDB_COPY};
 }
 
 static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)

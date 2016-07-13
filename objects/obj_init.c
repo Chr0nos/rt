@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   obj_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/11 18:28:37 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/13 12:27:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
+#include "libft.h"
 
-static void		rt_obj_init_shader(t_obj *obj)
+void			rt_obj_init_shader(t_obj *obj)
 {
-	obj->shader = init_shaders();
+	if (!(obj->shader = init_shaders()))
+	{
+		ft_putendl_fd("error: failed to malloc shaders", 2);
+		return ;
+	}
 	init_shader(obj->shader, &shader_ambiant, 0x000000,
 		&blend_add);
 	init_shader(obj->shader, &rt_light_pow, 0x000000,

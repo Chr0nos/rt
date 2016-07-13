@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/06/30 19:56:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 12:08:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int				rt_event_resize(SDL_Event *event, t_rt *rt);
 void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
+unsigned int	rt_factory_getuid(void);
 t_uint			rt_sizeobj(t_type type);
 
 t_uint			rt_render(t_rt *rt, t_ray *ray);

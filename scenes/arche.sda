@@ -1,0 +1,72 @@
+CAMERA
+	pos: 1.000000 5.860381 -3.801883
+	rot: 45 0 0
+	al: 25
+	POINTLIGHT
+
+PLAN
+	pos: 0 -3 0
+	color: #1f0f4a
+
+CUBE
+	color: #ffffff
+	pos: 0 0 0
+	CUBE
+		color: #000000
+		pos: 1 0 0
+		CUBE
+			color: #ffffff
+			pos: 1 0 0
+			CUBE
+				color: #000000
+				pos: 1 0 0
+				CUBE
+					color: #ffffff
+					pos: 1 0 0
+					CUBE
+						color: #000000
+						pos: 1 0 0
+						CUBE
+							color: #ffffff
+							pos: 1 0 0
+							CUBE
+								color: #000000
+								pos: 1 0 0
+
+CUBE
+	color: #000000
+	pos: 0 0 1
+	CUBE
+		color: #ffffff
+		pos: 1 0 0
+		CUBE
+			color: #000000
+			pos: 1 0 0
+			CUBE
+				color: #ffffff
+				pos: 1 0 0
+				CUBE
+					color: #000000
+					pos: 1 0 0
+					CUBE
+						color: #ffffff
+						pos: 1 0 0
+						CUBE
+							color: #000000
+							pos: 1 0 0
+							CUBE
+								color: #ffffff
+								pos: 1 0 0
+EMPTY
+	copy: 4
+	pos: 0 0 2
+	EMPTY
+		copy: 12
+	EMPTY
+		copy: 4
+		pos: 0 0 2
+		EMPTY
+			copy: 12
+		EMPTY
+			copy: 4
+			pos: 0 0 2
