@@ -38,4 +38,4 @@ EMPTY											0		0		12
 	CUBE								2		5		1		0		#683bff
 	CUBE								4		5		1		30		#ff3bff
 	CUBE								2		-5		1		0		#68fbff
-POINTLIGHT									0	22	0 75 300			 #ffffff
+POINTLIGHT									0	22	0 175 300			 #ffffff
