@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 12:27:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 14:24:26 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void			rt_obj_init_shader(t_obj *obj)
 		&blend_add);
 	init_shader(obj->shader, &rt_light_pow, 0x000000,
 		&blend_multiply);
-	init_shader(obj->shader, &shader_shadow, 0xFF000000,
-		&blend_normal);
+	init_shader(obj->shader, &shader_shadow, 0x7f7f7f,
+		&blend_overlay);
 	init_shader(obj->shader, &rt_specular_pow, 0x000000,
 		&blend_add);
 }
