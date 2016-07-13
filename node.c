@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 16:18:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 16:56:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void		rt_node_free(t_obj *node)
 		rt_obj_delchild(node->parent, node);
 	if (node->shader)
 		rt_node_free_shaders(node->shader);
-	if (node->name)
-		free(node->name);
+	//if (node->name)
+	//	ft_memdel((void**)&node->name);
 	free(node);
 }

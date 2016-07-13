@@ -63,14 +63,14 @@ CUBE
 
 #pair of lines
 EMPTY
-	name: lignes
+	name: lines
 	pos: 0 0 2
 	copy: la
 	EMPTY
 		copy: lb
 EMPTY
 	pos: 0 0 2
-	copy: lignes
+	copy: lines
 	EMPTY
 		pos: 0 0 2
-		copy: lignes
+		copy: lines
