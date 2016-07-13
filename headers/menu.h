@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:29:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 23:26:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		menu_degrade(SDL_Surface *surface,
 	const unsigned int scolor, const unsigned int ecolor);
 void		menu_background_init(t_rt *rt);
 void		menu_background_update(t_rt *rt);
-int			menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files);
+size_t		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files);
 void		menu_configure_thumbs_size(t_rt *rt);
 
 #endif

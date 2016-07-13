@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:34:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 23:27:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int				menu_init(t_rt *rt, const char *path)
 		return (-2);
 	}
 	rt->rts_size = ft_lstsize(files);
+	ret = -1;
 	if ((rt->rts = malloc(
 		(sizeof(t_rt) * rt->rts_size) +
 		(sizeof(SDL_Rect) * rt->rts_size))) != NULL)
 	{
 		rt_create_window(rt);
-		ret = menu_configure_rts(rt, rt->rts, files);
+		rt->rts_size = menu_configure_rts(rt, rt->rts, files);
+		ret = 0;
 		rt->keyboard |= MENU;
 		rt_start(rt);
 	}
-	else
-		ret = -1;
 	ft_lstdel(&files, &ft_lstpulverisator);
 	return (ret);
 }

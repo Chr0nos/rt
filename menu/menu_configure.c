@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 01:24:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/13 23:31:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	menu_configure_thumbs_size(t_rt *rt)
 	rt->menu.items.y = (d) ? (geo->y + MENU_BORDER_Y - MENU_PADDING_Y) / d : 0;
 }
 
-int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
+size_t	menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 {
 	size_t			p;
 	const t_point	subgeo = rt->menu.thumb;
@@ -41,8 +41,7 @@ int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		ft_memcpy(&rts[p], rt, sizeof(t_rt));
 		rts[p].keyboard &= ~MENU;
 		rts[p].sys.geometry = subgeo;
-		rts[p].root = rt_parser((const char *)files->content, &rts[p]);
-		if (rts[p].root)
+		if ((rts[p].root = rt_parser((const char *)files->content, &rts[p])))
 		{
 			if ((rts[p].sys.screen = draw_make_surface(subgeo)))
 				draw_reset_surface(rts[p].sys.screen, 0x000000);
@@ -52,5 +51,5 @@ int		menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 			rts[p].sys.screen = NULL;
 		files = files->next;
 	}
-	return (0);
+	return (p);
 }
