@@ -10,6 +10,7 @@ PLAN
 	color: #1f0f4a
 
 CUBE
+	name: lb
 	color: #ffffff
 	pos: 0 0 0
 	CUBE
@@ -35,6 +36,7 @@ CUBE
 								pos: 1 0 0
 
 CUBE
+	name: la
 	color: #000000
 	pos: 0 0 1
 	CUBE
@@ -61,14 +63,14 @@ CUBE
 
 #pair of lines
 EMPTY
+	name: lignes
 	pos: 0 0 2
-	copy: 4
+	copy: la
 	EMPTY
-		copy: 12
-
+		copy: lb
 EMPTY
 	pos: 0 0 2
-	copy: 20
+	copy: lignes
 	EMPTY
 		pos: 0 0 2
-		copy: 20
+		copy: lignes

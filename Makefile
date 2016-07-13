@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/13 16:42:14 by alhote           ###   ########.fr        #
+#    Updated: 2016/07/13 16:47:10 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SDA_DIR=parser/sda
 SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 	sda_setup_color.o sda_setup_al.o sda_setup_rot.o sda_setup_fov.o \
 	sda_setup_size.o sda_setup_intensity.o sda_defaults.o sda_setup_refract.o \
-	sda_setup_include.o sda_setup_angle.o sda_setup_copy.o
+	sda_setup_include.o sda_setup_angle.o sda_setup_copy.o sda_setup_name.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
@@ -71,7 +71,8 @@ EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o
 
 OBJECTS_DIR=objects
-OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o obj_copy.o
+OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o \
+		obj_copy.o obj_byname.o
 
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \
