@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 17:39:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:05:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 {
-	t_ray		ray;
+	t_ray			ray;
+	unsigned char	reflect;
 
 	ray = *r->ray;
 	(void)light;
@@ -28,20 +29,11 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 		r->ray->dir.z - 2.0 * geo_dotv4(r->ray->dir, r->normal) * r->normal.z,
 		0.0
 	};
-	if (A(s->color_render) == 0xFF && ray.count < 2)
+	if ((A(s->color_render) == 0xFF) && (ray.count--))
 	{
-		ray.count++;
-		s->color_render = 0x000000;
-		s->color_render = blend_add(rt_render(r->rt, &ray), s->color_render);
+		reflect = rt_obj_get_reflect(r->obj_intersect);
+		if (reflect > 0)
+			s->color_render = blend_multiply(rt_render(r->rt, &ray),
+				to_rgb(0, reflect, reflect, reflect));
 	}
-
 }
-
-/*
-#include <SDL2/SDL.h>
-
-t_texture	*tex;
-
-tex = rt_obj_get_texture(light)->surface->pixels;
-((unsigned int*)tex->pixels)[tex->w * y + x] = COLOR_BLACK;
-*/

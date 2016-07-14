@@ -1,4 +1,6 @@
 CAMERA
+SETTING
+	background: #00f0f0
 
 SPHERE
 	pos: 0 0 10

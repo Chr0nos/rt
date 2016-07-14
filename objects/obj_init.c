@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 18:42:06 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 22:10:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,11 @@ void			rt_obj_init_shader(t_obj *obj)
 		ft_putendl_fd("error: failed to malloc shaders", 2);
 		return ;
 	}
-	shader_init(obj->shader, &shader_texture, 0xFF000000,
-		&blend_add);
-	shader_init(obj->shader, &rt_light_pow, 0x000000,
-		&blend_multiply);
-	shader_init(obj->shader, &shader_reflection, 0xFF000000,
-		&blend_add);
-	shader_init(obj->shader, &shader_shadow, 0x7f7f7f,
-		&blend_overlay);
-	shader_init(obj->shader, &rt_specular_pow, 0x000000,
-		&blend_add);
+	shader_init(obj->shader, &shader_texture, 0xFF000000, &blend_add);
+	shader_init(obj->shader, &rt_light_pow, 0x000000, &blend_multiply);
+	shader_init(obj->shader, &shader_reflection, 0xFF000000, &blend_add);
+	shader_init(obj->shader, &shader_shadow, 0x7f7f7f, &blend_overlay);
+	shader_init(obj->shader, &rt_specular_pow, 0x000000, &blend_add);
 }
 
 t_obj			*rt_obj_init(t_obj *obj, int type)

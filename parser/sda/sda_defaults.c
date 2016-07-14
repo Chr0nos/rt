@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 17:13:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:13:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 	if ((obj->type & SDA_SIZE) && (!(obj->cfgbits & SDB_SIZE)))
 		((t_cube*)obj->content)->size = 1.0;
 	if ((obj->type & SDA_REFLECT) && (!(obj->cfgbits & SDB_REFLECT)))
-		rt_obj_set_reflect(obj, 127);
+		rt_obj_set_reflect(obj, 0);
 	return (OK);
 }
 

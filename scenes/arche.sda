@@ -8,84 +8,106 @@ CAMERA
 PLAN
 	pos: 0 -3 0
 	color: #1f0f4a
+	reflect: 200
 
 SPHERE
 	color: #88ff0000
 	pos: 3.0 2.0 3.0
-	texture: ./texture.jpg2
+#	texture: ./texture.jpg2
+	reflect: 255
 
 CUBE
 	name: lb
 	color: #ffffff
 	pos: 0 0 0
+	reflect: 255
 	CUBE
 		color: #000000
 		pos: 1 0 0
+		reflect: 255
 		CUBE
 			color: #ffffff
 			pos: 1 0 0
+			reflect: 255
 			CUBE
 				color: #000000
 				pos: 1 0 0
+				reflect: 255
 				CUBE
 					color: #ffffff
 					pos: 1 0 0
+					reflect: 255
 					CUBE
 						color: #000000
 						pos: 1 0 0
+						reflect: 255
 						CUBE
 							color: #ffffff
 							pos: 1 0 0
+							reflect: 255
 							CUBE
 								color: #452b1b
 								size: 0.4
 								pos: 0 1 0
+								reflect: 255
 								CONE
 									pos: 0 0.5 0
 									size: 0.3
 									angle: 20
 									color: #f000f0
+									reflect: 255
 							CUBE
 								color: #000000
 								pos: 1 0 0
-
+								reflect: 255
 CUBE
 	name: la
 	color: #000000
 	pos: 0 0 1
+	reflect: 255
 	CUBE
 		color: #ffffff
 		pos: 1 0 0
+		reflect: 255
 		SPHERE
 			pos: 0 1 0
 			size: 0.3
 			color: #20330e
+			reflect: 255
 		CUBE
 			color: #000000
 			pos: 1 0 0
+			reflect: 255
 			SPHERE
 				pos: 0 1 0
 				size: 0.3
 				color: #1a194a
+				reflect: 255
 			CUBE
 				color: #ffffff
 				pos: 1 0 0
+				reflect: 255
 				SPHERE
 					pos: 0 1 0
 					color: #205f5f
 					size: 0.3
+					reflect: 255
 				CUBE
 					color: #000000
 					pos: 1 0 0
+					reflect: 255
 					CUBE
 						color: #ffffff
 						pos: 1 0 0
+						reflect: 255
 						CUBE
 							color: #000000
 							pos: 1 0 0
+							reflect: 255
 							CUBE
 								color: #ffffff
 								pos: 1 0 0
+								reflect: 255
 
 #pair of lines
 EMPTY
@@ -108,6 +130,7 @@ EMPTY
 		rot: 0 90 0
 		size: 0.3
 		color: #f0f000
+		reflect: 255
 	EMPTY
 		copy: cyl
 		pos: 8 0 -1
@@ -122,3 +145,4 @@ PLAN
 	pos: 0 0 10
 	rot: 90 0 0
 	color: #00ffff
+	reflect: 255
