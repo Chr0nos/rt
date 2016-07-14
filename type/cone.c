@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/19 19:36:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/14 17:08:51 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,30 @@ int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
 
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v)
 {
-	t_v4d		nor;
-	double		tmp;
+	// t_v4d		nor;
+	// double		tmp;
+	//
+	// nor = geo_subv4(*v, obj->trans.w);
+	// nor.y = 0.0;
+	// nor = geo_normv4(nor);
+	// tmp = ((t_cone *)obj->content)->angle.z;
+	// nor = geo_multv4(nor, geo_dtov4d(1.0 - (tmp * tmp)));
+	// nor.y = tmp;
+	// return (nor);
 
-	nor = geo_subv4(*v, obj->trans.w);
-	nor.y = 0.0;
-	nor = geo_normv4(nor);
-	tmp = ((t_cone *)obj->content)->angle.z;
-	nor = geo_multv4(nor, geo_dtov4d(1.0 - (tmp * tmp)));
-	nor.y = tmp;
-	return (nor);
+	double		t;
+	t_v4d		dir;
+	double		beta;
+
+	dir = obj->trans.y;
+	beta = geo_dotv4(geo_normv4(geo_subv4(*v, obj->trans.w)), dir);
+	if (acos(beta) * 180.0 / M_PI > 90.0)
+	{
+		dir = geo_multv4(dir, (t_v4d){-1.0, -1.0, -1.0, 1.0});
+		beta = geo_dotv4(geo_normv4(geo_subv4(*v, obj->trans.w)), dir);
+	}
+	t = (geo_distv4(obj->trans.w, *v) * sin(beta)) / sin(1.5708 + beta);
+	dir = geo_multv4(dir, (t_v4d){t, t, t, 1.0});
+	dir = geo_addv4(obj->trans.w, dir);
+	return (geo_normv4(geo_subv4(*v, dir)));
 }
