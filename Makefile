@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/14 17:34:34 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/14 18:41:27 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,8 @@ FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o
 
 SHADER_DIR=shaders
-SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o reflection.o
+SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o \
+	reflection.o shader_texture.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \

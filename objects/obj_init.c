@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 20:55:58 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 18:42:06 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			rt_obj_init_shader(t_obj *obj)
 		ft_putendl_fd("error: failed to malloc shaders", 2);
 		return ;
 	}
-	shader_init(obj->shader, &shader_ambiant, 0x000000,
+	shader_init(obj->shader, &shader_texture, 0xFF000000,
 		&blend_add);
 	shader_init(obj->shader, &rt_light_pow, 0x000000,
 		&blend_multiply);

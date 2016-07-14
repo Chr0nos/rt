@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 20:53:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 19:45:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void				texture_convertformat(t_texture *tex)
 	unsigned int	*pixels;
 
 	pixels = tex->surface->pixels;
-	size = (size_t)(tex->surface->w * tex->surface->h) / 4;
+	size = (size_t)(tex->surface->w * tex->surface->h);
 	while (size--)
 		pixels[size] = texture_color_convert(pixels[size]);
 }
@@ -64,7 +64,11 @@ t_texture			*texture_create(t_texture **lst, char *filepath)
 	SDL_Surface		*std_surface;
 
 	if (!(surface = IMG_Load(filepath)))
+	{
+		ft_putendl_fd("holly shit", 2);
+		ft_putendl_fd(IMG_GetError(), 2);
 		return (NULL);
+	}
 	if (!(std_surface = draw_make_surface((t_point){surface->w, surface->h})))
 	{
 		SDL_FreeSurface(surface);
