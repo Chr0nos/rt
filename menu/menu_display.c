@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:02:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 15:05:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void			menu_display(t_rt *rt)
 	while (p < max)
 	{
 		rt->menu.id[p].id = (int)p;
-		//menu_display_flush(&rt->menu.id[p]);
 		pthread_create(&rt->menu.id[p].thread, NULL,
 			&menu_display_flush, &rt->menu.id[p]);
 		p++;
