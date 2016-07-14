@@ -6,11 +6,10 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/14 15:16:09 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/14 15:19:11 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAKEFLAGS+=-j
 OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
@@ -121,6 +120,9 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(SHADER_DIR)
 
 all: $(NAME)
+
+multi:
+	make -j
 
 $(NAME): $(ALLDIR) $(LIBFT)/libft.a $(DRAW)/libdraw.a $(ALLOBJ)
 	$(CC) $(ALLOBJ) $(LINKER) -o $(NAME)
