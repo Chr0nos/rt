@@ -3,7 +3,7 @@ CAMERA
 SPHERE
 	pos: 0 0 10
 	color: #0000FF
-	texture: ./texture.jpg
+	texture: ./earthhd.jpg
 	POINTLIGHT
 		pos: 0 0 -20
 		intensity: 150
