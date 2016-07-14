@@ -6,10 +6,11 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/13 21:14:02 by alhote           ###   ########.fr        #
+#    Updated: 2016/07/14 15:16:09 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+MAKEFLAGS+=-j
 OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
