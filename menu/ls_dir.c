@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 10:30:07 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/30 01:34:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 13:38:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		ls_dir_masks(struct dirent *file, const char **masks, int mc)
 ** mc = masks count
 */
 
-t_list	*ls_dir(const char *path, const char **masks, int mc)
+t_list			*ls_dir(const char *path, const char **masks, int mc)
 {
 	DIR				*dir;
 	t_list			*lst;

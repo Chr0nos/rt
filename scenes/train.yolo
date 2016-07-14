@@ -42,5 +42,5 @@ CUBE								2		0	0	10		100:100:100
 					SPHERE			0.8		0	8	0		#555555
 				SPHERE				0.9		0	10	0		#555555
 			SPHERE					1		0	12	0		#d0555f55
-POINTLIGHT									0	20	0 50 200 #ffffff
-POINTLIGHT									5	20	0 50 300 #ffffff
+POINTLIGHT									0	20	0 150 200 #ffffff
+POINTLIGHT									5	20	0 150 300 #ffffff

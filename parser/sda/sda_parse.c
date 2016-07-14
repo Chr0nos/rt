@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/10 17:05:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 13:25:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,12 @@ t_obj			*sda_parse(const char *filepath, t_rt *rt)
 	old_root = root;
 	root = sda_parse_rawtree(filepath, rt, root, 0);
 	if (!root)
+	{
+		ft_putstr_fd("error: sda: miserable failure on: ", 2);
+		ft_putendl_fd(filepath, 2);
+		//rt_node_free(old_root);
 		return (NULL);
+	}
 	sda_set_defaults(root);
 	yolo_parse_finalize(root);
 	camera_save(rt);
