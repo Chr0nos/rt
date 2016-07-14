@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 21:42:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:16:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ void			shader_texture(t_shader *s, t_render *r, t_obj *light)
 	if (tex)
 	{
 		pixels_texture = tex->surface->pixels;
-		u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2 * M_PI));
-		v = 0.5 - (asin(r->normal.y) / M_PI);
+		u = r->intersection.x;
+		v = r->intersection.z;
+		if (r->obj_intersect->type & SPHERE)
+		{
+			u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2 * M_PI));
+			v = 0.5 - (asin(r->normal.y) / M_PI);
+		}
 		s->color_render = pixels_texture[tex->surface->w *
 			(int)(v * tex->surface->h) + (int)(u * tex->surface->w)];
 	}
