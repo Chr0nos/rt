@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 20:43:59 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 18:41:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void				rt_specular_pow(t_shader *s, t_render *r, t_obj *light);
 void				shader_damier(t_shader *s, t_render *r, t_obj *light);
 void				shader_ambiant(t_shader *s, t_render *r, t_obj *light);
 void				shader_shadow(t_shader *s, t_render *r, t_obj *light);
+void				shader_texture(t_shader *s, t_render *r, t_obj *light);
 void				shader_reflection(t_shader *s, t_render *r, t_obj *light);
 unsigned int		blend_normal(unsigned int a, unsigned int b);
 unsigned int		blend_add(unsigned int a, unsigned int b);
