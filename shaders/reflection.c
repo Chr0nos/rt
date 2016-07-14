@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 20:49:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 15:57:29 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 		r->ray->dir.z - 2.0 * geo_dotv4(r->ray->dir, r->normal) * r->normal.z,
 		0.0
 	};
-	if (A(s->color_render) == 0xFF)
+	if (A(s->color_render) == 0xFF && ray.count < 2)
 	{
+		ray.count++;
 		s->color_render = 0x000000;
 		s->color_render = blend_add(rt_render(r->rt, &ray), s->color_render);
 	}
