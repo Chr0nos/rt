@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 16:58:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 22:22:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:28:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			sda_setup_reflect(t_sda *e, t_obj *obj, char **av)
 {
 	int		r;
 
-	(void)e;
 	r = ft_atoi(av[0]);
 	if (r > 0xff)
 		r = 0xff;
