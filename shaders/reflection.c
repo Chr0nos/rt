@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 15:57:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 17:39:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 		s->color_render = 0x000000;
 		s->color_render = blend_add(rt_render(r->rt, &ray), s->color_render);
 	}
+
 }
+
+/*
+#include <SDL2/SDL.h>
+
+t_texture	*tex;
+
+tex = rt_obj_get_texture(light)->surface->pixels;
+((unsigned int*)tex->pixels)[tex->w * y + x] = COLOR_BLACK;
+*/
