@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:06:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 17:18:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 17:23:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,23 @@ int		rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
 	else
 		return (0);
 	return (1);
+}
+
+unsigned char	rt_obj_get_reflect(const t_obj *obj)
+{
+	if (obj->type == CUBE)
+		return (((t_cube*)obj->content)->reflect);
+	else if (obj->type == SPHERE)
+		return (((t_sphere*)obj->content)->reflect);
+	else if (obj->type == CONE)
+		return (((t_cone*)obj->content)->reflect);
+	else if (obj->type == CONE_INF)
+		return (((t_cone_inf*)obj->content)->reflect);
+	else if (obj->type == PLAN)
+		return (((t_plan*)obj->content)->reflect);
+	else if (obj->type == CYL)
+		return (((t_cyl*)obj->content)->reflect);
+	else if (obj->type == TORE)
+		return (((t_tore*)obj->content)->reflect);
+	return (0);
 }
