@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/14 18:41:27 by alhote           ###   ########.fr        #
+#    Updated: 2016/07/14 21:03:34 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 	sda_setup_color.o sda_setup_al.o sda_setup_rot.o sda_setup_fov.o \
 	sda_setup_size.o sda_setup_intensity.o sda_defaults.o sda_setup_refract.o \
 	sda_setup_include.o sda_setup_angle.o sda_setup_copy.o sda_setup_name.o \
-	sda_setup_texture.o sda_setup_reflect.o
+	sda_setup_texture.o sda_setup_reflect.o sda_setup_background.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \

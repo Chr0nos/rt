@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 19:57:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 21:06:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,19 @@ typedef struct	s_menu_id
 
 typedef struct	s_menu
 {
-	t_point		items;
-	t_point		thumb;
-	SDL_Rect	*positions;
-	SDL_Surface	*background;
-	t_menu_id	*id;
+	t_point			items;
+	t_point			thumb;
+	SDL_Rect		*positions;
+	SDL_Surface		*background;
+	t_menu_id		*id;
 }				t_menu;
 
 typedef struct	s_rtcfg
 {
-	double		ambiant_light;
-	t_rendflag	mode;
-	char		max_reflects;
+	double			ambiant_light;
+	t_rendflag		mode;
+	char			max_reflects;
+	unsigned int	bgcolor;
 }				t_rtcfg;
 
 typedef struct	s_rt
