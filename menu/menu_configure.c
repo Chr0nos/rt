@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 23:53:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 10:35:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ size_t	menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 			rts[p].sys.screen = NULL;
 		files = files->next;
 	}
+	rts[2].sys.screen = NULL;
 	return (p);
 }

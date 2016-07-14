@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 23:54:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 10:42:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,13 @@ static void		menu_display_flush(t_rt *rt, size_t p)
 {
 	const SDL_Rect	*rect = &rt->menu.positions[p];
 
-ft_putendl("a");
-	if (((!rt_checkcamera(&rt->rts[p]))) || (!rt->sys.screen))
+	if (((!rt_checkcamera(&rt->rts[p]))) || (!rt->rts[p].sys.screen))
 	{
 		rt->rts[p].keyboard = 0;
 		return ;
 	}
 	if (movemyass(&rt->rts[p]))
-	{
-ft_putendl("displaing");
 		rt_rays(&rt->rts[p]);
-	}
-ft_putendl("moved");
 	draw_blitsurface(rt->sys.screen, rt->rts[p].sys.screen,
 		(t_point){rect->x, rect->y});
 }

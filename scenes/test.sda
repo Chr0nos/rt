@@ -4,7 +4,7 @@ CAMERA
 	POINTLIGHT
 CUBE
 	color: #a0ff0000
-	refract: 1.0
+	refract: 1.03
 	rot: 1 0 0
 	SPHERE
 		pos: 2 2 0
