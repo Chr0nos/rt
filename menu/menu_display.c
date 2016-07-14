@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:05:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 15:47:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 
 static void		*menu_display_flush(void *userdata)
 {
-	const t_menu_id	*id = userdata;
-	const SDL_Rect	*rect = &((const t_rt *)id->src)->menu.positions[id->id];
+	t_menu_id		*id;
+	SDL_Rect		*rect;
 
+	id = userdata;
+	rect = &((const t_rt *)id->src)->menu.positions[id->id];
 	if (((!rt_checkcamera((t_rt *)id->dest))) ||
 		(!((t_rt *)id->dest)->sys.screen))
 	{
@@ -30,6 +32,7 @@ static void		*menu_display_flush(void *userdata)
 		rt_rays((t_rt *)id->dest);
 	draw_blitsurface(((const t_rt *)id->src)->sys.screen,
 		((t_rt *)id->dest)->sys.screen, (t_point){rect->x, rect->y});
+	pthread_mutex_unlock(&id->mutex);
 	return (userdata);
 }
 
@@ -49,6 +52,7 @@ void			menu_display(t_rt *rt)
 	while (p < max)
 	{
 		rt->menu.id[p].id = (int)p;
+		//menu_display_flush(&rt->menu.id[p]);
 		pthread_create(&rt->menu.id[p].thread, NULL,
 			&menu_display_flush, &rt->menu.id[p]);
 		p++;

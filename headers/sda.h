@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 21:10:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 15:30:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,36 @@
 
 enum					e_sda_cfgbit
 {
-		SDB_COLOR = 1,
-		SDB_POS = 1 << 1,
-		SDB_ROT = 1 << 2,
-		SDB_FOV = 1 << 3,
-		SDB_SIZE = 1 << 4,
-		SDB_AL = 1 << 5,
-		SDB_INTEN = 1 << 6,
-		SDB_REFRACT = 1 << 7,
-		SDB_INCLUDE = 1 << 8,
-		SDB_ANGLE = 1 << 9,
-		SDB_COPY = 1 << 10,
-		SDB_NAME = 1 << 11,
-		SDB_TEXTURE = 1 << 12
+	SDB_COLOR = 1,
+	SDB_POS = 1 << 1,
+	SDB_ROT = 1 << 2,
+	SDB_FOV = 1 << 3,
+	SDB_SIZE = 1 << 4,
+	SDB_AL = 1 << 5,
+	SDB_INTEN = 1 << 6,
+	SDB_REFRACT = 1 << 7,
+	SDB_INCLUDE = 1 << 8,
+	SDB_ANGLE = 1 << 9,
+	SDB_COPY = 1 << 10,
+	SDB_NAME = 1 << 11,
+	SDB_TEXTURE = 1 << 12
 };
 
 enum					e_sda_setting
 {
-		SDA_COLOR = VISIBLE | LIGHTTYPE,
-		SDA_POS = ~0,
-		SDA_ROT = ~(CONE),
-		SDA_AL = SETTING | CAMERA,
-		SDA_FOV = CAMERA,
-		SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE | CONE_INF),
-		SDA_INTEN = LIGHTTYPE,
-		SDA_REFRACT = VISIBLE,
-		SDA_INCLUDE = EMPTY,
-		SDA_ANGLE = CONE,
-		SDA_COPY = EMPTY,
-		SDA_NAME = ~0,
-		SDA_TEXTURE = SPHERE | CUBE | PLAN
+	SDA_COLOR = VISIBLE | LIGHTTYPE,
+	SDA_POS = ~0,
+	SDA_ROT = ~(CONE),
+	SDA_AL = SETTING | CAMERA,
+	SDA_FOV = CAMERA,
+	SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE | CONE_INF),
+	SDA_INTEN = LIGHTTYPE,
+	SDA_REFRACT = VISIBLE,
+	SDA_INCLUDE = EMPTY,
+	SDA_ANGLE = CONE,
+	SDA_COPY = EMPTY,
+	SDA_NAME = ~0,
+	SDA_TEXTURE = SPHERE | CUBE | PLAN
 };
 
 typedef struct			s_sda_eval
