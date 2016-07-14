@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 14:42:09 by dboudy            #+#    #+#             */
-/*   Updated: 2016/07/13 17:59:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 12:58:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void			shader_damier(t_shader *s, t_render *r, t_obj *light)
 	{
 		if ((!((int)tmp.x % 2) && !((int)tmp.y % 2))
 				|| ((int)tmp.x % 2 && (int)tmp.y % 2))
-			s->color_render = 0xFFFFFF;//((t_text *)r->obj_intersect->content)->color1;
+			s->color_render = 0xFFFFFF;
 		else
-			s->color_render = 0;//((t_text *)r->obj_intersect->content)->color2;
+			s->color_render = 0;
 	}
 	else
 	{
 		if ((!((int)tmp.x % 2) && !((int)tmp.y % 2))
 				|| ((int)tmp.x % 2 && (int)tmp.y % 2))
-			s->color_render = 0;//((t_text *)r->obj_intersect->content)->color2;
+			s->color_render = 0;
 		else
-			s->color_render = 0xFFFFFF;//((t_text *)r->obj_intersect->content)->color1;
+			s->color_render = 0xFFFFFF;
 	}
 }
