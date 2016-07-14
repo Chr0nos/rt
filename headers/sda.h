@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:30:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 17:00:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ enum					e_sda_cfgbit
 	SDB_ANGLE = 1 << 9,
 	SDB_COPY = 1 << 10,
 	SDB_NAME = 1 << 11,
-	SDB_TEXTURE = 1 << 12
+	SDB_TEXTURE = 1 << 12,
+	SDB_REFLECT = 1 << 13
 };
 
 enum					e_sda_setting
@@ -47,7 +48,8 @@ enum					e_sda_setting
 	SDA_ANGLE = CONE,
 	SDA_COPY = EMPTY,
 	SDA_NAME = ~0,
-	SDA_TEXTURE = SPHERE | CUBE | PLAN
+	SDA_TEXTURE = SPHERE | CUBE | PLAN,
+	SDA_REFLECT = VISIBLE
 };
 
 typedef struct			s_sda_eval
@@ -96,5 +98,6 @@ int						sda_setup_angle(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_copy(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_name(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_texture(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_reflect(t_sda *e, t_obj *obj, char **av);
 
 #endif

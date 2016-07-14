@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 18:06:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 17:17:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#define SDA_SETUP_TYPES 13
+#define SDA_SETUP_TYPES 14
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
@@ -33,6 +33,8 @@ void		sda_settings_init(t_sda_cfg *cfg)
 	cfg[11] = (t_sda_cfg){"name:", &sda_setup_name, SDA_NAME, 1, SDB_NAME};
 	cfg[12] = (t_sda_cfg){"texture:", &sda_setup_texture, SDA_TEXTURE, 1,
 		SDB_TEXTURE};
+	cfg[13] = (t_sda_cfg){"reflect:", &sda_setup_reflect, SDA_REFLECT, 1,
+		SDB_REFLECT};
 }
 
 static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)

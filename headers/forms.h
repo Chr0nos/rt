@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 21:17:27 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/14 17:14:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ typedef struct			s_cube
 	t_uint				color;
 	float				size;
 	t_texture			*texture;
+	unsigned char		reflect;
 }						t_cube;
 
 typedef struct			s_plan
 {
 	t_uint				color;
 	t_texture			*texture;
+	unsigned char		reflect;
 }						t_plan;
 
 typedef struct			s_cone
@@ -88,18 +90,21 @@ typedef struct			s_cone
 	t_uint				color;
 	float				size;
 	t_v4d				angle;
+	unsigned char		reflect;
 }						t_cone;
 
 typedef struct			s_cone_inf
 {
 	t_uint				color;
 	float				size;
+	unsigned char		reflect;
 }						t_cone_inf;
 
 typedef struct			s_cyl
 {
 	t_uint				color;
 	float				radius;
+	unsigned char		reflect;
 }						t_cyl;
 
 typedef struct			s_tore
@@ -107,6 +112,7 @@ typedef struct			s_tore
 	t_uint				color;
 	float				radius;
 	float				radius_2;
+	unsigned char		reflect;
 }						t_tore;
 
 typedef struct			s_sphere
@@ -114,6 +120,7 @@ typedef struct			s_sphere
 	t_uint				color;
 	float				radius;
 	t_texture			*texture;
+	unsigned char		reflect;
 }						t_sphere;
 
 typedef struct			s_plight
