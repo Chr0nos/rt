@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 14:52:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 15:10:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ size_t			menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 		id->dest = &rts[p];
 		id->src = rt;
 		id->file = (const char *)files->content;
-		menu_confiture_id(&rt->menu.id[p]);
+		pthread_create(&id->thread, NULL, &menu_confiture_id, id);
 		files = files->next;
 		p++;
 	}
+	while (p--)
+		pthread_join(rt->menu.id[p].thread, NULL);
 	return (p);
 }
