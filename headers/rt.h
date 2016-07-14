@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 21:06:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:17:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_rtcfg
 	t_rendflag		mode;
 	char			max_reflects;
 	unsigned int	bgcolor;
+	unsigned char	default_reflect;
 }				t_rtcfg;
 
 typedef struct	s_rt

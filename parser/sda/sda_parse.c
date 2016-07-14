@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 13:25:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:19:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_obj			*sda_parse(const char *filepath, t_rt *rt)
 		//rt_node_free(old_root);
 		return (NULL);
 	}
-	sda_set_defaults(root);
+	sda_set_defaults(root, rt);
 	yolo_parse_finalize(root);
 	camera_save(rt);
 	rt_debug(root, 0);

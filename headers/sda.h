@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 21:01:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:23:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ enum					e_sda_setting
 	SDA_COPY = EMPTY,
 	SDA_NAME = ~0,
 	SDA_TEXTURE = SPHERE | CUBE | PLAN,
-	SDA_REFLECT = VISIBLE,
+	SDA_REFLECT = VISIBLE | SETTING,
 	SDA_BACKGROUND = SETTING
 };
 
@@ -79,7 +79,7 @@ int						sda_eval(const char *line, t_sda *e,
 	const int lvl);
 int						sda_settings(t_sda *e, int ac, char **av);
 void					sda_settings_init(t_sda_cfg *cfg);
-void					sda_set_defaults(t_obj *root);
+void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
 

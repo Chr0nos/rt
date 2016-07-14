@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 22:13:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 22:20:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ static void	sda_set_camera_default(t_obj *obj)
 
 static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 {
+	t_rt	*rt;
+
+	rt = userdata;
 	(void)mode;
-	(void)userdata;
 	if (obj->type == CAMERA)
 		sda_set_camera_default(obj);
 	else if (obj->type & LIGHTTYPE)
@@ -65,11 +67,11 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 	if ((obj->type & SDA_SIZE) && (!(obj->cfgbits & SDB_SIZE)))
 		((t_cube*)obj->content)->size = 1.0;
 	if ((obj->type & SDA_REFLECT) && (!(obj->cfgbits & SDB_REFLECT)))
-		rt_obj_set_reflect(obj, 0);
+		rt_obj_set_reflect(obj, rt->settings.default_reflect);
 	return (OK);
 }
 
-void		sda_set_defaults(t_obj *root)
+void		sda_set_defaults(t_obj *root, t_rt *rt)
 {
-	rt_node_foreach(root, PREFIX, &sda_set_obj_defaults, NULL);
+	rt_node_foreach(root, PREFIX, &sda_set_obj_defaults, rt);
 }

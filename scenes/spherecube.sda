@@ -5,7 +5,8 @@ CAMERA
 	al: 10
 	#fov: 75
 }
-
+SETTING
+	reflect: 255
 POINTLIGHT
 {
 	pos: 0 15 0
