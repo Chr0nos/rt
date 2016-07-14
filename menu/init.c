@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 23:27:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 19:11:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				menu_init(t_rt *rt, const char *path)
 		(sizeof(SDL_Rect) * rt->rts_size))) != NULL)
 	{
 		rt_create_window(rt);
-		rt->rts_size = menu_configure_rts(rt, rt->rts, files);
+		rt->rts_size = menu_configure_rts(rt, files);
 		ret = 0;
 		rt->keyboard |= MENU;
 		rt_start(rt);

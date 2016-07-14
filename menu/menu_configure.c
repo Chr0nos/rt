@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:57:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 20:04:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,31 @@ static void		*menu_confiture_id(void *userdata)
 {
 	t_point			subgeo;
 	t_menu_id		*id;
+	t_rt			*d;
 
 	id = userdata;
+	d = id->dest;
 	subgeo = ((const t_rt*)id->src)->menu.thumb;
-	ft_memcpy(id->dest, (const t_rt*)id->src, sizeof(t_rt));
-	((t_rt *)id->dest)->keyboard &= ~MENU;
-	((t_rt *)id->dest)->sys.geometry = subgeo;
-	if ((((t_rt *)id->dest)->root = rt_parser(id->file, (t_rt *)(id->dest))))
+	ft_memcpy(d, (const t_rt *)id->src, sizeof(t_rt));
+	d->keyboard &= ~MENU;
+	d->sys.geometry = subgeo;
+	if ((d->root = rt_parser(id->file, d)))
 	{
-		if ((((t_rt *)id->dest)->sys.screen = draw_make_surface(subgeo)))
-			draw_reset_surface(((t_rt *)id->dest)->sys.screen, 0x000000);
+		d->sys.screen = draw_make_surface(subgeo);
+		if (d->sys.screen)
+			draw_reset_surface(d->sys.screen, 0x000000);
+		else
+		{
+			rt_node_free(d->root);
+			d->root = NULL;
+		}
 	}
 	else
-		((t_rt *)id->dest)->sys.screen = NULL;
-	return (userdata);
+		d->sys.screen = NULL;
+	return (d->sys.screen);
 }
 
-size_t			menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
+size_t			menu_configure_rts(t_rt *rt, t_list *files)
 {
 	size_t			p;
 	t_menu_id		*id;
@@ -61,10 +69,17 @@ size_t			menu_configure_rts(t_rt *rt, t_rt *rts, t_list *files)
 	{
 		id = &rt->menu.id[p];
 		id->id = 0;
-		id->dest = &rts[p];
+		id->dest = &rt->rts[p];
 		id->src = rt;
 		id->file = (const char *)files->content;
-		menu_confiture_id(id);
+		if (menu_confiture_id(id) == NULL)
+		{
+			ft_putstr_fd("menu has failed on: ", 2);
+			ft_putendl_fd(id->file, 2);
+			id->enabled = 0;
+		}
+		else
+			id->enabled = 1;
 		files = files->next;
 		p++;
 	}
