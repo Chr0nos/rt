@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 13:13:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 15:02:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 #include "libft.h"
 #include "keyboard.h"
 
-static void		menu_display_flush(t_rt *rt, size_t p)
+static void		*menu_display_flush(void *userdata)
 {
-	const SDL_Rect	*rect = &rt->menu.positions[p];
+	const t_menu_id	*id = userdata;
+	const SDL_Rect	*rect = &((const t_rt *)id->src)->menu.positions[id->id];
 
-	if (((!rt_checkcamera(&rt->rts[p]))) || (!rt->rts[p].sys.screen))
+	if (((!rt_checkcamera((t_rt *)id->dest))) ||
+		(!((t_rt *)id->dest)->sys.screen))
 	{
-		rt->rts[p].keyboard = 0;
-		return ;
+		((t_rt *)id->dest)->keyboard = 0;
+		return (NULL);
 	}
-	if (movemyass(&rt->rts[p]))
-		rt_rays(&rt->rts[p]);
-	draw_blitsurface(rt->sys.screen, rt->rts[p].sys.screen,
-		(t_point){rect->x, rect->y});
+	if (movemyass(id->dest))
+		rt_rays((t_rt *)id->dest);
+	draw_blitsurface(((const t_rt *)id->src)->sys.screen,
+		((t_rt *)id->dest)->sys.screen, (t_point){rect->x, rect->y});
+	return (userdata);
 }
 
 void			menu_display(t_rt *rt)
@@ -44,6 +47,14 @@ void			menu_display(t_rt *rt)
 		max = rt->rts_size;
 	p = 0;
 	while (p < max)
-		menu_display_flush(rt, p++);
+	{
+		rt->menu.id[p].id = (int)p;
+		//menu_display_flush(&rt->menu.id[p]);
+		pthread_create(&rt->menu.id[p].thread, NULL,
+			&menu_display_flush, &rt->menu.id[p]);
+		p++;
+	}
+	while (p--)
+		pthread_join(rt->menu.id[p].thread, NULL);
 	rt->keyboard &= MENU_ALLOW;
 }

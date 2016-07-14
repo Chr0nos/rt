@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 21:24:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 14:53:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "objects.h"
 # include "texture.h"
 # include "tree.h"
+# include <pthread.h>
 
 # define PREFIX 1
 # define INFIX 2
@@ -32,12 +33,14 @@ typedef enum	e_rendflag
 	ALT_LIGHT_EQ = 1 << 9
 }				t_rendflag;
 
-typedef struct	s_rtcfg
+typedef struct	s_menu_id
 {
-	double		ambiant_light;
-	t_rendflag	mode;
-	char		max_reflects;
-}				t_rtcfg;
+	void		*dest;
+	const void	*src;
+	const char	*file;
+	int			id;
+	pthread_t	thread;
+}				t_menu_id;
 
 typedef struct	s_menu
 {
@@ -45,7 +48,15 @@ typedef struct	s_menu
 	t_point		thumb;
 	SDL_Rect	*positions;
 	SDL_Surface	*background;
+	t_menu_id	*id;
 }				t_menu;
+
+typedef struct	s_rtcfg
+{
+	double		ambiant_light;
+	t_rendflag	mode;
+	char		max_reflects;
+}				t_rtcfg;
 
 typedef struct	s_rt
 {
