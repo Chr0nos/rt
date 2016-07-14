@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 15:30:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 18:10:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct	s_menu_id
 	const char		*file;
 	int				id;
 	pthread_t		thread;
-	pthread_mutex_t	mutex;
 }				t_menu_id;
 
 typedef struct	s_menu

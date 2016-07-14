@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:47:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 18:10:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void		*menu_display_flush(void *userdata)
 		rt_rays((t_rt *)id->dest);
 	draw_blitsurface(((const t_rt *)id->src)->sys.screen,
 		((t_rt *)id->dest)->sys.screen, (t_point){rect->x, rect->y});
-	pthread_mutex_unlock(&id->mutex);
 	return (userdata);
 }
 
