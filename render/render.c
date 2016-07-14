@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 21:50:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/14 23:02:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader);
 	}
 	ray->lenght = r.lowest_lenght;
+	if (!r.obj_intersect)
+		return (rt->settings.bgcolor);
 	return (rt_render_opacity(rt, ray, &r));
 }
