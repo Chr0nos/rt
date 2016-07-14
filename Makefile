@@ -35,7 +35,7 @@ ifeq ($(OPSYS), Darwin)
 	endif
 	INC+=-I ./headers/mac
 else
-	SDLLINK=-lSDL2
+	SDLLINK=-lSDL2 -lSDL2_image
 	ifeq ($(HOSTNAME),stark)
 		INC+=-I./headers/mac
 	else
