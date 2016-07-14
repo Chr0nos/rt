@@ -1,6 +1,6 @@
 CAMERA
 SETTING
-	background: #00f0f0
+	background: #f0f0f0
 
 SPHERE
 	name: earth
@@ -15,3 +15,4 @@ SPHERE
 		pos: 5 0 0
 		size: 0.3
 		color: #ffffff
+		texture: ./moon.jpg
