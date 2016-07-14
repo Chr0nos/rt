@@ -5,9 +5,5 @@ SPHERE
 	color: #0000FF
 	texture: ./earthhd.jpg
 	POINTLIGHT
-		pos: 0 0 -20
-		intensity: 150
-
-	POINTLIGHT
-		pos: 10 5 20
-		intensity: 100
+		pos: 30 0 -20
+		intensity: 400
