@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 15:37:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 16:52:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,38 @@ static void	sda_export_settings(const t_rt *rt)
 static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 {
 	const unsigned int	lvl = rt_obj_get_lvl(obj) - 1;
+	char				*tbl;
+	t_sda_cfg			*cfg;
+	int					p;
 
-	(void)userdata;
+	cfg = userdata;
 	(void)mode;
-	if (obj->type == CAMERA)
-		sda_export_camera(obj, lvl);
+	tbl = sda_export_ntab(lvl + 1);
+	write(1, tbl, lvl);
+	rt_puttype(obj->type);
+	write(1, "\n", 1);
+	p = SDA_SETUP_TYPES;
+	while (p--)
+	{
+		if (((int)obj->type & cfg[p].obj_valid_type) && (cfg[p].export))
+		{
+			write(1, tbl, lvl + 1);
+			ft_putendl("start");
+			ft_putstr(cfg[p].str);
+			cfg[p].export(obj);
+			ft_putendl("end");
+		}
+	}
 	// rt_node_display(obj, mode, NULL);
+	free(tbl);
 	return (OK);
 }
 
 void		sda_export(const t_rt *rt)
 {
+	t_sda_cfg		cfg[SDA_SETUP_TYPES];
+
 	ft_putstr("#sda export\n");
 	sda_export_settings(rt);
-	rt_node_foreach(rt->root, INFIX, &sda_export_item, NULL);
+	rt_node_foreach(rt->root, INFIX, &sda_export_item, cfg);
 }

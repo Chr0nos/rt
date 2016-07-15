@@ -6,37 +6,40 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 21:07:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 16:34:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 #define SDA_SETUP_TYPES 15
+#define T (t_sda_cfg)
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
-	cfg[0] = (t_sda_cfg){"color:", &sda_setup_color, SDA_COLOR, 1, SDB_COLOR};
-	cfg[1] = (t_sda_cfg){"pos:", &sda_setup_pos, SDA_POS, 3, SDB_POS};
-	cfg[2] = (t_sda_cfg){"rot:", &sda_setup_rot, SDA_ROT, 3, SDB_ROT};
-	cfg[3] = (t_sda_cfg){"size:", &sda_setup_size, SDA_SIZE, 1, SDB_SIZE};
-	cfg[4] = (t_sda_cfg){"al:", &sda_setup_al, SDA_AL, 1, SDB_AL};
-	cfg[5] = (t_sda_cfg){"fov:", &sda_setup_fov, SDA_FOV, 1, SDB_FOV};
-	cfg[6] = (t_sda_cfg){"intensity:", &sda_setup_intensity, SDA_INTEN, 1,
+	cfg[0] = T{"color:", &sda_setup_color, NULL, SDA_COLOR, 1,
+		SDB_COLOR};
+	cfg[1] = T{"pos:", &sda_setup_pos, &sda_export_pos, SDA_POS, 3,
+		SDB_POS};
+	cfg[2] = T{"rot:", &sda_setup_rot, NULL, SDA_ROT, 3, SDB_ROT};
+	cfg[3] = T{"size:", &sda_setup_size, NULL, SDA_SIZE, 1, SDB_SIZE};
+	cfg[4] = T{"al:", &sda_setup_al, NULL, SDA_AL, 1, SDB_AL};
+	cfg[5] = T{"fov:", &sda_setup_fov, NULL, SDA_FOV, 1, SDB_FOV};
+	cfg[6] = T{"intensity:", &sda_setup_intensity, NULL, SDA_INTEN, 1,
 		SDB_INTEN};
-	cfg[7] = (t_sda_cfg){"refract:", &sda_setup_refract, SDA_REFRACT, 1,
+	cfg[7] = T{"refract:", &sda_setup_refract, NULL, SDA_REFRACT, 1,
 		SDB_REFRACT};
-	cfg[8] = (t_sda_cfg){"include:", &sda_setup_include, SDA_INCLUDE, 1,
+	cfg[8] = T{"include:", &sda_setup_include, NULL, SDA_INCLUDE, 1,
 		SDB_INCLUDE};
-	cfg[9] = (t_sda_cfg){"angle:", &sda_setup_angle, SDA_ANGLE, 1, SDB_ANGLE};
-	cfg[10] = (t_sda_cfg){"copy:", &sda_setup_copy, SDA_COPY, 1, SDB_COPY};
-	cfg[11] = (t_sda_cfg){"name:", &sda_setup_name, SDA_NAME, 1, SDB_NAME};
-	cfg[12] = (t_sda_cfg){"texture:", &sda_setup_texture, SDA_TEXTURE, 1,
+	cfg[9] = T{"angle:", &sda_setup_angle, NULL, SDA_ANGLE, 1, SDB_ANGLE};
+	cfg[10] = T{"copy:", &sda_setup_copy, NULL, SDA_COPY, 1, SDB_COPY};
+	cfg[11] = T{"name:", &sda_setup_name, NULL, SDA_NAME, 1, SDB_NAME};
+	cfg[12] = T{"texture:", &sda_setup_texture, NULL, SDA_TEXTURE, 1,
 		SDB_TEXTURE};
-	cfg[13] = (t_sda_cfg){"reflect:", &sda_setup_reflect, SDA_REFLECT, 1,
+	cfg[13] = T{"reflect:", &sda_setup_reflect, NULL, SDA_REFLECT, 1,
 		SDB_REFLECT};
-	cfg[14] = (t_sda_cfg){"background:", &sda_setup_background, SDA_BACKGROUND,
-		1, SDB_BACKGROUND};
+	cfg[14] = T{"background:", &sda_setup_background, NULL,
+		SDA_BACKGROUND,	1, SDB_BACKGROUND};
 }
 
 static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
