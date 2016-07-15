@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 16:34:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 00:37:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
-	cfg[0] = T{"color:", &sda_setup_color, NULL, SDA_COLOR, 1,
+	cfg[0] = T{"color:", &sda_setup_color, &sda_export_color, SDA_COLOR, 1,
 		SDB_COLOR};
 	cfg[1] = T{"pos:", &sda_setup_pos, &sda_export_pos, SDA_POS, 3,
 		SDB_POS};
-	cfg[2] = T{"rot:", &sda_setup_rot, NULL, SDA_ROT, 3, SDB_ROT};
-	cfg[3] = T{"size:", &sda_setup_size, NULL, SDA_SIZE, 1, SDB_SIZE};
+	cfg[2] = T{"rot:", &sda_setup_rot, &sda_export_rot, SDA_ROT, 3, SDB_ROT};
+	cfg[3] = T{"size:", &sda_setup_size, sda_export_size, SDA_SIZE, 1, SDB_SIZE};
 	cfg[4] = T{"al:", &sda_setup_al, NULL, SDA_AL, 1, SDB_AL};
 	cfg[5] = T{"fov:", &sda_setup_fov, NULL, SDA_FOV, 1, SDB_FOV};
-	cfg[6] = T{"intensity:", &sda_setup_intensity, NULL, SDA_INTEN, 1,
-		SDB_INTEN};
-	cfg[7] = T{"refract:", &sda_setup_refract, NULL, SDA_REFRACT, 1,
-		SDB_REFRACT};
+	cfg[6] = T{"intensity:", &sda_setup_intensity, &sda_export_intensity,
+		SDA_INTEN, 1, SDB_INTEN};
+	cfg[7] = T{"refract:", &sda_setup_refract, &sda_export_refract, SDA_REFRACT,
+		1, SDB_REFRACT};
 	cfg[8] = T{"include:", &sda_setup_include, NULL, SDA_INCLUDE, 1,
 		SDB_INCLUDE};
 	cfg[9] = T{"angle:", &sda_setup_angle, NULL, SDA_ANGLE, 1, SDB_ANGLE};
 	cfg[10] = T{"copy:", &sda_setup_copy, NULL, SDA_COPY, 1, SDB_COPY};
 	cfg[11] = T{"name:", &sda_setup_name, NULL, SDA_NAME, 1, SDB_NAME};
-	cfg[12] = T{"texture:", &sda_setup_texture, NULL, SDA_TEXTURE, 1,
-		SDB_TEXTURE};
+	cfg[12] = T{"texture:", &sda_setup_texture, &sda_export_texture,
+		SDA_TEXTURE, 1, SDB_TEXTURE};
 	cfg[13] = T{"reflect:", &sda_setup_reflect, NULL, SDA_REFLECT, 1,
 		SDB_REFLECT};
 	cfg[14] = T{"background:", &sda_setup_background, NULL,

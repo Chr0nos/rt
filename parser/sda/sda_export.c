@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 18:37:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 00:28:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,31 @@ char		*sda_export_ntab(unsigned int lvl)
 
 static void	sda_export_settings(const t_rt *rt)
 {
-	char	color_str[12];
+	char		color_str[12];
+	char		reflect_str[4];
+	char		*al;
 
-	sda_export_color(rt->settings.default_color, color_str);
-	ft_printf("SETTING\n\tcolor: #%s\n", color_str);
+	ft_itobuff(reflect_str, (int)rt->settings.default_reflect,
+		10, "0123456789");
+	sda_export_color_raw(rt->settings.default_color, color_str);
+	al = ft_dtoa(rt->settings.ambiant_light, 6);
+	ft_printf("SETTING\n\tcolor: #%s\n\treflect: %s\n\tal: %s\n",
+		color_str, reflect_str, al);
+	free(al);
+}
+
+static void sda_export_line(t_obj *obj, t_sda_cfg *cfg, const unsigned int lvl,
+	const char *tbl)
+{
+	char	*value;
+
+	if (!(value = cfg->export(obj)))
+		return ;
+	write(1, tbl, lvl + 1);
+	ft_putstr(cfg->str);
+	ft_putchar(' ');
+	ft_putendl(value);
+	free(value);
 }
 
 static int	sda_export_item(t_obj *obj, int mode, void *userdata)
@@ -41,6 +62,8 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	t_sda_cfg			*cfg;
 	int					p;
 
+	if (obj->type == SETTING)
+		return (OK);
 	cfg = userdata;
 	(void)mode;
 	tbl = sda_export_ntab(lvl + 1);
@@ -51,14 +74,8 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	while (p--)
 	{
 		if (((int)obj->type & cfg[p].obj_valid_type) && (cfg[p].export))
-		{
-			write(1, tbl, lvl + 1);
-			ft_putstr(cfg[p].str);
-			cfg[p].export(obj);
-			write(1, "\n", 1);
-		}
+			sda_export_line(obj, &cfg[p], lvl, tbl);
 	}
-	// rt_node_display(obj, mode, NULL);
 	free(tbl);
 	return (OK);
 }
