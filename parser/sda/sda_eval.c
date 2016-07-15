@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 17:56:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 11:26:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static int		sda_spliter(const char *line, char ***av, int *ac)
 	return ((*ac != 0));
 }
 
-static void		sda_mkobj(const char *s, int lvl, int *last_lvl,
-	t_obj **current_obj)
+static void		sda_mkobj(const char *s, int lvl, t_sda *e)
 {
 	const t_type	type = rt_gettype(s);
 	t_obj			*parent;
@@ -47,13 +46,14 @@ static void		sda_mkobj(const char *s, int lvl, int *last_lvl,
 		ft_printf("warning: INVALID object type for %s : ignoring\n", s);
 		return ;
 	}
-	if ((*last_lvl < lvl) || ((*current_obj)->type == ROOT))
-		parent = *current_obj;
+	if ((e->last_lvl < lvl) || (e->current_obj->type == ROOT))
+		parent = e->current_obj;
 	else
-		parent = rt_obj_nparent(*current_obj,
-			(unsigned int)(*last_lvl - lvl + 1));
-	*current_obj = rt_factory_alloc(type, parent);
-	*last_lvl = lvl;
+		parent = rt_obj_nparent(e->current_obj,
+			(unsigned int)(e->last_lvl - lvl + 1));
+	e->current_obj = rt_factory_alloc(type, parent);
+	rt_obj_set_reflect(e->current_obj, e->rt->settings.default_reflect);
+	e->last_lvl = lvl;
 }
 
 int				sda_eval(const char *line, t_sda *e, const int lvl)
@@ -70,7 +70,7 @@ int				sda_eval(const char *line, t_sda *e, const int lvl)
 		(av[0][0] == '}') || (av[0][0] == '{'))
 		;
 	else if (sda_isobj(av[0]) > 0)
-		sda_mkobj(av[0], lvl + e->lvl_offset, &e->last_lvl, &e->current_obj);
+		sda_mkobj(av[0], lvl + e->lvl_offset, e);
 	else if ((e->current_obj) && (sda_settings(e, ac, av) >= 0))
 		;
 	else

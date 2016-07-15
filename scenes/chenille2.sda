@@ -1,0 +1,105 @@
+CAMERA
+	pos: 5 3 -15.948437
+	rot: -5 0 0
+	fov: 75
+	al: 15
+
+PLAN
+	pos: 0 -0.5 0
+	rot: 0 5 0
+	color: #a0a00f
+	reflect: 100
+
+POINTLIGHT
+	pos: -5 15 -10
+
+POINTLIGHT
+	pos: 25 15 -10
+
+SPHERE
+	pos: 0 0 0
+	color: #ff0000
+	SPHERE
+		pos: 1.5 0.1 0
+		color: #00ff00
+		SPHERE
+			pos: 1.5 -0.1 0
+			color: #ff0000
+			SPHERE
+				pos: 1.5 0.1 0
+				color: #00ff00
+				SPHERE
+					pos: 1.5 -0.1 0
+					color: #ff0000
+					SPHERE
+						pos: 1.5 0.1 0
+						color: #00ff00
+						SPHERE
+							size: 1.5
+							pos: 2 0 0
+							color: #ffff00
+							CONE
+								size: 4
+								pos: 0 3 0
+								color: #d01515
+								angle: 5.0
+						SPHERE
+							size: 0.4
+							pos: 3 0.8 -0.5
+							color: #00a0a0
+						SPHERE
+							size: 0.4
+							pos: 3 0.8 0.5
+							color: #00a0a0
+
+SETTING
+	reflect: 100
+
+CUBE
+	pos: 1 6 2
+	color: #0505b0
+	CUBE
+		pos: 0 -1.1	0
+		color: #0505b0
+		CUBE
+			pos: 0 -1.1 0
+			color: #0505b0
+			CUBE
+				pos: 0 -1.1	0
+				color: #0505b0
+				CUBE
+					pos: 1.1 0 0
+					color: #0505b0
+					CUBE
+						pos: 1.1 0 0
+						color: #0505b0
+	CUBE
+		pos: 5 0 0
+		color: #0505b0
+		CUBE
+			pos: 0 -1.1	0
+			color: #0505b0
+			CUBE
+				pos: 0 -1.1	0
+				color: #0505b0
+				CUBE
+					pos: 0 -1.1 0
+					color: #0505b0
+					CUBE
+						pos: 1.1 0 0
+						color: #0505b0
+						CUBE
+							pos: 1.1 0 0
+							color: #0505b0
+		CUBE
+			pos: 3.35 0 0
+			color: #0505b0
+			CUBE
+				pos: 0 -1.1 0
+				color: #0505b0
+				CUBE
+					pos: 0 -1.1 0
+					color: #0505b0
+					CUBE
+						pos: 0 -1.1 0
+						color: #0505b0
