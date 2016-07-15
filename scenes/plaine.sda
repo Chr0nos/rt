@@ -28,7 +28,7 @@ PLAN
 
 EMPTY
 	name: piscine
-	pos: 2 -0.3 3
+	pos: 1 -0.3 0
 	CUBE
 		pos: 0 0 0
 		texture: ./sand.jpg
