@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:24:34 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 01:02:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 01:20:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ static char	*sda_xyz_short(char *s)
 	char	*so;
 
 	so = s;
-	s += ft_strlen(s) - 1;
-	while (((*s == '0') || (*s == '.')) && (s != so))
-	{
-		*s = '\0';
-		s--;
-	}
+	while (*s)
+		s++;
+	s--;
+	while ((s > so) && ((*s == '0') || (*s == '.')))
+		*(s--) = '\0';
 	return (so);
 }
 
