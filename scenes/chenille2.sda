@@ -52,54 +52,43 @@ SPHERE
 							pos: 3 0.8 0.5
 							color: #00a0a0
 
+#bellow this line all object will be blue by default
+#and they will be reflective
+
 SETTING
 	reflect: 100
+	color: #0505b0
 
 CUBE
 	pos: 1 6 2
-	color: #0505b0
 	CUBE
 		pos: 0 -1.1	0
-		color: #0505b0
 		CUBE
 			pos: 0 -1.1 0
-			color: #0505b0
 			CUBE
 				pos: 0 -1.1	0
-				color: #0505b0
 				CUBE
 					pos: 1.1 0 0
-					color: #0505b0
 					CUBE
 						pos: 1.1 0 0
-						color: #0505b0
+
 	CUBE
 		pos: 5 0 0
-		color: #0505b0
 		CUBE
 			pos: 0 -1.1	0
-			color: #0505b0
 			CUBE
 				pos: 0 -1.1	0
-				color: #0505b0
 				CUBE
 					pos: 0 -1.1 0
-					color: #0505b0
 					CUBE
 						pos: 1.1 0 0
-						color: #0505b0
 						CUBE
 							pos: 1.1 0 0
-							color: #0505b0
 		CUBE
 			pos: 3.35 0 0
-			color: #0505b0
 			CUBE
 				pos: 0 -1.1 0
-				color: #0505b0
 				CUBE
 					pos: 0 -1.1 0
-					color: #0505b0
 					CUBE
 						pos: 0 -1.1 0
-						color: #0505b0

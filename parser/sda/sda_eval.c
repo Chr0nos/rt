@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 11:26:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 11:39:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ static void		sda_mkobj(const char *s, int lvl, t_sda *e)
 			(unsigned int)(e->last_lvl - lvl + 1));
 	e->current_obj = rt_factory_alloc(type, parent);
 	rt_obj_set_reflect(e->current_obj, e->rt->settings.default_reflect);
+	if (e->current_obj->type & SDA_COLOR)
+		((t_cube*)e->current_obj->content)->color =
+			e->rt->settings.default_color;
 	e->last_lvl = lvl;
 }
 
