@@ -41,6 +41,12 @@ CUBE
 						color: #000000
 						pos: 1 0 0
 						reflect: 255
+						SPHERE
+							pos: 0 1 0
+							size: 0.4
+							texture: ./moon.jpg
+							reflect: 0
+							color: #b0000000
 						CUBE
 							color: #ffffff
 							pos: 1 0 0
