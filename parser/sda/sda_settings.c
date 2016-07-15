@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 00:37:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 00:58:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ void		sda_settings_init(t_sda_cfg *cfg)
 		1, SDB_REFRACT};
 	cfg[8] = T{"include:", &sda_setup_include, NULL, SDA_INCLUDE, 1,
 		SDB_INCLUDE};
-	cfg[9] = T{"angle:", &sda_setup_angle, NULL, SDA_ANGLE, 1, SDB_ANGLE};
+	cfg[9] = T{"angle:", &sda_setup_angle, &sda_export_angle, SDA_ANGLE, 1,
+		SDB_ANGLE};
 	cfg[10] = T{"copy:", &sda_setup_copy, NULL, SDA_COPY, 1, SDB_COPY};
-	cfg[11] = T{"name:", &sda_setup_name, NULL, SDA_NAME, 1, SDB_NAME};
+	cfg[11] = T{"name:", &sda_setup_name, &sda_export_name, SDA_NAME, 1,
+		SDB_NAME};
 	cfg[12] = T{"texture:", &sda_setup_texture, &sda_export_texture,
 		SDA_TEXTURE, 1, SDB_TEXTURE};
-	cfg[13] = T{"reflect:", &sda_setup_reflect, NULL, SDA_REFLECT, 1,
-		SDB_REFLECT};
+	cfg[13] = T{"reflect:", &sda_setup_reflect, &sda_export_reflect,
+		SDA_REFLECT, 1, SDB_REFLECT};
 	cfg[14] = T{"background:", &sda_setup_background, NULL,
 		SDA_BACKGROUND,	1, SDB_BACKGROUND};
 }

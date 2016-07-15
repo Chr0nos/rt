@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 00:37:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 00:54:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ char					*sda_export_size(t_obj *obj);
 char					*sda_export_texture(t_obj *obj);
 char					*sda_export_refract(t_obj *obj);
 char					*sda_export_intensity(t_obj *obj);
+char					*sda_export_name(t_obj *obj);
+char					*sda_export_angle(t_obj *obj);
+char					*sda_export_reflect(t_obj *obj);
 
 /*
 ** configure functions
