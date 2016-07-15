@@ -25,3 +25,42 @@ PLAN
 	color: #278722
 	reflect: 0
 	texture: ./herbe.jpg
+
+EMPTY
+	name: piscine
+	pos: 2 -0.3 3
+	CUBE
+		pos: 0 0 0
+		texture: ./sand.jpg
+	CUBE
+		pos: 2 0 0
+		texture: ./sand.jpg
+	CUBE
+		pos: 2 0 1
+		texture: ./sand.jpg
+	CUBE
+		pos: 0 0 1
+		texture: ./sand.jpg
+	CUBE
+		pos: 1 0 1
+		texture: ./sand.jpg
+	CUBE
+		pos: 2 0 -1
+		texture: ./sand.jpg
+	CUBE
+		pos: 0 0 -1
+		texture: ./sand.jpg
+	CUBE
+		pos: 1 0 -1
+		texture: ./sand.jpg
+	CUBE
+		pos: 1 -0.02 0
+		color: #990000ff
+		texture: ./water.jpg
+
+#PLAN
+#	pos: 0 50 0
+#	rot: 0 -1 0
+#	color: #0000FF
+#	reflect: 0
+#	texture: ./cloud.png
