@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 11:35:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 12:32:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				rt_start(t_rt *rt)
 	return (0);
 }
 
-int				main(int ac, char **av)
+static int		rt(int ac, char **av)
 {
 	t_rt	rt;
 
@@ -74,7 +74,6 @@ int				main(int ac, char **av)
 		}
 		if (rt_checkcamera(&rt))
 		{
-			//rt_debug(rt.root, 0);
 			rt_node_foreach(rt.root, INFIX, rt_node_display, NULL);
 			ft_putchar('\n');
 			if (!rt_create_window(&rt))
@@ -85,4 +84,9 @@ int				main(int ac, char **av)
 		rt_node_free(rt.root);
 	}
 	return (0);
+}
+
+int				main(int ac, char **av)
+{
+	return (rt(ac, av));
 }
