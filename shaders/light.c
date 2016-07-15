@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/14 21:33:49 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/15 14:52:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	unsigned int	color;
 
 	(void)s;
-	intelight = geo_normv4(geo_subv4(light->trans.w, r->intersection));
+	intelight = (light->type == SUNLIGHT ? light->trans.y :
+		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	reflect = (t_v4d){
 		intelight.x - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.x,
 		intelight.y - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.y,
@@ -41,7 +42,7 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
 		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity) /
-		(r->light_lenght / 5.0))
+		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 5.0)))
 			/ MID_LIGHT_POWER * 255.0;
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
 		s->color_render = blend_lighten(s->color_render, color);
@@ -55,7 +56,8 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	unsigned int	color;
 	t_v4d			light_vector;
 
-	light_vector = geo_normv4(geo_subv4(light->trans.w, r->intersection));
+	light_vector = (light->type == SUNLIGHT ? light->trans.y :
+		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
 	// t_ray			temp_ray;
 	//
@@ -78,9 +80,10 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	if (latt > 0.0)
 	{
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
-		(light->type & SUNLIGHT ? 1.0 : (r->light_lenght / 10.0));
+		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 10.0));
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
 		color = (color > 0xB0B0B0 ? 0xB0B0B0 : color);
+		//color = (color < 0x525252 ? 0x525252 : color);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
 }

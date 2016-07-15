@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/14 22:11:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 14:45:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	ray = *r->ray;
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
 		geo_dtov4d(-0.00001)));
-	ray.dir = geo_subv4(light->trans.w, r->intersection);
-	ray.lenght = (double)INFINITY;
+	ray.dir = (light->type == SUNLIGHT ? light->trans.y :
+		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
+	//ray.lenght = (double)INFINITY;
 	sw = (t_render){
 			&ray, r->rt,
 			NULL,
@@ -34,8 +35,9 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 		};
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
 	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
-	if (sw.obj_intersect && geo_distv4(light->trans.w, r->intersection)
+	if (sw.obj_intersect && ((geo_distv4(light->trans.w, r->intersection)
 	> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
+	|| (light->type == SUNLIGHT)))
 	{
 		s->color_render = blend_sub(s->color_render, 0x222222);
 		//shaders_disable_nexts(s);
