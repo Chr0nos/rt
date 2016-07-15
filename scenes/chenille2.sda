@@ -43,6 +43,9 @@ SPHERE
 								pos: 0 3 0
 								color: #d01515
 								angle: 5.0
+								POINTLIGHT
+									pos: 0 1 0
+									intensity: 30
 						SPHERE
 							size: 0.4
 							pos: 3 0.8 -0.5
