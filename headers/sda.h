@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 11:35:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/15 15:13:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,16 @@ void					sda_settings_init(t_sda_cfg *cfg);
 void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
+
+/*
+** exporterm
+*/
+
+char					*sda_export_ntab(unsigned int lvl);
+void					sda_export(const t_rt *rt);
+void					sda_export_color(unsigned int color, char *color_str);
+char					*sda_export_pos(t_v4d *v);
+void					sda_export_camera(t_obj *obj, unsigned int lvl);
 
 /*
 ** configure functions
