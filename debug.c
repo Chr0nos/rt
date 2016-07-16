@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/10 17:13:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 01:31:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void		rt_debug_elems(t_obj *obj, unsigned int lvl)
 		rt_debug_pos(obj);
 		write(1, "\n", 1);
 	}
-	if (obj->cfgbits & SDB_COLOR)
+	if ((obj->cfgbits & SDB_COLOR) && (obj->type != SETTING))
 		rt_debug_color(lvl, *(unsigned int*)obj->content);
 	rt_debug_pstr("bounds: ", lvl + 1);
 	rt_putbounds(obj, 3);

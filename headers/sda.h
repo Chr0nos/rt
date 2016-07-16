@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 11:35:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 02:11:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
+# define SDA_SETUP_TYPES 15
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
@@ -68,6 +69,7 @@ typedef struct			s_sda_cfg
 {
 	const char			*str;
 	int					(*config)(t_sda *, t_obj *, char **);
+	char				*(*export)(t_obj *);
 	enum e_sda_setting	obj_valid_type;
 	int					argc;
 	int					bit;
@@ -82,6 +84,25 @@ void					sda_settings_init(t_sda_cfg *cfg);
 void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
+
+/*
+** exporter
+*/
+
+char					*sda_export_ntab(unsigned int lvl);
+void					sda_export(const t_rt *rt);
+void					sda_export_color_raw(unsigned int color, char *color_str);
+char					*sda_export_xyz(const t_v4d *v, char radians);
+char					*sda_export_pos(t_obj *obj);
+char					*sda_export_rot(t_obj *obj);
+char					*sda_export_color(t_obj *obj);
+char					*sda_export_size(t_obj *obj);
+char					*sda_export_texture(t_obj *obj);
+char					*sda_export_refract(t_obj *obj);
+char					*sda_export_intensity(t_obj *obj);
+char					*sda_export_name(t_obj *obj);
+char					*sda_export_angle(t_obj *obj);
+char					*sda_export_reflect(t_obj *obj);
 
 /*
 ** configure functions
