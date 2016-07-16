@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 02:18:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 21:54:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				rt_start(t_rt *rt)
 		SDL_Delay(1);
 	if (rt->keyboard & MENU)
 		menu_clean(rt->rts);
+	textures_free(rt->textures);
 	draw_quit(&rt->sys);
 	return (0);
 }
@@ -98,6 +99,7 @@ static int		rt_export(const char *filepath)
 	}
 	sda_export(&rt);
 	rt_node_free(rt.root);
+	textures_free(rt.textures);
 	return (0);
 }
 
