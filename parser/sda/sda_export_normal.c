@@ -15,7 +15,12 @@
 
 char	*sda_export_normal(t_obj *obj)
 {
+	t_texture	*tex;
+
 	if (!(obj->cfgbits & SDB_TEXTURE))
 		return (NULL);
-	return (ft_strdup(rt_obj_get_normal(obj)->filepath));
+	tex = rt_obj_get_normal(obj);
+	if ((!tex) || (!tex->filepath))
+		return (NULL);
+	return (ft_strdup(tex->filepath));
 }
