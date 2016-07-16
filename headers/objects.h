@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 23:58:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 18:04:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int						rt_obj_set_reflect(t_obj *obj, unsigned char reflect);
 unsigned char			rt_obj_get_reflect(const t_obj *obj);
 t_texture				*rt_obj_get_texture(t_obj *obj);
 int						rt_obj_set_texture(t_obj *obj, t_texture *tex);
+t_texture				*rt_obj_get_normal(t_obj *obj);
+int						rt_obj_set_normal(t_obj *obj, t_texture *tex);
 unsigned int			rt_obj_get_lvl(t_obj *obj);
 t_obj					*rt_obj_get_root(t_obj *obj);
 

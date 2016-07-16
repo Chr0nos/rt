@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sda_settings.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 00:58:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 18:17:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#define SDA_SETUP_TYPES 15
+#define SDA_SETUP_TYPES 16
 #define T (t_sda_cfg)
 
 void		sda_settings_init(t_sda_cfg *cfg)
@@ -42,6 +42,8 @@ void		sda_settings_init(t_sda_cfg *cfg)
 		SDA_REFLECT, 1, SDB_REFLECT};
 	cfg[14] = T{"background:", &sda_setup_background, NULL,
 		SDA_BACKGROUND,	1, SDB_BACKGROUND};
+	cfg[15] = T{"normal:", &sda_setup_normal, &sda_export_normal,
+		SDA_TEXTURE, 1, SDB_NORMAL};
 }
 
 static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)

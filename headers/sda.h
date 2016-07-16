@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 02:11:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 17:49:55 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 15
+# define SDA_SETUP_TYPES 16
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
@@ -33,7 +33,8 @@ enum					e_sda_cfgbit
 	SDB_NAME = 1 << 11,
 	SDB_TEXTURE = 1 << 12,
 	SDB_REFLECT = 1 << 13,
-	SDB_BACKGROUND = 1 << 14
+	SDB_BACKGROUND = 1 << 14,
+	SDB_NORMAL = 1 << 15,
 };
 
 enum					e_sda_setting
@@ -98,6 +99,7 @@ char					*sda_export_rot(t_obj *obj);
 char					*sda_export_color(t_obj *obj);
 char					*sda_export_size(t_obj *obj);
 char					*sda_export_texture(t_obj *obj);
+char					*sda_export_normal(t_obj *obj);
 char					*sda_export_refract(t_obj *obj);
 char					*sda_export_intensity(t_obj *obj);
 char					*sda_export_name(t_obj *obj);
@@ -121,6 +123,7 @@ int						sda_setup_angle(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_copy(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_name(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_texture(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_normal(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_reflect(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_background(t_sda *e, t_obj *obj, char **av);
 
