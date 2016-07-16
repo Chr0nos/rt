@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/14 17:14:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 14:00:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct			s_cone
 	float				size;
 	t_v4d				angle;
 	unsigned char		reflect;
+	t_texture			*texture;
 }						t_cone;
 
 typedef struct			s_cone_inf

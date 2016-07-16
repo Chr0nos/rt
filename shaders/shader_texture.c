@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/15 16:26:15 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/16 13:39:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ unsigned int			shader_color_texture_intersection(const t_render *r)
 	if (tex)
 	{
 		pixels_texture = tex->surface->pixels;
-		u = fabs((double)((int)((r->intersection.x / 1.0) * 1000.0)
-			% 1000) / 1000.0);
-		v = fabs((double)((int)((r->intersection.z / 1.0) * 1000.0)
-			% 1000) / 1000.0);
+		u = fabs((double)((int)(((r->normal.x != 0.0 ? r->intersection.z :
+			r->intersection.x) / 1.0) * 1000.0) % 1000) / 1000.0);
+		v = fabs((double)((int)(((r->normal.y != 0.0 ? r->intersection.z :
+			r->intersection.y) / 1.0) * 1000.0) % 1000) / 1000.0);
 		if (r->obj_intersect->type & SPHERE)
 		{
 			u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2 * M_PI));

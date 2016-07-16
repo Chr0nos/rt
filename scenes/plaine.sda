@@ -4,6 +4,7 @@ CAMERA
 	pos: 0 1 -5
 
 SUNLIGHT
+	pos: 0.5 1 -0.5
 
 SPHERE
 	name: rock
@@ -11,13 +12,20 @@ SPHERE
 	color: #5F8A5F
 	texture: ./rock.jpg
 
-EMPTY
-	copy: rock
+CUBE
+	name: arbre
 	pos: 0.5 0 0
+	texture: ./sapin.jpg
 
-EMPTY
-	copy: rock
-	pos: 0.3 -0.5 -1
+SPHERE
+	texture: ./rock.jpg
+	size: 0.4
+	pos: -1 -0.2 0
+
+SPHERE
+	texture: ./rock.jpg
+	size: 0.5
+	pos: 1 0 0
 
 PLAN
 	pos: 0 0 0
