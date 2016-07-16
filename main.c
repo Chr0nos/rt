@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 02:04:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 02:18:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ static int		rt_export(const char *filepath)
 	t_rt	rt;
 
 	rt_configure(&rt);
-	rt.root = rt_parser(filepath, &rt);
+	if (!(rt.root = rt_parser(filepath, &rt)))
+	{
+		ft_putendl_fd("error.", 2);
+		return (1);
+	}
 	sda_export(&rt);
 	rt_node_free(rt.root);
 	return (0);
