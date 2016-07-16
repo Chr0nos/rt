@@ -21,7 +21,8 @@ int					sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 	t_texture	*tex;
 	char		*filepath;
 
-	filepath = ft_strunsplit((const char **)(unsigned long)av, ' ');
+	if (!(filepath = ft_strunsplit((const char **)(unsigned long)av, ' ')))
+		return (-2);
 	if ((tex = texture_search(e->rt->textures, filepath)))
 		free(filepath);
 	else if ((tex = texture_create(&e->rt->textures, filepath)))

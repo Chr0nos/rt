@@ -73,7 +73,7 @@ int			sda_settings(t_sda *e, int ac, char **av)
 			else if (ac - 2 < cfg[p].argc)
 				return (sda_warning(e, "missing params", av[0], -3));
 			ret = cfg[p].config(e, e->current_obj, &av[1]);
-			if (ret >= 0)
+			if (ret > 0)
 				e->current_obj->cfgbits |= cfg[p].bit;
 			return (ret);
 		}
