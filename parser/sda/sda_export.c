@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 00:56:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 02:06:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	sda_export_settings(const t_rt *rt)
 	sda_export_color_raw(rt->settings.default_color, color_str);
 	sda_export_color_raw(rt->settings.bgcolor, background_str);
 	al = ft_dtoa(rt->settings.ambiant_light, 6);
-	ft_printf("SETTING\n\tcolor: #%s\n\treflect: %s\n\tal: %s\n",
+	ft_printf("SETTING\n\tcolor: %s\n\treflect: %s\n\tal: %s\n",
 		color_str, reflect_str, al);
 	ft_printf("\tbackground: %s\n", background_str);
 	free(al);

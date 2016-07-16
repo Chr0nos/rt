@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 12:32:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 02:04:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,27 @@ static int		rt(int ac, char **av)
 	return (0);
 }
 
+static int		rt_export(const char *filepath)
+{
+	t_rt	rt;
+
+	rt_configure(&rt);
+	rt.root = rt_parser(filepath, &rt);
+	sda_export(&rt);
+	rt_node_free(rt.root);
+	return (0);
+}
+
 int				main(int ac, char **av)
 {
+	if (ac > 1)
+	{
+		if (ft_strcmp(av[1], "-e"))
+			;
+		else if (ac < 3)
+			ft_putendl_fd("error: missing parameter", 2);
+		else
+			return (rt_export(av[2]));
+	}
 	return (rt(ac, av));
 }

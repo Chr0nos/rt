@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:01:31 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/16 02:07:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			rt_puttype(int type)
 		{INVALID, "INVALID"},
 		{CONE, "CONE"},
 		{CONE_INF, "CONE_INF"},
-		{CYL, "CYLINDRE"},
+		{CYL, "CYL"},
 		{SUNLIGHT, "SUNLIGHT"},
 		{SETTING, "SETTING"}
 	};

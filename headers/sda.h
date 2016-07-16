@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 00:54:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 02:11:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 char					*sda_export_ntab(unsigned int lvl);
 void					sda_export(const t_rt *rt);
 void					sda_export_color_raw(unsigned int color, char *color_str);
-char					*sda_export_xyz(const t_v4d *v);
+char					*sda_export_xyz(const t_v4d *v, char radians);
 char					*sda_export_pos(t_obj *obj);
 char					*sda_export_rot(t_obj *obj);
 char					*sda_export_color(t_obj *obj);
