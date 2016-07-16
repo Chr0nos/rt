@@ -57,6 +57,7 @@ void			menu_display(t_rt *rt)
 		p++;
 	}
 	while (p--)
-		pthread_join(rt->menu.id[p].thread, NULL);
+		if (rt->menu.id[p].enabled)
+			pthread_join(rt->menu.id[p].thread, NULL);
 	rt->keyboard &= MENU_ALLOW;
 }
