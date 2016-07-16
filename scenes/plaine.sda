@@ -4,26 +4,30 @@ CAMERA
 	pos: 0 1 -5
 
 SUNLIGHT
-	pos: 0.5 1 -0.5
+	pos: 5 10 -0.5
 
 SPHERE
 	name: rock
 	pos: 0 -0.2 0
 	color: #5F8A5F
 	texture: ./rock.jpg
+	normal: ./rock_normal.jpg
 
 CUBE
 	name: arbre
 	pos: 0.5 0 0
-	texture: ./sapin.jpg
+	texture: ./feuillage.jpg
+	normal: ./feuillage_normal.jpg
 
 SPHERE
 	texture: ./rock.jpg
+	normal: ./rock_normal.jpg
 	size: 0.4
 	pos: -1 -0.2 0
 
 SPHERE
 	texture: ./rock.jpg
+	normal: ./rock_normal.jpg
 	size: 0.5
 	pos: 1 0 0
 
@@ -63,9 +67,10 @@ EMPTY
 		texture: ./sand.jpg
 	CUBE
 		pos: 1 -0.02 0
-		color: #55ffffff
-		texture: ./water.jpg
-		reflect: 50
+		color: #880077FF
+		#texture: ./water.jpg
+		normal: ./water_normal.png
+		reflect: 127
 
 #PLAN
 #	pos: 0 50 0

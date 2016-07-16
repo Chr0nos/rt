@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/16 14:13:31 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/16 19:43:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 10.0));
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
 		color = (color > 0xB0B0B0 ? 0xB0B0B0 : color);
-		//color = (color < 0x888888 ? 0x888888 : color);
+		//color = (color < 0xFFFFFF ? 0xFFFFFF : color);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
 }
