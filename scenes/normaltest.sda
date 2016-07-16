@@ -1,9 +1,11 @@
 CAMERA
 
 POINTLIGHT
-	pos: 2 50 1
+	pos: 0 20 0
+
+CUBE
 
 PLAN
 	pos: 0 0 2
-	color: #f0f000
+	color: #b03c47
 	normal: ./velour_normal.jpg
