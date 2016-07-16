@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shader_texture.c                                   :+:      :+:    :+:   */
+/*   shader_normalmap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/16 15:36:42 by alhote           ###   ########.fr       */
+/*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
+/*   Updated: 2016/07/16 15:36:15 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "texture.h"
 #include "libft.h"
 
-unsigned int		shader_color_texture_intersection(const t_render *r)
+unsigned int			shader_color_normal_intersection(const t_render *r)
 {
 	t_texture		*tex;
 	unsigned int	*pixels_texture;
@@ -46,9 +46,17 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 		return (((t_cube*)(r->obj_intersect->content))->color);
 }
 
-void				shader_texture(t_shader *s, t_render *r, t_obj *light)
+void					shader_normalmap(t_shader *s, t_render *r, t_obj *light)
 {
+	t_v4d	transformation_vector;
+	int		color_normal;
+
 	(void)light;
 	(void)s;
-	s->color_render = shader_color_texture_intersection(r);
+	color_normal = shader_color_normal_intersection(r);
+	transformation_vector = geo_subv4(r->normal, (t_v4d){0.0, 0.0, -1.0, 1.0});
+	r->normal = geo_addv(geo_normv4((t_v4d){(double)R(color_normal) - 128.0,
+							(double)G(color_normal) - 128.0,
+							(double)-(B(color_normal) - 128.0)}),
+							transformation_vector);
 }
