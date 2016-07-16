@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 13:42:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/16 22:08:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				keydown(int keycode, t_rt *rt)
 		return (togglefs(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))
 		return (togglefilters(rt, keycode));
-	else if (keycode == SDLK_p)
+	else if (keycode == SDLK_x)
 		sda_export(rt);
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
