@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 16:09:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 21:33:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,20 @@ int					shaders_exec(t_shaders *s, t_render *r, t_obj *o)
 	shader = s->shader;
 	while (shader)
 	{
-		shader->exec(shader, r, o);
+		if (shader->enabled)
+			shader->exec(shader, r, o);
 		shader = shader->next;
 	}
 	return (0);
 }
 
-unsigned int		shaders_compute_color(t_shaders *s)
+unsigned int		shaders_compute_color(t_shaders *s, unsigned int color)
 {
-	unsigned int	color;
 	t_shader		*shader;
 
 	if (!s)
 		return (1);
-	color = COLOR_BLACK;
 	shader = s->shader;
-	if (shader)
-		color = shader->color_render;
-	shader = shader->next;
 	while (shader)
 	{
 		if (shader->enabled)

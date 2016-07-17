@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/11 18:27:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 21:36:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ unsigned int		to_rgb(unsigned int a, unsigned int r,
 unsigned int		blend_normal(unsigned int a, unsigned int b)
 {
 	(void)b;
-	if(!A(a))
+	if (!A(a))
 		return (a);
 	else
-		return (blend_add(blend_multiply(
-			to_rgb(0, A(a), A(a), A(a)), b), a));
+		return (blend_add(
+			blend_multiply(to_rgb(0, A(a), A(a), A(a)), b), a));
 }
 
 unsigned int		blend_overlay(unsigned int a, unsigned int b)
@@ -52,10 +52,12 @@ unsigned int		blend_lighten(unsigned int a, unsigned int b)
 	unsigned int	red;
 	unsigned int	green;
 	unsigned int	blue;
+	unsigned int	alpha;
 
 	red = (R(a) > R(b) ? R(a) : R(b));
 	green = (G(a) > G(b) ? G(a) : G(b));
 	blue = (B(a) > B(b) ? B(a) : B(b));
+	alpha = (A(a) > A(b)) ? A(a) : A(b);
 	return (to_rgb(0, red, green, blue));
 }
 
@@ -64,10 +66,12 @@ unsigned int		blend_darken(unsigned int a, unsigned int b)
 	unsigned int	red;
 	unsigned int	green;
 	unsigned int	blue;
+	unsigned int	alpha;
 
 	red = (R(a) < R(b) ? R(a) : R(b));
 	green = (G(a) < G(b) ? G(a) : G(b));
 	blue = (B(a) < B(b) ? B(a) : B(b));
+	alpha = (A(a) < A(b)) ? A(a) : A(b);
 	return (to_rgb(0, red, green, blue));
 }
 
@@ -103,9 +107,11 @@ unsigned int		blend_multiply(unsigned int a, unsigned int b)
 	unsigned int	red;
 	unsigned int	green;
 	unsigned int	blue;
+	unsigned int	alpha;
 
 	red = (R(a) * R(b)) / 255;
 	green = (G(a) * G(b)) / 255;
 	blue = (B(a) * B(b)) / 255;
+	alpha = (A(a) * A(b)) / 255;
 	return (to_rgb(0, red, green, blue));
 }

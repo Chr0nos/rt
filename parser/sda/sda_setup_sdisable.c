@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 15:17:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 16:44:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 21:02:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void		sda_sdisable_init(t_sda_shader *x)
 	x[0] = (t_sda_shader){"diffuse", (void*)&rt_light_pow};
  	x[1] = (t_sda_shader){"specular", (void*)&rt_specular_pow};
 	x[2] = (t_sda_shader){"shadow", (void*)&shader_shadow};
+	x[3] = (t_sda_shader){"normal", (void*)&shader_normalmap};
+	x[4] = (t_sda_shader){"reflect", (void*)&shader_reflection};
+	x[5] = (t_sda_shader){"texture", (void*)&shader_texture};
 }
 
 int			sda_setup_sdisable(t_sda *e, t_obj *obj, char **av)

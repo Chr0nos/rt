@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 16:23:22 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 20:45:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 
 unsigned int		texture_color_convert(unsigned int color)
 {
+	const unsigned int		alpha = 0xff - ((color & 0xff000000) >> 24);
+
 	return (((color & 0xff0000) >> 16) |
 		((color & 0x000000ff) << 16) |
-		(color & 0xff00ff00));
+		(color & 0x00ff00) | (alpha << 24));
 }
 
 void				texture_convertformat(t_texture *tex)
@@ -65,7 +67,6 @@ t_texture			*texture_create(t_texture **lst, char *filepath)
 
 	if (!(surface = IMG_Load(filepath)))
 	{
-		ft_putendl_fd("holly shit", 2);
 		ft_putendl_fd(IMG_GetError(), 2);
 		return (NULL);
 	}

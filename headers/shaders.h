@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/16 18:32:04 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 21:28:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_shader			*shader_init(t_shaders *shaders,
 	t_obj *o), unsigned int color, unsigned int
 	(*blend)(unsigned int a, unsigned int b));
 int					shaders_exec(t_shaders *s, t_render *r, t_obj *o);
-unsigned int		shaders_compute_color(t_shaders *s);
+unsigned int		shaders_compute_color(t_shaders *s, unsigned int color);
 void				shaders_disable_nexts(t_shader *s);
 double				rt_reflection(t_render *r, t_obj *light);
 void				rt_light_pow(t_shader *s, t_render *r, t_obj *light);

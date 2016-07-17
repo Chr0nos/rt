@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:01:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:18:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 21:12:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 
 	if (!r->obj_intersect)
 		return (ray->color);
-	alpha = A(((t_cube*)(r->obj_intersect->content))->color);
+	alpha = A(ray->color);
 	if (!alpha && !A(shader_color_texture_intersection(r)))
 		return (ray->color);
 	nray = *ray;
