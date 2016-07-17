@@ -1,10 +1,13 @@
 SETTING
 	skybox: ./skybox_space.jpg
 CAMERA
-	pos: -0.789488 1.817913 11.493756
-	rot: 28.647889 -234.912696 0
+	#pos: -0.789488 1.817913 11.493756
+	#rot: 28.647889 -234.912696 0
+	pos: 0.958092 8.04958 13.539058
+	rot: 34.377466 -595.876106 0
 SPHERE
 	name: earth
+	size: 6.371
 	pos: 0 0 10
 	color: #0000FF
 	texture: ./earth.jpg
@@ -14,17 +17,21 @@ SPHERE
 	POINTLIGHT
 		pos: 15 5 -5
 		intensity: 200
+		size: 666
 	SPHERE
-		size: 1.02
+		size: 6.4
+	#	size: 1.02
 		color: #9900BFFF
 		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
 
 	SPHERE
 		name: moon
-		pos: 5 0 0
-		size: 0.3
+		pos: 38.44 0 0
+		#pos: 5 0 0
+		#size: 0.3
+		size: 1.737
 		color: #ffffff
 		texture: ./moon.jpg
 		normal: ./moon_normal.jpg
-		sdisable: specular
+		sdisable: specular diffuse
