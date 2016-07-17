@@ -7,6 +7,8 @@ SPHERE
 	color: #0000FF
 	texture: ./earth.jpg
 	normal: ./earth_normal.jpg
+	sdisable: specular shadow diffuse
+	reflect: 0
 	POINTLIGHT
 		pos: 15 5 -5
 		intensity: 200
