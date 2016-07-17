@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 15:55:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 16:55:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
 # define SDA_SETUP_TYPES 18
+# define SDA_COUNT_SHADER 3
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
@@ -103,6 +104,7 @@ void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
 char					*sda_double_short(char *s);
+void					sda_sdisable_init(t_sda_shader *x);
 
 /*
 ** exporter
@@ -126,6 +128,7 @@ char					*sda_export_name(t_obj *obj);
 char					*sda_export_angle(t_obj *obj);
 char					*sda_export_reflect(t_obj *obj);
 char					*sda_export_skybox(t_obj *obj);
+char					*sda_export_sdisable(t_obj *obj);
 
 /*
 ** configure functions
