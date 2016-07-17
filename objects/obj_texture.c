@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:29:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 13:58:43 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 23:16:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int			rt_obj_set_texture(t_obj *obj, t_texture *tex)
 		((t_sphere*)obj->content)->texture = tex;
 	else if (obj->type == CUBE)
 		((t_cube*)obj->content)->texture = tex;
+	else if (obj->type == CONE)
+		((t_cone*)obj->content)->texture = tex;
 	else
 		return (0);
 	return (1);

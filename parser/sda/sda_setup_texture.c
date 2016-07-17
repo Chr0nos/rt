@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 18:02:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 22:47:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 23:40:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int sda_setup_texture_fake(t_obj *obj, const char *filepath,
+t_texture 	*sda_setup_texture_fake(const char *filepath,
 	t_texture **textures)
 {
 	t_texture	*tex;
 
 	if (!(tex = malloc(sizeof(t_texture))))
-		return (-1);
+		return (NULL);
 	tex->filepath = ft_strdup(filepath);
 	tex->surface = NULL;
 	tex->next = *textures;
 	*textures = tex;
-	rt_obj_set_texture(obj, tex);
-	return (1);
+	return (tex);
 }
 
 int			sda_setup_texture(t_sda *e, t_obj *obj, char **av)
@@ -41,7 +40,11 @@ int			sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 	if ((tex = texture_search(e->rt->textures, filepath)))
 		free(filepath);
 	else if (e->rt->settings.fake_texture_load)
-		return (sda_setup_texture_fake(obj, filepath, &e->rt->textures));
+	{
+		tex = sda_setup_texture_fake(filepath, &e->rt->textures);
+		rt_obj_set_texture(obj, tex);
+		return (1);
+	}
 	else if ((tex = texture_create(&e->rt->textures, filepath)))
 		;
 	else

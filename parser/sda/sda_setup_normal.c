@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 17:46:46 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/16 17:47:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 23:40:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int					sda_setup_normal(t_sda *e, t_obj *obj, char **av)
 		return (-2);
 	if ((tex = texture_search(e->rt->textures, filepath)))
 		free(filepath);
+	else if (e->rt->settings.fake_texture_load)
+	{
+		tex = sda_setup_texture_fake(filepath, &e->rt->textures);
+		rt_obj_set_normal(obj, tex);
+		return (1);
+	}
 	else if ((tex = texture_create(&e->rt->textures, filepath)))
 		;
 	else
