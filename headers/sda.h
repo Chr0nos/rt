@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 23:40:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 23:50:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
 char					*sda_double_short(char *s);
 void					sda_sdisable_init(t_sda_shader *x);
-t_texture				*sda_setup_texture_fake(const char *filepath,
+t_texture				*sda_setup_texture_fake(char *filepath,
 	t_texture **textures);
 
 /*
