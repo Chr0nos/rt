@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 18:55:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 19:07:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SDA_H
 # define SDA_SETUP_TYPES 18
 # define SDA_COUNT_SHADER 3
+# define FLOATCMP(x, y) ((x > y) || (x < y))
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
@@ -103,6 +104,7 @@ t_obj					*sda_parse(const char *filepath, t_rt *rt);
 int						sda_eval(const char *line, t_sda *e,
 	const int lvl);
 int						sda_settings(t_sda *e, int ac, char **av);
+void					sda_settings_stack(t_obj *stack, t_obj *s);
 void					sda_settings_init(t_sda_cfg *cfg);
 void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,

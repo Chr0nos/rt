@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 18:55:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 19:01:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	export = userdata;
 	if (obj->type == SETTING)
-		export->setting = obj->content;
+		sda_settings_stack(export->setting_obj, obj);
 	if (!(export->tbl = sda_export_ntab(lvl + 1)))
 		return (-1);
 	write(export->fd, export->tbl, lvl);

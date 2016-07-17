@@ -6,13 +6,28 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 18:20:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 19:00:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 #define T (t_sda_cfg)
+
+void		sda_settings_stack(t_obj *stack, t_obj *s)
+{
+	t_setting	*o;
+	t_setting	*x;
+
+	x = s->content;
+	o = stack->content;
+	if (s->cfgbits & SDB_COLOR)
+		o->color = x->color;
+	if (s->cfgbits & SDB_SIZE)
+		o->size = x->size;
+	if (s->cfgbits & SDB_REFLECT)
+		o->reflect = x->reflect;
+}
 
 static void	sda_settings_init_bis(t_sda_cfg *cfg)
 {

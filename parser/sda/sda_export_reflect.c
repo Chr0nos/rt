@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 00:51:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 18:44:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 19:11:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 char	*sda_export_reflect(t_obj *obj, t_sda_export *e)
 {
-	(void)e;
+	unsigned char	reflect;
+
 	if (obj->type == SETTING)
 	{
 		if (!(obj->cfgbits & SDA_REFLECT))
 			return (NULL);
 		return (ft_itoa((int)((t_setting*)obj->content)->reflect));
 	}
-	return (ft_itoa(rt_obj_get_reflect(obj)));
+	reflect = rt_obj_get_reflect(obj);
+	if (e->setting->reflect == reflect)
+		return (NULL);
+	return (ft_itoa(reflect));
 }
