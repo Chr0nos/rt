@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 10:22:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:29:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	sda_export_settings(const t_rt *rt)
 		10, "0123456789");
 	sda_export_color_raw(rt->settings.default_color, color_str);
 	sda_export_color_raw(rt->settings.bgcolor, background_str);
-	al = ft_dtoa(rt->settings.ambiant_light * 100.0, 6);
+	al = sda_double_short(ft_dtoa(rt->settings.ambiant_light * 100.0, 6));
 	ft_printf("SETTING\n\tcolor: %s\n\treflect: %s\n\tal: %s\n",
 		color_str, reflect_str, al);
 	ft_printf("\tbackground: %s\n", background_str);
@@ -66,8 +66,6 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	t_sda_cfg			*cfg;
 	int					p;
 
-	if (obj->type == SETTING)
-		return (OK);
 	cfg = userdata;
 	(void)mode;
 	if (!(tbl = sda_export_ntab(lvl + 1)))

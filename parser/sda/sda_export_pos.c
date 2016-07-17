@@ -6,14 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:24:34 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 02:13:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:16:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 
-static char	*sda_xyz_short(char *s)
+char		*sda_double_short(char *s)
 {
 	char	*so;
 
@@ -37,9 +37,9 @@ char		*sda_export_xyz(const t_v4d *v, char radians)
 
 	if ((v->x == 0.0) && (v->y == 0.0) && (v->z == 0.0))
 		return (NULL);
-	x = sda_xyz_short(ft_dtoa((radians) ? rad2deg(v->x): v->x, 6));
-	y = sda_xyz_short(ft_dtoa((radians) ? rad2deg(v->y): v->y, 6));
-	z = sda_xyz_short(ft_dtoa((radians) ? rad2deg(v->z): v->z, 6));
+	x = sda_double_short(ft_dtoa((radians) ? rad2deg(v->x): v->x, 6));
+	y = sda_double_short(ft_dtoa((radians) ? rad2deg(v->y): v->y, 6));
+	z = sda_double_short(ft_dtoa((radians) ? rad2deg(v->z): v->z, 6));
 	buff = ft_strmjoin(5, x, " ", y, " ", z);
 	ft_mfree(3, x, y, z);
 	return (buff);

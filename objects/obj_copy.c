@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 11:58:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 17:06:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:33:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "objects.h"
 #include "shaders.h"
 #include "libft.h"
+#include "sda.h"
 
 /*
 ** this function does a copy of an object BUT dont care about childs/brothers
@@ -34,6 +35,7 @@ t_obj		*rt_obj_copy(const t_obj *src, t_obj *parent)
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	obj->next = NULL;
 	obj->name = NULL;
+	obj->cfgbits &= ~SDB_NAME;
 	rt_obj_init_shader(obj);
 	obj->id = rt_factory_getuid();
 	return (obj);

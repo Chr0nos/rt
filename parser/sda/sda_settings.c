@@ -3,17 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   sda_settings.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 18:17:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 13:31:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
-#define SDA_SETUP_TYPES 16
 #define T (t_sda_cfg)
+
+static void	sda_settings_init_bis(t_sda_cfg *cfg)
+{
+	cfg[14] = T{"background:", &sda_setup_background, NULL,
+		SDA_BACKGROUND,	1, SDB_BACKGROUND};
+	cfg[15] = T{"normal:", &sda_setup_normal, &sda_export_normal,
+		SDA_TEXTURE, 1, SDB_NORMAL};
+}
 
 void		sda_settings_init(t_sda_cfg *cfg)
 {
@@ -40,10 +47,7 @@ void		sda_settings_init(t_sda_cfg *cfg)
 		SDA_TEXTURE, 1, SDB_TEXTURE};
 	cfg[13] = T{"reflect:", &sda_setup_reflect, &sda_export_reflect,
 		SDA_REFLECT, 1, SDB_REFLECT};
-	cfg[14] = T{"background:", &sda_setup_background, NULL,
-		SDA_BACKGROUND,	1, SDB_BACKGROUND};
-	cfg[15] = T{"normal:", &sda_setup_normal, &sda_export_normal,
-		SDA_TEXTURE, 1, SDB_NORMAL};
+	sda_settings_init_bis(cfg);
 }
 
 static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)

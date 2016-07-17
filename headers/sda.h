@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 10:47:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:31:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct			s_sda_eval
 	t_rt				*rt;
 	t_obj				*root;
 	t_obj				*current_obj;
+	t_obj				*current_setting;
 	int					last_lvl;
 	int					lvl_offset;
 }						t_sda;
@@ -85,6 +86,7 @@ void					sda_settings_init(t_sda_cfg *cfg);
 void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
+char					*sda_double_short(char *s);
 
 /*
 ** exporter
