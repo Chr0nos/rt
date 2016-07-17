@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 22:11:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 01:31:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:46:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void			rt_debug(t_obj *item, unsigned int level)
 	if (!item)
 		return ;
 	rt_debug_pstr("- type: ", level);
-	rt_puttype(item->type);
+	rt_puttype(item->type, 1);
 	ft_printf("[%d]\n", (int)item->id);
 	rt_debug_elems(item, level);
 	write(1, "\n", 1);

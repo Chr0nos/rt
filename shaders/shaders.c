@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/13 17:26:48 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 16:09:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ unsigned int		shaders_compute_color(t_shaders *s)
 			color = shader->blend(shader->color_render, color);
 			shader->color_render = shader->color_base;
 		}
-		shader->enabled = 1;
 		shader = shader->next;
 	}
 	return (color);

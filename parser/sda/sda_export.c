@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:12:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:46:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,42 +45,44 @@ static void	sda_export_settings(const t_rt *rt)
 	free(al);
 }
 
-static void sda_export_line(t_obj *obj, t_sda_cfg *cfg, const unsigned int lvl,
-	const char *tbl)
+static void sda_export_line(t_obj *obj, t_sda_export *export,
+	const unsigned int lvl, const int p)
 {
 	char	*value;
 
-	if (!(value = cfg->export(obj)))
+	if (!(value = export->cfg[p].export(obj)))
 		return ;
-	write(1, tbl, lvl + 1);
-	ft_putstr(cfg->str);
-	ft_putchar(' ');
-	ft_putendl(value);
+	write(export->fd, export->tbl, lvl + 1);
+	ft_putstr_fd(export->cfg[p].str, export->fd);
+	ft_putchar_fd(' ', export->fd);
+	ft_putendl_fd(value, export->fd);
 	free(value);
 }
 
 static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 {
 	const unsigned int	lvl = rt_obj_get_lvl(obj) - 1;
-	char				*tbl;
-	t_sda_cfg			*cfg;
+	t_sda_export		*export;
 	int					p;
 
-	cfg = userdata;
 	(void)mode;
-	if (!(tbl = sda_export_ntab(lvl + 1)))
+	export = userdata;
+	if (!(export->tbl = sda_export_ntab(lvl + 1)))
 		return (-1);
-	write(1, tbl, lvl);
-	rt_puttype(obj->type);
-	write(1, "\n", 1);
+	write(export->fd, export->tbl, lvl);
+	rt_puttype(obj->type, export->fd);
+	write(export->fd, "\n", 1);
 	p = 0;
 	while (p < SDA_SETUP_TYPES)
 	{
-		if (((int)obj->type & cfg[p].obj_valid_type) && (cfg[p].export))
-			sda_export_line(obj, &cfg[p], lvl, tbl);
+		if (((int)obj->type & export->cfg[p].obj_valid_type) &&
+			(export->cfg[p].export))
+		{
+			sda_export_line(obj, export, lvl, p);
+		}
 		p++;
 	}
-	free(tbl);
+	free(export->tbl);
 	return (OK);
 }
 
@@ -89,10 +91,10 @@ void		sda_export(const t_rt *rt, const int fd)
 	t_sda_cfg		cfg[SDA_SETUP_TYPES];
 	t_sda_export	export;
 
-	export = (t_sda_export){(t_sda_cfg*)&cfg, fd};
 	sda_settings_init(cfg);
+	export = (t_sda_export){(t_sda_cfg*)&cfg, NULL, fd};
 	ft_putstr_fd("#sda export\n", fd);
 	sda_export_settings(rt);
-	rt_node_foreach(rt->root, INFIX, &sda_export_item, cfg);
+	rt_node_foreach(rt->root, INFIX, &sda_export_item, &export);
 	ft_putstr_fd("#end of file\n", fd);
 }
