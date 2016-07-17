@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 18:02:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 21:40:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 22:47:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,22 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int					sda_setup_texture(t_sda *e, t_obj *obj, char **av)
+static int sda_setup_texture_fake(t_obj *obj, const char *filepath,
+	t_texture **textures)
+{
+	t_texture	*tex;
+
+	if (!(tex = malloc(sizeof(t_texture))))
+		return (-1);
+	tex->filepath = ft_strdup(filepath);
+	tex->surface = NULL;
+	tex->next = *textures;
+	*textures = tex;
+	rt_obj_set_texture(obj, tex);
+	return (1);
+}
+
+int			sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 {
 	t_texture	*tex;
 	char		*filepath;
@@ -25,6 +40,8 @@ int					sda_setup_texture(t_sda *e, t_obj *obj, char **av)
 		return (-2);
 	if ((tex = texture_search(e->rt->textures, filepath)))
 		free(filepath);
+	else if (e->rt->settings.fake_texture_load)
+		return (sda_setup_texture_fake(obj, filepath, &e->rt->textures));
 	else if ((tex = texture_create(&e->rt->textures, filepath)))
 		;
 	else
