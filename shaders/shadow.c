@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/16 15:51:13 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 16:43:58 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
 	|| (light->type == SUNLIGHT)))
 	{
-		s->color_render = blend_sub(s->color_render, 0x222222);
+		s->color_render = blend_sub(s->color_render, (light->type == SUNLIGHT ?
+			0x555555 : 0x111111));
 		//shaders_disable_nexts(s);
 	}
 }

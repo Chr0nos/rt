@@ -16,7 +16,7 @@ SPHERE
 		intensity: 200
 	SPHERE
 		size: 1.02
-		color: #AA00BFFF
+		color: #9900BFFF
 		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
 	SPHERE
