@@ -13,3 +13,4 @@ SPHERE
 		size: 0.3
 		color: #ffffff
 		texture: ./moon.jpg
+		#normal: ./water_normal.png

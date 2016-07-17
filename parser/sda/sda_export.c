@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 02:26:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 10:22:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char		*sda_export_ntab(unsigned int lvl)
 {
 	char	*tbl;
 
-	tbl = malloc(lvl + 1);
+	if (!(tbl = malloc(lvl + 1)))
+		return (NULL);
 	tbl[lvl] = '\0';
 	ft_memset(tbl, '\t', lvl);
 	return (tbl);
@@ -69,15 +70,17 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 		return (OK);
 	cfg = userdata;
 	(void)mode;
-	tbl = sda_export_ntab(lvl + 1);
+	if (!(tbl = sda_export_ntab(lvl + 1)))
+		return (-1);
 	write(1, tbl, lvl);
 	rt_puttype(obj->type);
 	write(1, "\n", 1);
-	p = SDA_SETUP_TYPES;
-	while (p--)
+	p = 0;
+	while (p < SDA_SETUP_TYPES)
 	{
 		if (((int)obj->type & cfg[p].obj_valid_type) && (cfg[p].export))
 			sda_export_line(obj, &cfg[p], lvl, tbl);
+		p++;
 	}
 	free(tbl);
 	return (OK);
