@@ -19,6 +19,7 @@ SPHERE
 		color: #9900BFFF
 		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
+
 	SPHERE
 		name: moon
 		pos: 5 0 0
