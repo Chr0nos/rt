@@ -1,3 +1,5 @@
+SETTING
+	skybox: ./skybox_space.jpg
 CAMERA
 SPHERE
 	name: earth
@@ -7,6 +9,10 @@ SPHERE
 	POINTLIGHT
 		pos: 15 5 -10
 		intensity: 200
+	SPHERE
+		size: 1.05
+		color: #FFFFFFFF
+		texture: ./clouds_earth.jpg
 	SPHERE
 		name: moon
 		pos: 5 0 0

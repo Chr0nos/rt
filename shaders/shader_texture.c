@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/16 15:36:42 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 13:23:06 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 			r->intersection.y) / 1.0) * 1000.0) % 1000) / 1000.0);
 		if (r->obj_intersect->type & SPHERE)
 		{
-			u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2 * M_PI));
+			u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2.0 * M_PI));
 			v = 0.5 - (asin(r->normal.y) / M_PI);
 		}
 		return (pixels_texture[tex->surface->w *

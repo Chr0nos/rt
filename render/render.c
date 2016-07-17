@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 23:02:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:58:21 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "render.h"
 #include "shaders.h"
+
+static unsigned int		get_background_color(t_render *r)
+{
+	t_texture		*tex;
+	unsigned int	*pixels_texture;
+	double			u;
+	double			v;
+
+	if (!r->rt->settings.skybox)
+		return (r->rt->settings.bgcolor);
+	tex = r->rt->settings.skybox;
+	pixels_texture = tex->surface->pixels;
+	u = 0.5 + (atan2(r->ray->dir.z, r->ray->dir.x) / (2.0 * M_PI));
+	v = 0.5 - (asin(r->ray->dir.y) / M_PI);
+	return (pixels_texture[tex->surface->w *
+		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
+}
 
 int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
@@ -63,6 +80,6 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
-		return (rt->settings.bgcolor);
+		return (get_background_color(&r));
 	return (rt_render_opacity(rt, ray, &r));
 }
