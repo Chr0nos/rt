@@ -7,7 +7,7 @@ SPHERE
 	color: #0000FF
 	texture: ./earth.jpg
 	normal: ./earth_normal.jpg
-	sdisable: specular
+	#sdisable: specular
 	reflect: 0
 	POINTLIGHT
 		pos: 15 5 -5
@@ -17,7 +17,7 @@ SPHERE
 		color: #AA00BFFF
 		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
-		sdisable: specular
+		#sdisable: specular
 	SPHERE
 		name: moon
 		pos: 5 0 0
