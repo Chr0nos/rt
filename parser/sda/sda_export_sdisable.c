@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 16:40:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 17:04:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 17:09:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static const char	*sda_sdisable_getshadername(t_sda_shader *x,
 	return (NULL);
 }
 
-char		*sda_export_sdisable(t_obj *obj)
+static char	*sda_export_sdisable_real(t_obj *obj)
 {
 	t_sda_shader		x[SDA_COUNT_SHADER];
 	t_shader			*shader;
@@ -55,4 +55,11 @@ char		*sda_export_sdisable(t_obj *obj)
 		shader = shader->next;
 	}
 	return (str);
+}
+
+char		*sda_export_sdisable(t_obj *obj)
+{
+	if (!(obj->cfgbits & SDB_SDISABLE))
+		return (NULL);
+	return (sda_export_sdisable_real(obj));
 }
