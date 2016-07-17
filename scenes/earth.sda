@@ -35,3 +35,14 @@ SPHERE
 		texture: ./moon.jpg
 		normal: ./moon_normal.jpg
 		sdisable: specular diffuse
+
+SPHERE
+	name: sun
+	size: 10
+	pos: 450 0 -500
+	color: #ffffff;
+	sdisable: specular diffuse
+	SPHERE
+		size: 12
+		color: #b0b7eef7;
+		sdisable: specular diffuse
