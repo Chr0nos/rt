@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:06:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 11:37:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 10:40:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int			sda_setup_color(t_sda *e, t_obj *obj, char **av)
 	ft_strtoupper(av[0]);
 	color = (unsigned int)ft_basetoul((const char*)&av[0][1], "0123456789ABCDEF");
 	if (obj->type == SETTING)
+	{
 		e->rt->settings.default_color = color;
+		((t_setting*)obj->content)->color = color;
+	}
 	else
 		((t_cube*)obj->content)->color = color;
 	return (1);

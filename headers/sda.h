@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 17:49:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/17 10:47:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ enum					e_sda_setting
 	SDA_ROT = ~(CONE),
 	SDA_AL = SETTING | CAMERA,
 	SDA_FOV = CAMERA,
-	SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE | CONE_INF),
+	SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE | CONE_INF | SETTING),
 	SDA_INTEN = LIGHTTYPE,
 	SDA_REFRACT = VISIBLE,
 	SDA_INCLUDE = EMPTY,
