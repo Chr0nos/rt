@@ -1,0 +1,19 @@
+SETTING
+	skybox: skybox.jpg
+CAMERA
+	pos: -6.622749 1.582066 -4.006192
+	rot: 11.459155 74.484513 0
+PLAN
+	reflect: 120
+	pos: 0 -1.2 0
+	color: #ffffff
+	normal: water_normal.png
+	sdisable: shadow
+CUBE
+	#texture: water.jpg
+	normal: water_normal.png
+	size: 2
+	color: #b00077ff
+	#refract: 1.333
+	POINTLIGHT
+		pos: 0 10 3
