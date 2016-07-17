@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:31:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:44:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 16
+# define SDA_SETUP_TYPES 17
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
@@ -35,6 +35,7 @@ enum					e_sda_cfgbit
 	SDB_REFLECT = 1 << 13,
 	SDB_BACKGROUND = 1 << 14,
 	SDB_NORMAL = 1 << 15,
+	SDB_SKYBOX = 1 << 16
 };
 
 enum					e_sda_setting
@@ -53,7 +54,8 @@ enum					e_sda_setting
 	SDA_NAME = ~0,
 	SDA_TEXTURE = SPHERE | CUBE | PLAN,
 	SDA_REFLECT = VISIBLE | SETTING,
-	SDA_BACKGROUND = SETTING
+	SDA_BACKGROUND = SETTING,
+	SDA_SKYBOX = SETTING
 };
 
 typedef struct			s_sda_eval
@@ -128,5 +130,6 @@ int						sda_setup_texture(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_normal(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_reflect(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_background(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_skybox(t_sda *e, t_obj *obj, char **av);
 
 #endif

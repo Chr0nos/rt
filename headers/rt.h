@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 10:43:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:38:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_rtcfg
 	unsigned int	default_color;
 	unsigned char	default_reflect;
 	float			default_size;
+	t_texture		*skybox;
 }				t_rtcfg;
 
 typedef struct	s_rt

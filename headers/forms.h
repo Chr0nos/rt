@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 10:36:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:43:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct			s_setting
 {
 	unsigned int		color;
 	float				size;
+	t_texture			*skybox;
 }						t_setting;
 
 #endif
