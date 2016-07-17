@@ -1,16 +1,24 @@
+SETTING
+	skybox: ./skybox_space.jpg
 CAMERA
 SPHERE
 	name: earth
 	pos: 0 0 10
 	color: #0000FF
-	texture: ./earthhd.jpg
+	texture: ./earth.jpg
+	normal: ./earth_normal.jpg
 	POINTLIGHT
-		pos: 15 5 -10
+		pos: 15 5 -5
 		intensity: 200
+	SPHERE
+		size: 1.02
+		color: #AA00BFFF
+		#texture: ./clouds_earth.jpg
+		normal: ./clouds_earth_normal.jpg
 	SPHERE
 		name: moon
 		pos: 5 0 0
 		size: 0.3
 		color: #ffffff
 		texture: ./moon.jpg
-		#normal: ./water_normal.png
+		normal: ./moon_normal.jpg

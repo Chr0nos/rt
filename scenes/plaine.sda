@@ -1,7 +1,7 @@
 SETTING
 	background: #0AC4FC
 CAMERA
-	pos: 0 1 -5
+	pos: 3 1 1
 
 SUNLIGHT
 	pos: 5 10 -0.5
@@ -13,11 +13,11 @@ SPHERE
 	texture: ./rock.jpg
 	normal: ./rock_normal.jpg
 
-CUBE
-	name: arbre
-	pos: 0.5 0 0
-	texture: ./feuillage.jpg
-	normal: ./feuillage_normal.jpg
+#CUBE
+#	name: arbre
+#	pos: 0.5 0 0
+#	texture: ./feuillage.jpg
+#	normal: ./feuillage_normal.jpg
 
 SPHERE
 	texture: ./rock.jpg
@@ -40,7 +40,7 @@ PLAN
 
 EMPTY
 	name: piscine
-	pos: 1 -0.3 0
+	pos: 3 -0.3 3
 	CUBE
 		pos: 0 0 0
 		texture: ./sand.jpg
