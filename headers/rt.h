@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 13:38:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:45:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			rt_putbits(unsigned int bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);
-void			rt_puttype(int type);
+void			rt_puttype(int type, const int fd);
 t_type			rt_gettype(const char *str);
 
 int				getkeybit(const int keycode);

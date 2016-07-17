@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:12:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:32:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct			s_sda_cfg
 typedef struct			s_sda_export
 {
 	t_sda_cfg			*cfg;
+	char				*tbl;
 	const int			fd;
 }						t_sda_export;
 
@@ -99,7 +100,9 @@ char					*sda_double_short(char *s);
 ** exporter
 */
 
-void					sda_export_color_raw(unsigned int color, char *color_str);
+int						sda_export_file(const char *filepath);
+void					sda_export_color_raw(unsigned int color,
+	char *color_str);
 void					sda_export(const t_rt *rt, const int fd);
 char					*sda_export_ntab(unsigned int lvl);
 char					*sda_export_xyz(const t_v4d *v, char radians);

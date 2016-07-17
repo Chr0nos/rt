@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:12:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:29:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "parser.h"
 #include "menu.h"
 #include "sda.h"
+#include <unistd.h>
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
 {
@@ -87,9 +88,10 @@ static int		rt(int ac, char **av)
 	return (0);
 }
 
-static int		rt_export(const char *filepath)
+static int		rt_export(const char *filepath, const char *dest)
 {
 	t_rt	rt;
+	int		fd;
 
 	rt_configure(&rt);
 	if (!(rt.root = rt_parser(filepath, &rt)))
@@ -97,7 +99,12 @@ static int		rt_export(const char *filepath)
 		ft_putendl_fd("error.", 2);
 		return (1);
 	}
-	sda_export(&rt, 1);
+	fd = (dest) ? sda_export_file(dest) : 1;
+	if (fd < 0)
+		return (1);
+	sda_export(&rt, fd);
+	if (fd != 1)
+		close(fd);
 	rt_node_free(rt.root);
 	textures_free(rt.textures);
 	return (0);
@@ -112,7 +119,7 @@ int				main(int ac, char **av)
 		else if (ac < 3)
 			ft_putendl_fd("error: missing parameter", 2);
 		else
-			return (rt_export(av[2]));
+			return (rt_export(av[2], av[3]));
 	}
 	return (rt(ac, av));
 }

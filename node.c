@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 17:06:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:46:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			rt_node_display(t_obj *obj, int mode, void *userdata)
 {
 	(void)userdata;
 	(void)mode;
-	rt_puttype(obj->type);
+	rt_puttype(obj->type, 1);
 	ft_printf("[%d] ", (int)obj->id);
 	return (0);
 }
