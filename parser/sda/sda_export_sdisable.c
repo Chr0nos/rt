@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 16:40:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 17:09:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 18:44:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ static char	*sda_export_sdisable_real(t_obj *obj)
 	return (str);
 }
 
-char		*sda_export_sdisable(t_obj *obj)
+char		*sda_export_sdisable(t_obj *obj, t_sda_export *e)
 {
+	(void)e;
 	if (!(obj->cfgbits & SDB_SDISABLE))
 		return (NULL);
 	return (sda_export_sdisable_real(obj));

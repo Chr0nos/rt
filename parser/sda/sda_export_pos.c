@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:24:34 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:16:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 18:44:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ char		*sda_export_xyz(const t_v4d *v, char radians)
 	return (buff);
 }
 
-char		*sda_export_pos(t_obj *obj)
+char		*sda_export_pos(t_obj *obj, t_sda_export *e)
 {
+	(void)e;
 	return (sda_export_xyz(&obj->trans.w, 0));
 }
 
-char	*sda_export_rot(t_obj *obj)
+char	*sda_export_rot(t_obj *obj, t_sda_export *e)
 {
+	(void)e;
 	return (sda_export_xyz(&obj->rotation, 1));
 }

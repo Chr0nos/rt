@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 16:55:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 18:55:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,13 @@ typedef struct			s_sda_eval
 	int					lvl_offset;
 }						t_sda;
 
-typedef struct			s_sda_cfg
-{
-	const char			*str;
-	int					(*config)(t_sda *, t_obj *, char **);
-	char				*(*export)(t_obj *);
-	enum e_sda_setting	obj_valid_type;
-	int					argc;
-	int					bit;
-}						t_sda_cfg;
+struct					s_sda_cfg;
 
 typedef struct			s_sda_export
 {
-	t_sda_cfg			*cfg;
+	struct s_sda_cfg	*cfg;
+	t_setting			*setting;
+	t_obj				*setting_obj;
 	char				*tbl;
 	const int			fd;
 }						t_sda_export;
@@ -93,6 +87,16 @@ typedef	struct			s_sda_shader
 	const char			*name;
 	void				*shader;
 }						t_sda_shader;
+
+typedef struct			s_sda_cfg
+{
+	const char			*str;
+	int					(*config)(t_sda *, t_obj *, char **);
+	char				*(*export)(t_obj *, t_sda_export *);
+	enum e_sda_setting	obj_valid_type;
+	int					argc;
+	int					bit;
+}						t_sda_cfg;
 
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
@@ -116,19 +120,20 @@ void					sda_export_color_raw(unsigned int color,
 void					sda_export(const t_rt *rt, const int fd);
 char					*sda_export_ntab(unsigned int lvl);
 char					*sda_export_xyz(const t_v4d *v, char radians);
-char					*sda_export_pos(t_obj *obj);
-char					*sda_export_rot(t_obj *obj);
-char					*sda_export_color(t_obj *obj);
-char					*sda_export_size(t_obj *obj);
-char					*sda_export_texture(t_obj *obj);
-char					*sda_export_normal(t_obj *obj);
-char					*sda_export_refract(t_obj *obj);
-char					*sda_export_intensity(t_obj *obj);
-char					*sda_export_name(t_obj *obj);
-char					*sda_export_angle(t_obj *obj);
-char					*sda_export_reflect(t_obj *obj);
-char					*sda_export_skybox(t_obj *obj);
-char					*sda_export_sdisable(t_obj *obj);
+char					*sda_export_pos(t_obj *obj, t_sda_export *e);
+char					*sda_export_rot(t_obj *obj, t_sda_export *e);
+char					*sda_export_color(t_obj *obj, t_sda_export *e);
+char					*sda_export_size(t_obj *obj, t_sda_export *e);
+char					*sda_export_texture(t_obj *obj, t_sda_export *e);
+char					*sda_export_normal(t_obj *obj, t_sda_export *e);
+char					*sda_export_refract(t_obj *obj, t_sda_export *e);
+char					*sda_export_intensity(t_obj *obj, t_sda_export *e);
+char					*sda_export_name(t_obj *obj, t_sda_export *e);
+char					*sda_export_angle(t_obj *obj, t_sda_export *e);
+char					*sda_export_reflect(t_obj *obj, t_sda_export *e);
+char					*sda_export_skybox(t_obj *obj, t_sda_export *e);
+char					*sda_export_sdisable(t_obj *obj, t_sda_export *e);
+char					*sda_export_al(t_obj *obj, t_sda_export *e);
 
 /*
 ** configure functions

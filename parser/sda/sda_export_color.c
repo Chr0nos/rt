@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:23:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 23:40:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 18:43:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ void	sda_export_color_raw(unsigned int color, char *color_str)
 		ft_memmove(color_str, color_str + 2, 9);
 }
 
-char	*sda_export_color(t_obj *obj)
+char	*sda_export_color(t_obj *obj, t_sda_export *e)
 {
 	char	*color_str;
 
+	(void)e;
+	if  (!(obj->cfgbits & SDB_COLOR))
+		return (NULL);
 	color_str = malloc(12);
 	if (!color_str)
 		return (NULL);
