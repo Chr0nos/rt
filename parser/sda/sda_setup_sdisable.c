@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 15:17:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 15:56:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 16:09:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 #include "shaders.h"
 #include "libft.h"
 
-static int	sda_setup_sdisable_real(t_obj *obj, t_shader *shader, void *target)
+static int	sda_setup_sdisable_real(t_shader *shader, void *target)
 {
-	if (!shader)
-		return (0);
-	if ((void*)shader->exec == target)
+	if (shader)
 	{
-		shader->enabled = 0;
-		return (1);
+		if ((void*)shader->exec == target)
+		{
+			shader->enabled = 0;
+			return (1);
+		}
+		return (sda_setup_sdisable_real(shader->next, target));
 	}
-	return (sda_setup_sdisable_real(obj, shader->next, target));
+	return (0);
 }
 
-static int	sda_setup_sdisable_shader(t_obj *obj, t_sda_shader *x, int p,
-	const char *name)
+static int	sda_setup_sdisable_shader(t_sda_shader *x, int p,
+	const char *name, t_obj *obj)
 {
 	while (p--)
 	{
 		if (!ft_strcmp(x->name, name))
-		{
-			ft_printf("disabling shader: %s\n", name);
-			return (sda_setup_sdisable_real(obj, obj->shader->shader,
-				x->shader));
-		}
+			return (sda_setup_sdisable_real(obj->shader->shader, x->shader));
 		x++;
 	}
 	return (0);
@@ -55,7 +53,7 @@ int			sda_setup_sdisable(t_sda *e, t_obj *obj, char **av)
 	p = 0;
 	while (av[p])
 	{
-		if (!(sda_setup_sdisable_shader(obj, x, 3, av[p])))
+		if (!(sda_setup_sdisable_shader(x, 3, av[p], obj)))
 		{
 			ft_putendl_fd("error: shader not found", 2);
 			return (-1);
