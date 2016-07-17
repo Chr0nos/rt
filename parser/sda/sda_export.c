@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:01:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:12:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,15 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-void		sda_export(const t_rt *rt)
+void		sda_export(const t_rt *rt, const int fd)
 {
 	t_sda_cfg		cfg[SDA_SETUP_TYPES];
+	t_sda_export	export;
 
+	export = (t_sda_export){(t_sda_cfg*)&cfg, fd};
 	sda_settings_init(cfg);
-	ft_putstr("#sda export\n");
+	ft_putstr_fd("#sda export\n", fd);
 	sda_export_settings(rt);
 	rt_node_foreach(rt->root, INFIX, &sda_export_item, cfg);
-	ft_putstr("#end of file\n");
+	ft_putstr_fd("#end of file\n", fd);
 }

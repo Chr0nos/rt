@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 10:27:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:12:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int		rt_export(const char *filepath)
 		ft_putendl_fd("error.", 2);
 		return (1);
 	}
-	sda_export(&rt);
+	sda_export(&rt, 1);
 	rt_node_free(rt.root);
 	textures_free(rt.textures);
 	return (0);
