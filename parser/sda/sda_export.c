@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:29:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 14:01:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void		sda_export(const t_rt *rt)
 	ft_putstr("#sda export\n");
 	sda_export_settings(rt);
 	rt_node_foreach(rt->root, INFIX, &sda_export_item, cfg);
+	ft_putstr("#end of file\n");
 }
