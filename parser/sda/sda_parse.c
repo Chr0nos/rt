@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:25:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:50:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_obj	*sda_parse_fd(const int fd, t_rt *rt, t_obj *root,
 	int			ret;
 	t_sda		eval;
 
-	eval = (t_sda){fd, rt, root, root, NULL, 0, lvl_offset};
+	eval = (t_sda){fd, rt, root, root, 0, lvl_offset};
 	count = 0;
 	ret = 0;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))

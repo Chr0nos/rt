@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:44:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/17 13:53:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct			s_sda_eval
 	t_rt				*rt;
 	t_obj				*root;
 	t_obj				*current_obj;
-	t_obj				*current_setting;
 	int					last_lvl;
 	int					lvl_offset;
 }						t_sda;
@@ -94,9 +93,9 @@ char					*sda_double_short(char *s);
 ** exporter
 */
 
-char					*sda_export_ntab(unsigned int lvl);
-void					sda_export(const t_rt *rt);
 void					sda_export_color_raw(unsigned int color, char *color_str);
+void					sda_export(const t_rt *rt);
+char					*sda_export_ntab(unsigned int lvl);
 char					*sda_export_xyz(const t_v4d *v, char radians);
 char					*sda_export_pos(t_obj *obj);
 char					*sda_export_rot(t_obj *obj);
@@ -109,6 +108,7 @@ char					*sda_export_intensity(t_obj *obj);
 char					*sda_export_name(t_obj *obj);
 char					*sda_export_angle(t_obj *obj);
 char					*sda_export_reflect(t_obj *obj);
+char					*sda_export_skybox(t_obj *obj);
 
 /*
 ** configure functions
