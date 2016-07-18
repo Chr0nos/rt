@@ -10,7 +10,7 @@ SPHERE
 	size: 6.371
 	pos: 0 0 10
 	#color: #0000FF
-	color: #ff000000
+	color: #00000000
 	texture: ./earth.jpg
 	normal: ./earth_normal.jpg
 	sdisable: specular
@@ -21,11 +21,9 @@ SPHERE
 		size: 666
 	SPHERE
 		size: 6.5
-		size: 1.02
 		color: #9900BFFF
 		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
-		sdisable: normal texture
 
 	SPHERE
 		name: moon
@@ -33,10 +31,10 @@ SPHERE
 		#pos: 5 0 0
 		#size: 0.3
 		size: 1.737
-		color: #ffffff
+		color: #00ffffff
 		texture: ./moon.jpg
 		normal: ./moon_normal.jpg
-		sdisable: specular diffuse
+		sdisable: specular
 
 SPHERE
 	name: sun
@@ -46,5 +44,5 @@ SPHERE
 	sdisable: specular diffuse
 	SPHERE
 		size: 12
-		color: #b0b7eef7;
+		color: #00b7eef7;
 		sdisable: specular diffuse

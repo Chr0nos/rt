@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 21:36:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 13:07:40 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned int		blend_normal(unsigned int a, unsigned int b)
 		return (a);
 	else
 		return (blend_add(
-			blend_multiply(to_rgb(0, A(a), A(a), A(a)), b), a));
+			blend_multiply(to_rgb(A(a), A(a), A(a), A(a)), b), a));
 }
 
 unsigned int		blend_overlay(unsigned int a, unsigned int b)
@@ -58,7 +58,7 @@ unsigned int		blend_lighten(unsigned int a, unsigned int b)
 	green = (G(a) > G(b) ? G(a) : G(b));
 	blue = (B(a) > B(b) ? B(a) : B(b));
 	alpha = (A(a) > A(b)) ? A(a) : A(b);
-	return (to_rgb(0, red, green, blue));
+	return (to_rgb(alpha, red, green, blue));
 }
 
 unsigned int		blend_darken(unsigned int a, unsigned int b)
@@ -72,7 +72,7 @@ unsigned int		blend_darken(unsigned int a, unsigned int b)
 	green = (G(a) < G(b) ? G(a) : G(b));
 	blue = (B(a) < B(b) ? B(a) : B(b));
 	alpha = (A(a) < A(b)) ? A(a) : A(b);
-	return (to_rgb(0, red, green, blue));
+	return (to_rgb(alpha, red, green, blue));
 }
 
 unsigned int		blend_add(unsigned int a, unsigned int b)
@@ -113,5 +113,5 @@ unsigned int		blend_multiply(unsigned int a, unsigned int b)
 	green = (G(a) * G(b)) / 255;
 	blue = (B(a) * B(b)) / 255;
 	alpha = (A(a) * A(b)) / 255;
-	return (to_rgb(0, red, green, blue));
+	return (to_rgb(alpha, red, green, blue));
 }

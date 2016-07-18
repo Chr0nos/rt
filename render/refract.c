@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:01:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 21:12:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 13:21:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 
 	if (!r->obj_intersect)
 		return (ray->color);
-	alpha = A(ray->color);
-	if (!alpha && !A(shader_color_texture_intersection(r)))
+	alpha = (A(ray->color) + A(shader_color_texture_intersection(r))) % 255;
+	if (!alpha)
 		return (ray->color);
 	nray = *ray;
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,

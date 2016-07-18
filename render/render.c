@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 21:32:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 13:09:00 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
-			((t_cube*)r.obj_intersect->content)->color);
+			0x000000);
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
