@@ -3,11 +3,11 @@ SETTING
 	skybox: skybox.jpg
 CUBE
 	pos: 0 0 4
-	texture: cloud.png
+	texture: herbe.jpg
 	sdisable: specular
 	reflect: 0
 	POINTLIGHT
 		pos: 0 2 2
 	SPHERE
-		color: #b0ff0000
+		color: #00ff0000
 		texture: cloud.png
