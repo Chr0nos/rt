@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 18:18:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 19:14:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,24 @@ typedef struct			s_sda_cfg
 
 typedef struct			s_sda_bitmap_header
 {
+	//basisc bcp container headers
 	unsigned short		magic;
 	unsigned int		filesize;
 	unsigned int		app_id;
 	unsigned int		data_start;
+	//image headers (2 4 4 4) : 14
+	unsigned int		img_head_size;
+	unsigned int		w;
+	unsigned int		h;
+	unsigned short		plans;
+	unsigned int		bpp;
+	unsigned int		compression;
+	unsigned int		img_size;
+	unsigned int		x;
+	unsigned int		y;
+	unsigned int		palette_colors;
+	unsigned int		palette_important;
+	//image datas 4 4 4 2 4 4 4 4 4 4 4 : 42
 }						t_sda_bitmap_header;
 
 int						sda_lvl(char *line);
@@ -122,6 +136,8 @@ void					sda_sdisable_init(t_sda_shader *x);
 t_texture				*sda_setup_texture_fake(char *filepath,
 	t_texture **textures);
 char					*sda_export_bitmap(SDL_Surface *surface);
+int						sda_export_bitmap_file(const char *filepath,
+	SDL_Surface *surface);
 
 /*
 ** exporter
