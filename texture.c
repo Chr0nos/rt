@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 18:14:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:25:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 unsigned int		texture_color_convert(unsigned int color)
 {
-	const unsigned int		alpha = (color & 0xff000000) >> 24;
+	const unsigned int		alpha = 0xff - ((color & 0xff000000) >> 24);
 
 	return (((color & 0xff0000) >> 16) |
 		((color & 0x0000ff) << 16) |
