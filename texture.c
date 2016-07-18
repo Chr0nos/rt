@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 20:45:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:14:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 unsigned int		texture_color_convert(unsigned int color)
 {
-	const unsigned int		alpha = 0xff - ((color & 0xff000000) >> 24);
+	const unsigned int		alpha = (color & 0xff000000) >> 24;
 
 	return (((color & 0xff0000) >> 16) |
-		((color & 0x000000ff) << 16) |
+		((color & 0x0000ff) << 16) |
 		(color & 0x00ff00) | (alpha << 24));
 }
 
@@ -55,6 +55,7 @@ static t_texture	*texture_create_set(t_texture *tex, char *filepath,
 	tex->surface = std_surface;
 	tex->next = *lst;
 	texture_convertformat(tex);
+	(void)texture_convertformat;
 	*lst = tex;
 	return (tex);
 }

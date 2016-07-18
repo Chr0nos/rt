@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 23:50:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:03:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,14 @@ typedef struct			s_sda_cfg
 	int					argc;
 	int					bit;
 }						t_sda_cfg;
+
+typedef struct			s_sda_bitmap_header
+{
+	unsigned short		magic;
+	unsigned int		filesize;
+	unsigned int		app_id;
+	unsigned int		data_start;
+}						t_sda_bitmap_header;
 
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);

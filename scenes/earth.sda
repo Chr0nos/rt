@@ -17,10 +17,11 @@ SPHERE
 		intensity: 200
 		size: 666
 	SPHERE
+		name: atmosphere
 		size: 6.5
 		color: #9900BFFF
-		#texture: ./clouds_earth.jpg
 		normal: ./clouds_earth_normal.jpg
+		#texture: ./clouds_earth.jpg
 	SPHERE
 		name: moon
 		pos: 38.44 0 0
