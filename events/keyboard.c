@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:13:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:33:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int				keydown(int keycode, t_rt *rt)
 		return (togglefilters(rt, keycode));
 	else if ((keycode == SDLK_x) && (!(rt->keyboard & MENU)))
 		sda_export(rt, 1);
+	else if (keycode == SDLK_b)
+		sda_export_bitmap_file("save.bmp", rt->sys.screen);
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
