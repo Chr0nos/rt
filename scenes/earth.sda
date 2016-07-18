@@ -10,7 +10,7 @@ SPHERE
 	size: 6.371
 	pos: 0 0 10
 	#color: #0000FF
-	color: #00000000
+	#color: #00000000
 	texture: ./earth.jpg
 	normal: ./earth_normal.jpg
 	sdisable: specular
@@ -20,10 +20,11 @@ SPHERE
 		intensity: 200
 		size: 666
 	SPHERE
+		name: atmosphere
 		size: 6.5
-		color: #9900BFFF
-		#texture: ./clouds_earth.jpg
-		normal: ./clouds_earth_normal.jpg
+		#color: #0000BFFF
+		texture: ./clouds_earth.png
+		#normal: ./clouds_earth_normal.jpg
 
 	SPHERE
 		name: moon

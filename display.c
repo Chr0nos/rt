@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 21:16:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 17:56:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static int		sdl_flush(t_rt *rt)
 {
+	//draw_blitsurface_dbg_alpha(rt->sys.screen, rt->textures->surface, (t_point){0,0});
 	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);
 	SDL_UnlockSurface(rt->sys.screen);

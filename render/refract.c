@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:01:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 13:21:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/18 17:39:47 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 
 	if (!r->obj_intersect)
 		return (ray->color);
-	alpha = (A(ray->color) + A(shader_color_texture_intersection(r))) % 255;
+	alpha = A(shader_color_texture_intersection(r)) +
+			A(((t_cube*)(r->obj_intersect->content))->color);
+	alpha = (alpha > 255 ? 255 : alpha);
 	if (!alpha)
 		return (ray->color);
 	nray = *ray;
