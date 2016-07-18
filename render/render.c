@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 18:53:46 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/18 20:06:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-t_uint			rt_render(t_rt *rt, t_ray *ray)
+t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
@@ -83,4 +83,12 @@ t_uint			rt_render(t_rt *rt, t_ray *ray)
 	if (!r.obj_intersect)
 		return (get_background_color(&r));
 	return (rt_render_opacity(rt, ray, &r));
+}
+
+void			rt_render(t_rt *rt)
+{
+	if ((rt->settings.mode & MODE) == 5)
+		rt_rays(rt);
+	else
+		rt_rays(rt);
 }

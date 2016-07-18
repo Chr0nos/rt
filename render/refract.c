@@ -53,6 +53,6 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
 		geo_dtov4d(0.01)));
 	nray.dir = rt_ray_refract(r, ray);
-	return (draw_color_lerp(ray->color, rt_render(rt, &nray),
+	return (draw_color_lerp(ray->color, rt_render_ray(rt, &nray),
 		(float)alpha / 255.0f));
 }

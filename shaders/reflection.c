@@ -33,7 +33,7 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 	{
 		reflect = rt_obj_get_reflect(r->obj_intersect);
 		if (reflect > 0)
-			s->color_render = blend_multiply(rt_render(r->rt, &ray),
+			s->color_render = blend_multiply(rt_render_ray(r->rt, &ray),
 				to_rgb(0, reflect, reflect, reflect));
 	}
 }

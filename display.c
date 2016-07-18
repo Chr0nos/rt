@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 17:56:07 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/18 19:58:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				display(t_rt *rt)
 	}
 	else
 	{
-		rt_rays(rt);
+		rt_render(rt);
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;
 	}

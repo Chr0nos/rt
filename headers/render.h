@@ -29,7 +29,7 @@ typedef struct	s_render
 	t_v4d		normal;
 }				t_render;
 
-t_uint			rt_render(t_rt *rt, t_ray *ray);
+t_uint			rt_render_ray(t_rt *rt, t_ray *ray);
 unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
 	const t_render *r);
 int				rt_render_light(t_obj *obj, int mode, void *userdata);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 22:35:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 19:59:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum	e_rendflag
 	GLPREVMODE = 2,
 	GLRENDMODE = 3,
 	PTMODE = 4,
+	ALTERNATIVEMODE = 5,
 	MODE = 0xff,
 	AO = 1 << 8,
 	ALT_LIGHT_EQ = 1 << 9
@@ -99,7 +100,8 @@ t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
 unsigned int	rt_factory_getuid(void);
 t_uint			rt_sizeobj(t_type type);
 
-t_uint			rt_render(t_rt *rt, t_ray *ray);
+void			rt_render(t_rt *rt);
+t_uint			rt_render_ray(t_rt *rt, t_ray *ray);
 
 int				rt_checkcamera(t_rt *rt);
 int				check_cube(const t_box *a, const t_box *b);

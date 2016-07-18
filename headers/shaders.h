@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/18 17:28:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/18 19:31:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_shaders
 	t_shader		*shader;
 }					t_shaders;
 
+void				*shader_get(t_shader *s, SHT t, SHF f);
 t_shaders			*shaders_init(void);
 t_shader			*shader_init(t_shaders *shaders,
 	void (*shader)(t_shader *s, t_render *r,
