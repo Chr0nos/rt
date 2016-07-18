@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 21:51:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 22:39:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <SDL2/SDL.h>
+
+static void sda_bmp_chendian(t_sda_bitmap_header *h)
+{
+	h->magic = (unsigned short)((h->magic << 8) | (h->magic >> 8));
+	h->filesize = ((h->filesize << 16) | (h->filesize >> 16));
+	h->app_id = ((h->app_id < 8) | (h->app_id >> 8));
+}
 
 static void	sda_bmp_dump(unsigned char *dest, SDL_Surface *surface)
 {
@@ -52,6 +59,7 @@ static void	sda_export_bitmap_init(t_sda_bitmap_header *header,
 	header->palette_important = 0;
 	header->x = header->h;
 	header->y = header->w;
+	sda_bmp_chendian(header);
 }
 
 char	*sda_export_bitmap(SDL_Surface *surface)
@@ -70,10 +78,11 @@ char	*sda_export_bitmap(SDL_Surface *surface)
 		return (NULL);
 	header = (t_sda_bitmap_header*)(unsigned long)data;
 	sda_export_bitmap_init(header, surface, fullsize);
-	ft_printf("x: %d y: %d s: %d\n",
+	ft_printf("x: %d y: %d s: %d imgs: %d\n",
 		(int)header->x, (int)header->w,
-		(int)header->filesize);
+		(int)header->filesize, img_size);
 	sda_bmp_dump((unsigned char*)&data[header->data_start], surface);
+ft_memset((unsigned char*)&data[header->data_start], 0, 1000);
 	return (data);
 }
 
