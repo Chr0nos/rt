@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/17 18:20:50 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/18 14:42:27 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ifeq ($(OPSYS), Darwin)
 		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
 		INC+=-I ~/.brew/include
 	else
-		SDLLINK=-framework sdl2
+		SDLLINK=-framework sdl2 -framework SDL2_image
 	endif
 	INC+=-I ./headers/mac
 else
