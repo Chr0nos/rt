@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 19:14:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 21:49:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,23 +102,23 @@ typedef struct			s_sda_cfg
 typedef struct			s_sda_bitmap_header
 {
 	//basisc bcp container headers
-	unsigned short		magic;
-	unsigned int		filesize;
-	unsigned int		app_id;
-	unsigned int		data_start;
+	unsigned short		magic;				//2		0
+	unsigned int		filesize;			//4		2
+	unsigned int		app_id;				//4		6
+	unsigned int		data_start;			//4		10
 	//image headers (2 4 4 4) : 14
-	unsigned int		img_head_size;
-	unsigned int		w;
-	unsigned int		h;
-	unsigned short		plans;
-	unsigned int		bpp;
-	unsigned int		compression;
-	unsigned int		img_size;
-	unsigned int		x;
-	unsigned int		y;
-	unsigned int		palette_colors;
-	unsigned int		palette_important;
-	//image datas 4 4 4 2 4 4 4 4 4 4 4 : 42
+	unsigned int		img_head_size;		//4		14	0
+	unsigned int		w;					//4		18	4
+	unsigned int		h;					//4		22	8
+	unsigned short		plans;				//2		24	10
+	unsigned int		bpp;				//4		28	14
+	unsigned int		compression;		//4		32	18
+	unsigned int		img_size;			//4		36	22
+	unsigned int		x;					//4		40	26
+	unsigned int		y;					//4		44	30
+	unsigned int		palette_colors;		//4		48	34
+	unsigned int		palette_important;	//4		52	38
+											//		56	44
 }						t_sda_bitmap_header;
 
 int						sda_lvl(char *line);
