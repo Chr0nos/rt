@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 18:03:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/18 18:18:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char					*sda_double_short(char *s);
 void					sda_sdisable_init(t_sda_shader *x);
 t_texture				*sda_setup_texture_fake(char *filepath,
 	t_texture **textures);
+char					*sda_export_bitmap(SDL_Surface *surface);
 
 /*
 ** exporter
