@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 11:27:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 14:45:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static void	sda_export_bitmap_init(t_sda_bitmap_header *header,
 	SDL_Surface *surface, const unsigned int fullsize)
 {
 	header->img_size = (unsigned int)(surface->w * surface->h) * 3;
-	//header->magic = 0x424d;
-	header->magic = 0x4d42;
+	header->magic = 0x424d;
 	header->filesize = fullsize;
 	header->data_start = 10;
 	header->plans = 1;
@@ -92,7 +91,7 @@ int		sda_export_bitmap_file(const char *filepath, SDL_Surface *surface)
 	char			*bitmap;
 	unsigned int	size;
 
-	if (!(fd = open(filepath, O_CREAT | O_TRUNC | O_RDWR)))
+	if ((fd = open(filepath, O_CREAT | O_TRUNC | O_RDWR)) <= 0)
 		return (-1);
 	bitmap = sda_export_bitmap(surface);
 	if (!bitmap)

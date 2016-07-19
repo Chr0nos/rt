@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 11:05:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 14:40:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ static int		rt_export_bmp(const char *filepath, const char *dest)
 	rt_configure(&rt);
 	if ((rt.root = rt_parser(filepath, &rt)))
 	{
-		rt.sys.screen = draw_make_surface((t_point){1024, 768});
+		SDL_Init(SDL_INIT_VIDEO);
+		rt.sys.geometry = (t_point){1024, 768};
+		rt.sys.screen = draw_make_surface(rt.sys.geometry);
 		rt_rays(&rt);
 		sda_export_bitmap_file(dest, rt.sys.screen);
 		rt_node_free(rt.root);
