@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 20:39:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 15:34:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 unsigned int		texture_color_convert(unsigned int color)
 {
-	const unsigned int		alpha = 0 - ((color & 0xff000000) >> 24);
+	const unsigned int		alpha = 0xFF - ((color & 0xff000000) >> 24);
 
 	return (((color & 0xff0000) >> 16) |
 		((color & 0x0000ff) << 16) |
