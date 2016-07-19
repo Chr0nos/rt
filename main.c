@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 22:43:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 11:05:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,23 @@ static int		rt_export(const char *filepath, const char *dest)
 	return (0);
 }
 
+static int		rt_export_bmp(const char *filepath, const char *dest)
+{
+	t_rt	rt;
+
+	rt_configure(&rt);
+	if ((rt.root = rt_parser(filepath, &rt)))
+	{
+		rt.sys.screen = draw_make_surface((t_point){1024, 768});
+		rt_rays(&rt);
+		sda_export_bitmap_file(dest, rt.sys.screen);
+		rt_node_free(rt.root);
+		textures_free(rt.textures);
+		return (0);
+	}
+	return (1);
+}
+
 int				main(int ac, char **av)
 {
 	if (ac > 1)
@@ -121,6 +138,12 @@ int				main(int ac, char **av)
 			ft_putendl_fd("error: missing parameter", 2);
 		else
 			return (rt_export(av[2], av[3]));
+		if (ft_strcmp(av[1], "-b"))
+			;
+		else if (ac < 4)
+			ft_putendl_fd("error: missing paremeter", 2);
+		else
+			return (rt_export_bmp(av[2], av[3]));
 	}
 	return (rt(ac, av));
 }

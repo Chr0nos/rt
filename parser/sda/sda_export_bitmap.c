@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 22:39:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 11:27:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ char	*sda_export_bitmap(SDL_Surface *surface)
 	ft_printf("x: %d y: %d s: %d imgs: %d\n",
 		(int)header->x, (int)header->w,
 		(int)header->filesize, img_size);
-	sda_bmp_dump((unsigned char*)&data[header->data_start], surface);
-ft_memset((unsigned char*)&data[header->data_start], 0, 1000);
+	sda_bmp_dump((unsigned char*)&data[56], surface);
+//ft_memset((unsigned char*)&data[header->data_start], 0, 1000);
 	return (data);
 }
 
@@ -90,8 +90,9 @@ int		sda_export_bitmap_file(const char *filepath, SDL_Surface *surface)
 {
 	int				fd;
 	char			*bitmap;
+	unsigned int	size;
 
-	if (!(fd = open(filepath, O_CREAT | O_WRONLY | O_TRUNC)))
+	if (!(fd = open(filepath, O_CREAT | O_TRUNC | O_RDWR)))
 		return (-1);
 	bitmap = sda_export_bitmap(surface);
 	if (!bitmap)
@@ -99,8 +100,11 @@ int		sda_export_bitmap_file(const char *filepath, SDL_Surface *surface)
 		close(fd);
 		return (-2);
 	}
-	write(fd, bitmap, ((t_sda_bitmap_header*)(unsigned long)bitmap)->filesize);
+	size = ((t_sda_bitmap_header*)(unsigned long)bitmap)->filesize;
+	ft_printf("size: %d\n", size);
+	write(fd, bitmap, size);
 	close(fd);
 	free(bitmap);
+	ft_putendl("done");
 	return (1);
 }
