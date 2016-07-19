@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 20:06:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/19 19:20:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,34 @@ t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
 	return (rt_render_opacity(rt, ray, &r));
 }
 
+t_uint			rt_render_bray(t_rt *rt, t_ray *ray)
+{
+	t_render	r;
+
+	r = (t_render){
+		ray, rt,
+		NULL,
+		HUGE_VAL,
+		0.0,
+		(t_v4d){0.0, 0.0, 0.0, 0.0},
+		ray->dir
+	};
+	ray->color = 0xff000000;
+	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
+	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
+	if (r.obj_intersect)
+		r.ray->color = ((t_cube *)r.obj_intersect->content)->color;
+	else
+		return (get_background_color(&r));
+	ray->lenght = r.lowest_lenght;
+	return (rt_render_opacity(rt, ray, &r));
+}
+
 void			rt_render(t_rt *rt)
 {
-	if ((rt->settings.mode & MODE) == 5)
-		rt_rays(rt);
+	if ((rt->settings.mode & MODE) == ALTERNATIVEMODE)
+		rt->rayfunc = &rt_render_bray;
 	else
-		rt_rays(rt);
+		rt->rayfunc = &rt_render_ray;
+	rt_rays(rt);
 }

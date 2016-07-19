@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 19:53:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/19 21:58:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 			ray->dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			draw_pxi(pixels, px, (unsigned int)rt->sys.geometry.x,
-				rt_render_ray(rt, ray));
+				rt->rayfunc(rt, ray));
 			rad.y -= rad.w;
 		}
 		rad.x -= rad.z;

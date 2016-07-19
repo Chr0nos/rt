@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/18 19:59:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/19 19:19:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum	e_rendflag
 	PTMODE = 4,
 	ALTERNATIVEMODE = 5,
 	MODE = 0xff,
+	MODEFLAG = 0x7fffff00,
 	AO = 1 << 8,
 	ALT_LIGHT_EQ = 1 << 9
 }				t_rendflag;
@@ -78,6 +79,7 @@ typedef struct	s_rt
 	size_t		rts_size;
 	t_menu		menu;
 	t_texture	*textures;
+	t_uint		(*rayfunc)(struct s_rt *rt, t_ray *ray);
 }				t_rt;
 
 void			rt_putbits(unsigned int bits);
@@ -102,6 +104,7 @@ t_uint			rt_sizeobj(t_type type);
 
 void			rt_render(t_rt *rt);
 t_uint			rt_render_ray(t_rt *rt, t_ray *ray);
+t_uint			rt_render_bray(t_rt *rt, t_ray *ray);
 
 int				rt_checkcamera(t_rt *rt);
 int				check_cube(const t_box *a, const t_box *b);

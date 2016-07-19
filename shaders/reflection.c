@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/18 13:27:11 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/19 22:04:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 	{
 		reflect = rt_obj_get_reflect(r->obj_intersect);
 		if (reflect > 0)
-			s->color_render = blend_multiply(rt_render_ray(r->rt, &ray),
+			s->color_render = blend_multiply(r->rt->rayfunc(r->rt, &ray),
 				to_rgb(0, reflect, reflect, reflect));
 	}
 }
