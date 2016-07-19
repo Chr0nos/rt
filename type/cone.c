@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/14 17:08:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/19 22:25:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,6 @@ int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
 
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v)
 {
-	// t_v4d		nor;
-	// double		tmp;
-	//
-	// nor = geo_subv4(*v, obj->trans.w);
-	// nor.y = 0.0;
-	// nor = geo_normv4(nor);
-	// tmp = ((t_cone *)obj->content)->angle.z;
-	// nor = geo_multv4(nor, geo_dtov4d(1.0 - (tmp * tmp)));
-	// nor.y = tmp;
-	// return (nor);
-
 	double		t;
 	t_v4d		dir;
 	double		beta;

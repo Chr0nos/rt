@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 10:30:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/07/17 16:34:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 22:27:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,16 @@ static int		rt_cone_inf_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
 	t_sphere_inter	s;
-	t_v4d 		    v_sub;
-	t_v4d     		c = obj->trans.w;
+	t_v4d			v_sub;
+	const t_v4d		c = obj->trans.w;
 	t_v4d			rot;
-	const double	calc_size = 1 + (double)((t_cone_inf*)obj->content)->size
-	   	* (double)((t_cone_inf*)obj->content)->size;
+	double			calc_size;
 
+	calc_size = 1 + (double)((t_cone_inf*)obj->content)->size
+		* (double)((t_cone_inf*)obj->content)->size;
 	rot = geo_normv4((t_v4d){obj->rotation.x, obj->rotation.y,
 		obj->rotation.z, obj->rotation.w});
-	v_sub  = (t_v4d){r->start.x - c.x, r->start.y - c.y, r->start.z - c.z, 1};
+	v_sub = (t_v4d){r->start.x - c.x, r->start.y - c.y, r->start.z - c.z, 1};
 	s.a = geo_dotv4(r->dir, r->dir) - (calc_size * geo_dotv4(r->dir, rot)
 			* geo_dotv4(r->dir, rot));
 	s.b = 2 * (geo_dotv4(r->dir, v_sub) - (calc_size *

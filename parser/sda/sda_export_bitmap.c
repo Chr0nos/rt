@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 19:17:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 22:36:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static void	sda_bmp_dump(unsigned char *dest, SDL_Surface *surface)
 ** you have no idea how wrong the bitmap format is...
 */
 
-static void	sda_export_bitmap_init(t_sda_bitmap_header *header,
+static void	sda_export_bitmap_init(void *bitmap,
 	SDL_Surface *surface, const unsigned int fullsize)
 {
 	unsigned long		data;
 
 	(void)surface;
-	data = (unsigned long)header;
+	data = (unsigned long)bitmap;
 	ft_memset((void*)data, 0, BMP_HEADER_SIZE);
 	*(unsigned short*)data = (unsigned short)0x4d42;
 	*(unsigned int*)(data + 2) = (fullsize);
@@ -74,7 +74,6 @@ static void	sda_export_bitmap_init(t_sda_bitmap_header *header,
 char		*sda_export_bitmap(SDL_Surface *surface, unsigned int *size)
 {
 	char					*data;
-	t_sda_bitmap_header		*header;
 	unsigned int			fullsize;
 	unsigned int			img_size;
 
@@ -86,8 +85,7 @@ char		*sda_export_bitmap(SDL_Surface *surface, unsigned int *size)
 	data = malloc(fullsize);
 	if (!data)
 		return (NULL);
-	header = (t_sda_bitmap_header*)(unsigned long)data;
-	sda_export_bitmap_init(header, surface, fullsize);
+	sda_export_bitmap_init(data, surface, fullsize);
 	sda_bmp_dump((unsigned char*)&data[BMP_HEADER_SIZE], surface);
 	return (data);
 }
