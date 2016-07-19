@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 19:09:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 19:17:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ static void	sda_bmp_dump(unsigned char *dest, SDL_Surface *surface)
 		}
 	}
 }
+
+/*
+** DONT TOUCH: it's magic.... dark magic seriously
+** you have no idea how wrong the bitmap format is...
+*/
 
 static void	sda_export_bitmap_init(t_sda_bitmap_header *header,
 	SDL_Surface *surface, const unsigned int fullsize)
