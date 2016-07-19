@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 13:50:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 21:52:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,10 @@ t_obj			*sda_parse(const char *filepath, t_rt *rt)
 	{
 		ft_putstr_fd("error: sda: miserable failure on: ", 2);
 		ft_putendl_fd(filepath, 2);
-		//rt_node_free(old_root);
 		return (NULL);
 	}
 	sda_set_defaults(root, rt);
 	yolo_parse_finalize(root);
 	camera_save(rt);
-	//rt_debug(root, 0);
-	//if (root->content)
-	//	geo_putm4(((t_obj*)root->content)->trans, 6);
 	return (root);
 }

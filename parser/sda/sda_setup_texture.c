@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 18:02:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 23:50:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 21:19:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_texture 	*sda_setup_texture_fake(char *filepath,
+t_texture	*sda_setup_texture_fake(char *filepath,
 	t_texture **textures)
 {
 	t_texture	*tex;

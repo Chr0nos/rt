@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 19:01:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 22:15:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*sda_export_ntab(unsigned int lvl)
 	return (tbl);
 }
 
-static void sda_export_line(t_obj *obj, t_sda_export *export,
+static void	sda_export_line(t_obj *obj, t_sda_export *export,
 	const unsigned int lvl, const int p)
 {
 	char	*value;
