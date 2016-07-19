@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 14:45:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/19 15:35:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@
 static void sda_bmp_chendian(t_sda_bitmap_header *h)
 {
 	h->magic = (unsigned short)((h->magic << 8) | (h->magic >> 8));
-	h->filesize = ((h->filesize << 16) | (h->filesize >> 16));
-	h->app_id = ((h->app_id < 8) | (h->app_id >> 8));
+	//h->filesize = ((h->filesize << 16) | (h->filesize >> 16));
+	h->app_id = ((h->app_id << 8) | (h->app_id >> 8));
+	h->data_start = ((h->data_start << 16) | (h->data_start >> 16));
+	h->img_size = ((h->img_size << 16) | (h->img_size >> 16));
+	h->w = (h->w << 16) | (h->w >> 16);
+	h->h = (h->h << 16) | (h->h >> 16);
+	h->plans = (unsigned short)((h->plans << 8) | (h->plans >> 8));
 }
 
 static void	sda_bmp_dump(unsigned char *dest, SDL_Surface *surface)
