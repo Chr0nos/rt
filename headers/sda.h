@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:35:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/20 12:17:00 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ typedef struct			s_sda_eval
 	int					last_lvl;
 	int					lvl_offset;
 }						t_sda;
-
-struct					s_sda_cfg;
 
 typedef struct			s_sda_export
 {

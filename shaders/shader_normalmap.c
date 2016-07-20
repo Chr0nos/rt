@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 12:59:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/20 12:14:16 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ void					shader_normalmap(t_shader *s, t_render *r, t_obj *light)
 	color_normal = shader_color_normal_intersection(r);
 	if (color_normal)
 	{
-		transformation_vector = geo_subv4(r->normal, (t_v4d){0.0, 0.0, -1.0, 1.0});
-		r->normal = geo_normv4(geo_addv4(geo_normv4((t_v4d){(double)R(color_normal) - 128.0,
-								(double)G(color_normal) - 128.0,
-								(double)-(B(color_normal) - 128.0), 1.0}),
-								transformation_vector));
+		transformation_vector = geo_subv4(r->normal,
+				(t_v4d){0.0, 0.0, -1.0, 1.0});
+		r->normal = geo_normv4(geo_addv4(geo_normv4(
+			(t_v4d){(double)R(color_normal) - 128.0,
+			(double)G(color_normal) - 128.0,
+			(double)-(B(color_normal) - 128.0), 1.0}),
+			transformation_vector));
 	}
 }

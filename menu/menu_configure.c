@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 20:04:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/20 12:30:54 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void			menu_configure_thumbs_size(t_rt *rt)
 	rt->menu.items.x = (d) ? (geo->x + MENU_BORDER_X - MENU_PADDING_X) / d : 0;
 	d = rt->menu.thumb.y + MENU_BORDER_Y;
 	rt->menu.items.y = (d) ? (geo->y + MENU_BORDER_Y - MENU_PADDING_Y) / d : 0;
+	menu_update_positions(rt);
+	menu_background_init(rt);
 }
 
 static void		*menu_confiture_id(void *userdata)
@@ -56,16 +58,14 @@ static void		*menu_confiture_id(void *userdata)
 
 size_t			menu_configure_rts(t_rt *rt, t_list *files)
 {
-	size_t			p;
+	int				p;
 	t_menu_id		*id;
 
 	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
 	rt->menu.id = malloc(sizeof(t_menu_id) * rt->rts_size);
 	menu_configure_thumbs_size(rt);
-	menu_update_positions(rt);
-	menu_background_init(rt);
-	p = 0;
-	while (files)
+	p = -1;
+	while (files && (++p > -1))
 	{
 		id = &rt->menu.id[p];
 		id->id = 0;
@@ -81,7 +81,6 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 		else
 			id->enabled = 1;
 		files = files->next;
-		p++;
 	}
-	return (p);
+	return ((size_t)p);
 }

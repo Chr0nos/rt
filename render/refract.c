@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:01:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:01:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/20 12:37:27 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static t_v4d	rt_ray_refract(const t_render *r, const t_ray *ray)
 {
 	const double	*rfi = &r->obj_intersect->refractive_index;
 	const double	cosa = geo_dotv4(r->normal, geo_invv4(ray->dir));
-	const double	cosb = sqrt(1 - pow(1.0 / *rfi, 2.0) *
-		(1 - pow(cosa, 2.0)));
+	const double	cosb = sqrt(1 - pow(1.0 / *rfi, 2) * (1 - pow(cosa, 2)));
 	const double	coef = (cosa > 0.0 ? -1.0 : 1.0);
 
 	return ((t_v4d) {
