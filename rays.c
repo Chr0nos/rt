@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 21:58:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/20 20:24:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ void			rt_rays(t_rt *rt)
 	t_obj		*cam;
 	t_ray		ray;
 
-	rt->tree = rt_render_tree(rt->root);
-	if (rt->tree.memlen == 0)
-	{
-		ft_putendl_fd("error: failed to malloc tree", 2);
-		return ;
-	}
 	cam = (t_obj*)rt->root->content;
 	rt_update_camera(rt->sys.geometry, cam->content);
 	ray.start = cam->trans.w;
@@ -61,6 +55,4 @@ void			rt_rays(t_rt *rt)
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
 	rt_rays_pixels(rt, &ray, rt->sys.screen->pixels, cam->trans);
-	rt->tree.memlen = 0;
-	free(rt->tree.bounded);
 }

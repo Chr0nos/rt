@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 17:25:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/20 20:32:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct	s_render
 	t_v4d		intersection;
 	t_v4d		normal;
 }				t_render;
+
+void			rt_init_alterate_rendermode(t_rt *rt, void (*cbf)(t_rt *));
+void			rt_init_rt_rendermode(t_rt *rt, void (*cbf)(t_rt *));
 
 t_uint			rt_render_ray(t_rt *rt, t_ray *ray);
 unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray,
