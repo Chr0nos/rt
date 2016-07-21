@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:07:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:15:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				rt_start(t_rt *rt)
 	return (0);
 }
 
-int			rt_normal(t_rt *rt, int ac, char **av)
+int				rt_normal(t_rt *rt, int ac, char **av)
 {
 	if ((ac == 0) || (ls_isdir(av[0]) == 1))
 		menu_init(rt, av[0]);
@@ -92,5 +92,5 @@ int				main(int ac, char **av)
 	rt_configure(&rt);
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
-	return (rt_quit(&rt, rt_normal(&rt, ac -1 , av + 1)));
+	return (rt_quit(&rt, rt_normal(&rt, ac - 1, av + 1)));
 }
