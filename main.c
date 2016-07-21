@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 15:17:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 16:59:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,18 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 
 	(void)ac;
 	ft_putendl("export bmp requested");
-	if ((rt->root = rt_parser(filepath, rt)))
+	if (((rt->root = rt_parser(filepath, rt))) && (rt_checkcamera(rt)))
 	{
-		SDL_Init(0);
+		if (SDL_Init(0) < 0)
+		{
+			ft_putendl_fd("error: failed to init sdl", 2);
+			return (PARSE_ARG_ERROR);
+		}
 		rt->sys.screen = draw_make_surface(rt->sys.geometry);
+		draw_reset_surface(rt->sys.screen, COLOR_WHITE);
 		rt->settings.cfgbits |= RT_CFGB_FREESCREEN;
 		ft_putstr("rendering scene\n");
-		rt_rays(rt);
+		rt_render(rt);
 		ft_putstr("render done\n");
 		sda_export_bitmap_file(dest, rt->sys.screen);
 		return (PARSE_ARG_STOPALL);
