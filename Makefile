@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/21 12:27:08 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/21 13:33:33 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	textures_free.o arguments.o
 
 RENDER_DIR=render
-RENDER=render.o render_light.o render_tree.o refract.o
+RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o

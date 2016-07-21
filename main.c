@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 13:31:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 13:34:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 		sda_export_bitmap_file(dest, rt->sys.screen);
 		rt_node_free(rt->root);
 		textures_free(rt->textures);
+		SDL_FreeSurface(rt->sys.screen);
+		SDL_Quit();
 		return (PARSE_ARG_STOP);
 	}
 	return (PARSE_ARG_ERROR);

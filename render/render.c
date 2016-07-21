@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 19:20:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/20 20:26:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ t_uint			rt_render_bray(t_rt *rt, t_ray *ray)
 void			rt_render(t_rt *rt)
 {
 	if ((rt->settings.mode & MODE) == ALTERNATIVEMODE)
-		rt->rayfunc = &rt_render_bray;
+		rt_init_alterate_rendermode(rt, &rt_rays);
 	else
-		rt->rayfunc = &rt_render_ray;
-	rt_rays(rt);
+		rt_init_rt_rendermode(rt, &rt_rays);
 }

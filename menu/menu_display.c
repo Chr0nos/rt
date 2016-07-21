@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:47:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 20:04:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/20 22:42:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		*menu_display_flush(void *userdata)
 		return (NULL);
 	}
 	if (movemyass(id->dest))
-		rt_rays((t_rt *)id->dest);
+		rt_render((t_rt *)id->dest);
 	draw_blitsurface(((const t_rt *)id->src)->sys.screen,
 		((t_rt *)id->dest)->sys.screen, (t_point){rect->x, rect->y});
 	return (userdata);
