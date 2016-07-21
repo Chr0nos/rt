@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/20 20:24:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/21 18:57:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 				rt->rayfunc(rt, ray));
 			rad.y -= rad.w;
 		}
+		if ((!(px.x % 100)) && (rt->sys.screen))
+			sdl_flush(rt);
 		rad.x -= rad.z;
 	}
 	filter_apply(rt->sys.screen, rt->keyboard);

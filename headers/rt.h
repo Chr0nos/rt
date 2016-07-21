@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/21 15:13:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 18:56:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,6 @@ int				rt_export(t_rt *rt, int ac, char **av);
 int				rt_normal(t_rt *rt, int ac, char **av);
 
 int				rt_quit(t_rt *rt, int retcode);
+int				sdl_flush(t_rt *rt);
 
 #endif
