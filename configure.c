@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   configure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:57:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/21 13:09:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void			rt_configure(t_rt *rt)
 {
 	rt->sys.win = NULL;
 	rt->sys.screen = NULL;
+	rt->sys.geometry = (t_point){1024, 768};
 	rt->root = NULL;
 	rt->rts_size = 0;
 	rt->rts = NULL;

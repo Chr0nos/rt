@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/19 17:27:15 by dboudy           ###   ########.fr        #
+#    Updated: 2016/07/21 12:27:08 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o blend.o putbits.o parser/parser.o check_camera.o texture.o \
-	textures_free.o
+	textures_free.o arguments.o
 
 RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o
