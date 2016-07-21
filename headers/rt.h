@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/21 13:12:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:13:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define PREFIX 1
 # define INFIX 2
 # define SUFFIX 4
+# define RT_CFGB_FREESCREEN 1
 
 typedef enum	e_rendflag
 {
@@ -56,6 +57,7 @@ typedef struct	s_menu
 
 typedef struct	s_rtcfg
 {
+	unsigned int	cfgbits;
 	double			ambiant_light;
 	t_rendflag		mode;
 	char			max_reflects;
@@ -155,5 +157,7 @@ t_v4d			rt_tore_normale(t_obj *obj, t_v4d *v);
 int				rt_export_bmp(t_rt *rt, int ac, char **av);
 int				rt_export(t_rt *rt, int ac, char **av);
 int				rt_normal(t_rt *rt, int ac, char **av);
+
+int				rt_quit(t_rt *rt, int retcode);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 13:59:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 15:17:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int				rt_create_window(t_rt *rt)
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 	{
 		ft_putendl("error: failed to get sdl surface from screen");
-		draw_quit(&rt->sys);
 		return (1);
 	}
 	draw_reset_surface(rt->sys.screen, COLOR_BLACK);
@@ -80,8 +79,6 @@ int			rt_normal(t_rt *rt, int ac, char **av)
 		}
 		else
 			ft_putstr("no camera\n");
-		rt_node_free(rt->root);
-		textures_free(rt->textures);
 	}
 	ft_putendl("normal end");
 	return (0);
@@ -106,8 +103,6 @@ int				rt_export(t_rt *rt, int ac, char **av)
 	sda_export(rt, fd);
 	if (fd != 1)
 		close(fd);
-	rt_node_free(rt->root);
-	textures_free(rt->textures);
 	return (PARSE_ARG_STOPALL);
 }
 
@@ -117,19 +112,17 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 	const char	*dest = av[1];
 
 	(void)ac;
+	ft_putendl("export bmp requested");
 	if ((rt->root = rt_parser(filepath, rt)))
 	{
 		SDL_Init(0);
 		rt->sys.screen = draw_make_surface(rt->sys.geometry);
+		rt->settings.cfgbits |= RT_CFGB_FREESCREEN;
 		ft_putstr("rendering scene\n");
 		rt_rays(rt);
 		ft_putstr("render done\n");
 		sda_export_bitmap_file(dest, rt->sys.screen);
-		rt_node_free(rt->root);
-		textures_free(rt->textures);
-		SDL_FreeSurface(rt->sys.screen);
-		SDL_Quit();
-		return (PARSE_ARG_STOP);
+		return (PARSE_ARG_STOPALL);
 	}
 	return (PARSE_ARG_ERROR);
 }
@@ -140,6 +133,6 @@ int				main(int ac, char **av)
 
 	rt_configure(&rt);
 	if (ac > 1)
-		return (arg_parse(&rt, ac - 1, av + 1));
-	return (rt_normal(&rt, ac -1 , av + 1));
+		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
+	return (rt_quit(&rt, rt_normal(&rt, ac -1 , av + 1)));
 }
