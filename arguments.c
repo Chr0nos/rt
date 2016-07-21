@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 13:56:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:09:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:12:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,4 @@ int			arg_parse(t_rt *rt, int ac, char **av)
 			return ((ret & PARSE_ARG_STOPALL) ? 0 : 1);
 	}
 	return (rt_normal(rt, ac, av));
-}
-
-int			arg_geometry(t_rt *rt, int ac, char **av)
-{
-	(void)ac;
-	rt->sys.geometry = arg_getgeo(*av);
-	ft_printf("geometry set: x: %d y: %d\n", rt->sys.geometry.x,
-		rt->sys.geometry.y);
-	return (1);
 }
