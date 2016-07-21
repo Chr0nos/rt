@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 13:34:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 13:59:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,9 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 	{
 		SDL_Init(0);
 		rt->sys.screen = draw_make_surface(rt->sys.geometry);
+		ft_putstr("rendering scene\n");
 		rt_rays(rt);
+		ft_putstr("render done\n");
 		sda_export_bitmap_file(dest, rt->sys.screen);
 		rt_node_free(rt->root);
 		textures_free(rt->textures);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 13:56:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 13:28:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 13:40:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@ static int	arg_parse_option(const t_argument *args, int p, const char *name)
 ** a quit code: PARSE_ARG_STOP / PARSE_ARG_ERROR
 */
 
-static void	arg_parse_init(t_argument *arg)
+static void	arg_parse_init(t_argument *arg_list)
 {
-	arg[0] = (t_argument){"-e", 1, &rt_export};
-	arg[1] = (t_argument){"-b", 2, &rt_export_bmp};
-	arg[2] = (t_argument){"-s", 1, &arg_geometry};
+	arg_list[0] = (t_argument){"-e", 1, &rt_export};
+	arg_list[1] = (t_argument){"-b", 2, &rt_export_bmp};
+	arg_list[2] = (t_argument){"-s", 1, &arg_geometry};
 }
 
 int			arg_parse(t_rt *rt, int ac, char **av)
 {
-	t_argument			arg[ARG_NUM];
+	t_argument			arg_list[ARG_NUM];
 	int					index;
 	int					ret;
 
-	arg_parse_init((t_argument*)arg);
+	arg_parse_init((t_argument*)arg_list);
 	while ((ac > 0) && (*av) && (*av[0] == '-'))
 	{
-		index = arg_parse_option(arg, ARG_NUM, *av);
+		index = arg_parse_option(arg_list, ARG_NUM, *av);
 		if (index < 0)
 		{
 			ft_putendl_fd("error: unknow option", 2);
@@ -78,12 +78,12 @@ int			arg_parse(t_rt *rt, int ac, char **av)
 		}
 		ac--;
 		av++;
-		if (ac < arg[index].params_mins)
+		if (ac < arg_list[index].params_mins)
 		{
 			ft_putendl_fd("error: missing argument.", 2);
 			return (1);
 		}
-		ret = arg[index].f(rt, ac, av);
+		ret = arg_list[index].f(rt, ac, av);
 		ac -= (ret & 0xffff);
 		av += (ret & 0xffff);
 		if (ret & PARSE_ARG_STOP)

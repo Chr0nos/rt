@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 17:36:05 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:36:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 13:58:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,21 @@ char		*sda_export_bitmap(SDL_Surface *surface, unsigned int *size)
 	unsigned int			fullsize;
 	unsigned int			img_size;
 
+	ft_putendl("exporting bitmap");
 	if (!surface)
 		return (NULL);
 	img_size = (unsigned int)(surface->w * surface->h) * 3;
 	fullsize = BMP_HEADER_SIZE + img_size;
 	*size = fullsize;
+	ft_putendl("allocating memory");
 	data = malloc(fullsize);
 	if (!data)
 		return (NULL);
+	ft_putendl("creating header...");
 	sda_export_bitmap_init(data, surface, fullsize);
+	ft_putendl("dumping image");
 	sda_bmp_dump((unsigned char*)&data[BMP_HEADER_SIZE], surface);
+	ft_putendl("returning");
 	return (data);
 }
 
