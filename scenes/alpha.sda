@@ -1,13 +1,13 @@
 CAMERA
 SETTING
-	skybox: skybox.jpg
+	skybox: textures/skybox.jpg
 CUBE
 	pos: 0 0 4
-	texture: herbe.jpg
+	texture: textures/herbe.jpg
 	sdisable: specular
 	reflect: 0
 	POINTLIGHT
 		pos: 0 2 2
 	SPHERE
 		color: #00ff0000
-		texture: cloud.png
+		texture: textures/cloud.png

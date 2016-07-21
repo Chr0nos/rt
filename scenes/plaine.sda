@@ -10,24 +10,24 @@ SPHERE
 	name: rock
 	pos: 0 -0.2 0
 	color: #5F8A5F
-	texture: ./rock.jpg
-	normal: ./rock_normal.jpg
+	texture: ./textures/rock.jpg
+	normal: ./textures/rock_normal.jpg
 
 #CUBE
 #	name: arbre
 #	pos: 0.5 0 0
-#	texture: ./feuillage.jpg
-#	normal: ./feuillage_normal.jpg
+#	texture: ./textures/feuillage.jpg
+#	normal: ./textures/feuillage_normal.jpg
 
 SPHERE
-	texture: ./rock.jpg
-	normal: ./rock_normal.jpg
+	texture: ./textures/rock.jpg
+	normal: ./textures/rock_normal.jpg
 	size: 0.4
 	pos: -1 -0.2 0
 
 SPHERE
-	texture: ./rock.jpg
-	normal: ./rock_normal.jpg
+	texture: ./textures/rock.jpg
+	normal: ./textures/rock_normal.jpg
 	size: 0.5
 	pos: 1 0 0
 
@@ -36,40 +36,40 @@ PLAN
 	rot: 0 1 0
 	color: #278722
 	reflect: 0
-	texture: ./herbe.jpg
+	texture: ./textures/herbe.jpg
 
 EMPTY
 	name: piscine
 	pos: 3 -0.3 3
 	CUBE
 		pos: 0 0 0
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 2 0 0
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 2 0 1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 0 0 1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 1 0 1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 2 0 -1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 0 0 -1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 1 0 -1
-		texture: ./sand.jpg
+		texture: ./textures/sand.jpg
 	CUBE
 		pos: 1 -0.02 0
 		color: #880077FF
-		#texture: ./water.jpg
-		normal: ./water_normal.png
+		#texture: ./textures/water.jpg
+		normal: ./textures/water_normal.png
 		reflect: 127
 
 #PLAN
@@ -77,4 +77,4 @@ EMPTY
 #	rot: 0 -1 0
 #	color: #0000FF
 #	reflect: 0
-#	texture: ./cloud.png
+#	texture: ./textures/cloud.png

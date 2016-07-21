@@ -16,7 +16,6 @@ SETTING
 SPHERE
 	color: #88ff0000
 	pos: 3.0 2.0 3.0
-#	texture: ./texture.jpg2
 
 CUBE
 	name: lb
@@ -40,7 +39,7 @@ CUBE
 						SPHERE
 							pos: 0 1 0
 							size: 0.4
-							texture: ./moon.jpg
+							texture: ./textures/moon.jpg
 							reflect: 0
 							color: #b0000000
 						CUBE

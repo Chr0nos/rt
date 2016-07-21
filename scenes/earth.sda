@@ -1,5 +1,5 @@
 SETTING
-	skybox: ./skybox_space.jpg
+	skybox: ./textures/skybox_space.jpg
 CAMERA
 	pos: 0.958092 8.04958 13.539058
 	rot: 34.377466 -595.876106 0
@@ -8,8 +8,8 @@ SPHERE
 	size: 6.371
 	pos: 0 0 10
 	color: #00000000
-	texture: ./earth.jpg
-	normal: ./earth_normal.jpg
+	texture: ./textures/earth.jpg
+	normal: ./textures/earth_normal.jpg
 	sdisable: specular
 	reflect: 0
 	POINTLIGHT
@@ -20,15 +20,15 @@ SPHERE
 		name: atmosphere
 		size: 6.5
 		color: #9900BFFF
-		normal: ./clouds_earth_normal.jpg
-		#texture: ./clouds_earth.jpg
+		normal: ./textures/clouds_earth_normal.jpg
+		#texture: ./textures/clouds_earth.jpg
 	SPHERE
 		name: moon
 		pos: 38.44 0 0
 		size: 1.737
 		color: #00ffffff
-		texture: ./moon.jpg
-		normal: ./moon_normal.jpg
+		texture: ./textures/moon.jpg
+		normal: ./textures/moon_normal.jpg
 		sdisable: specular
 
 SPHERE

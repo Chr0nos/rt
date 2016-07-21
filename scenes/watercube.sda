@@ -1,5 +1,5 @@
 SETTING
-	skybox: skybox.jpg
+	skybox: textures/skybox.jpg
 CAMERA
 	pos: 9.778539 1.877445 9.550097
 	rot: 11.459154 223.453538 0
@@ -10,27 +10,27 @@ PLAN
 	reflect: 120
 	pos: 0 0 0
 	color: #CCffffff
-	normal: water_normal.png
+	normal: textures/water_normal.png
 	sdisable: shadow
 	refract: 1.333
 CUBE
 	pos: 0 -4.98 0
-	texture: sand.jpg
-	normal: water_normal.png
+	texture: textures/sand.jpg
+	normal: textures/water_normal.png
 	size: 10
 	#color: #b00077ff
 	#refract: 1.333
 
 CUBE
 	name: sand
-	texture: sand.jpg
+	texture: textures/sand.jpg
 	size: 9.5
 	pos: 0 -4.7 0
 	sdisable: specular
 
 CUBE
 	name: herbe
-	texture: herbe.jpg
+	texture: textures/herbe.jpg
 	size: 5
 	pos: 0 -2.4 0
 	sdisable: specular
@@ -39,6 +39,6 @@ SPHERE
 	name: rock
 	pos: 0 -0.3 0
 	color: #5F8A5F
-	texture: ./rock.jpg
-	normal: ./rock_normal.jpg
+	texture: textures/rock.jpg
+	normal: textures/rock_normal.jpg
 	sdisable: specular
