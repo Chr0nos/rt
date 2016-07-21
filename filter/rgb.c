@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 11:20:49 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/26 16:19:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 18:19:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filter.h"
 #include "libft.h"
 
-t_uint		filter_red(t_uint c)
+unsigned int	filter_red(unsigned int c)
 {
 	int	rgb[3];
 
@@ -23,10 +23,10 @@ t_uint		filter_red(t_uint c)
 	rgb[0] = (rgb[0] > 255 ? 255 : ft_abs(rgb[0]));
 	rgb[1] = (rgb[1] > 255 ? 255 : ft_abs(rgb[1]));
 	rgb[2] = (rgb[2] > 255 ? 255 : ft_abs(rgb[2]));
-	return (((t_uint)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
+	return (((unsigned int)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
 }
 
-t_uint		filter_green(t_uint c)
+unsigned int	filter_green(unsigned int c)
 {
 	int	rgb[3];
 
@@ -36,10 +36,10 @@ t_uint		filter_green(t_uint c)
 	rgb[0] = (rgb[0] > 255 ? 255 : ft_abs(rgb[0]));
 	rgb[1] = (rgb[1] > 255 ? 255 : ft_abs(rgb[1]));
 	rgb[2] = (rgb[2] > 255 ? 255 : ft_abs(rgb[2]));
-	return (((t_uint)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
+	return (((unsigned int)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
 }
 
-t_uint		filter_blue(t_uint c)
+unsigned int	filter_blue(unsigned int c)
 {
 	int	rgb[3];
 
@@ -49,5 +49,5 @@ t_uint		filter_blue(t_uint c)
 	rgb[0] = (rgb[0] > 255 ? 255 : ft_abs(rgb[0]));
 	rgb[1] = (rgb[1] > 255 ? 255 : ft_abs(rgb[1]));
 	rgb[2] = (rgb[2] > 255 ? 255 : ft_abs(rgb[2]));
-	return (((t_uint)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
+	return (((unsigned int)((rgb[0] << 16) + (rgb[1] << 8) + rgb[2])));
 }

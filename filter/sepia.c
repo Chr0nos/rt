@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sepia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 17:14:46 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/26 16:18:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 18:18:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filter.h"
 #include "libft.h"
 
-t_uint		filter_sepia(t_uint c)
+unsigned int		filter_sepia(unsigned int c)
 {
 	int		in_rgb[3];
 	int		out_rgb[3];
@@ -30,5 +30,6 @@ t_uint		filter_sepia(t_uint c)
 	out_rgb[0] = (out_rgb[0] > 255 ? 255 : ft_abs(out_rgb[0]));
 	out_rgb[1] = (out_rgb[1] > 255 ? 255 : ft_abs(out_rgb[1]));
 	out_rgb[2] = (out_rgb[2] > 255 ? 255 : ft_abs(out_rgb[2]));
-	return (((t_uint)((out_rgb[0] << 16) + (out_rgb[1] << 8) + out_rgb[2])));
+	return (((unsigned int)((out_rgb[0] << 16) + (out_rgb[1] << 8) +
+		out_rgb[2])));
 }
