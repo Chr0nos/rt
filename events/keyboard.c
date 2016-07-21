@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:05:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 01:37:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int				togglefs(t_rt *rt)
 	{
 		ft_printf("sdl error: %s\n", SDL_GetError());
 	}
+	draw_reset_surface(rt->sys.screen, COLOR_BLACK);
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }

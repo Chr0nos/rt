@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 22:49:47 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 23:00:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 01:23:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void		rt_signal_singletone(t_point *geometry, t_point *px, char delete)
 
 void		rt_signal(int num)
 {
-	if (num == 15)
+	if (num == SIGUSR1)
 		rt_signal_singletone(NULL, NULL, 0);
 }
