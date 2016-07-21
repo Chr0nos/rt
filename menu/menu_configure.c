@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/20 12:30:54 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/21 21:53:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void		*menu_confiture_id(void *userdata)
 	ft_memcpy(d, (const t_rt *)id->src, sizeof(t_rt));
 	d->keyboard &= ~MENU;
 	d->sys.geometry = subgeo;
+	d->settings.cfgbits = 0;
 	if ((d->root = rt_parser(id->file, d)))
 	{
 		d->sys.screen = draw_make_surface(subgeo);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:58:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 22:34:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 #include "libft.h"
 #include "filter.h"
 #include <unistd.h>
+
+char			rt_rays_pc(const t_point geometry, const t_point px)
+{
+	unsigned int		end;
+	unsigned int		current;
+	float				pc;
+
+	end = (unsigned int)(geometry.x * geometry.y + geometry.x + 1);
+	current = (unsigned int)(px.x * (px.y * px.x)) + 1;
+	pc = (float)current / (float)end;
+	return ((char)(pc * 100.0f));
+}
 
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_m4 m)
