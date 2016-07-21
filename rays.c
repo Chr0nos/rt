@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 18:57:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:58:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 				rt->rayfunc(rt, ray));
 			rad.y -= rad.w;
 		}
-		if ((!(px.x % 100)) && (rt->sys.screen))
+		if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px.x % 100)) &&
+			(rt->sys.screen))
 			sdl_flush(rt);
 		rad.x -= rad.z;
 	}

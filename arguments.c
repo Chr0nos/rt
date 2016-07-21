@@ -6,14 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 13:56:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:12:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 20:00:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "arguments.h"
 #include "libft.h"
-#define ARG_NUM 4
+#define ARG_NUM 5
 
 t_point		arg_getgeo(const char *s)
 {
@@ -60,6 +60,7 @@ static void	arg_parse_init(t_argument *arg_list)
 	arg_list[1] = (t_argument){"-b", 2, &rt_export_bmp};
 	arg_list[2] = (t_argument){"-s", 1, &arg_geometry};
 	arg_list[3] = (t_argument){"-fs", 0, &arg_fs};
+	arg_list[4] = (t_argument){"-x", 0, &arg_norefresh};
 }
 
 int			arg_parse(t_rt *rt, int ac, char **av)
