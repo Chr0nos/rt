@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/18 18:33:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:05:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "menu.h"
 #include "sda.h"
 
-static int		togglefs(t_rt *rt)
+int				togglefs(t_rt *rt)
 {
 	SDL_SetWindowFullscreen(rt->sys.win,
 		(unsigned int)((rt->keyboard & FULLSCREEN) ? \

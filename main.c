@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:02:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 19:07:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int				rt_create_window(t_rt *rt)
 		return (1);
 	}
 	draw_reset_surface(rt->sys.screen, COLOR_BLACK);
+	if (rt->settings.cfgbits & RT_CFGB_FULLSCREEN)
+		togglefs(rt);
 	return (0);
 }
 
