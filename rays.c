@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 22:34:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 23:15:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char			rt_rays_pc(const t_point geometry, const t_point px)
 
 	end = (unsigned int)(geometry.x * geometry.y + geometry.x + 1);
 	current = (unsigned int)(px.x * (px.y * px.x)) + 1;
-	pc = (float)current / (float)end;
+	//pc = (float)current / (float)end;
+	pc = (float)end / (float)current;
 	return ((char)(pc * 100.0f));
 }
 
@@ -34,6 +35,9 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_v4d			rad;
 	t_camera		*camp;
 
+	px = (t_point){0, 0};
+	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
+		rt_signal_singletone(&rt->sys.geometry, &px, 0);
 	camp = ((t_obj*)rt->root->content)->content;
 	px.x = rt->sys.geometry.x;
 	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
@@ -46,8 +50,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 			ray->count = 2;
 			ray->dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
-			draw_pxi(pixels, px, (unsigned int)rt->sys.geometry.x,
-				rt->rayfunc(rt, ray));
+			pixels[px.y * rt->sys.geometry.x + px.x] = rt->rayfunc(rt, ray);
 			rad.y -= rad.w;
 		}
 		if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px.x % 100)) &&
@@ -55,6 +58,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 			sdl_flush(rt);
 		rad.x -= rad.z;
 	}
+	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
+		rt_signal_singletone(NULL, NULL, 1);
 	filter_apply(rt->sys.screen, rt->keyboard);
 }
 

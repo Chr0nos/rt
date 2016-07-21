@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/21 22:17:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 23:07:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define RT_CFGB_FREESCREEN 1
 # define RT_CFGB_FULLSCREEN 1 << 1
 # define RT_CFGB_NOREFRESHX 1 << 2
+# define RT_CFGB_INMENU 1 << 3
 
 typedef enum	e_rendflag
 {
@@ -164,5 +165,8 @@ int				rt_quit(t_rt *rt, int retcode);
 int				sdl_flush(t_rt *rt);
 int				togglefs(t_rt *rt);
 char			rt_rays_pc(const t_point geometry, const t_point px);
+void			rt_signal(int num);
+void			rt_signal_singletone(t_point *geometry, t_point *px,
+	char delete);
 
 #endif
