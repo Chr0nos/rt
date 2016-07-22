@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:23:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 21:19:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 01:59:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*sda_export_color(t_obj *obj, t_sda_export *e)
 	char	*color_str;
 
 	(void)e;
-	if (!(obj->cfgbits & SDB_COLOR))
+	if (!(obj->type & SDA_COLOR))
 		return (NULL);
 	color_str = malloc(12);
 	if (!color_str)
