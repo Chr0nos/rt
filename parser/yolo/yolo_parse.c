@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 00:14:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 16:06:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_obj	*yolo_parse_obj(const char *opts, t_obj *obj)
 	}
 	ft_free_tab(split, (unsigned int)size);
 	free(split);
-	rt_obj_set_reflect(obj, 0xff);
+	rt_obj_set_reflect(obj, 0);
 	rt_obj_set_texture(obj, NULL);
 	return (obj);
 }
