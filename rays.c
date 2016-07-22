@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 23:15:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/21 23:23:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 char			rt_rays_pc(const t_point geometry, const t_point px)
 {
 	unsigned int		end;
-	unsigned int		current;
-	float				pc;
+	unsigned int		pos;
+	const unsigned int	gy = (unsigned int)(geometry.y - px.y);
+	const unsigned int	gx = (unsigned int)(geometry.x - px.x);
 
-	end = (unsigned int)(geometry.x * geometry.y + geometry.x + 1);
-	current = (unsigned int)(px.x * (px.y * px.x)) + 1;
-	//pc = (float)current / (float)end;
-	pc = (float)end / (float)current;
-	return ((char)(pc * 100.0f));
+	end = (unsigned int)(geometry.x * geometry.y + geometry.x);
+	pos = gy * gx + gx;
+	return ((char)((float)pos / (float)end * 100.0f));
 }
 
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
