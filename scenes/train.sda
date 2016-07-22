@@ -1,0 +1,118 @@
+#sda export
+SETTING
+	skybox: textures/skybox_space.jpg
+CAMERA
+	pos: 5 3 -15
+	rot: 1 -1.399999 0
+PLAN
+	color: #5AFFA5
+	pos: 0 -2 -4
+	reflect: 100
+EMPTY
+	name: rails
+	pos: 0 -0.8 0
+	CYL
+		color: #844444
+		pos: 0 -1.3 7
+		rot: 1 0 0.5
+		size: 0.4
+	CYL
+		color: #844444
+		pos: 0 -1.3 20
+		rot: 1 0 0.5
+		size: 0.4
+EMPTY
+	pos: -20 -1 35
+	CUBE
+		name: sapin
+		#color: #683B10
+		color: #ffffff
+		CONE
+			color: #006400
+			pos: 0 4.5 0
+			size: 4
+			angle: 60.000140
+			CONE
+				color: #006400
+				pos: 0 1.5 0
+				size: 3
+				angle: 60.000140
+				CONE
+					color: #006400
+					pos: 0 1 0
+					size: 2
+					angle: 60.000140
+					CONE
+						color: #006400
+						pos: 0 0.7 0
+						angle: 60.000140
+	EMPTY
+		pos: 10 0 5
+		copy: sapin
+	EMPTY
+		pos: 20 0 10
+		copy: sapin
+	EMPTY
+		copy: sapin
+		pos: 30 0 15
+SETTING
+	size: 2
+	reflect: 200
+CUBE
+	color: #646464
+	pos: 0 0 10
+	CUBE
+		color: #006464
+		pos: 3 0 2
+		CUBE
+			color: #1EE42E
+			pos: 3 0 2
+			CUBE
+				color: #55E761
+				pos: 3 0 2
+				CUBE
+					color: #85E78D
+					pos: 3 0 2
+					CUBE
+						color: #B1E0B5
+						pos: 3 0 2
+						SPHERE
+							color: #4EC78C
+							pos: 3 0 2
+							CUBE
+								color: #504EC78C
+								pos: 0.4 2.2 0
+								size: 1.5
+								refract: 1.33
+							SPHERE
+								color: #555555
+								pos: 0 4 0
+								size: 0.5
+							SPHERE
+								color: #555555
+								pos: -1 5 0
+								size: 0.6
+						SPHERE
+							color: #555555
+							pos: 0 7 0
+							size: 0.699999
+					SPHERE
+						color: #555555
+						pos: 0 8 0
+						size: 0.8
+				SPHERE
+					color: #555555
+					pos: 0 10 0
+					size: 0.899999
+			SPHERE
+				color: #D0555F55
+				pos: 0 12 0
+POINTLIGHT
+	pos: 0 20 0
+	size: 200
+	intensity: 150.000000
+POINTLIGHT
+	pos: 5 20 0
+	size: 300
+	intensity: 150.000000
+#end of file
