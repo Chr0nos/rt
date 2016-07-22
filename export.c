@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 19:01:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:02:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 20:27:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 		sda_export_bitmap_file(dest, rt->sys.screen);
 		return (PARSE_ARG_STOPALL);
 	}
+	else
+		ft_putstr_fd("error: failed to parse file.\n",2);
 	return (PARSE_ARG_ERROR);
 }
