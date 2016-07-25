@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/26 01:06:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 01:32:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 	unsigned char	reflect;
 	const double	dot = 2.0 * geo_dotv4(r->ray->dir, r->normal);
 
-	ray = *r->ray;
 	(void)light;
+	ray = *r->ray;
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
 		geo_dtov4d(-0.00001)));
 	ray.dir = (t_v4d){
@@ -30,11 +30,7 @@ void			shader_reflection(t_shader *s, t_render *r, t_obj *light)
 		r->ray->dir.z - dot * r->normal.z,
 		0.0
 	};
-	if (ray.count--)
-	{
-		reflect = rt_obj_get_reflect(r->obj_intersect);
-		if (reflect > 0)
-			s->color_render = blend_multiply(r->rt->rayfunc(r->rt, &ray),
-				to_rgb(0, reflect, reflect, reflect));
-	}
+	if ((ray.count--) && ((reflect = rt_obj_get_reflect(r->obj_intersect)) > 0))
+		s->color_render = blend_multiply(r->rt->rayfunc(r->rt, &ray),
+			to_rgb(0, reflect, reflect, reflect));
 }
