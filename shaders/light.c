@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/17 16:14:58 by alhote           ###   ########.fr       */
+/*   Updated: 2016/07/26 01:40:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,26 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 	double			latt;
 	double			li;
 	t_v4d			reflect;
-	t_v4d			intelight;
-	unsigned int	color;
+	const t_v4d		intelight = (light->type == SUNLIGHT ?
+		geo_normv4(light->trans.w) :
+		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
+	const double	dot = 2.0 * geo_dotv4(intelight, r->normal);
 
 	(void)s;
-	intelight = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
-		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	reflect = (t_v4d){
-		intelight.x - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.x,
-		intelight.y - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.y,
-		intelight.z - 2.0 * geo_dotv4(intelight, r->normal) * r->normal.z,
+		intelight.x - dot * r->normal.x,
+		intelight.y - dot * r->normal.y,
+		intelight.z - dot * r->normal.z,
 		0.0
 	};
 	latt = geo_dotv4(r->ray->dir, reflect);
-	li = 0.0;
 	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
 		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity) /
 		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 5.0)))
 			/ MID_LIGHT_POWER * 255.0;
-		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
-		s->color_render = blend_lighten(s->color_render, color);
+		s->color_render = blend_lighten(s->color_render,
+			to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li));
 	}
 }
 

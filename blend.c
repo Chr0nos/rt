@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/26 01:18:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 01:41:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,11 @@ unsigned int		blend_overlay(unsigned int a, unsigned int b)
 
 unsigned int		blend_lighten(unsigned int a, unsigned int b)
 {
-	unsigned int	red;
-	unsigned int	green;
-	unsigned int	blue;
-	unsigned int	alpha;
+	const unsigned int	red = (R(a) > R(b) ? R(a) : R(b));
+	const unsigned int	green = (G(a) > G(b) ? G(a) : G(b));
+	const unsigned int	blue = (B(a) > B(b) ? B(a) : B(b));
+	const unsigned int	alpha = (A(a) > A(b)) ? A(a) : A(b);
 
-	red = (R(a) > R(b) ? R(a) : R(b));
-	green = (G(a) > G(b) ? G(a) : G(b));
-	blue = (B(a) > B(b) ? B(a) : B(b));
-	alpha = (A(a) > A(b)) ? A(a) : A(b);
 	return (to_rgb(alpha, red, green, blue));
 }
 
