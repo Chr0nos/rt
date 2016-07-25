@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 13:56:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 20:00:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 01:56:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ static void	arg_parse_init(t_argument *arg_list)
 	arg_list[4] = (t_argument){"-x", 0, &arg_norefresh};
 }
 
+static int	arg_parse_error(const char *err, int ret)
+{
+	ft_putendl_fd(err, 2);
+	return (ret);
+}
+
 int			arg_parse(t_rt *rt, int ac, char **av)
 {
 	t_argument			arg_list[ARG_NUM];
@@ -74,17 +80,11 @@ int			arg_parse(t_rt *rt, int ac, char **av)
 	{
 		index = arg_parse_option(arg_list, ARG_NUM, *av);
 		if (index < 0)
-		{
-			ft_putendl_fd("error: unknow option", 2);
-			return (1);
-		}
+			return (arg_parse_error("error: unknow option", 2), 2);
 		ac--;
 		av++;
 		if (ac < arg_list[index].params_mins)
-		{
-			ft_putendl_fd("error: missing argument.", 2);
-			return (1);
-		}
+			return (arg_parse_error("error: missing argument", 1));
 		ret = arg_list[index].f(rt, ac, av);
 		ac -= (ret & 0xffff);
 		av += (ret & 0xffff);
