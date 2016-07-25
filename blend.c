@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/19 22:24:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 01:18:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 unsigned int		to_rgb(unsigned int a, unsigned int r,
 				unsigned int g, unsigned int b)
 {
-	a = (a > 255 ? 255 : a);
-	r = (r > 255 ? 255 : r);
-	g = (g > 255 ? 255 : g);
-	b = (b > 255 ? 255 : b);
-	return ((a << 24) | (r << 16) | (g << 8) | (b));
+	return ((((a > 0xff) ? 0xff : a) << 24) |
+		(((r > 0xff) ? 0xff : r) << 16) |
+		(((g > 0xff) ? 0xff : g) << 8) |
+		((b > 0xff) ? 0xff : b));
 }
 
 unsigned int		blend_normal(unsigned int a, unsigned int b)
@@ -77,15 +76,11 @@ unsigned int		blend_darken(unsigned int a, unsigned int b)
 
 unsigned int		blend_add(unsigned int a, unsigned int b)
 {
-	unsigned int	red;
-	unsigned int	green;
-	unsigned int	blue;
-	unsigned int	alpha;
+	const unsigned int	red = R(a) + R(b);
+	const unsigned int	green = G(a) + G(b);
+	const unsigned int	blue = B(a) + B(b);
+	const unsigned int	alpha = A(a) + A(b);
 
-	red = R(a) + R(b);
-	green = G(a) + G(b);
-	blue = B(a) + B(b);
-	alpha = A(a) + A(b);
 	return (to_rgb(alpha, red, green, blue));
 }
 
@@ -104,14 +99,10 @@ unsigned int		blend_sub(unsigned int a, unsigned int b)
 }
 unsigned int		blend_multiply(unsigned int a, unsigned int b)
 {
-	unsigned int	red;
-	unsigned int	green;
-	unsigned int	blue;
-	unsigned int	alpha;
+	const unsigned int	red = (R(a) * R(b)) / 255;
+	const unsigned int	green = (G(a) * G(b)) / 255;
+	const unsigned int	blue = (B(a) * B(b)) / 255;
+	const unsigned int	alpha = (A(a) * A(b)) / 255;
 
-	red = (R(a) * R(b)) / 255;
-	green = (G(a) * G(b)) / 255;
-	blue = (B(a) * B(b)) / 255;
-	alpha = (A(a) * A(b)) / 255;
 	return (to_rgb(alpha, red, green, blue));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/07/20 12:19:32 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/26 00:58:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
 	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
 	if (sw.obj_intersect && ((geo_distv4(light->trans.w, r->intersection)
-	> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
-	|| (light->type == SUNLIGHT)))
+		> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
+		|| (light->type == SUNLIGHT)))
 	{
 		s->color_render = blend_sub(s->color_render, (light->type == SUNLIGHT ?
 			0x555555 : 0x111111));

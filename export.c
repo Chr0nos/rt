@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 19:01:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 20:27:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/22 21:01:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int				rt_export_bmp(t_rt *rt, int ac, char **av)
 		return (PARSE_ARG_STOPALL);
 	}
 	else
-		ft_putstr_fd("error: failed to parse file.\n",2);
+		ft_putstr_fd("error: failed to parse file.\n", 2);
 	return (PARSE_ARG_ERROR);
 }
