@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 14:57:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 02:08:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int			rt_node_foreach(t_obj *node, int mode, int (*f)(t_obj*, int, void*),
 
 	if (!node)
 		return (0);
-	ret = OK;
-	if ((mode & PREFIX) &&
-		((ret = f(node, PREFIX, userdata)) & (STOP_ALL | STOP_NODE)))
+	if (!(mode & PREFIX))
+		ret = OK;
+	else if (((ret = f(node, PREFIX, userdata)) & (STOP_ALL | STOP_NODE)))
 		return (ret);
 	obj = node->childs;
 	while (obj)
