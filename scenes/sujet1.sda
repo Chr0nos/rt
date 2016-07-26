@@ -1,0 +1,39 @@
+CAMERA
+	pos: 3.492506 6.637384 -23.156587
+	rot: 0.999999 -5.729577 0
+	al: 40
+POINTLIGHT
+	color: #FFFFFF
+	pos: 30 15 -30
+	size: 300
+	intensity: 175.000000
+POINTLIGHT
+	color: #FFFFFF
+	pos: -30 15 -30
+	size: 300
+	intensity: 175.000000
+PLAN
+	color: #BBACAC
+	pos: 0 0 -4
+PLAN
+	color: #2C75FF
+	pos: 0 0 7
+	rot: 90 -5 0
+CONE_INF
+	color: #EDFF0C
+	pos: 4 3 0
+	rot: 1 -1 0
+	size: 0.3
+CYL
+	color: #FD3F92
+	pos: -5.5 0 0
+	rot: 1 1 0
+	size: 1.399999
+SPHERE
+	color: #FF0000
+	pos: -7.5 2 -3
+	size: 2
+SPHERE
+	color: #00FF00
+	pos: 9.5 2 -3
+	size: 2
