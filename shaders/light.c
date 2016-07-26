@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/26 01:40:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 02:19:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	// }
 	// temp_ray.start = geo_addv4(
 	// 	geo_multv4(temp_ray.dir, geo_dtov4d(0.0001)), temp_ray.start);
-	latt = geo_dotv4(r->normal, light_vector);
-	if (latt > 0.0)
+	if ((latt = geo_dotv4(r->normal, light_vector)) > 0.0)
 	{
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
-		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 10.0));
+			(light->type == SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
-		color = (color > 0xB0B0B0 ? 0xB0B0B0 : color);
+		if (color > 0xB0B0B0)
+			color = 0xB0B0B0;
 		//color = (color < 0x636363 ? 0x636363 : color);
 		s->color_render = blend_lighten(s->color_render, color);
 	}
