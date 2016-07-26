@@ -1,12 +1,12 @@
-SETTING AL:80
-CAMERA				0	4	-18		1	0	0	75
-POINTLIGHT			12	4	-18	110	500			#ffffff
-POINTLIGHT			-12	4	-18	110	500			#ffffff
+SETTING AL:900
+CAMERA				1	7.1	-18.3		1	0	0	75
+POINTLIGHT			30	30	-30	175	300			#ffffff
+POINTLIGHT			-30	30	-30	175	300			#ffffff
 
-PLAN								0	0	-4	0	0	0	#BBACAC
-PLAN								0	0	7	90	-5	0	#2C75FF
+PLAN				0	0	-4	0	0	0	#BBACAC
+PLAN				0	0	7	90	-5	0	#2C75FF
 
-CONE_INF				0.3		4		3		1		#EDFF0C		1	-1	0	1
-CYL						1		-5		0		0		#FD3F92  	1	1	0	1
-	SPHERE				2		-2		2		-2		255:0:0
-	SPHERE				2		12		2		-2		0:255:0
+CONE_INF			0.3		4		3		0		#EDFF0C		1	-1	0	1
+CYL					1.4		-4		0		0		#FD3F92  	1	1	0	1
+SPHERE				2		-6.5	2		-1		255:0:0
+SPHERE				2		8.5		2		-1		0:255:0
