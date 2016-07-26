@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 15:14:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:15:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			rt_configure(t_rt *rt)
 {
 	rt->sys.win = NULL;
 	rt->sys.screen = NULL;
-	rt->sys.geometry = (t_point){1024, 768};
+	rt->sys.geometry = (t_v2i){1024, 768};
 	rt->root = NULL;
 	rt->rts_size = 0;
 	rt->rts = NULL;

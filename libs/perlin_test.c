@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/27 00:05:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 00:16:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 00:23:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int ac, char **av)
 	char		*str;
 
 	zoom = (ac == 2) ? ft_atod(av[1]) : 1.0;
-	geo.x = 45.0f;
+	geo.x = 845.0f;
 	geo.y = 30.1f;
 	while (geo.x > 1.0f)
 	{

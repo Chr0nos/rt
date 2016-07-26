@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/21 23:07:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:09:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct	s_menu_id
 
 typedef struct	s_menu
 {
-	t_point			items;
-	t_point			thumb;
+	t_v2i			items;
+	t_v2i			thumb;
 	SDL_Rect		*positions;
 	SDL_Surface		*background;
 	t_menu_id		*id;
@@ -164,9 +164,9 @@ int				rt_normal(t_rt *rt, int ac, char **av);
 int				rt_quit(t_rt *rt, int retcode);
 int				sdl_flush(t_rt *rt);
 int				togglefs(t_rt *rt);
-char			rt_rays_pc(const t_point geometry, const t_point px);
+char			rt_rays_pc(const t_v2i geometry, const t_v2i px);
 void			rt_signal(int num);
-void			rt_signal_singletone(t_point *geometry, t_point *px,
+void			rt_signal_singletone(t_v2i *geometry, t_v2i *px,
 	char delete);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 01:35:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:16:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "filter.h"
 #include <unistd.h>
 
-char			rt_rays_pc(const t_point geometry, const t_point px)
+char			rt_rays_pc(const t_v2i geometry, const t_v2i px)
 {
 	unsigned int		end;
 	unsigned int		pos;
@@ -32,9 +32,9 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_v4d			rad;
 	t_camera		*camp;
 
-	px = (t_point){0, 0};
+	px = (t_v2i){0, 0};
 	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
-		rt_signal_singletone(&rt->sys.geometry, &px, 0);
+		rt_signal_singletone((t_v2i*)&rt->sys.geometry, &px, 0);
 	camp = ((t_obj*)rt->root->content)->content;
 	px.x = rt->sys.geometry.x;
 	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};

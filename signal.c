@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 22:49:47 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 01:23:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:14:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # define SIGUSR1 30
 #endif
 
-void		rt_signal_singletone(t_point *geometry, t_point *px, char delete)
+void		rt_signal_singletone(t_v2i *geometry, t_v2i *px, char delete)
 {
-	static t_point	*pts[2];
+	static t_v2i	*pts[2];
 	char			pc;
 
 	if (delete)

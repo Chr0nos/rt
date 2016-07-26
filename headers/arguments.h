@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 14:16:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 19:58:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:14:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct		s_argument
 
 }					t_argument;
 
-t_point				arg_getgeo(const char *s);
+t_v2i				arg_getgeo(const char *s);
 int					arg_parse(t_rt *rt, int ac, char **av);
 int					arg_geometry(t_rt *rt, int ac, char **av);
 int					arg_fs(t_rt *rt, int ac, char **av);

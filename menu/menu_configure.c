@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 02:30:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:21:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void			menu_configure_thumbs_size(t_rt *rt)
 {
 	int				d;
-	const t_point	*geo = &rt->sys.geometry;
+	const t_v2i		*geo = &rt->sys.geometry;
 
 	d = rt->menu.thumb.x + MENU_BORDER_X;
 	rt->menu.items.x = (d) ? (geo->x + MENU_BORDER_X - MENU_PADDING_X) / d : 0;
@@ -30,7 +30,7 @@ void			menu_configure_thumbs_size(t_rt *rt)
 
 static void		*menu_confiture_id(void *userdata)
 {
-	t_point			subgeo;
+	t_v2i			subgeo;
 	t_menu_id		*id;
 	t_rt			*d;
 

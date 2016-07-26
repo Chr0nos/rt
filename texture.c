@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 15:34:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:20:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_texture			*texture_create(t_texture **lst, char *filepath)
 		ft_putendl_fd(IMG_GetError(), 2);
 		return (NULL);
 	}
-	if (!(std_surface = draw_make_surface((t_point){surface->w, surface->h})))
+	if (!(std_surface = draw_make_surface((t_v2i){surface->w, surface->h})))
 	{
 		SDL_FreeSurface(surface);
 		return (NULL);
