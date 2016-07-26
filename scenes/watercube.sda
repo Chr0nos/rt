@@ -13,6 +13,7 @@ PLAN
 	normal: textures/water_normal.png
 	sdisable: shadow
 	refract: 1.333
+	reflect: 100
 CUBE
 	pos: 0 -4.98 0
 	texture: textures/sand.jpg
@@ -20,6 +21,11 @@ CUBE
 	size: 10
 	#color: #b00077ff
 	#refract: 1.333
+	SPHERE
+		pos: 0 7 4
+		color: #ff0000
+		normal: textures/water_normal.png
+		reflect: 255
 
 CUBE
 	name: sand
