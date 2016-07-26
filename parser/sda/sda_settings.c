@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:02:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 22:34:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	sda_settings_init_bis(t_sda_cfg *cfg)
 		1, SDB_SKYBOX};
 	cfg[17] = (T){"sdisable:", &sda_setup_sdisable, &sda_export_sdisable,
 		SDA_SDISABLE, 1, SDB_SDISABLE};
+	cfg[18] = (T){"heightmap:", &sda_setup_heightmap, NULL, SDA_HEIGHTMAP,
+		1, SDB_HEIGHTMAP};
 }
 
 void		sda_settings_init(t_sda_cfg *cfg)

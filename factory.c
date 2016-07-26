@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 10:38:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 22:29:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 	obj->content = (void*)((unsigned long)obj + sizeof(t_obj));
 	if (type & VISIBLE)
 		((t_cube*)obj->content)->color = COLOR_BLACK;
+	if (obj->type == PLAN)
+		((t_plan*)obj->content)->heightmap = NULL;
 	return (rt_obj_addchild(parent, obj));
 }

@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/20 12:17:00 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/07/26 22:34:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 18
+# define SDA_SETUP_TYPES 19
 # define SDA_COUNT_SHADER 6
 # define FLOATCMP(x, y) ((x > y) || (x < y))
 # include "objects.h"
@@ -38,7 +38,8 @@ enum					e_sda_cfgbit
 	SDB_BACKGROUND = 1 << 14,
 	SDB_NORMAL = 1 << 15,
 	SDB_SKYBOX = 1 << 16,
-	SDB_SDISABLE = 1 << 17
+	SDB_SDISABLE = 1 << 17,
+	SDB_HEIGHTMAP = 1 << 18
 };
 
 enum					e_sda_setting
@@ -59,7 +60,8 @@ enum					e_sda_setting
 	SDA_REFLECT = VISIBLE | SETTING,
 	SDA_BACKGROUND = SETTING,
 	SDA_SKYBOX = SETTING,
-	SDA_SDISABLE = VISIBLE
+	SDA_SDISABLE = VISIBLE,
+	SDA_HEIGHTMAP = PLAN
 };
 
 typedef struct			s_sda_eval
@@ -163,5 +165,6 @@ int						sda_setup_reflect(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_background(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_skybox(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_sdisable(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_heightmap(t_sda *e, t_obj *obj, char **av);
 
 #endif

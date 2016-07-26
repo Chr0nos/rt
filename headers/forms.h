@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 18:19:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/26 22:34:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "texture.h"
 
 typedef unsigned int	t_uint;
-typedef t_point			t_v2i;
 typedef t_m4			t_mattf;
 
 typedef enum			e_type
@@ -84,6 +83,7 @@ typedef struct			s_plan
 	t_uint				color;
 	t_texture			*texture;
 	t_texture			*normal;
+	t_texture			*heightmap;
 	unsigned char		reflect;
 }						t_plan;
 
