@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/07/26 22:35:15 by snicolet         ###   ########.fr        #
+#    Updated: 2016/07/27 18:13:26 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,6 @@ OBJBUILDDIR=build
 INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
 
 ifeq ($(OPSYS), Darwin)
-ifeq ($(USER),dboudy)
-	SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
-	INC+=-I ~/.brew/include
-else
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
 	SDLHERE=$(shell test -f $(SDLLIB))
 	ifeq ("$(wildcard $(SDLHERE))", "")
@@ -37,7 +33,6 @@ else
 	else
 		SDLLINK=-framework sdl2 -framework SDL2_image
 	endif
-endif
 	INC+=-I ./headers/mac
 else
 	SDLLINK=-lSDL2 -lSDL2_image
