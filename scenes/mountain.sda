@@ -11,4 +11,4 @@ PLAN
 	pos: 0 0 0
 	color: #F7F7F7
 	texture: textures/herbe.jpg
-	heightmap: textures/littlehm.png
+	#heightmap: textures/littlehm.png
