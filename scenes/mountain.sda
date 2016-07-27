@@ -2,12 +2,13 @@ SETTING
 	skybox: textures/skybox.jpg
 
 CAMERA
-	pos: 0 5 0
+	pos: 0 10 0
 
-SUNLIGHT
-	pos: 2 2 0
+POINTLIGHT
+	pos: 2 5 0
 
 PLAN
 	pos: 0 0 0
+	color: #F7F7F7
 	texture: textures/herbe.jpg
 	heightmap: textures/littlehm.png
