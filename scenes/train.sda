@@ -32,20 +32,24 @@ EMPTY
 			pos: 0 4.5 0
 			size: 4
 			angle: 60.000140
+			texture: textures/sapin.jpg
 			CONE
 				color: #006400
 				pos: 0 1.5 0
 				size: 3
 				angle: 60.000140
+				texture: textures/sapin.jpg
 				CONE
 					color: #006400
 					pos: 0 1 0
 					size: 2
 					angle: 60.000140
+					texture: textures/sapin.jpg
 					CONE
 						color: #006400
 						pos: 0 0.7 0
 						angle: 60.000140
+						texture: textures/sapin.jpg
 	EMPTY
 		pos: 10 0 5
 		copy: sapin
