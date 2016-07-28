@@ -6,12 +6,12 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/27 00:05:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 00:23:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/28 22:32:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "draw.h"
+#include "geo.h"
 #include <stdlib.h>
 
 int		main(int ac, char **av)
@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	geo.y = 30.1f;
 	while (geo.x > 1.0f)
 	{
-		d = draw_perlin_noise(geo, 1.0f);
+		d = (double)geo_perlin(geo);
 		str = ft_dtoa(d, 6);
 		ft_putendl(str);
 		free(str);

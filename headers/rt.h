@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/27 01:09:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 01:44:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void			rt_rays(t_rt *rt);
 
 void			rt_node_free(t_obj *node);
 int				rt_node_foreach(t_obj *node, int mode,
-int				(*f)(t_obj*, int, void*), void *userdata);
+	int (*f)(t_obj*, int, void*), void *userdata);
 int				rt_node_count(t_obj *node, int mode, void *userdata);
 int				rt_node_display(t_obj *obj, int mode, void *userdata);
 int				yolo_setup_realpos(t_obj *obj, int mode, void *userdata);
