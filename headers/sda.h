@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/26 22:34:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 19:37:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ enum					e_sda_setting
 	SDA_ANGLE = CONE,
 	SDA_COPY = EMPTY,
 	SDA_NAME = ~0,
-	SDA_TEXTURE = SPHERE | CUBE | PLAN,
+	SDA_TEXTURE = SPHERE | CUBE | PLAN | CONE,
 	SDA_REFLECT = VISIBLE | SETTING,
 	SDA_BACKGROUND = SETTING,
 	SDA_SKYBOX = SETTING,

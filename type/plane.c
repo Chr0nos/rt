@@ -6,17 +6,82 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/28 23:56:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/27 16:34:23 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+static int	rt_heightmap(t_obj *obj, t_ray *r, t_v4d *v)
+{
+	int		x;
+	int		y;
+	double	t;
+	double	best_dist;
+	int		check;
+	const unsigned int	*px =
+	((t_plan*)obj->content)->heightmap->surface->pixels;
+	x = 0;
+	y = 0;
+	t = 0.0;
+	check = 0;
+	best_dist = (double)INFINITY;
+	while (y < 10)//((t_plan*)obj->content)->heightmap->surface->h)
+	{
+		while (x < 10)//((t_plan*)obj->content)->heightmap->surface->w)
+		{
+			//t = (-r->start.x-r->start.z+(double)x + (double)y)
+			// /(r->dir.x+r->dir.z);
+			if ((-r->start.x-r->start.z+(double)x + (double)y)
+			 /(r->dir.x+r->dir.z) > 0.0)
+			{
+				t = geo_dotv4(obj->trans.y, r->dir);
+				t = -geo_dotv4(obj->trans.y, geo_subv4(r->start, geo_addv4(obj->trans.w, (t_v4d){
+					0.0,
+					(double)(px[((t_plan*)obj->content)->heightmap->surface->w * y + x] & 0xFF) / 100.0,
+					0.0, 1.0}))) / t;
+				check = 1;
+			}
 
-int		rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
+			// if (t > 0.0 && t < best_dist && r->start.y + r->dir.y * t >= 0.0 &&
+			// 	r->start.x + r->dir.x * t >= 0.0 &&
+			// 	r->start.x + r->dir.x * t <= (double)((t_plan*)obj->content)->heightmap->surface->w &&
+			// 	r->start.y + r->dir.y * t <= obj->trans.w.y + (double)(px[((t_plan*)obj->content)->heightmap->surface->w * y + x] & 0xFF) / 100.0)
+			// {
+			// 	check = 1;
+			// 	best_dist = t;
+			// }
+			++x;
+		}
+		x = 0;
+		++y;
+	}
+	// if (!check)
+	// {
+	// 	if (geo_dotv4(obj->trans.y, r->dir) == 0.0)
+	// 		return (0);
+	// 	best_dist = -geo_dotv4(obj->trans.y, geo_subv4(r->start, geo_addv4(obj->trans.w, (t_v4d){0.0, (double)(px[((t_plan*)obj->content)->heightmap->surface->w * y + x] & 0xFF) / 100.0, 0.0, 0.0} )))
+	// 	/ geo_dotv4(obj->trans.y, r->dir);
+	// 	if (best_dist < 0.0)
+	// 		return (0);
+	// 	check = 1;
+	// }
+	*v = (t_v4d){
+		r->start.x + r->dir.x * best_dist,
+		r->start.y + r->dir.y * best_dist,
+		r->start.z + r->dir.z * best_dist,
+		0.0
+	};
+	r->lenght = best_dist;
+	return (check ? 1 : 0);
+}
+
+int			rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v)
 {
 	const t_v4d		plane = obj->trans.y;
 	double			t;
 
+	if (((t_plan*)obj->content)->heightmap)
+		return (rt_heightmap(obj, r, v));
 	t = geo_dotv4(plane, r->dir);
 	if (t == 0.0)
 		return (0);
