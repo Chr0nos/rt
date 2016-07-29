@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/26 22:34:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/29 14:42:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	sda_settings_init_bis(t_sda_cfg *cfg)
 		SDA_SDISABLE, 1, SDB_SDISABLE};
 	cfg[18] = (T){"heightmap:", &sda_setup_heightmap, NULL, SDA_HEIGHTMAP,
 		1, SDB_HEIGHTMAP};
+	cfg[19] = (T){"texture-perlin:", &sda_setup_texture_perlin, NULL,
+		SDA_TEX_PERLIN, 2, SDB_TEX_PERLIN};
 }
 
 void		sda_settings_init(t_sda_cfg *cfg)

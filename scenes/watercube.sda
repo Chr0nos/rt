@@ -26,6 +26,10 @@ CUBE
 		color: #ff0000
 		normal: textures/water_normal.png
 		reflect: 255
+		SPHERE
+			pos: 0 2 0
+			size: 0.5
+			texture-perlin: 200 200
 
 CUBE
 	name: sand
