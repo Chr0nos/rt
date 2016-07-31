@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 01:20:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/31 14:36:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void				texture_convertformat(t_texture *tex)
 t_texture			*texture_search(t_texture *tex,
 	const char *filepath)
 {
+	if (!ft_strncmp(filepath, "perlin:", 7))
+		return (NULL);
 	while (tex)
 	{
 		if (!ft_strcmp(tex->filepath, filepath))
@@ -46,44 +48,4 @@ t_texture			*texture_search(t_texture *tex,
 		tex = tex->next;
 	}
 	return (NULL);
-}
-
-static t_texture	*texture_create_set(t_texture *tex, char *filepath,
-	SDL_Surface *std_surface, t_texture **lst)
-{
-	tex->filepath = filepath;
-	tex->surface = std_surface;
-	tex->next = *lst;
-	texture_convertformat(tex);
-	(void)texture_convertformat;
-	*lst = tex;
-	return (tex);
-}
-
-t_texture			*texture_create(t_texture **lst, char *filepath)
-{
-	t_texture		*tex;
-	SDL_Surface		*surface;
-	SDL_Surface		*std_surface;
-
-	if (!(surface = IMG_Load(filepath)))
-	{
-		ft_putendl_fd(IMG_GetError(), 2);
-		return (NULL);
-	}
-	if (!(std_surface = draw_make_surface((t_v2i){surface->w, surface->h})))
-	{
-		SDL_FreeSurface(surface);
-		return (NULL);
-	}
-	draw_pixelsconvert(std_surface->pixels, surface->pixels,
-		surface->format->BytesPerPixel,
-		(size_t)(surface->pitch * surface->h) / surface->format->BytesPerPixel);
-	SDL_FreeSurface(surface);
-	if (!(tex = malloc(sizeof(t_texture))))
-	{
-		SDL_FreeSurface(std_surface);
-		return (NULL);
-	}
-	return (texture_create_set(tex, filepath, std_surface, lst));
 }

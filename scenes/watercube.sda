@@ -29,7 +29,7 @@ CUBE
 		SPHERE
 			pos: 0 2 0
 			size: 0.5
-			texture-perlin: 200 200
+			texture: perlin: 200 200
 
 CUBE
 	name: sand
