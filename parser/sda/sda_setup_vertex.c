@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/01 19:38:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 23:25:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void	*sda_vertex_x(t_obj *obj, unsigned char x)
 
 int			sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av)
 {
-	t_v4d	*vector;
+	t_vertex	*vertex;
 
 	(void)e;
-	vector = sda_vertex_x(obj, 0);
-	*vector = (t_v4d){ft_atod(av[0]), ft_atod(av[1]), ft_atod(av[2]), 0.0};
+	vertex = sda_vertex_x(obj, 0);
+	vertex->pos = (t_v4d){ft_atod(av[0]), ft_atod(av[1]), ft_atod(av[2]), 0.0};
 	return (1);
 }
 
