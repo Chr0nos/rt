@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 14:45:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 22:38:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
+#include "mesh.h"
 
 t_type			rt_gettype(const char *str)
 {
@@ -29,11 +30,12 @@ t_type			rt_gettype(const char *str)
 		{CONE_INF, "CONE_INF"},
 		{CYL, "CYL"},
 		{SUNLIGHT, "SUNLIGHT"},
-		{SETTING, "SETTING"}
+		{SETTING, "SETTING"},
+		{TRIANGLE, "TRIANGLE"}
 	};
 	int				p;
 
-	p = 14;
+	p = 15;
 	while ((p--) && (ft_strcmp(types[p].str, str)))
 		;
 	return ((p < 0) ? INVALID : types[p].type);
