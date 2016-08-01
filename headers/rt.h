@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/27 01:44:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 21:34:27 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v);
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v);
 int				rt_tore_inter(t_obj *obj, t_ray *r, t_v4d *v);
 t_v4d			rt_tore_normale(t_obj *obj, t_v4d *v);
+int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i);
+t_v4d			rt_triangle_normale(t_obj *obj, t_v4d *v);
 
 int				rt_export_bmp(t_rt *rt, int ac, char **av);
 int				rt_export(t_rt *rt, int ac, char **av);

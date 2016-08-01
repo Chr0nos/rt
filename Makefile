@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/01 19:38:18 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/01 21:37:16 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o
+TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o triangle.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o
