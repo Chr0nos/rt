@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/26 22:29:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 23:08:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
+#include "mesh.h"
 #include <stdlib.h>
 
 unsigned int		rt_sizeobj(t_type type)
@@ -26,10 +27,11 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){CAMERA, sizeof(struct s_camera)},
 		(t_typesize){CYL, sizeof(struct s_cyl)},
 		(t_typesize){LIGHTTYPE, sizeof(struct s_plight)},
-		(t_typesize){SETTING, sizeof(struct s_setting)}
+		(t_typesize){SETTING, sizeof(struct s_setting)},
+		(t_typesize){TRIANGLE, sizeof(struct s_triangle)}
 	};
 
-	p = 9;
+	p = 10;
 	while (p--)
 		if (type & sizes[p].type)
 			return (sizeof(t_obj) + (unsigned int)sizes[p].size);
