@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/01 22:38:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 22:57:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void			rt_puttype(int type, const int fd)
 		{CONE_INF, "CONE_INF"},
 		{CYL, "CYL"},
 		{SUNLIGHT, "SUNLIGHT"},
-		{SETTING, "SETTING"}
+		{SETTING, "SETTING"},
+		{TRIANGLE, "TRIANGLE"},
 	};
 	int				p;
 
-	p = 15;
+	p = 16;
 	while ((p--) && (types[p].type != type))
 		;
 	ft_putstr_fd((p < 0) ? "UNKNOW" : types[p].str, fd);
