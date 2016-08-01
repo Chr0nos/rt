@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/28 23:12:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/07/30 03:22:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int				sdl_flush(t_rt *rt)
 {
 	//draw_blitsurface_dbg_alpha(rt->sys.screen, rt->textures->surface, (t_point){0,0});
-	//draw_perlin(rt->sys.screen);
+	//draw_perlin_aa(rt->sys.screen);
 	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);
 	SDL_UnlockSurface(rt->sys.screen);

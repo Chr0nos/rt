@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/29 14:39:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/01 19:40:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 20
+# define SDA_SETUP_TYPES 23
 # define SDA_COUNT_SHADER 6
 # define FLOATCMP(x, y) ((x > y) || (x < y))
 # include "objects.h"
@@ -40,7 +40,10 @@ enum					e_sda_cfgbit
 	SDB_SKYBOX = 1 << 16,
 	SDB_SDISABLE = 1 << 17,
 	SDB_HEIGHTMAP = 1 << 18,
-	SDB_TEX_PERLIN = 1 << 19 | SDB_TEXTURE
+	SDB_TEX_PERLIN = 1 << 19 | SDB_TEXTURE,
+	SDB_VERTEX0 = 1 << 20,
+	SDB_VERTEX1 = 1 << 21,
+	SDB_VERTEX2 = 1 << 22
 };
 
 enum					e_sda_setting
@@ -63,7 +66,8 @@ enum					e_sda_setting
 	SDA_SKYBOX = SETTING,
 	SDA_SDISABLE = VISIBLE,
 	SDA_HEIGHTMAP = PLAN,
-	SDA_TEX_PERLIN = SDA_TEXTURE
+	SDA_TEX_PERLIN = SDA_TEXTURE,
+	SDA_VERTEX = TRIANGLE
 };
 
 typedef struct			s_sda_eval
@@ -170,5 +174,9 @@ int						sda_setup_sdisable(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_heightmap(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_texture_perlin(t_sda *e, t_obj *obj,
 	char **av);
+int						sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
+
 
 #endif
