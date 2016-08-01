@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 17:41:12 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 12:15:09 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/02 00:32:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int		yolo_setup_type(t_obj *obj, int mode, void *userdata)
 		(t_parser_internal){CONE, &rt_cone_inter, &rt_cone_normale},
 		(t_parser_internal){CONE_INF, &rt_cone_inf_inter, &rt_cone_inf_normale},
 		(t_parser_internal){CYL, &rt_cyl_inter, &rt_cyl_normale},
-		(t_parser_internal){CUBE, &rt_cube_inter, &rt_cube_normale}
+		(t_parser_internal){CUBE, &rt_cube_inter, &rt_cube_normale},
+		(t_parser_internal){TRIANGLE, &rt_triangle_inter, &rt_triangle_normale}
 	};
 
 	(void)mode;
 	(void)userdata;
-	p = 6;
+	p = 7;
 	while (p--)
 	{
 		if (cfg[p].type == obj->type)
