@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/01 17:56:18 by hantlowt         ###   ########.fr       */
+/*   Updated: 2016/08/01 17:57:47 by hantlowt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ typedef struct			s_triangle
 	t_vertex			v2;
 	t_vertex			v3;
 	unsigned int		color;
-}						t_v2d;
+}						t_triangle;
 
 #endif
