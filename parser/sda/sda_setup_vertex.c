@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/02 13:02:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/02 13:35:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,28 @@ static void	*sda_vertex_x(t_obj *obj, unsigned char x)
 	return (NULL);
 }
 
-static void	sda_setup_vertex(t_vertex *vertex, char **av)
+static int	sda_setup_vertex(t_vertex *vertex, char **av)
 {
 	if (!vertex)
-		return ;
+		return (-1);
 	vertex->pos = (t_v4d){ft_atod(av[0]), ft_atod(av[1]), ft_atod(av[2]), 0.0};
+	return (1);
 }
 
 int			sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
-	sda_setup_vertex(sda_vertex_x(obj, 0), av);
-	return (1);
+	return (sda_setup_vertex(sda_vertex_x(obj, 0), av));
 }
 
 int			sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
-	sda_setup_vertex(sda_vertex_x(obj, 1), av);
-	return (1);
+	return (sda_setup_vertex(sda_vertex_x(obj, 1), av));
 }
 
 int			sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
-	sda_setup_vertex(sda_vertex_x(obj, 2), av);
-	return (1);
+	return (sda_setup_vertex(sda_vertex_x(obj, 2), av));
 }
