@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/03 13:55:24 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/03 14:41:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 		return (0);
 	*i = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
 	r->start.z + r->dir.z * t, 0.0};
+	r->lenght = t;
 	return (1);
 }
 
