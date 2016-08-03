@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/03 13:17:20 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/03 13:38:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	if (det > -EPSILON && det < EPSILON)
 		return (0);
 	inv_det = 1.0 / det;
-	T = geo_subv4(r->start, triangle->v1.pos);
+	T = geo_subv4(r->start, geo_addv4(obj->trans.w, triangle->v1.pos));
 	u = geo_dotv4(T, P) * inv_det;
 	if (u < 0.0 || u > 1.0)
 		return (0);
