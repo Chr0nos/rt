@@ -11,6 +11,7 @@ TRIANGLE
 	color: #00FF00
 
 TRIANGLE
+	texture: textures/herbe.jpg
 	vertex0: 2 0 0
 	vertex1: 1 2 0.5
 	vertex2: 1 0 2
