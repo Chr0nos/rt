@@ -1,13 +1,17 @@
-SETTING
-	skybox: textures/skybox.jpg
-CAMERA
-
-SUNLIGHT
-	pos: 1 1 0
+TRIANGLE
+	vertex0: 0 0 0
+	vertex1: 1 2 0.5
+	vertex2: 2 0 0
+	color: #FF0000
 
 TRIANGLE
-	pos: 0 0 0
-	vertex0: 0 0 5
-	vertex1: 1 2 6
-	vertex2: 2 0 5
-	color: #FF0000
+	vertex0: 0 0 0
+	vertex1: 1 2 0.5
+	vertex2: 1 0 2
+	color: #00FF00
+
+TRIANGLE
+	vertex0: 2 0 0
+	vertex1: 1 2 0.5
+	vertex2: 1 0 2
+	color: #0000FF
