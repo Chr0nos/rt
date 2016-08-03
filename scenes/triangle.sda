@@ -7,6 +7,6 @@ SUNLIGHT
 
 TRIANGLE
 	vertex0: 0 0 5
-	vertex1: 1 2 5
+	vertex1: 1 0 6
 	vertex2: 2 0 5
 	color: #FF00FF
