@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/03 13:38:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/03 13:55:24 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	triangle = obj->content;
 	e1 = geo_subv4(triangle->v2.pos, triangle->v1.pos);
 	e2 = geo_subv4(triangle->v3.pos, triangle->v1.pos);
-	P = geo_multv4(r->dir, e2);
+	P = geo_crossv4(r->dir, e2);
 	det = geo_dotv4(e1, P);
 	if (det > -EPSILON && det < EPSILON)
 		return (0);
@@ -40,7 +40,7 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	u = geo_dotv4(T, P) * inv_det;
 	if (u < 0.0 || u > 1.0)
 		return (0);
-	Q = geo_multv4(T, e1);
+	Q = geo_crossv4(T, e1);
 	v = geo_dotv4(r->dir, Q) * inv_det;
 	if (v < 0.0 || u + v  > 1.0)
 		return (0);
