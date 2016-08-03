@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 11:26:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/03 20:45:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "unistd.h"
 #include "parser.h"
+#include "mesh.h"
 
 static void	sda_set_cone_default(t_obj *obj)
 {
@@ -52,6 +53,16 @@ static void	sda_set_camera_default(t_obj *obj)
 	yolo_camera_save(obj);
 }
 
+static void sda_set_triangle_default(t_obj *obj)
+{
+	t_triangle	*tri;
+
+	tri = obj->content;
+	tri->v1.uv = (t_v2f){0.0f, 1.0f};
+	tri->v2.uv = (t_v2f){0.5f, 0.0f};
+	tri->v3.uv = (t_v2f){1.0f, 1.0f};
+}
+
 static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 {
 	t_rt	*rt;
@@ -64,6 +75,8 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		sda_set_lights_default(obj);
 	else if (obj->type == CONE)
 		sda_set_cone_default(obj);
+	else if (obj->type == TRIANGLE)
+		sda_set_triangle_default(obj);
 	if ((obj->type & SDA_SIZE) && (!(obj->cfgbits & SDB_SIZE)))
 		((t_cube*)obj->content)->size = 1.0;
 	return (OK);

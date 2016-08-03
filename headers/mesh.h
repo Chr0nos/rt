@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/03 19:07:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/03 20:44:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct			s_vertex
 {
 	t_v4d				pos;
+	t_v2f				uv;
 }						t_vertex;
 
 typedef struct			s_triangle
