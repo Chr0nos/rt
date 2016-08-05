@@ -1,7 +1,13 @@
 SETTING
 	skybox: textures/skybox.jpg
+
 CAMERA
+	pos: -3.75375 1 -2.358667
+	rot: 0 68.754935 0
 	POINTLIGHT
+		color: #FFFFFF
+		intensity: 80
+	 
 TRIANGLE
 	vertex1: 1 2 0.5
 	vertex2: 2 0 0

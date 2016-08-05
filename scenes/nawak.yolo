@@ -1,5 +1,5 @@
 #						X		Y		Z					orientation		FOV
-CAMERA					0		0		-24					0	0	0		49.124
+CAMERA					31.52 	0		-41					0	-34.38	0		49.124
 
 #    					size	X			Y			Z			color
 CUBE					10		0			0			20			100:200:100

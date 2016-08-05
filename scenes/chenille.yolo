@@ -4,6 +4,9 @@ CAMERA					5		2		-21			20		0		0			75
 # LUMIERE AMBIENTE
 SETTING	AL:100
 
+#spot                           X       Y       Z       INTENS  RADIUS  COLOR
+POINTLIGHT                      0       10      0       100.0   200.0   #ffffff
+
 # CHENILLE							size	x		y		z		color
 SPHERE								1		0		0		0		255:0:0
 	SPHERE							1		1.5		0.1		0		0:255:0
