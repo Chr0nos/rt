@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:29:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/03 19:08:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/05 17:26:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 t_texture	*rt_obj_get_texture(t_obj *obj)
 {
-	if (!(obj->cfgbits & SDB_TEXTURE))
-		return (NULL);
 	if (obj->type == PLAN)
 		return (((t_plan*)obj->content)->texture);
 	if (obj->type == SPHERE)

@@ -10,14 +10,14 @@ EMPTY
 	pos: 0 2 0
 	include: scenes/pyramide.sda
 
-#PLAN
-#	reflect: 120
-#	pos: 0 0 0
-#	color: #CCffffff
-#	normal: textures/water_normal.png
-#	sdisable: shadow
-#	refract: 1.333
-#	#reflect: 100
+PLAN
+	reflect: 120
+	pos: 0 0 0
+	color: #CCffffff
+	normal: textures/water_normal.png
+	sdisable: shadow
+	refract: 1.333
+	reflect: 100
 
 CUBE
 	pos: 0 -4.98 0
@@ -25,12 +25,12 @@ CUBE
 	normal: textures/water_normal.png
 	size: 10
 	#color: #b00077ff
-	#refract: 1.333
+	refract: 1.333
 	SPHERE
 		pos: 0 7 4
 		color: #ff0000
 		normal: textures/water_normal.png
-		#reflect: 255
+		reflect: 255
 		SPHERE
 			pos: 0 2 0
 			size: 0.5
