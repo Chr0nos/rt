@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   obj_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:29:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 18:45:02 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/05 19:54:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "texture.h"
+#include "mesh.h"
 #include "sda.h"
 
 t_texture	*rt_obj_get_normal(t_obj *obj)
@@ -26,6 +27,8 @@ t_texture	*rt_obj_get_normal(t_obj *obj)
 		return (((t_cube*)obj->content)->normal);
 	if (obj->type == CONE)
 		return (((t_cone*)obj->content)->normal);
+	if (obj->type == TRIANGLE)
+		return (((t_triangle*)obj->content)->normal);
 	return (NULL);
 }
 
@@ -39,6 +42,8 @@ int			rt_obj_set_normal(t_obj *obj, t_texture *tex)
 		((t_cube*)obj->content)->normal = tex;
 	else if (obj->type == CONE)
 		((t_cube*)obj->content)->normal = tex;
+	else if (obj->type == TRIANGLE)
+		((t_triangle*)obj->content)->normal = tex;
 	else
 		return (0);
 	return (1);
