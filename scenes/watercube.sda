@@ -8,15 +8,17 @@ SUNLIGHT
 
 EMPTY
 	pos: 0 2 0
-	include: scenes/triangle.sda
-PLAN
-	reflect: 120
-	pos: 0 0 0
-	color: #CCffffff
-	normal: textures/water_normal.png
-	sdisable: shadow
-	refract: 1.333
-	reflect: 100
+	include: scenes/pyramide.sda
+
+#PLAN
+#	reflect: 120
+#	pos: 0 0 0
+#	color: #CCffffff
+#	normal: textures/water_normal.png
+#	sdisable: shadow
+#	refract: 1.333
+#	#reflect: 100
+
 CUBE
 	pos: 0 -4.98 0
 	texture: textures/sand.jpg
@@ -28,7 +30,7 @@ CUBE
 		pos: 0 7 4
 		color: #ff0000
 		normal: textures/water_normal.png
-		reflect: 255
+		#reflect: 255
 		SPHERE
 			pos: 0 2 0
 			size: 0.5

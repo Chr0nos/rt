@@ -7,7 +7,7 @@ CAMERA
 PLAN
 	color: #5AFFA5
 	pos: 0 -2 -4
-	reflect: 100
+	#reflect: 100
 EMPTY
 	name: rails
 	pos: 0 -0.8 0
@@ -61,7 +61,7 @@ EMPTY
 		pos: 30 0 15
 SETTING
 	size: 2
-	reflect: 200
+	#reflect: 200
 CUBE
 	color: #646464
 	pos: 0 0 10
