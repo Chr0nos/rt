@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/05 17:23:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/06 17:40:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,12 @@ static void sda_set_triangle_default(t_obj *obj)
 	t_triangle	*tri;
 
 	tri = obj->content;
-	tri->v1.uv = (t_v2f){0.0f, 1.0f};
-	tri->v2.uv = (t_v2f){0.5f, 0.0f};
-	tri->v3.uv = (t_v2f){1.0f, 1.0f};
+	if (!(obj->cfgbits & SDB_VERTEX0_UV))
+		tri->v1.uv = (t_v2f){0.0f, 1.0f};
+	if (!(obj->cfgbits & SDB_VERTEX1_UV))
+		tri->v2.uv = (t_v2f){0.5f, 0.0f};
+	if (!(obj->cfgbits & SDB_VERTEX2_UV))
+		tri->v3.uv = (t_v2f){1.0f, 1.0f};
 	if (!(obj->cfgbits & SDB_VERTEX0))
 		tri->v1.pos = (t_v4d){0.0, 0.0, 0.0, 0.0};
 	if (!(obj->cfgbits & SDB_VERTEX1))

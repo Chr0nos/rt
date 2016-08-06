@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/03 22:22:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/06 17:39:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ enum					e_sda_cfgbit
 	SDB_TEX_PERLIN = 1 << 19 | SDB_TEXTURE,
 	SDB_VERTEX0 = 1 << 20,
 	SDB_VERTEX1 = 1 << 21,
-	SDB_VERTEX2 = 1 << 22
+	SDB_VERTEX2 = 1 << 22,
+	SDB_VERTEX0_UV = 1 << 23,
+	SDB_VERTEX1_UV = 1 << 24,
+	SDB_VERTEX2_UV = 1 << 25
 };
 
 enum					e_sda_setting
