@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/06 14:03:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/06 14:58:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "mesh.h"
 #include "libft.h"
 
-static void	*sda_vertex_x(t_obj *obj, unsigned char x)
+static void		*sda_vertex_x(t_obj *obj, unsigned char x)
 {
 	t_triangle	*tri;
 
@@ -30,7 +30,16 @@ static void	*sda_vertex_x(t_obj *obj, unsigned char x)
 	return (NULL);
 }
 
-static int	sda_setup_vertex(t_vertex *vertex, char **av)
+static float	clamp(const float x, const float min, const float max)
+{
+	if (x < min)
+		return (min);
+	if (x > max)
+		return (max);
+	return (x);
+}
+
+static int		sda_setup_vertex(t_vertex *vertex, char **av)
 {
 	const unsigned int ac = (unsigned int)ft_tabcount((void**)av);
 
@@ -38,7 +47,11 @@ static int	sda_setup_vertex(t_vertex *vertex, char **av)
 		return (-1);
 	vertex->pos = (t_v4d){ft_atod(av[0]), ft_atod(av[1]), ft_atod(av[2]), 0.0};
 	if (ac >= 5)
-	vertex->uv = (t_v2f){(float)ft_atod(av[3]), (float)ft_atod(av[4])};
+	{
+		vertex->uv = (t_v2f){
+			clamp((float)ft_atod(av[3]), 0.0f, 1.0f),
+			clamp((float)ft_atod(av[4]), 0.0f, 1.0f)};
+	}
 	return (1);
 }
 
