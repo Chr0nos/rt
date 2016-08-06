@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/02 13:35:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/06 14:03:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ static void	*sda_vertex_x(t_obj *obj, unsigned char x)
 
 static int	sda_setup_vertex(t_vertex *vertex, char **av)
 {
+	const unsigned int ac = (unsigned int)ft_tabcount((void**)av);
+
 	if (!vertex)
 		return (-1);
 	vertex->pos = (t_v4d){ft_atod(av[0]), ft_atod(av[1]), ft_atod(av[2]), 0.0};
+	if (ac >= 5)
+	vertex->uv = (t_v2f){(float)ft_atod(av[3]), (float)ft_atod(av[4])};
 	return (1);
 }
 
