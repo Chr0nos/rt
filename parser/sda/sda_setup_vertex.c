@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/06 14:58:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/06 17:34:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "forms.h"
 #include "mesh.h"
 #include "libft.h"
+#include "geo.h"
 
 static void		*sda_vertex_x(t_obj *obj, unsigned char x)
 {
@@ -30,15 +31,6 @@ static void		*sda_vertex_x(t_obj *obj, unsigned char x)
 	return (NULL);
 }
 
-static float	clamp(const float x, const float min, const float max)
-{
-	if (x < min)
-		return (min);
-	if (x > max)
-		return (max);
-	return (x);
-}
-
 static int		sda_setup_vertex(t_vertex *vertex, char **av)
 {
 	const unsigned int ac = (unsigned int)ft_tabcount((void**)av);
@@ -49,8 +41,8 @@ static int		sda_setup_vertex(t_vertex *vertex, char **av)
 	if (ac >= 5)
 	{
 		vertex->uv = (t_v2f){
-			clamp((float)ft_atod(av[3]), 0.0f, 1.0f),
-			clamp((float)ft_atod(av[4]), 0.0f, 1.0f)};
+			geo_clamp((float)ft_atod(av[3]), 0.0f, 1.0f),
+			geo_clamp((float)ft_atod(av[4]), 0.0f, 1.0f)};
 	}
 	return (1);
 }
