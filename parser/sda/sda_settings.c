@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/01 19:41:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/07 17:13:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static void	sda_settings_init_bis(t_sda_cfg *cfg)
 		1, SDB_HEIGHTMAP};
 	cfg[19] = (T){"texture-perlin:", &sda_setup_texture_perlin, NULL,
 		SDA_TEX_PERLIN, 2, SDB_TEX_PERLIN};
-	cfg[20] = (T){"vertex0:", &sda_setup_vertex_0, NULL, SDA_VERTEX, 3,
-		SDB_VERTEX0};
-	cfg[21] = (T){"vertex1:", &sda_setup_vertex_1, NULL, SDA_VERTEX, 3,
-		SDB_VERTEX1};
-	cfg[22] = (T){"vertex2:", &sda_setup_vertex_2, NULL, SDA_VERTEX, 3,
-		SDB_VERTEX2};
+	cfg[20] = (T){"vertex0:", &sda_setup_vertex_0, &sda_export_vertex0,
+		SDA_VERTEX, 3, SDB_VERTEX0};
+	cfg[21] = (T){"vertex1:", &sda_setup_vertex_1, &sda_export_vertex1,
+		SDA_VERTEX, 3, SDB_VERTEX1};
+	cfg[22] = (T){"vertex2:", &sda_setup_vertex_2, &sda_export_vertex2,
+		SDA_VERTEX, 3, SDB_VERTEX2};
 }
 
 void		sda_settings_init(t_sda_cfg *cfg)

@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/01 21:37:16 by alhote           ###   ########.fr        #
+#    Updated: 2016/08/07 17:14:31 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 	sda_export_angle.o sda_export_reflect.o sda_setup_skybox.o \
 	sda_export_skybox.o sda_export_file.o sda_setup_sdisable.o \
 	sda_export_sdisable.o sda_export_al.o sda_export_bitmap.o \
-	sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o
+	sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
+	sda_export_vertex.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \

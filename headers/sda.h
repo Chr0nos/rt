@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/06 17:39:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/07 17:14:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,9 @@ char					*sda_export_reflect(t_obj *obj, t_sda_export *e);
 char					*sda_export_skybox(t_obj *obj, t_sda_export *e);
 char					*sda_export_sdisable(t_obj *obj, t_sda_export *e);
 char					*sda_export_al(t_obj *obj, t_sda_export *e);
+char					*sda_export_vertex0(t_obj *obj, t_sda_export *e);
+char					*sda_export_vertex1(t_obj *obj, t_sda_export *e);
+char					*sda_export_vertex2(t_obj *obj, t_sda_export *e);
 
 /*
 ** configure functions
@@ -180,6 +183,5 @@ int						sda_setup_texture_perlin(t_sda *e, t_obj *obj,
 int						sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
-
 
 #endif
