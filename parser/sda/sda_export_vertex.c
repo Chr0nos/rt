@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 16:54:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/07 17:16:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/07 17:16:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*sda_export_vertex1(t_obj *obj, t_sda_export *e)
 		sda_export_vertex_intern(&tri->v2, str, obj);
 		result = ft_strunsplit((const char **)(size_t)str, ' ');
 		ft_mfree(4, str[0], str[1], str[2], str[3]);
-		if (obj->cfgbits & SDB_VERTEX0_UV)
+		if (obj->cfgbits & SDB_VERTEX1_UV)
 			ft_mfree(2, str[4], str[5]);
 	}
 	return (result);
@@ -89,7 +89,7 @@ char	*sda_export_vertex2(t_obj *obj, t_sda_export *e)
 		sda_export_vertex_intern(&tri->v3, str, obj);
 		result = ft_strunsplit((const char **)(size_t)str, ' ');
 		ft_mfree(4, str[0], str[1], str[2], str[3]);
-		if (obj->cfgbits & SDB_VERTEX0_UV)
+		if (obj->cfgbits & SDB_VERTEX2_UV)
 			ft_mfree(2, str[4], str[5]);
 	}
 	return (result);
