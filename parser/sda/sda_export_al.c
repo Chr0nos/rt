@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 18:17:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 18:45:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/08 00:30:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ char	*sda_export_al(t_obj *obj, t_sda_export *e)
 	(void)e;
 	if (!(obj->cfgbits & SDB_AL))
 		return (NULL);
-	return (ft_dtoa(((t_setting*)obj->content)->al, 6));
+	return (sda_double_short(ft_dtoa(((t_setting*)obj->content)->al, 6)));
 }
