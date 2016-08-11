@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 01:24:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/11 14:58:43 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int				main(int ac, char **av)
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
+	display_help_arg();
 	return (rt_quit(&rt, rt_normal(&rt, ac - 1, av + 1)));
 }
