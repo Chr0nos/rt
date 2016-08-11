@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/05 12:19:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/11 17:31:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 #include "filter.h"
 #include <unistd.h>
 
-char			rt_rays_pc(const t_v2i geometry, const t_v2i px)
+char			rt_rays_pc(const t_v2i *geometry, const t_v2i *px)
 {
-	unsigned int		end;
-	unsigned int		pos;
+	float		endx;
+	float		posx;
+	float		endy;
+	float		posy;
 
-	end = (unsigned int)(geometry.x * geometry.y + geometry.x);
-	pos = (unsigned int)(px.x * px.y + px.x);
-	return ((char)((float)end / (float)pos * 100.0f));
+	endy = (float)(geometry->y);
+	endx = (float)(geometry->x);
+	posy = (float)(px->y);
+	posx = (float)(px->x);
+	return ((char)(
+		((1.0f - (posx / endx)) + ((1.0f - (posy / endy)) / endx)) * 100.0f 
+	));
 }
 
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
