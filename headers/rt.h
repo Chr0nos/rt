@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/03 17:28:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/11 17:39:04 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,8 @@ int				rt_normal(t_rt *rt, int ac, char **av);
 int				rt_quit(t_rt *rt, int retcode);
 int				sdl_flush(t_rt *rt);
 int				togglefs(t_rt *rt);
-char			rt_rays_pc(const t_v2i geometry, const t_v2i px);
+char			rt_rays_pc(const t_v2i *geometry,
+	const t_v2i *px);
 void			rt_signal(int num);
 void			rt_signal_singletone(t_v2i *geometry, t_v2i *px,
 	char delete);
