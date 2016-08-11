@@ -18,14 +18,14 @@ void	display_help_arg(void)
 {
 	ft_putstr(
 	"\033[01;032m\n\
-	 _______________________________________________________________________\n\
-	//                                                                     \\\\\n\
+	  _____________________________________________________________________\n\
+	 //                                                                   \\\\\n\
 	||\033[01;035m                        WELCOME IN OUR RT MENU\
 	               \033[01;032m||\n\
-	\\\\_____________________________________________________________________//\n\
+	 \\\\___________________________________________________________________//\n\
 	|                                                                       |\n\
-	|  \033[04;036mOPTION LIST :\033[;032m\
-	                                                |\n\
+	|  \033[04;036mNext time, add map and try option :\033[;032m\
+	                                |\n\
 	|  -e  : output scene to sda format.                                    |\n\
 	|  -b  : export scene to image bmp and choose a destination path        |\n\
 	|        -> ./rt -e scenes/test.sda ~Desktop/my_image.bmp               |\n\
