@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 18:04:24 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/11 19:57:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ typedef struct			s_obj
 	double				refractive_index;
 	char				*name;
 }						t_obj;
+
+union					u_obj
+{
+	t_obj				node;
+}
 
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
