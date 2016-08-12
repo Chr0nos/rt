@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_cleanup.c                                 :+:      :+:    :+:   */
+/*   textures_display.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/12 12:38:56 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 16:17:36 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/12 16:14:21 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/12 16:15:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
 #include "libft.h"
 
-static int		textures_lstsearch(t_list *lst, const void *content)
+void	textures_display(t_texture *t)
 {
-	while (lst)
-	{
-		if (lst->content == content)
-			return (1);
-		lst = lst->next;
-	}
-	return (0);
-}
-
-void			textures_cleanup(t_obj *node, t_texture **lst)
-{
-	t_list		*used;
-	t_texture	*x;
-
-	//textures_display(*lst);
-	textures_used_display(node);
-	used = textures_used(node);
-	x = *lst;
-	while (x)
-	{
-		if (!textures_lstsearch(used, x))
-			texture_remove(x);
-		x = x->next;
-	}
+	if (!t)
+		return ;
+	ft_printf("tex: %s\n", t->filepath);
+	textures_display(t->next);
 }

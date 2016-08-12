@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/12 14:11:43 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/12 16:15:52 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 
 TEXTURE_DIR=texture
 TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
-		texture.o textures_cleanup.o texture_last.o texture_remove.o
+		texture.o textures_cleanup.o texture_last.o texture_remove.o \
+		textures_display.o
 
 RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
