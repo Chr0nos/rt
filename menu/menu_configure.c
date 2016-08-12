@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 01:21:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:35:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 		id->dest = &rt->rts[p];
 		id->src = rt;
 		id->file = (const char *)files->content;
+		//((t_rt*)id->dest)->textures = rt->textures;
 		if (menu_confiture_id(id) == NULL)
 		{
 			ft_putstr_fd("menu has failed on: ", 2);
