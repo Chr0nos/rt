@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 21:48:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 15:29:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 17:56:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	textures_freetex(t_texture *t)
 {
 	if (!t)
 		return ;
-	ft_printf("deleting texture: %s\n", t->filepath);
+	if (t->filepath)
+		ft_printf("deleting texture: %s\n", t->filepath);
+	else
+		ft_putstr("deleting unknow texture\n");
 	SDL_FreeSurface(t->surface);
 	free(t->filepath);
 	free(t);

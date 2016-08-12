@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 16:43:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 18:10:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,25 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+char				*texture_cleanpath(char *filepath)
+{
+	char	*tmp;
+	int		p;
+
+	p = 0;
+	while (!ft_strncmp(&filepath[p], "./", 2))
+		p += 2;
+	tmp = filepath;
+	filepath = ft_strdup(&filepath[p]);
+	free(tmp);
+	return (filepath);
+}
+
 static t_texture	*texture_create_set(t_texture *tex, char *filepath,
 	SDL_Surface *std_surface, t_texture **lst)
 {
-	ft_printf("loaded texture: %s\n", filepath);
 	tex->filepath = filepath;
+	ft_printf("loaded texture: %s\n", tex->filepath);
 	tex->surface = std_surface;
 	tex->next = *lst;
 	tex->prev = NULL;
@@ -57,7 +71,8 @@ static t_texture		*texture_create_file(t_texture **lst, char *filepath)
 		SDL_FreeSurface(std_surface);
 		return (NULL);
 	}
-	return (texture_create_set(tex, filepath, std_surface, lst));
+	return (texture_create_set(tex,
+		texture_cleanpath(filepath), std_surface, lst));
 }
 
 t_texture			*texture_create(t_texture **lst, char *filepath)

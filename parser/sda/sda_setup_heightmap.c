@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 22:30:54 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/26 22:35:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 17:39:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int			sda_setup_heightmap(t_sda *e, t_obj *obj, char **av)
 	plan = obj->content;
 	if (!(filepath = ft_strunsplit((const char **)(unsigned long)av, ' ')))
 		return (-2);
-	if ((tex = texture_search(e->rt->textures, filepath)))
+	if ((tex = texture_search(*e->rt->textures, filepath)))
 		free(filepath);
 	else if (e->rt->settings.fake_texture_load)
 	{
-		tex = sda_setup_texture_fake(filepath, &e->rt->textures);
+		tex = sda_setup_texture_fake(filepath, e->rt->textures);
 		plan->heightmap = tex;
 		return (1);
 	}
-	else if ((tex = texture_create(&e->rt->textures, filepath)))
+	else if ((tex = texture_create(e->rt->textures, filepath)))
 		;
 	else
 	{

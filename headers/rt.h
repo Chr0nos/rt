@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/11 17:39:04 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/12 17:45:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct	s_rt
 	struct s_rt	*rts;
 	size_t		rts_size;
 	t_menu		menu;
-	t_texture	*textures;
+	t_texture	**textures;
 	t_uint		(*rayfunc)(struct s_rt *rt, t_ray *ray);
 }				t_rt;
 

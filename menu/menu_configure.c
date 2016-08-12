@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 16:44:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 17:40:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 			id->enabled = 1;
 		files = files->next;
 	}
-	textures_display(rt->textures);
+	textures_display(*rt->textures);
 	return ((size_t)p);
 }
