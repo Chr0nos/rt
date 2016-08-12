@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 14:25:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/29 14:40:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:27:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ t_texture	*texture_perlin(t_texture **lst, t_v2i size)
 	}
 	draw_perlin(tex->surface);
 	tex->next = *lst;
+	tex->prev = NULL;
+	if (tex->next)
+		tex->next->prev = tex;
 	*lst = tex;
 	return (tex);
 }
