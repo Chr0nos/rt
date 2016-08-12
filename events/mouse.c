@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 10:44:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 10:58:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "keyboard.h"
 #include "menu.h"
 #include "libft.h"
+
+static void		menu_update_params(t_rt *rt)
+{
+	rt->rts_size = 0;
+	rt->rts = NULL;
+	rt->keyboard &= FULLSCREEN;
+	rt->keyboard |= FORCE_DISPLAY;
+	rt->settings.cfgbits &= RT_CFGB_INMENU;
+}
 
 static int		menu_click(SDL_Event *event, t_rt *rt)
 {
@@ -33,12 +42,9 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 			tmp_rt = rt->rts[id];
 			tmp_rt.sys = rt->sys;
 			rt->rts[id].root = NULL;
-			menu_clean(rt);
+			menu_clean(rt, id);
 			*rt = tmp_rt;
-			rt->rts_size = 0;
-			rt->rts = NULL;
-			rt->keyboard &= FULLSCREEN;
-			rt->keyboard |= FORCE_DISPLAY;
+			menu_update_params(rt);
 		}
 	}
 	return (0);

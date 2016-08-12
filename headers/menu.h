@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 19:11:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 10:55:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				menu_camera_reset(t_rt *rt);
 int				menu_camera_save(t_rt *rt);
 void			menu_update_positions(t_rt *rt);
 int				menu_position_id(t_rt *rt, int x, int y);
-void			menu_clean(t_rt *rt);
+void			menu_clean(t_rt *rt, int keep_id);
 t_list			*ls_dir(const char *path, const char **masks, int mc);
 int				ls_isdir(const char *path);
 void			menu_degrade(SDL_Surface *surface,

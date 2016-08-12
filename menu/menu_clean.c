@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:22:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 15:03:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 10:55:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <SDL2/SDL.h>
 
-void			menu_clean(t_rt *rt)
+void			menu_clean(t_rt *rt, int keep_id)
 {
 	size_t		size;
 
@@ -23,9 +23,12 @@ void			menu_clean(t_rt *rt)
 	rt->rts_size = 0;
 	while (size--)
 	{
-		rt_node_free(rt->rts[size].root);
-		SDL_FreeSurface(rt->rts[size].sys.screen);
-		rt->rts[size].sys.screen = NULL;
+		if ((int)size != keep_id)
+		{
+			rt_node_free(rt->rts[size].root);
+			SDL_FreeSurface(rt->rts[size].sys.screen);
+			rt->rts[size].sys.screen = NULL;
+		}
 	}
 	if (rt->menu.background)
 	{
