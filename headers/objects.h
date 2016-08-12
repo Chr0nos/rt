@@ -40,7 +40,7 @@ typedef struct			s_obj
 union					u_obj
 {
 	t_obj				node;
-}
+};
 
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
