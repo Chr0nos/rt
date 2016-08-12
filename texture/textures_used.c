@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 11:16:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 11:33:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:38:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static int		textures_used_foreach(t_obj *obj, int mode, void *userdata)
 		ft_lstadd((t_list**)userdata, ft_lstnewlink(tex, 0));
 	if ((tex = rt_obj_get_normal(obj)))
 		ft_lstadd((t_list**)userdata, ft_lstnewlink(tex, 0));
+	if ((obj->type == SETTING) && (obj->cfgbits & SDB_SKYBOX))
+		ft_lstadd((t_list **)userdata,
+			ft_lstnewlink(((t_setting*)obj->content)->skybox, 0));
 	return (OK);
 }
 
@@ -47,7 +50,7 @@ static void		textures_used_display_foreach(void *content)
 
 	tex = content;
 	if (tex->filepath)
-		ft_printf("texture: %s\n", tex->filepath);
+		ft_printf("texture in use: %s\n", tex->filepath);
 }
 
 void			textures_used_display(t_obj *root)

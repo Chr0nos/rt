@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 21:48:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 12:48:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:29:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
+#include "libft.h"
 #include "SDL2/SDL.h"
 #include <stdlib.h>
 
@@ -18,6 +19,7 @@ void	textures_freetex(t_texture *t)
 {
 	if (!t)
 		return ;
+	ft_printf("deleting texture: %s\n", t->filepath);
 	SDL_FreeSurface(t->surface);
 	free(t->filepath);
 	free(t);

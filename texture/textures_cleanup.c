@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 12:38:56 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 14:21:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:41:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void			textures_cleanup(t_obj *node, t_texture **lst)
 	t_list		*used;
 	t_texture	*x;
 
+	textures_used_display(node);
 	used = textures_used(node);
 	x = *lst;
 	while (x)

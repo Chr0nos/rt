@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 12:52:08 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 14:10:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 15:33:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	texture_remove(t_texture *tex)
 	if (!tex)
 		return ;
 	if (tex->prev)
-	{
 		tex->prev->next = tex->next;
+	if (tex->next)
 		tex->next->prev = tex->prev;
-	}
 	textures_freetex(tex);
 }
