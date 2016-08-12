@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/15 00:06:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 11:03:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_obj	*rt_parser(const char *filepath, t_rt *rt)
 {
 	const char	*end = ft_strrchr((char*)(unsigned long)filepath, '.');
 
+	ft_printf("trying to open %s\n", filepath);
 	if (!end)
 		return (NULL);
 	else if (!ft_strcmp(end, ".yolo"))
