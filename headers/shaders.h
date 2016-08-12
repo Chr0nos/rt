@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/18 19:31:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/12 12:32:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ unsigned int		blend_overlay(unsigned int a, unsigned int b);
 void				shaders_activate_only(t_shaders *s, unsigned int n);
 void				shaders_activate_all(t_shaders *s);
 unsigned int		to_rgb(unsigned int a, unsigned int r, unsigned int g,
-unsigned int b);
+	unsigned int b);
 
 #endif
