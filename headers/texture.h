@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 11:42:16 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/12 11:28:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 14:10:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_obj	t_obj;
 typedef struct			s_texture
 {
 	struct s_texture	*next;
+	struct s_texture	*prev;
 	SDL_Surface			*surface;
 	char				*filepath;
 }						t_texture;
@@ -29,8 +30,12 @@ void					texture_convertformat(t_texture *tex);
 t_texture				*texture_search(t_texture *tex, const char *filepath);
 t_texture				*texture_create(t_texture **lst, char *filepath);
 void					textures_free(t_texture *t);
+void					textures_freetex(t_texture *t);
 t_texture				*texture_perlin(t_texture **lst, t_v2i size);
 t_list					*textures_used(t_obj *root);
 void					textures_used_display(t_obj *root);
+t_texture				*texture_last(t_texture *lst);
+void					textures_cleanup(t_obj *node, t_texture **lst);
+void					texture_remove(t_texture *tex);
 
 #endif

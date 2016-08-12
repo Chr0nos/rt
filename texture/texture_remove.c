@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_free.c                                    :+:      :+:    :+:   */
+/*   texture_remove.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/16 21:48:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 12:48:14 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/12 12:52:08 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/12 14:10:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture.h"
-#include "SDL2/SDL.h"
-#include <stdlib.h>
+#include "libft.h"
 
-void	textures_freetex(t_texture *t)
+void	texture_remove(t_texture *tex)
 {
-	if (!t)
+	if (!tex)
 		return ;
-	SDL_FreeSurface(t->surface);
-	free(t->filepath);
-	free(t);
-}
-
-void	textures_free(t_texture *t)
-{
-	if (!t)
-		return ;
-	if (t->next)
-		textures_free(t->next);
-	textures_freetex(t);
+	if (tex->prev)
+	{
+		tex->prev->next = tex->next;
+		tex->next->prev = tex->prev;
+	}
+	textures_freetex(tex);
 }
