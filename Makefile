@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/07 17:14:31 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/12 11:20:48 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o blend.o putbits.o parser/parser.o check_camera.o texture.o \
 	textures_free.o arguments.o rt_quit.o export.o arg_fs.o arg_geometry.o \
-	arg_norefresh.o signal.o texture_perlin.o texture_create.o
+	arg_norefresh.o signal.o texture_perlin.o texture_create.o textures_used.o
 
 RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
