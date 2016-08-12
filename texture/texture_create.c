@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 14:23:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 16:43:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static t_texture	*texture_create_set(t_texture *tex, char *filepath,
 	if (tex->next)
 		tex->next->prev = tex;
 	texture_convertformat(tex);
-	(void)texture_convertformat;
 	*lst = tex;
 	return (tex);
 }

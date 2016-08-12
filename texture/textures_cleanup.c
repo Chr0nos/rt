@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 12:38:56 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 16:17:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 16:25:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static int		textures_lstsearch(t_list *lst, const void *content)
 	return (0);
 }
 
+/*
+** this function just delete all unused textures
+** it's used to clean the extra textures not needed anymore by the menu
+*/
+
 void			textures_cleanup(t_obj *node, t_texture **lst)
 {
 	t_list		*used;
@@ -36,7 +41,12 @@ void			textures_cleanup(t_obj *node, t_texture **lst)
 	while (x)
 	{
 		if (!textures_lstsearch(used, x))
-			texture_remove(x);
-		x = x->next;
+		{
+			texture_remove(&x);
+			if (!x->prev)
+				*lst = x;
+		}
+		else
+			x = x->next;
 	}
 }
