@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/05 19:53:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/12 12:34:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ typedef struct			s_vertex
 
 typedef struct			s_triangle
 {
-	unsigned int			color;
-	t_vertex				v1;
-	t_vertex				v2;
-	t_vertex				v3;
-	t_texture				*texture;
-	t_texture				*normal;
+	unsigned int		color;
+	t_vertex			v1;
+	t_vertex			v2;
+	t_vertex			v3;
+	t_texture			*texture;
+	t_texture			*normal;
 }						t_triangle;
 
 #endif
