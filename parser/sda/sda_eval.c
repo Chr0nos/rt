@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/16 01:29:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 23:34:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				sda_eval(const char *line, t_sda *e, const int lvl)
 	if ((!ac) || (!av[0]) || (av[0][0] == '#') ||
 		(av[0][0] == '}') || (av[0][0] == '{'))
 		;
-	else if (sda_isobj(av[0]) > 0)
+	else if (sda_isobj(av[0]) != 0)
 		sda_mkobj(av[0], lvl + e->lvl_offset, e);
 	else if ((e->current_obj) && (sda_settings(e, ac, av) >= 0))
 		;
