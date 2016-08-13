@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:54:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/14 19:11:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 13:17:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int				menu_init(t_rt *rt, const char *path)
 	}
 	rt->rts_size = ft_lstsize(files);
 	ret = -1;
-	if ((rt->rts = malloc(
-		(sizeof(t_rt) * rt->rts_size) +
+	if ((rt->rts = malloc((sizeof(t_rt) * rt->rts_size) +
 		(sizeof(SDL_Rect) * rt->rts_size))) != NULL)
 	{
-		rt_create_window(rt);
+		if (rt_create_window(rt) != 0)
+			return (-1);
 		rt->rts_size = menu_configure_rts(rt, files);
 		ret = 0;
 		rt->keyboard |= MENU;
