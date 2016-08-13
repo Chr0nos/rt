@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 16:15:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 23:27:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 {
 	t_rt	*rt;
 
-	rt = userdata;
 	(void)mode;
+	rt = userdata;
 	if (obj->type == CAMERA)
 		sda_set_camera_default(obj);
 	else if (obj->type & LIGHTTYPE)
@@ -95,6 +95,8 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		sda_setup_sdisable_real(obj->shader->shader, (void*)&rt_light_pow);
 		sda_setup_sdisable_real(obj->shader->shader, (void*)&shader_shadow);
 		sda_setup_sdisable_real(obj->shader->shader, (void*)&rt_specular_pow);
+		shader_init(obj->shader, &shader_ambiant, rt->settings.ambiant_light,
+			&blend_sub);
 	}
 	return (OK);
 }

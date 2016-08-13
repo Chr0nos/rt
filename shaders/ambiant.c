@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 15:19:21 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/22 16:02:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 23:28:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void			shader_ambiant(t_shader *s, t_render *r, t_obj *light)
 {
 	(void)light;
 	s->color_render = blend_multiply(
-		((t_cube*)(r->obj_intersect->content))->color, 0xFFFFFF);
+		((t_cube*)(r->obj_intersect->content))->color, s->color_base);
 }

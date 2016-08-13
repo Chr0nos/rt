@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 15:36:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 23:22:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
 			0xFF000000);
+		//rt->settings.ambiant_light);
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
