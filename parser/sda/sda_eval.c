@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 23:34:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 23:40:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		sda_spliter(const char *line, char ***av, int *ac)
 	return ((*ac != 0));
 }
 
-static void		sda_mkobj(const char *s, int lvl, t_sda *e)
+static int		sda_mkobj(const char *s, int lvl, t_sda *e)
 {
 	const t_type	type = rt_gettype(s);
 	t_obj			*parent;
@@ -44,19 +44,21 @@ static void		sda_mkobj(const char *s, int lvl, t_sda *e)
 	if (type == INVALID)
 	{
 		ft_printf("warning: INVALID object type for %s : ignoring\n", s);
-		return ;
+		return (-1);
 	}
 	if ((e->last_lvl < lvl) || (e->current_obj->type == ROOT))
 		parent = e->current_obj;
 	else
 		parent = rt_obj_nparent(e->current_obj,
 			(unsigned int)(e->last_lvl - lvl + 1));
-	e->current_obj = rt_factory_alloc(type, parent);
+	if (!(e->current_obj = rt_factory_alloc(type, parent)))
+		return (-2);
 	rt_obj_set_reflect(e->current_obj, e->rt->settings.default_reflect);
 	if ((e->current_obj->type & SDA_COLOR) && (e->current_obj->type != SETTING))
 		((t_cube*)e->current_obj->content)->color =
 			e->rt->settings.default_color;
 	e->last_lvl = lvl;
+	return (0);
 }
 
 int				sda_eval(const char *line, t_sda *e, const int lvl)
@@ -69,11 +71,16 @@ int				sda_eval(const char *line, t_sda *e, const int lvl)
 	if (!sda_spliter(line, &av, &ac))
 		return (-1);
 	ret = 0;
-	if ((!ac) || (!av[0]) || (av[0][0] == '#') ||
-		(av[0][0] == '}') || (av[0][0] == '{'))
+	if ((!ac) || (!av[0]) || (av[0][0] == '#'))
 		;
 	else if (sda_isobj(av[0]) != 0)
-		sda_mkobj(av[0], lvl + e->lvl_offset, e);
+	{
+		if (sda_mkobj(av[0], lvl + e->lvl_offset, e) < 0)
+		{
+			ft_putstr_fd("error: failed to create object\n", 2);
+			ret = -2;
+		}
+	}
 	else if ((e->current_obj) && (sda_settings(e, ac, av) >= 0))
 		;
 	else
