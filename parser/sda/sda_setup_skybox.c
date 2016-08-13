@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 13:40:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 03:58:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 04:02:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ int					sda_setup_skybox(t_sda *e, t_obj *obj, char **av)
 	if ((tex = texture_search(*e->rt->textures, filepath)))
 		free(filepath);
 	else if (e->rt->settings.fake_texture_load)
-	{
 		tex = sda_setup_texture_fake(filepath, e->rt->textures);
-		((t_setting*)obj->content)->skybox = tex;
-		return (1);
-	}
 	else if ((tex = texture_create(e->rt->textures, filepath)))
 		;
 	else
