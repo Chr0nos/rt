@@ -1,7 +1,6 @@
 CAMERA
 	pos: 3.000000 3.318056 -3.866699
 	rot: 25 0 0
-	al: 25
 	POINTLIGHT
 		intensity: 150
 

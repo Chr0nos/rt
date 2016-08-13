@@ -6,12 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 15:15:21 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/14 21:43:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 15:54:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
+#include "shaders.h"
+#include "sda.h"
 
 static t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent,
 	t_m4 *mat)

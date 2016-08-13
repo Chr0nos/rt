@@ -2,7 +2,7 @@ CAMERA
 	pos: 5 3 -15.948437
 	rot: -5 0 0
 	fov: 75
-	al: 15
+	al: 0.15
 
 PLAN
 	pos: 0 -0.5 0

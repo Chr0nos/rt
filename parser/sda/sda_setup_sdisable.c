@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 15:17:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:14:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 15:39:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "shaders.h"
 #include "libft.h"
 
-static int	sda_setup_sdisable_real(t_shader *shader, void *target)
+int			sda_setup_sdisable_real(t_shader *shader, void *target)
 {
 	if (shader)
 	{

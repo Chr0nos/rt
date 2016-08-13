@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/07 17:14:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 15:40:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "objects.h"
 # include "rt.h"
 # include "forms.h"
+# include "shaders.h"
 
 enum					e_sda_cfgbit
 {
@@ -126,6 +127,7 @@ char					*sda_export_bitmap(SDL_Surface *surface,
 		unsigned int *size);
 int						sda_export_bitmap_file(const char *filepath,
 	SDL_Surface *surface);
+int						sda_setup_sdisable_real(t_shader *shader, void *target);
 
 /*
 ** exporter

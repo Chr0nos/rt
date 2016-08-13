@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/12 16:15:52 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/13 15:59:40 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ EVENT=mouse.o keyboard.o keybit.o events.o resize.o
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o \
 		obj_copy.o obj_byname.o obj_set_reflect.o obj_texture.o obj_lvl.o \
-		obj_get_root.o obj_normal.o
+		obj_get_root.o obj_normal.o obj_count.o
 
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \

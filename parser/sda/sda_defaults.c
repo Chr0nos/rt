@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/06 17:40:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 16:15:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,17 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		((t_cube*)obj->content)->size = 1.0;
 	if ((obj->type & SDA_TEXTURE) && (!(obj->cfgbits & SDB_TEXTURE)))
 		rt_obj_set_texture(obj, NULL);
+	if ((!rt->tree.lnum) && (obj->shader))
+	{
+		sda_setup_sdisable_real(obj->shader->shader, (void*)&rt_light_pow);
+		sda_setup_sdisable_real(obj->shader->shader, (void*)&shader_shadow);
+		sda_setup_sdisable_real(obj->shader->shader, (void*)&rt_specular_pow);
+	}
 	return (OK);
 }
 
 void		sda_set_defaults(t_obj *root, t_rt *rt)
 {
+	rt->tree.lnum = rt_obj_count(root, LIGHTTYPE);
 	rt_node_foreach(root, PREFIX, &sda_set_obj_defaults, rt);
 }
