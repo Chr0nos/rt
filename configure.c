@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 17:46:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 13:59:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			rt_configure(t_rt *rt)
 	rt->rts = NULL;
 	rt->mouse = 0;
 	rt->keyboard = FORCE_DISPLAY;
-	rt->settings = (t_rtcfg){0, 0.0, RTMODE, 8, COLOR_BLACK, COLOR_BLACK,
+	rt->settings = (t_rtcfg){0, 0xFF2E2E2E, RTMODE, 8, COLOR_BLACK, COLOR_BLACK,
 		0x00, 1.0f, 0, NULL};
 	rt->textures = malloc(8);
 	*rt->textures = NULL;

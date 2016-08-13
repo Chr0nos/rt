@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/12 17:45:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/13 13:21:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct	s_menu
 typedef struct	s_rtcfg
 {
 	unsigned int	cfgbits;
-	double			ambiant_light;
+	unsigned int	ambiant_light;
 	t_rendflag		mode;
 	char			max_reflects;
 	unsigned int	bgcolor;
