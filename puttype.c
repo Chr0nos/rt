@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/01 22:57:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/14 18:25:20 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ t_type			rt_gettype(const char *str)
 		{CYL, "CYL"},
 		{SUNLIGHT, "SUNLIGHT"},
 		{SETTING, "SETTING"},
-		{TRIANGLE, "TRIANGLE"}
+		{TRIANGLE, "TRIANGLE"},
+		{MESH, "MESH"}
 	};
 	int				p;
 
-	p = 15;
+	p = 16;
 	while ((p--) && (ft_strcmp(types[p].str, str)))
 		;
 	return ((p < 0) ? INVALID : types[p].type);
@@ -60,10 +61,11 @@ void			rt_puttype(int type, const int fd)
 		{SUNLIGHT, "SUNLIGHT"},
 		{SETTING, "SETTING"},
 		{TRIANGLE, "TRIANGLE"},
+		{MESH, "MESH"}
 	};
 	int				p;
 
-	p = 16;
+	p = 17;
 	while ((p--) && (types[p].type != type))
 		;
 	ft_putstr_fd((p < 0) ? "UNKNOW" : types[p].str, fd);

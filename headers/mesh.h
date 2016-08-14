@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/12 12:34:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/14 19:50:57 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,19 @@ typedef struct			s_triangle
 	t_texture			*normal;
 }						t_triangle;
 
+typedef struct			s_vertex_list
+{
+	t_vertex					vertex;
+	struct s_vertex_list		*next;
+}						t_vertex_list;
+
+typedef struct			s_mesh
+{
+	t_triangle			*triangle;
+	t_v4d				normal;
+	struct s_mesh		*next;
+}						t_mesh;
+
+int						obj_file_to_mesh(t_mesh *mesh, const char *filepath);
+t_vertex				*select_vertex_from_list(t_vertex_list *base, int id);
 #endif
