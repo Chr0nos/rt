@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/14 20:02:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/15 14:16:41 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int				rt_mesh_inter(t_obj *obj, t_ray *r, t_v4d *i)
 		}
 		m = m->next;
 	}
+	r->lenght = dist;
 	*i = to_keep;
 	return (touched);
 }
@@ -51,14 +52,14 @@ t_v4d			rt_mesh_normale(t_obj *obj, t_v4d *v)
 
 t_vertex		*select_vertex_from_list(t_vertex_list *base, int id)
 {
-	while(id-- && base)
+	while(--id && base)
 		base = base->next;
 	if (id)
 		return (0);
 	return (&base->vertex);
 }
 
-int				obj_file_to_mesh(t_mesh *mesh, const char *filepath)
+int				obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath)
 {
 	int				fd;
 	char			*line;
@@ -79,22 +80,25 @@ int				obj_file_to_mesh(t_mesh *mesh, const char *filepath)
 			select = &base;
 		if (line[0] == 'v')
 		{
-			printf("Vertex\n");
 			select->vertex.pos = (t_v4d){ft_atod(arg[1]),
 										ft_atod(arg[2]),
 										ft_atod(arg[3]), 0.0};
+			select->vertex.uv = (t_v2f){0.0, 0.0};
 			select->next = (t_vertex_list*)malloc(sizeof(t_vertex_list));
 			select = select->next;
 		}
 		if (line[0] == 'f')
 		{
-			printf("Face\n");
 			mesh->triangle->v1 = *select_vertex_from_list(&base, ft_atoi(arg[1]));
 			mesh->triangle->v2 = *select_vertex_from_list(&base, ft_atoi(arg[2]));
 			mesh->triangle->v3 = *select_vertex_from_list(&base, ft_atoi(arg[3]));
+			mesh->triangle->v1.pos = geo_addv4(pos, mesh->triangle->v1.pos);
+			mesh->triangle->v2.pos = geo_addv4(pos, mesh->triangle->v2.pos);
+			mesh->triangle->v3.pos = geo_addv4(pos, mesh->triangle->v3.pos);
 			mesh->next = (t_mesh*)malloc(sizeof(t_mesh));
 			mesh = mesh->next;
 			mesh->triangle = (t_triangle*)malloc(sizeof(t_triangle));
+			mesh->next = NULL;
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/14 19:50:57 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/15 14:16:49 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef struct			s_mesh
 	struct s_mesh		*next;
 }						t_mesh;
 
-int						obj_file_to_mesh(t_mesh *mesh, const char *filepath);
+int						obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath);
 t_vertex				*select_vertex_from_list(t_vertex_list *base, int id);
 #endif

@@ -1,0 +1,18 @@
+CAMERA
+
+SETTING
+	background: #FFFFFF
+
+
+POINTLIGHT
+	pos: 5 5 0
+
+SPHERE
+	pos: 0 -0.5 8
+	color: #FF77C7
+	normal: mineral_normal.jpg
+
+PLAN
+	pos: 0 -1 0
+	color: #FFFFFF
+	reflect: 200
