@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/15 19:52:34 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/15 21:35:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ int				obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath)
 			mesh->triangle->v1.pos = geo_addv4(pos, mesh->triangle->v1.pos);
 			mesh->triangle->v2.pos = geo_addv4(pos, mesh->triangle->v2.pos);
 			mesh->triangle->v3.pos = geo_addv4(pos, mesh->triangle->v3.pos);
+			mesh->triangle->color = 0x00000000;
+			mesh->triangle->texture = NULL;
+			mesh->triangle->normal = NULL;
 			mesh->next = (t_mesh*)malloc(sizeof(t_mesh));
 			mesh = mesh->next;
 			mesh->triangle = NULL;
