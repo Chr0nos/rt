@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/15 11:21:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/15 16:07:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
 			(light->type == SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
-		color = blend_multiply(color, r->rt->settings.ambiant_light);
+		color = blend_lighten(color, r->rt->settings.ambiant_light);
 	}
 	else
 		color = r->rt->settings.ambiant_light;
