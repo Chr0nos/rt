@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/16 16:16:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/16 00:24:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "mesh.h"
 
 static int		check(float *box, float start, float dir, double *tb)
 {
@@ -67,6 +68,31 @@ int				raybox_check(t_ray *r, t_box *box)
 	return (1);
 }
 
+static void		rt_box_update_triangle(t_obj *obj)
+{
+	const t_triangle	*tri = obj->content;
+	const t_vertex		*v[3] = {&tri->v3, &tri->v2, &tri->v1};
+	int					p;
+
+	p = 3;
+	while (p--)
+	{
+		if ((float)v[p]->pos.x < obj->hitbox.xmin)
+			obj->hitbox.xmin = (float)v[p]->pos.x;
+		if ((float)v[p]->pos.y < obj->hitbox.ymin)
+			obj->hitbox.ymin = (float)v[p]->pos.y;
+		if ((float)v[p]->pos.z < obj->hitbox.zmin)
+			obj->hitbox.zmin = (float)v[p]->pos.z;
+
+		if ((float)v[p]->pos.x > obj->hitbox.xmax)
+			obj->hitbox.xmax = (float)v[p]->pos.x;
+		if ((float)v[p]->pos.y > obj->hitbox.ymax)
+			obj->hitbox.ymax = (float)v[p]->pos.y;
+		if ((float)v[p]->pos.z > obj->hitbox.zmax)
+			obj->hitbox.zmax = (float)v[p]->pos.z;
+	}
+}
+
 void			rt_box_update(t_obj *obj)
 {
 	const t_v4f		p = draw_convert_v4d_to_v4f(obj->trans.w);
@@ -91,6 +117,8 @@ void			rt_box_update(t_obj *obj)
 		obj->hitbox = (t_box){p.x - r.x * r.y, p.x + r.x * r.y, p.y - r.y,
 			p.y, p.z - r.x * r.y, p.z + r.x * r.y};
 	}
+	else if (obj->type == TRIANGLE)
+		rt_box_update_triangle(obj);
 	else
 		obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 }
