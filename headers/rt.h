@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/13 13:21:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/15 17:46:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,6 @@ void			rt_signal(int num);
 void			rt_signal_singletone(t_v2i *geometry, t_v2i *px,
 	char delete);
 void 			display_help_arg(void);
+int				main(int ac, char **av);
 
 #endif
