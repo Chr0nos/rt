@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/14 16:48:19 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 00:28:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef enum			e_type
 	MESH = 1 << 30,
 	RADIUS = SPHERE | CUBE | CYL | CONE | TORE | CONE_INF,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE | CONE_INF |
-		TRIANGLE | MESH,
-	NOCHECKBOX = PLAN | CYL | CONE_INF | TRIANGLE | MESH,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF,
+		TRIANGLE,
+	NOCHECKBOX = PLAN | CYL | CONE_INF | MESH,
+	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF | TRIANGLE,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 }						t_type;
 
