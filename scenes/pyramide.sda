@@ -1,5 +1,5 @@
-SETTING
-	skybox: textures/skybox.jpg
+#SETTING
+#	skybox: textures/skybox.jpg
 
 CAMERA
 	pos: -3.75375 1 -2.358667

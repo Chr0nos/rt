@@ -1,5 +1,6 @@
 SETTING
-	skybox: textures/skybox.jpg
+	skybox: textures/skybox_space.jpg
+#	skybox: textures/skybox.jpg
 CAMERA
 	pos: 9.778539 1.877445 9.550097
 	rot: 11.459154 223.453538 0
@@ -11,13 +12,15 @@ EMPTY
 	include: scenes/pyramide.sda
 
 PLAN
+	name: mer
 	reflect: 120
-	pos: 0 0 0
 	color: #CCffffff
 	normal: textures/water_normal.png
 	sdisable: shadow
-	refract: 1.333
-	reflect: 100
+	refract: 1.03
+	PLAN
+		name: fond
+		pos: 0 -100 0
 
 CUBE
 	pos: 0 -4.98 0
