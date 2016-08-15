@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/15 14:16:41 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/15 19:52:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int				rt_mesh_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	to_keep = *i;
 	dist = (double)INFINITY;
 	m = obj->content;
+	objtri.trans = obj->trans;
 	while(m)
 	{
 		objtri.content = m->triangle;
@@ -72,7 +73,8 @@ int				obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath)
 	if ((fd = open(filepath, O_RDONLY)) < 0)
 		return (1);
 	select = &base;
-	mesh->triangle = (t_triangle*)malloc(sizeof(t_triangle));
+	mesh->triangle = NULL;
+	mesh->next = NULL;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		arg = ft_strsplit(line, ' ');
@@ -89,6 +91,8 @@ int				obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath)
 		}
 		if (line[0] == 'f')
 		{
+			if (!mesh->triangle)
+				mesh->triangle = (t_triangle*)malloc(sizeof(t_triangle));
 			mesh->triangle->v1 = *select_vertex_from_list(&base, ft_atoi(arg[1]));
 			mesh->triangle->v2 = *select_vertex_from_list(&base, ft_atoi(arg[2]));
 			mesh->triangle->v3 = *select_vertex_from_list(&base, ft_atoi(arg[3]));
@@ -97,7 +101,7 @@ int				obj_file_to_mesh(t_v4d pos, t_mesh *mesh, const char *filepath)
 			mesh->triangle->v3.pos = geo_addv4(pos, mesh->triangle->v3.pos);
 			mesh->next = (t_mesh*)malloc(sizeof(t_mesh));
 			mesh = mesh->next;
-			mesh->triangle = (t_triangle*)malloc(sizeof(t_triangle));
+			mesh->triangle = NULL;
 			mesh->next = NULL;
 		}
 	}
