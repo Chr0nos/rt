@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 16:54:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/08 00:17:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 17:21:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
 		str[5] = NULL;
 	}
 	else
-		str[4] = NULL;
+		str[3] = NULL;
 }
 
 char	*sda_export_vertex0(t_obj *obj, t_sda_export *e)

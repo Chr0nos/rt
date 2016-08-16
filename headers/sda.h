@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 12:40:01 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 17:19:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ enum					e_sda_cfgbit
 	SDB_VERTEX0_UV = 1 << 23,
 	SDB_VERTEX1_UV = 1 << 24,
 	SDB_VERTEX2_UV = 1 << 25,
-	SDB_OBJ = 1 << 26
+	SDB_OBJ = 1 << 26,
+	SDB_NOEXPORT = 1 << 27
 };
 
 enum					e_sda_setting

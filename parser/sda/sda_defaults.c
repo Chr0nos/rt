@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/15 11:28:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 17:31:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,15 @@ static void sda_set_triangle_default(t_obj *obj)
 		tri->v3.pos = (t_v4d){0.0, 0.0, 0.0, 0.0};
 }
 
+static void	sda_et_setting_defaults(t_obj *obj)
+{
+	t_setting	*set;
+
+	set = obj->content;
+	if (!(obj->cfgbits & SDB_COLOR))
+		set->color = 0x00000000;
+}
+
 static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 {
 	t_rt	*rt;
@@ -90,6 +99,8 @@ static int	sda_set_obj_defaults(t_obj *obj, int mode, void *userdata)
 		((t_cube*)obj->content)->size = 1.0;
 	if ((obj->type & SDA_TEXTURE) && (!(obj->cfgbits & SDB_TEXTURE)))
 		rt_obj_set_texture(obj, NULL);
+	if (obj->type == SETTING)
+		sda_et_setting_defaults(obj);
 	if ((!rt->tree.lnum) && (obj->shader))
 	{
 		sda_setup_sdisable_real(obj->shader->shader, (void*)&rt_light_pow);
