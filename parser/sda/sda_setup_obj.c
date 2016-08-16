@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 18:37:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/15 12:57:03 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 12:38:34 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 int			sda_setup_obj(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
-	obj_file_to_mesh(obj->trans.w, obj->content, av[0]);
+	add_mesh_from_obj(obj, av[0]);
 	return (1);
 }

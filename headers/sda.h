@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/14 18:52:40 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 12:40:01 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ enum					e_sda_setting
 	SDA_HEIGHTMAP = PLAN,
 	SDA_TEX_PERLIN = SDA_TEXTURE,
 	SDA_VERTEX = TRIANGLE,
-	SDA_OBJ = MESH
+	SDA_OBJ = EMPTY
 };
 
 typedef struct			s_sda_eval

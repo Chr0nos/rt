@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   factory.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 00:08:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/14 19:08:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 12:42:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ unsigned int		rt_sizeobj(t_type type)
 		(t_typesize){CYL, sizeof(struct s_cyl)},
 		(t_typesize){LIGHTTYPE, sizeof(struct s_plight)},
 		(t_typesize){SETTING, sizeof(struct s_setting)},
-		(t_typesize){TRIANGLE, sizeof(struct s_triangle)},
-		(t_typesize){MESH, sizeof(struct s_mesh)}
+		(t_typesize){TRIANGLE, sizeof(struct s_triangle)}
 	};
 
-	p = 11;
+	p = 10;
 	while (p--)
 		if (type & sizes[p].type)
 			return (sizeof(t_obj) + (unsigned int)sizes[p].size);
@@ -68,10 +67,5 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 		((t_cube*)obj->content)->color = COLOR_BLACK;
 	if (obj->type == PLAN)
 		((t_plan*)obj->content)->heightmap = NULL;
-	if (obj->type == MESH)
-	{
-		((t_mesh*)obj->content)->triangle = NULL;
-		((t_mesh*)obj->content)->next = NULL;
-	}
 	return (rt_obj_addchild(parent, obj));
 }

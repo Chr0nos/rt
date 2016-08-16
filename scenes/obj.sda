@@ -5,5 +5,5 @@ CAMERA
 	pos: 0 0 -10
 	POINTLIGHT
 
-MESH
+EMPTY
 	obj: scenes/cube.obj
