@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/14 18:41:30 by alhote           ###   ########.fr        #
+#    Updated: 2016/08/16 15:07:40 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,14 @@ ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
 	SDLHERE=$(shell test -f $(SDLLIB))
 	ifeq ("$(wildcard $(SDLHERE))", "")
-		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
+		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 		INC+=-I ~/.brew/include
 	else
-		SDLLINK=-framework sdl2 -framework SDL2_image
+		SDLLINK=-framework sdl2 -framework SDL2_image -framework SDL2_ttf
 	endif
 	INC+=-I ./headers/mac
 else
-	SDLLINK=-lSDL2 -lSDL2_image
+	SDLLINK=-lSDL2 -lSDL2_image -lSDL2_ttf
 	ifeq ($(HOSTNAME),stark)
 		INC+=-I./headers/mac
 	else
@@ -102,9 +102,12 @@ SHADER_DIR=shaders
 SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o \
 	reflection.o shader_texture.o shader_normalmap.o
 
-ARG_DIR=arg
+ARG_DIR=arguments
 ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 		arg_help.o
+
+INTER_DIR=interface
+INTER= interface.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
@@ -117,7 +120,8 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(RENDER:%.o=$(OBJBUILDDIR)/$(RENDER_DIR)/%.o) \
 	$(SHADER:%.o=$(OBJBUILDDIR)/$(SHADER_DIR)/%.o) \
 	$(TEXTURE:%.o=$(OBJBUILDDIR)/$(TEXTURE_DIR)/%.o) \
-	$(ARG:%.o=$(OBJBUILDDIR)/$(ARG_DIR)/%.o)
+	$(ARG:%.o=$(OBJBUILDDIR)/$(ARG_DIR)/%.o) \
+	$(INTER:%.o=$(OBJBUILDDIR)/$(INTER_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -130,7 +134,8 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(RENDER:%.o=$(RENDER_DIR)/%.c) \
 	$(SHADER:%.o=$(SHADER_DIR)/%.c) \
 	$(TEXTURE:%.o=$(TEXTURE_DIR)/%.c) \
-	$(ARG:%.o=$(ARG_DIR)/%.c)
+	$(ARG:%.o=$(ARG_DIR)/%.c) \
+	$(INTER:%.o=$(INTER_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -143,7 +148,8 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(RENDER_DIR) \
 		$(OBJBUILDDIR)/$(SHADER_DIR) \
 		$(OBJBUILDDIR)/$(TEXTURE_DIR) \
-		$(OBJBUILDDIR)/$(ARG_DIR)
+		$(OBJBUILDDIR)/$(ARG_DIR) \
+		$(OBJBUILDDIR)/$(INTER_DIR)
 
 all: $(NAME)
 

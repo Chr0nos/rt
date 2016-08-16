@@ -18,6 +18,7 @@
 #include "menu.h"
 #include "sda.h"
 #include "arguments.h"
+#include "interface.h"
 #include <signal.h>
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
@@ -90,6 +91,7 @@ int				main(int ac, char **av)
 {
 	t_rt	rt;
 
+	//init_ttf(); //tmp en travaux sur branche interface by diana
 	rt_configure(&rt);
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)
