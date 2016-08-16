@@ -30,5 +30,6 @@ int					arg_parse(t_rt *rt, int ac, char **av);
 int					arg_geometry(t_rt *rt, int ac, char **av);
 int					arg_fs(t_rt *rt, int ac, char **av);
 int					arg_norefresh(t_rt *rt, int ac, char **av);
+int					arg_display_help(t_rt *rt, int ac, char **av);
 
 #endif

@@ -94,6 +94,6 @@ int				main(int ac, char **av)
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
-	display_help_arg();
+	ft_putstr("try -h to display help");
 	return (rt_quit(&rt, rt_normal(&rt, ac - 1, av + 1)));
 }

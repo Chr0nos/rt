@@ -70,8 +70,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o blend.o putbits.o parser/parser.o check_camera.o \
-	arguments.o rt_quit.o export.o arg_fs.o arg_geometry.o \
-	arg_norefresh.o signal.o
+	rt_quit.o export.o signal.o
 
 TEXTURE_DIR=texture
 TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
@@ -103,6 +102,10 @@ SHADER_DIR=shaders
 SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o \
 	reflection.o shader_texture.o shader_normalmap.o
 
+ARG_DIR=arg
+ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
+		arg_help.o
+
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
 	$(SDA:%.o=$(OBJBUILDDIR)/$(SDA_DIR)/%.o) \
@@ -113,7 +116,8 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(FILTER:%.o=$(OBJBUILDDIR)/$(FILTER_DIR)/%.o) \
 	$(RENDER:%.o=$(OBJBUILDDIR)/$(RENDER_DIR)/%.o) \
 	$(SHADER:%.o=$(OBJBUILDDIR)/$(SHADER_DIR)/%.o) \
-	$(TEXTURE:%.o=$(OBJBUILDDIR)/$(TEXTURE_DIR)/%.o)
+	$(TEXTURE:%.o=$(OBJBUILDDIR)/$(TEXTURE_DIR)/%.o) \
+	$(ARG:%.o=$(OBJBUILDDIR)/$(ARG_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -125,7 +129,8 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(FILTER:%.o=$(FILTER_DIR)/%.c) \
 	$(RENDER:%.o=$(RENDER_DIR)/%.c) \
 	$(SHADER:%.o=$(SHADER_DIR)/%.c) \
-	$(TEXTURE:%.o=$(TEXTURE_DIR)/%.c)
+	$(TEXTURE:%.o=$(TEXTURE_DIR)/%.c) \
+	$(ARG:%.o=$(ARG_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -137,7 +142,8 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(FILTER_DIR) \
 		$(OBJBUILDDIR)/$(RENDER_DIR) \
 		$(OBJBUILDDIR)/$(SHADER_DIR) \
-		$(OBJBUILDDIR)/$(TEXTURE_DIR)
+		$(OBJBUILDDIR)/$(TEXTURE_DIR) \
+		$(OBJBUILDDIR)/$(ARG_DIR)
 
 all: $(NAME)
 

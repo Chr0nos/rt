@@ -171,7 +171,6 @@ char			rt_rays_pc(const t_v2i *geometry,
 void			rt_signal(int num);
 void			rt_signal_singletone(t_v2i *geometry, t_v2i *px,
 	char delete);
-void 			display_help_arg(void);
 int				main(int ac, char **av);
 
 #endif
