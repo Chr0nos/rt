@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:01:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/20 12:37:27 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/16 11:53:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,
 		geo_dtov4d(0.01)));
 	nray.dir = rt_ray_refract(r, ray);
-	return (draw_color_lerp(ray->color, rt->rayfunc(rt, &nray),
-		(float)alpha / 255.0f));
+	nray.count--;
+	return ((!nray.count ? ray->color : draw_color_lerp(ray->color, rt->rayfunc(rt, &nray),
+		(float)alpha / 255.0f)));
 }

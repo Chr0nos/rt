@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/16 11:40:13 by dboudy           ###   ########.fr        #
+#    Updated: 2016/08/16 15:07:40 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 	sda_export_skybox.o sda_export_file.o sda_setup_sdisable.o \
 	sda_export_sdisable.o sda_export_al.o sda_export_bitmap.o \
 	sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
-	sda_export_vertex.o
+	sda_export_vertex.o sda_setup_obj.o sda_export_obj.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
@@ -80,7 +80,7 @@ RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o triangle.o
+TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o mesh.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o

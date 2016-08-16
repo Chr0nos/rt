@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/15 11:36:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 00:26:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,29 @@
 
 static t_v2f		get_uv_triangle(t_obj *obj, t_v4d i)
 {
-	t_vertex	va;
-	t_vertex	vb;
-	t_vertex	vc;
+	t_v4d	v0;
+	t_v4d	v1;
+	t_v4d	v2;
 	t_v4d	bary;
+	double	invdenom;
 
-	va = ((t_triangle*)(obj->content))->v1;
-	vb = ((t_triangle*)(obj->content))->v2;
-	vc = ((t_triangle*)(obj->content))->v1;
+	v0 = geo_subv4(((t_triangle*)(obj->content))->v2.pos, ((t_triangle*)(obj->content))->v1.pos);
+	v1 = geo_subv4(((t_triangle*)(obj->content))->v3.pos, ((t_triangle*)(obj->content))->v1.pos);
+	v2 = geo_subv4(i, ((t_triangle*)(obj->content))->v1.pos);
 
+	invdenom = 1.0 / (geo_dotv4(v0, v0) * geo_dotv4(v1, v1) - geo_dotv4(v0, v1) * geo_dotv4(v0, v1));
 	bary = (t_v4d){
-	((vb.pos.y - vc.pos.y)*(i.x - vc.pos.x) + (vc.pos.x - vb.pos.x)*(i.y - vc.pos.y)) /
-	((vb.pos.y - vc.pos.y)*(va.pos.x - vc.pos.x) + (vc.pos.x - vb.pos.x)*(va.pos.y - vc.pos.y)),
-	((vc.pos.y - va.pos.y)*(i.x - vc.pos.x) + (va.pos.x - vc.pos.x)*(i.y - vc.pos.y)) /
-	((vb.pos.y - vc.pos.y)*(va.pos.x - vc.pos.x) + (vc.pos.x - vb.pos.x)*(va.pos.y - vc.pos.y)),
-	1 - bary.x - bary.y,
+	(geo_dotv4(v1, v1) * geo_dotv4(v0, v2) - geo_dotv4(v0, v1) * geo_dotv4(v1, v2)) * invdenom,
+	(geo_dotv4(v0, v0) * geo_dotv4(v1, v2) - geo_dotv4(v0, v1) * geo_dotv4(v0, v2)) * invdenom,
+	0.0,
 	0.0
 	};
+	bary.z = 1.0 - bary.x - bary.y;
 	return ((t_v2f){
-		(float)(bary.x * (double)va.uv.x + bary.y * (double)vb.uv.x + bary.z * (double)vc.uv.x),
-		(float)(bary.x * (double)va.uv.y + bary.y * (double)vb.uv.y + bary.z * (double)vc.uv.y)
+		(float)(bary.x * (double)((t_triangle*)(obj->content))->v1.uv.x + bary.y *
+		(double)((t_triangle*)(obj->content))->v2.uv.x + bary.z * (double)((t_triangle*)(obj->content))->v3.uv.x),
+		(float)(bary.x * (double)((t_triangle*)(obj->content))->v1.uv.y + bary.y *
+		(double)((t_triangle*)(obj->content))->v2.uv.y + bary.z * (double)((t_triangle*)(obj->content))->v3.uv.y)
 	});
 }
 
@@ -48,6 +51,7 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 	const t_texture		*tex = rt_obj_get_texture(r->obj_intersect);
 	const unsigned int	*pixels_texture = (tex) ? tex->surface->pixels : NULL;
 	t_v2f				uv;
+	static int			t = 0;
 
 	if (!pixels_texture)
 		return (0);
@@ -61,6 +65,11 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 	else if (r->obj_intersect->type & TRIANGLE)
 	{
 		uv = get_uv_triangle(r->obj_intersect, r->intersection);
+		if (!t)
+		{
+			printf("%f %f\n", (double)uv.x, (double)uv.y);
+			t++;
+		}
 	}
 	else
 	{
