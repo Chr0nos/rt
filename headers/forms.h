@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 17:43:30 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 20:58:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef enum			e_type
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE | CONE_INF |
 		TRIANGLE,
 	NOCHECKBOX = PLAN | CYL | CONE_INF,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF | TRIANGLE,
+	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF | TRIANGLE |
+		EMPTY,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 }						t_type;
 
