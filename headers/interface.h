@@ -12,9 +12,12 @@
 
 #ifndef INTERFACE_H
 # define INTERFACE_H
+
+# include "rt.h"
 # include <SDL2/SDL_ttf.h>
 # include <SDL2/SDL.h>
 
-int   test_font(void);
+void  init_ttf(void);
+int   test_font(t_rt *rt);
 
 #endif
