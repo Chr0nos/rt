@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 17:51:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 18:19:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	size_v = 0;
 	v = NULL;
 	if (!obj)
-		return (1);
+		return (-1);
 	if ((fd = open(filepath, O_RDONLY)) < 0)
-		return (1);
+		return (-2);
 	obj = rt_factory_alloc(EMPTY, obj);
 	obj->cfgbits |= SDB_NOEXPORT;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
@@ -44,7 +44,9 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 			if (select_v >= size_v || !v)
 			{
 				size_v += 3;
-				v = (t_vertex*)realloc(v, sizeof(t_vertex) * size_v);
+				v = (t_vertex*)ft_realloc(v,
+					(unsigned int)(sizeof(t_vertex) * (size_v - 3)),
+					(unsigned int)(sizeof(t_vertex) * size_v));
 			}
 			v[select_v].pos = (t_v4d){ft_atod(arg[1]),
 										ft_atod(arg[2]),
@@ -54,10 +56,13 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 		}
 		if (line[0] == 'f')
 		{
-			t = rt_factory_alloc(TRIANGLE, obj);
+			IFRET__(!(t = rt_factory_alloc(TRIANGLE, obj)), -3);
 			((t_triangle*)(t->content))->v1 = v[ft_atoi(arg[1])];
 			((t_triangle*)(t->content))->v2 = v[ft_atoi(arg[2])];
 			((t_triangle*)(t->content))->v3 = v[ft_atoi(arg[3])];
+			t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
+			((t_triangle*)t->content)->color = 0xff0000;
+			rt_box_update(t);
 		}
 	}
 	return (0);

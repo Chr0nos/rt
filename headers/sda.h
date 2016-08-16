@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:19:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 17:53:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ enum					e_sda_setting
 	SDA_HEIGHTMAP = PLAN,
 	SDA_TEX_PERLIN = SDA_TEXTURE,
 	SDA_VERTEX = TRIANGLE,
-	SDA_OBJ = EMPTY
+	SDA_OBJ = MESH
 };
 
 typedef struct			s_sda_eval

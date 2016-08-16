@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 11:28:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 18:01:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int				keydown(int keycode, t_rt *rt)
 		sda_export_bitmap_file("save.bmp", rt->sys.screen);
 	else if (keycode == SDLK_t)
 		textures_used_display(rt->root);
+	else if (keycode == SDLK_l)
+		rt_debug(rt->root, 0);
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
