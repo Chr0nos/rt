@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 13:52:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 17:44:36 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "sda.h"
-
-t_vertex		*select_vertex_from_list(t_vertex_list *base, int id)
-{
-	while (--id && base)
-		base = base->next;
-	if (id)
-		return (0);
-	return (&base->vertex);
-}
 
 int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 {

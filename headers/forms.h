@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 12:41:44 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 17:43:30 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum			e_type
 	CONE_INF = 1 << 15,
 	NOSHADER = 1 << 28,
 	TRIANGLE = 1 << 29,
+	MESH = 1 << 30,
 	RADIUS = SPHERE | CUBE | CYL | CONE | TORE | CONE_INF,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE | CONE_INF |
 		TRIANGLE,
