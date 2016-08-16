@@ -6,4 +6,5 @@ CAMERA
 	POINTLIGHT
 
 MESH
-	obj: scenes/cube.obj
+	#obj: scenes/cube.obj
+	obj: scenes/pelican.obj

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 23:40:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 20:34:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		sda_isobj(const char *line)
 	return (1);
 }
 
-static int		sda_spliter(const char *line, char ***av, int *ac)
+int				sda_spliter(const char *line, char ***av, int *ac)
 {
 	*av = ft_strsplitstr(line, " \t");
 	*ac = (int)ft_tabcount((void **)*av);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:53:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 20:34:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char					*sda_export_bitmap(SDL_Surface *surface,
 int						sda_export_bitmap_file(const char *filepath,
 	SDL_Surface *surface);
 int						sda_setup_sdisable_real(t_shader *shader, void *target);
+int						sda_spliter(const char *line, char ***av, int *ac);
 
 /*
 ** exporter

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 18:44:39 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 20:45:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	t_vertex		*v;
 	unsigned long	select_v;
 	unsigned long	size_v;
+	int 			ac;
 
 	select_v = 0;
 	size_v = 0;
 	v = NULL;
-	if (!obj)
-		return (-1);
-	if ((fd = open(filepath, O_RDONLY)) < 0)
-		return (-2);
-	obj = rt_factory_alloc(EMPTY, obj);
+	IFRET__(!obj, -1);
+	IFRET__((fd = open(filepath, O_RDONLY)) < 0, -2);
+	IFRET__(!(obj = rt_factory_alloc(EMPTY, obj)), -4);
 	obj->cfgbits |= SDB_NOEXPORT;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
-		arg = ft_strsplit(line, ' ');
+		sda_spliter(line, &arg, &ac);
 		if (line[0] == 'o')
 			select_v = 0;
 		if (line[0] == 'v')
@@ -64,6 +63,9 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 			((t_triangle*)t->content)->color = 0xff0000;
 			rt_box_update(t);
 		}
+		ft_free_tab(arg, (size_t)ac);
+		ft_mfree(2, arg, line);
 	}
+	close(fd);
 	return (0);
 }
