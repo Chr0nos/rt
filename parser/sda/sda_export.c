@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:15:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 17:30:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	t_sda_export		*export;
 
 	(void)mode;
+	if (obj->cfgbits & SDB_NOEXPORT)
+		return (STOP_NODE);
 	export = userdata;
 	if (obj->type == SETTING)
 		sda_settings_stack(export->setting_obj, obj);

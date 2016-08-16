@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 13:52:55 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/16 17:19:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 		if (line[0] == 'f')
 		{
 			t = rt_factory_alloc(TRIANGLE, obj);
+			t->cfgbits |= SDB_NOEXPORT;
 			((t_triangle*)(t->content))->v1 = v[ft_atoi(arg[1])];
 			((t_triangle*)(t->content))->v2 = v[ft_atoi(arg[2])];
 			((t_triangle*)(t->content))->v3 = v[ft_atoi(arg[3])];
