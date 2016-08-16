@@ -1,0 +1,9 @@
+SETTING
+	skybox: textures/skybox.jpg
+
+CAMERA
+	pos: 0 0 -10
+	POINTLIGHT
+
+EMPTY
+	obj: scenes/cube.obj
