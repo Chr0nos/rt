@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 18:19:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/16 18:44:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 		if (line[0] == 'f')
 		{
 			IFRET__(!(t = rt_factory_alloc(TRIANGLE, obj)), -3);
-			((t_triangle*)(t->content))->v1 = v[ft_atoi(arg[1])];
-			((t_triangle*)(t->content))->v2 = v[ft_atoi(arg[2])];
-			((t_triangle*)(t->content))->v3 = v[ft_atoi(arg[3])];
+			((t_triangle*)(t->content))->v1 = v[ft_atoi(arg[1]) - 1];
+			((t_triangle*)(t->content))->v2 = v[ft_atoi(arg[2]) - 1];
+			((t_triangle*)(t->content))->v3 = v[ft_atoi(arg[3]) - 1];
 			t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
 			((t_triangle*)t->content)->color = 0xff0000;
 			rt_box_update(t);
