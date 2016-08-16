@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/13 15:59:40 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/16 11:40:13 by dboudy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,14 @@ ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
 	SDLHERE=$(shell test -f $(SDLLIB))
 	ifeq ("$(wildcard $(SDLHERE))", "")
-		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image
+		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 		INC+=-I ~/.brew/include
 	else
-		SDLLINK=-framework sdl2 -framework SDL2_image
+		SDLLINK=-framework sdl2 -framework SDL2_image -framework SDL2_ttf
 	endif
 	INC+=-I ./headers/mac
 else
-	SDLLINK=-lSDL2 -lSDL2_image
+	SDLLINK=-lSDL2 -lSDL2_image -lSDL2_ttf
 	ifeq ($(HOSTNAME),stark)
 		INC+=-I./headers/mac
 	else
@@ -70,7 +70,7 @@ SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o blend.o putbits.o parser/parser.o check_camera.o \
-	rt_quit.o export.o signal.o
+	rt_quit.o export.o signal.o interface.o
 
 TEXTURE_DIR=texture
 TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \

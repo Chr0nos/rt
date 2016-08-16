@@ -14,7 +14,7 @@
 # define TEXTURE_H
 # include "draw.h"
 # include "libft.h"
-# include <SDL2/SDL.h>
+# include <SDL2/SDL_ttf.h>
 
 typedef struct s_obj	t_obj;
 typedef struct			s_texture
