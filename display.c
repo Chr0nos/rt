@@ -19,7 +19,7 @@ int				sdl_flush(t_rt *rt)
 {
 	//draw_blitsurface_dbg_alpha(rt->sys.screen, rt->textures->surface, (t_point){0,0});
 	//draw_perlin_aa(rt->sys.screen);
-	//test_font(rt);
+	test_font(rt);
 	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);
 	SDL_UnlockSurface(rt->sys.screen);
