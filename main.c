@@ -91,7 +91,7 @@ int				main(int ac, char **av)
 {
 	t_rt	rt;
 
-	//init_ttf(); //tmp en travaux sur branche interface by diana
+//	init_ttf(); tmp branche interface
 	rt_configure(&rt);
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)

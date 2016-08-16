@@ -49,8 +49,7 @@ YOLODIR=parser/yolo
 YOLO=yolo_parse.o yolo_setup_type.o yolo_setup_cube.o yolo_setup_camera.o \
 	yolo_setup_plan.o yolo_setup.o yolo_setup_color.o yolo_setup_cone.o \
 	yolo_setup_cyl.o yolo_setup_plight.o yolo_parse_settings.o \
-	yolo_setting_ambiant.o yolo_setup_tore.o \
-	yolo_setup_cone_inf.o
+	yolo_setting_ambiant.o yolo_setup_cone_inf.o
 
 SDA_DIR=parser/sda
 SDA=sda_parse.o sda_eval.o sda_lvl.o sda_settings.o sda_setup_pos.o \
@@ -81,7 +80,7 @@ RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o triangle.o mesh.o
+TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o mesh.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o

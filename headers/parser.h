@@ -29,9 +29,6 @@
 # define CYL_OR_Y 6
 # define CYL_OR_Z 7
 # define CYL_TEXTURE 8
-# define TORE_COLOR 3
-# define TORE_R1 0
-# define TORE_R2 4
 # define PLIGHT_POWER 3
 # define PLIGHT_RADIUS 4
 # define PLIGHT_COLOR 5
@@ -67,7 +64,6 @@ int					yolo_setup_plan(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cone(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cone_inf(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_cyl(t_obj *obj, size_t ac, char **av);
-int					yolo_setup_tore(t_obj *obj, size_t ac, char **av);
 int					yolo_setup_camera(t_obj *obj, size_t ac, char **av);
 unsigned int		yolo_setup_color(const char *strcolor);
 int					yolo_setup_plight(t_obj *obj, size_t ac, char **av);
