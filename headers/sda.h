@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 20:34:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 19:01:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "rt.h"
 # include "forms.h"
 # include "shaders.h"
+# include "mesh.h"
 
 enum					e_sda_cfgbit
 {
@@ -111,6 +112,16 @@ typedef struct			s_sda_cfg
 	int					argc;
 	int					bit;
 }						t_sda_cfg;
+
+typedef struct			s_sda_obj
+{
+	int 				ac;
+	char				**av;
+	t_vertex			*v;
+	size_t				size_v;
+	size_t				select_v;
+	t_obj				*parent;
+}						t_sda_obj;
 
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
