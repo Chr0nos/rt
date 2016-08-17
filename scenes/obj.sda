@@ -5,7 +5,7 @@ CAMERA
 	pos: 8.739153 1 -2.694681
 	rot: 0 -68.754935 0
 	POINTLIGHT
+		pos: 5 0 0
 
 MESH
-	#obj: scenes/cube.obj
-	obj: scenes/pelican.obj
+	obj: scenes/cube.obj

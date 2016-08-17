@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 03:51:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 16:28:57 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	IFRET__((fd = open(filepath, O_RDONLY)) < 0, -2);
 	IFRET__(!(obj = rt_factory_alloc(EMPTY, obj)), -4);
 	obj->cfgbits |= SDB_NOEXPORT;
+	ft_printf("Loading %s..\n", filepath);
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		sda_spliter(line, &arg, &ac);
 		if (line[0] == '#')
 			;
 		else if (!ft_strcmp(arg[0], "o"))
-			select_v = 0;
+			ft_printf("\t-Loading %s object..\n", arg[1]);
 		else if (ac < 4)
 			;
 		else if (!ft_strcmp(arg[0], "v"))
