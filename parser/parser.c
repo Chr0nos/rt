@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 22:43:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 23:02:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	IFRET__(!(mesh = rt_factory_alloc(MESH, root)), NULL);
 	mesh->cfgbits |= SDB_OBJ;
 	((t_mesh*)mesh->content)->filepath = ft_strdup(filepath);
-	add_mesh_from_obj(mesh, filepath);
+	if (add_mesh_from_obj(mesh, filepath) < 0)
+	{
+		rt_node_free(root);
+		return (NULL);
+	}
 	sda_set_defaults(root, rt);
 	yolo_parse_finalize(root);
 	camera_save(rt);
