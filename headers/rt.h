@@ -15,6 +15,7 @@
 # include "draw.h"
 # include "objects.h"
 # include "texture.h"
+# include "interface.h"
 # include "tree.h"
 # include <pthread.h>
 
@@ -72,20 +73,24 @@ typedef struct	s_rtcfg
 	t_texture		*skybox;
 }				t_rtcfg;
 
+
+typedef struct s_interface t_interf;
+
 typedef struct	s_rt
 {
-	t_draw		sys;
-	t_obj		*root;
-	t_rtree		tree;
-	int			keyboard;
-	int			mouse;
-	t_rtcfg		settings;
+	t_draw			sys;
+	t_obj				*root;
+	t_rtree			tree;
+	int					keyboard;
+	int					mouse;
+	t_rtcfg			settings;
 	struct s_rt	*rts;
-	size_t		rts_size;
-	t_menu		menu;
-	t_texture	**textures;
-	t_uint		(*rayfunc)(struct s_rt *rt, t_ray *ray);
-}				t_rt;
+	size_t			rts_size;
+	t_menu			menu;
+	t_texture		**textures;
+	t_interf	*interf;
+	t_uint			(*rayfunc)(struct s_rt *rt, t_ray *ray);
+}							t_rt;
 
 void			rt_putbits(unsigned int bits);
 void			rt_configure(t_rt *rt);

@@ -80,7 +80,7 @@ RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o cyl.o tore.o cone_inf.o triangle.o
+TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o
@@ -106,7 +106,7 @@ ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface
-INTER= interface.o
+INTER= interf_init.o interf_display.o interf_define.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
