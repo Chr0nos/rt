@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 19:01:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 22:31:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static int		parse_obj_f(t_sda_obj *s)
 	((t_triangle*)(t->content))->v3 = s->v[clamp(x[2], (uint)s->size_v) - 1];
 	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
 	((t_triangle*)t->content)->color = 0xff0000;
+	//((t_triangle*)t->content)->reflect = 0xb0;
+	//t->cfgbits |= SDB_REFLECT;
 	rt_box_update(t);
 	return (1);
 }
-
 
 static int		parse_obj_v(t_sda_obj *s)
 {
@@ -92,8 +93,9 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 		else if (ret != 0)
 		{
 			ft_free_tab(s.av, (size_t)s.ac);
-			ft_mfree(2, s.av, line);
+			free(s.av);
 		}
+		free(line);
 	}
 	close(fd);
 	return (ret);

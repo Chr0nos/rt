@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:06:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 19:16:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 21:54:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
+#include "mesh.h"
 
 int		rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
 {
@@ -30,6 +31,8 @@ int		rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
 		((t_tore*)obj->content)->reflect = reflect;
 	else if (obj->type == SETTING)
 		((t_setting*)obj->content)->reflect = reflect;
+	else if (obj->type == TRIANGLE)
+		((t_triangle*)obj->content)->reflect = reflect;
 	else
 		return (0);
 	return (1);
@@ -37,21 +40,14 @@ int		rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
 
 unsigned char	rt_obj_get_reflect(const t_obj *obj)
 {
-	if (obj->type == CUBE)
-		return (((t_cube*)obj->content)->reflect);
-	else if (obj->type == SPHERE)
-		return (((t_sphere*)obj->content)->reflect);
-	else if (obj->type == CONE)
-		return (((t_cone*)obj->content)->reflect);
-	else if (obj->type == CONE_INF)
-		return (((t_cone_inf*)obj->content)->reflect);
-	else if (obj->type == PLAN)
-		return (((t_plan*)obj->content)->reflect);
-	else if (obj->type == CYL)
-		return (((t_cyl*)obj->content)->reflect);
-	else if (obj->type == TORE)
-		return (((t_tore*)obj->content)->reflect);
-	else if (obj->type == SETTING)
-		return (((t_setting*)obj->content)->reflect);
+	IFRET__(obj->type == CUBE, ((t_cube*)obj->content)->reflect);
+	IFRET__(obj->type == SPHERE, ((t_sphere*)obj->content)->reflect);
+	IFRET__(obj->type == CONE, ((t_cone*)obj->content)->reflect);
+	IFRET__(obj->type == CONE_INF, ((t_cone_inf*)obj->content)->reflect);
+	IFRET__(obj->type == PLAN, ((t_plan*)obj->content)->reflect);
+	IFRET__(obj->type == CYL, ((t_cyl*)obj->content)->reflect);
+	IFRET__(obj->type == TORE, ((t_tore*)obj->content)->reflect);
+	IFRET__(obj->type == SETTING, ((t_setting*)obj->content)->reflect);
+	IFRET__(obj->type == TRIANGLE, ((t_triangle*)obj->content)->reflect);
 	return (0);
 }

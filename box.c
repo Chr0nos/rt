@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 19:59:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 21:21:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ static void		rt_box_update_triangle(t_obj *obj)
 	v[0] = geo_addv4(tri->v3.pos, obj->trans.w);
 	v[1] = geo_addv4(tri->v2.pos, obj->trans.w);
 	v[2] = geo_addv4(tri->v1.pos, obj->trans.w);
-	obj->hitbox = (t_box){INFINITY, -INFINITY, INFINITY, -INFINITY, INFINITY,
-		-INFINITY};
-	p = 3;
+	obj->hitbox = (t_box){(float)v[2].x, (float)v[2].x,
+		(float)v[2].y, (float)v[2].y, (float)v[2].z, (float)v[2].z};
+	p = 2;
 	while (p--)
 	{
 		if ((float)v[p].x < obj->hitbox.xmin)
@@ -88,7 +88,6 @@ static void		rt_box_update_triangle(t_obj *obj)
 			obj->hitbox.ymin = (float)v[p].y;
 		if ((float)v[p].z < obj->hitbox.zmin)
 			obj->hitbox.zmin = (float)v[p].z;
-
 		if ((float)v[p].x > obj->hitbox.xmax)
 			obj->hitbox.xmax = (float)v[p].x;
 		if ((float)v[p].y > obj->hitbox.ymax)

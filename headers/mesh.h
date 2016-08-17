@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 17:35:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/17 21:51:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_triangle
 	t_texture			*texture;
 	t_texture			*normal;
 	int					normal_fix;
+	unsigned char		reflect;
 }						t_triangle;
 
 typedef struct			s_mesh
@@ -38,4 +39,5 @@ typedef struct			s_mesh
 }						t_mesh;
 
 int						add_mesh_from_obj(t_obj *obj, const char *filepath);
+
 #endif

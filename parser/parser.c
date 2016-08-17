@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 19:35:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 22:43:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@
 static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 {
 	t_obj	*root;
+	t_obj	*mesh;
 
 	IFRET__(!(root = rt_factory_alloc(ROOT, NULL)), NULL);
-	root->content = rt_factory_alloc(CAMERA, root);
+	IFRET__(!(root->content = rt_factory_alloc(CAMERA, root)), NULL);
 	((t_obj*)root->content)->trans.w = (t_v4d){0.0, 0.0, -10.0, 1.0};
 	((t_obj*)root->content)->cfgbits |= SDB_POS;
 	rt->settings.bgcolor = 0x505050;
 	rt->settings.ambiant_light = 0x101010;
-	rt_factory_alloc(POINTLIGHT, root->content);
-	add_mesh_from_obj(root, filepath);
+	IFRET__(!(rt_factory_alloc(POINTLIGHT, root->content)), NULL);
+	IFRET__(!(mesh = rt_factory_alloc(MESH, root)), NULL);
+	mesh->cfgbits |= SDB_OBJ;
+	((t_mesh*)mesh->content)->filepath = ft_strdup(filepath);
+	add_mesh_from_obj(mesh, filepath);
 	sda_set_defaults(root, rt);
 	yolo_parse_finalize(root);
 	camera_save(rt);
