@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 22:55:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 23:11:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 		}
 		free(line);
 	}
+	if (s.v)
+		free(s.v);
 	close(fd);
 	return (ret);
 }
