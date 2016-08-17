@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/15 16:04:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 19:22:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		return (STOP_NODE);
 	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
 	{
+		IFRET__(!(obj->type & VISIBLE), OK);
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
