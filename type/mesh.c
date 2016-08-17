@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 20:45:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 03:51:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		sda_spliter(line, &arg, &ac);
-		if (line[0] == 'o')
+		if (line[0] == '#')
+			;
+		else if (!ft_strcmp(arg[0], "o"))
 			select_v = 0;
-		if (line[0] == 'v')
+		else if (ac < 4)
+			;
+		else if (!ft_strcmp(arg[0], "v"))
 		{
 			if (select_v >= size_v || !v)
 			{
@@ -53,7 +57,7 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 			v[select_v].uv = (t_v2f){0.0, 0.0};
 			select_v++;
 		}
-		if (line[0] == 'f')
+		else if (!ft_strcmp(arg[0], "f"))
 		{
 			IFRET__(!(t = rt_factory_alloc(TRIANGLE, obj)), -3);
 			((t_triangle*)(t->content))->v1 = v[ft_atoi(arg[1]) - 1];
