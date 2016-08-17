@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 19:20:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 19:32:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 
 	IFRET__(!(root = rt_factory_alloc(ROOT, NULL)), NULL);
 	root->content = rt_factory_alloc(CAMERA, root);
+	((t_obj*)root->content)->trans.w = (t_v4d){0.0, 0.0, -10.0, 1.0};
+	((t_obj*)root->content)->cfgbits |= SDB_POS;
 	rt_factory_alloc(POINTLIGHT, root->content);
 	add_mesh_from_obj(root, filepath);
 	sda_set_defaults(root, rt);
