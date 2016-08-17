@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/15 14:16:33 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/17 17:52:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	t_triangle	*triangle;
 
 	triangle = obj->content;
+	triangle->normal_fix = 0;
 	e1 = geo_subv4(triangle->v2.pos, triangle->v1.pos);
 	e2 = geo_subv4(triangle->v3.pos, triangle->v1.pos);
 	P = geo_crossv4(r->dir, e2);
@@ -47,6 +48,8 @@ int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i)
 	t = geo_dotv4(e2, Q) * inv_det;
 	if (t < EPSILON)
 		return (0);
+	if (geo_dotv4(r->dir, rt_triangle_normale(obj, i)) > 0.0)
+		triangle->normal_fix = 1;
 	*i = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
 	r->start.z + r->dir.z * t, 0.0};
 	r->lenght = t;
@@ -63,5 +66,6 @@ t_v4d			rt_triangle_normale(t_obj *obj, t_v4d *v)
 	triangle = obj->content;
 	e1 = geo_subv4(triangle->v2.pos, triangle->v1.pos);
 	e2 = geo_subv4(triangle->v3.pos, triangle->v1.pos);
-	return (geo_normv4(geo_multv4(e1, e2)));
+	return ((triangle->normal_fix ? geo_invv4(geo_normv4(geo_crossv4(e1, e2)))
+	: geo_normv4(geo_crossv4(e1, e2))));
 }

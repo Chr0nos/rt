@@ -2,10 +2,10 @@ SETTING
 	skybox: textures/skybox.jpg
 
 CAMERA
-	pos: 8.739153 1 -2.694681
-	rot: 0 -68.754935 0
+	pos: 8.859556 1 7.073508
+	rot: 0 -126.050714 0
 	POINTLIGHT
 		pos: 5 0 0
 
 MESH
-	obj: scenes/cube.obj
+	obj: scenes/test_group.obj

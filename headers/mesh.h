@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 17:31:34 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/17 17:35:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct			s_triangle
 	t_vertex			v3;
 	t_texture			*texture;
 	t_texture			*normal;
+	int					normal_fix;
 }						t_triangle;
 
 typedef struct			s_mesh
