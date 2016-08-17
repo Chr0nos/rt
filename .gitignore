@@ -2,3 +2,7 @@
 *.swp
 rtv1
 build
+rt
+*.bmp
+.*.jpg
+.*.png
