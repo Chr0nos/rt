@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 00:34:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/17 19:59:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,30 @@ int				raybox_check(t_ray *r, t_box *box)
 static void		rt_box_update_triangle(t_obj *obj)
 {
 	const t_triangle	*tri = obj->content;
-	const t_vertex		*v[3] = {&tri->v3, &tri->v2, &tri->v1};
+	t_v4d				v[3];
 	int					p;
 
+	v[0] = geo_addv4(tri->v3.pos, obj->trans.w);
+	v[1] = geo_addv4(tri->v2.pos, obj->trans.w);
+	v[2] = geo_addv4(tri->v1.pos, obj->trans.w);
+	obj->hitbox = (t_box){INFINITY, -INFINITY, INFINITY, -INFINITY, INFINITY,
+		-INFINITY};
 	p = 3;
 	while (p--)
 	{
-		if ((float)v[p]->pos.x < obj->hitbox.xmin)
-			obj->hitbox.xmin = (float)v[p]->pos.x;
-		if ((float)v[p]->pos.y < obj->hitbox.ymin)
-			obj->hitbox.ymin = (float)v[p]->pos.y;
-		if ((float)v[p]->pos.z < obj->hitbox.zmin)
-			obj->hitbox.zmin = (float)v[p]->pos.z;
+		if ((float)v[p].x < obj->hitbox.xmin)
+			obj->hitbox.xmin = (float)v[p].x;
+		if ((float)v[p].y < obj->hitbox.ymin)
+			obj->hitbox.ymin = (float)v[p].y;
+		if ((float)v[p].z < obj->hitbox.zmin)
+			obj->hitbox.zmin = (float)v[p].z;
 
-		if ((float)v[p]->pos.x > obj->hitbox.xmax)
-			obj->hitbox.xmax = (float)v[p]->pos.x;
-		if ((float)v[p]->pos.y > obj->hitbox.ymax)
-			obj->hitbox.ymax = (float)v[p]->pos.y;
-		if ((float)v[p]->pos.z > obj->hitbox.zmax)
-			obj->hitbox.zmax = (float)v[p]->pos.z;
+		if ((float)v[p].x > obj->hitbox.xmax)
+			obj->hitbox.xmax = (float)v[p].x;
+		if ((float)v[p].y > obj->hitbox.ymax)
+			obj->hitbox.ymax = (float)v[p].y;
+		if ((float)v[p].z > obj->hitbox.zmax)
+			obj->hitbox.zmax = (float)v[p].z;
 	}
 }
 
