@@ -96,6 +96,7 @@ void			rt_putbits(unsigned int bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);
+char			*search_str_type(int type);
 void			rt_puttype(int type, const int fd);
 t_type			rt_gettype(const char *str);
 

@@ -60,11 +60,14 @@ void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	*champs_obj[0] = ft_itoa((int)obj->id);
 	ft_putstr("plop2\n");
 	if (obj->name)
-		*champs_obj[1] = ft_strdup(obj->name); //tmp
+		*champs_obj[1] = ft_strdup(obj->name);
 	else
-		*champs_obj[1] = ft_strdup("no data"); //tmp
+		*champs_obj[1] = ft_strdup("no data");
 	ft_putstr("plop3\n");
-	*champs_obj[2] = ft_strdup("obj->type"); //tmp
+	if (obj->type)
+		*champs_obj[2] = ft_strdup(search_str_type(obj->type)); //tmp
+	else
+		*champs_obj[2] = ft_strdup("no data"); //tmp
 	ft_putstr("plop4\n");
 	*champs_obj[3] = ft_dtoa(obj->trans.w.x, 2);
 	ft_putstr("plop5\n");

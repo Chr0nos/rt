@@ -45,7 +45,7 @@ void draw_interface(t_rt *rt)
 	//print_debug_champs(rt->interf->champs_txt); //tmp debug
 	ft_putstr("coucou1\n");
 	rt->interf->pos.x = 10;
-	rt->interf->pos.y = 0;
+	rt->interf->pos.y = 10;
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
 	ft_putstr("coucou2\n");
@@ -55,8 +55,8 @@ void draw_interface(t_rt *rt)
 	init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,
 		rt->interf->police_selected, &rt->interf->color_selected);
 	ft_putstr("coucou4\n");
-	rt->interf->pos.x = 150;
-	rt->interf->pos.y = 0;
+	rt->interf->pos.x = 130;
+	rt->interf->pos.y = 10;
 	ft_putstr("coucou5\n");
 	print_surface(rt->interf->surface_obj, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
