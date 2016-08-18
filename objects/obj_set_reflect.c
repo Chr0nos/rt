@@ -6,14 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 17:06:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 21:54:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 15:49:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "mesh.h"
 
-int		rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
+int				rt_obj_set_reflect(t_obj *obj, unsigned char reflect)
 {
 	if (obj->type == CUBE)
 		((t_cube*)obj->content)->reflect = reflect;

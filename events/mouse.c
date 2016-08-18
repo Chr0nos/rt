@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 18:20:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 15:50:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "keyboard.h"
 #include "menu.h"
 #include "libft.h"
+#include "objects.h"
 
 static void		menu_update_params(t_rt *rt)
 {
@@ -53,12 +54,20 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 
 int				mouseclick(SDL_Event *event, t_rt *rt)
 {
+	t_v2i	pos;
+
+	SDL_GetMouseState(&pos.x, &pos.y);
 	if (rt->keyboard & MENU)
 		return (menu_click(event, rt));
 	if (event->motion.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
-			rt->keyboard |= ZOOMIN;
+		{
+			ft_printf("click at: x: %d y: %d\n", pos.x, pos.y);
+			rt_debug(rt_obj_atpx(rt, pos), 0);
+			ft_putchar('\n');
+			//	rt->keyboard |= ZOOMIN;
+		}
 		else if (event->button.button == SDL_BUTTON_RIGHT)
 			rt->keyboard |= ZOOMOUT;
 	}

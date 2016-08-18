@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/16 15:07:40 by alhote           ###   ########.fr        #
+#    Updated: 2016/08/18 14:17:34 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ EVENT=mouse.o keyboard.o keybit.o events.o resize.o
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o \
 		obj_copy.o obj_byname.o obj_set_reflect.o obj_texture.o obj_lvl.o \
-		obj_get_root.o obj_normal.o obj_count.o
+		obj_get_root.o obj_normal.o obj_count.o obj_atpx.o
 
 MENU_DIR=menu
 MENU=ls_dir.o init.o menu_display.o menu_move.o ls_isdir.o menu_positions.o \

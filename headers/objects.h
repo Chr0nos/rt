@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 16:00:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 15:37:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define OBJECTS_H
 # include "draw.h"
 # include "forms.h"
+# include "rt.h"
 
 struct s_shaders;
+struct s_rt;
 
 typedef struct			s_obj
 {
@@ -62,5 +64,6 @@ int						rt_obj_set_normal(t_obj *obj, t_texture *tex);
 unsigned int			rt_obj_get_lvl(t_obj *obj);
 t_obj					*rt_obj_get_root(t_obj *obj);
 unsigned int			rt_obj_count(t_obj *obj, unsigned int type_mask);
+t_obj					*rt_obj_atpx(struct s_rt *rt, t_v2i px);
 
 #endif
