@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/18 18:32:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/18 20:52:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ typedef enum			e_type
 	CONE = 1 << 10,
 	CYL = 1 << 11,
 	SUNLIGHT = 1 << 12,
-	TORE = 1 << 13,
-	SETTING = 1 << 14,
-	CONE_INF = 1 << 15,
+	SETTING = 1 << 13,
+	CONE_INF = 1 << 14,
 	NOSHADER = 1 << 28,
 	TRIANGLE = 1 << 29,
 	MESH = 1 << 30,
-	RADIUS = SPHERE | CUBE | CYL | CONE | TORE | CONE_INF,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | TORE | CONE_INF |
+	RADIUS = SPHERE | CUBE | CYL | CONE | CONE_INF,
+	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | CONE_INF |
 		TRIANGLE,
 	NOCHECKBOX = PLAN | CYL | CONE_INF,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | TORE | CONE_INF | TRIANGLE |
+	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | CONE_INF | TRIANGLE |
 		EMPTY,
 	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
 }						t_type;

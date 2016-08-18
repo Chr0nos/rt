@@ -94,5 +94,6 @@ int			arg_parse(t_rt *rt, int ac, char **av)
 		if (ret & (PARSE_ARG_ERROR | PARSE_ARG_STOPALL))
 			return ((ret & PARSE_ARG_STOPALL) ? 0 : 1);
 	}
+	init_interface(rt);
 	return (rt_normal(rt, ac, av));
 }

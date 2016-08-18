@@ -36,7 +36,7 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 
 int				rt_create_window(t_rt *rt)
 {
-	if (draw_init(&rt->sys, rt->sys.geometry, "Rt") < 0)
+	if (draw_init(&rt->sys, rt->sys.geometry, "RAYTRACER - 42") < 0)
 		return (1);
 	if (draw_init_openglcontext(&rt->sys))
 		return (1);
@@ -91,8 +91,8 @@ int				main(int ac, char **av)
 {
 	t_rt	rt;
 
-//	init_ttf(); tmp branche interface
 	rt_configure(&rt);
+	init_interface(&rt);
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
