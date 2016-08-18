@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 18:10:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 20:08:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ static t_texture		*texture_create_file(t_texture **lst, char *filepath)
 		return (NULL);
 	}
 	draw_pixelsconvert(std_surface->pixels, surface->pixels,
-		surface->format->BytesPerPixel,
-		(size_t)(surface->pitch * surface->h) / surface->format->BytesPerPixel);
+		surface->format->BytesPerPixel, (size_t)(surface->w * surface->h));
 	SDL_FreeSurface(surface);
 	if (!(tex = malloc(sizeof(t_texture))))
 	{

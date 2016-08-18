@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/18 15:50:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 20:20:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "menu.h"
 #include "libft.h"
 #include "objects.h"
+#include "sda.h"
 
 static void		menu_update_params(t_rt *rt)
 {
@@ -52,6 +53,22 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
+static void		mouseclick_obj(t_obj *obj, t_rt *rt)
+{
+	if (!obj)
+		return ;
+	if (obj->cfgbits & SDB_TEXTURE)
+	{
+		draw_perlin_alpha(rt_obj_get_texture(obj)->surface,
+			(t_v2f){0.1f, 0.1f});
+	}
+	else if (((t_cube*)obj->content)->color == 0xff0000)
+		((t_cube*)obj->content)->color = 0xff;
+	else
+		((t_cube*)obj->content)->color = 0xff0000;
+	rt->keyboard |= FORCE_DISPLAY;
+}
+
 int				mouseclick(SDL_Event *event, t_rt *rt)
 {
 	t_v2i	pos;
@@ -62,12 +79,7 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 	if (event->motion.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
-		{
-			ft_printf("click at: x: %d y: %d\n", pos.x, pos.y);
-			rt_debug(rt_obj_atpx(rt, pos), 0);
-			ft_putchar('\n');
-			//	rt->keyboard |= ZOOMIN;
-		}
+			mouseclick_obj(rt_obj_atpx(rt, pos), rt);
 		else if (event->button.button == SDL_BUTTON_RIGHT)
 			rt->keyboard |= ZOOMOUT;
 	}
