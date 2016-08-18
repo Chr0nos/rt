@@ -67,12 +67,16 @@ char			*search_str_type(int type)
 	while ((p--) && (types[p].type != type))
 		;
 	if (p < 0)
-		return ("UNKNOW");
+		return (ft_strdup("UNKNOW"));
 	else
 		return (ft_strdup(types[p].str));
 }
 
 void			rt_puttype(int type, const int fd)
 {
-	ft_putstr_fd(search_str_type(type), fd);
+	char *str;
+
+	str = search_str_type(type);
+	ft_putstr_fd(str, fd);
+	free(str);
 }
