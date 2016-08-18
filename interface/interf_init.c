@@ -40,7 +40,7 @@ static void init_str_data(char *interface[NB_CHAMPS][LARGER_SIZE])
 	*interface[12] = ft_strdup("transparence :");
 	*interface[13] = ft_strdup("reflection (%) :");
 	*interface[14] = ft_strdup("refraction (%) :");
-	*interface[15] = ft_strdup("texture :");
+	*interface[15] = ft_strdup("size :");
 }
 
 static void init_font(t_interf *interf)
@@ -49,30 +49,32 @@ static void init_font(t_interf *interf)
 	define_color(&interf->color_selected, 210, 255, 50);
 	interf->font_size = 26;
 	interf->police_classic = define_police(interf->police_classic,
-		"interface/font/angelina.ttf", interf->font_size);
+		"interface/font/angelina.ttf", interf->font_size, 0);
 	interf->police_selected = define_police(interf->police_selected,
-		"interface/font/another.ttf", (int)((interf->font_size) * 2));
+		"interface/font/angelina.ttf", (int)((interf->font_size) * 2), 1);
 	interf->pos.x = 10;
 	interf->pos.y = 10;
+	interf->id_selected = 3; //tmp
 }
 
-static void init_surface_txt_data(char *str[NB_CHAMPS][LARGER_SIZE],
-	SDL_Surface *txt[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
+void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
+	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
 {
 	int	i;
 
 	i = -1;
 	while (++i < NB_CHAMPS)
 	{
-		txt[i] = define_texte(police, *str[i], color);
+		surface[i] = define_texte(police, *champs[i], color);
 	}
 }
 
 void init_interface(t_rt *rt)
 {
 	init_ttf();
-	init_str_data(rt->interf->champs_str);
+	init_str_data(rt->interf->champs_txt);
 	init_font(rt->interf);
-	init_surface_txt_data(rt->interf->champs_str, rt->interf->champs_txt,
+	init_surface_data(rt->interf->champs_txt, rt->interf->surface_txt,
 		rt->interf->police_classic, &rt->interf->color_classic);
+	//free_champs(rt->interf->champs_str);
 }

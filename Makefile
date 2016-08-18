@@ -106,7 +106,7 @@ ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface
-INTER= interf_init.o interf_display.o interf_define.o
+INTER= interf_init.o interf_display.o interf_define.o interf_clean.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "interface.h"
-#include "libft.h"
 
 
 /*
@@ -19,3 +18,21 @@
  ** add TTF_CLoseFont(police);
  ** add TTF_Quit;
 */
+
+void free_champs(char *champs[NB_CHAMPS][LARGER_SIZE])
+{
+	int		i;
+
+	i = -1;
+	while (++i < NB_CHAMPS)
+		free (*(champs[i]));
+}
+
+void free_surfaces(SDL_Surface *surface[NB_CHAMPS])
+{
+	int		i;
+
+	i = -1;
+	while (++i < NB_CHAMPS)
+		free (surface[i]);
+}
