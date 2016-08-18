@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 19:49:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/18 18:32:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,20 @@ typedef struct			s_setting
 	unsigned char		reflect;
 	double				al;
 }						t_setting;
+
+typedef enum			e_limit_type
+{
+	LIM_X = 1,
+	LIM_Y = 1 << 1,
+	LIM_Z = 1 << 2,
+	NEGATE = 1 << 3
+}						t_limtyp;
+
+typedef struct			s_limiter
+{
+	int					axe;
+	t_v3d				limit;
+	struct s_limiter	*next;
+}						t_limit;
 
 #endif
