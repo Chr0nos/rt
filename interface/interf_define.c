@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interf_define.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:39:45 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/17 10:40:09 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/19 01:41:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 {
 	SDL_Surface	*texte;
 
+	if (!txt)
+		return (NULL);
 	if ((texte = TTF_RenderText_Blended(police, txt, *color)) != NULL)
 		return (texte);
 	else
@@ -50,9 +52,11 @@ void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
 	char	*tmp_color;
 
+	if ((!obj) || (!obj->content))
+		return ;
 	tmp_color = sda_export_color(obj, NULL);
 	*champs_obj[0] = ft_itoa((int)obj->id);
-	if (obj->name)
+	if (obj->cfgbits & SDB_NAME)
 		*champs_obj[1] = ft_strdup(obj->name);
 	else
 		*champs_obj[1] = ft_strdup("no data");
@@ -66,9 +70,18 @@ void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	*champs_obj[6] = ft_dtoa(obj->rotation.x, 2);
 	*champs_obj[7] = ft_dtoa(obj->rotation.y, 2);
 	*champs_obj[8] = ft_dtoa(obj->rotation.z, 2);
-	*champs_obj[9] = ft_strndup(tmp_color + 1, 2);
-	*champs_obj[10] = ft_strndup(tmp_color + 3, 2);
-	*champs_obj[11] = ft_strndup(tmp_color + 5, 2);
+	if (obj->cfgbits & SDB_COLOR)
+	{
+		*champs_obj[9] = ft_strndup(tmp_color + 1, 2);
+		*champs_obj[10] = ft_strndup(tmp_color + 3, 2);
+		*champs_obj[11] = ft_strndup(tmp_color + 5, 2);
+	}
+	else
+	{
+		*champs_obj[9] = NULL;
+		*champs_obj[10] = NULL;
+		*champs_obj[11] = NULL;
+	}
 	*champs_obj[12] = ft_strdup("?????"); //tmp
 	if (obj->cfgbits & SDB_TEXTURE)
 		*champs_obj[13] = sda_export_texture(obj, NULL);

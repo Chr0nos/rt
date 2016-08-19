@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interf_clean.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:42:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/17 10:42:27 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/19 01:45:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
  ** add TTF_CLoseFont(police);
  ** add TTF_Quit;
 */
+
+//ft_free_tab((void**)(unsigned long)champs)
+//penser a metre un NULL a la fin de champs
 
 void free_champs(char *champs[NB_CHAMPS][LARGER_SIZE])
 {

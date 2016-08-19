@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   interf_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/17 10:41:19 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/19 02:26:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
+#include "shaders.h"
 
 static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp debug
 {
@@ -19,10 +20,23 @@ static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp de
 	i = -1;
 	while (++i < NB_CHAMPS)
 	{
-		ft_putstr(*interface[i]);
-		ft_putstr("\n");
+		if (*interface[i])
+		{
+			ft_putstr(*interface[i]);
+			ft_putchar('\n');
+		}
+		else
+			ft_putstr("warning: null intem in champs\n");
 	}
 	ft_putstr("\n");
+}
+
+
+static unsigned int	blend_menu(unsigned int a, unsigned b)
+{
+	if ((b & 0xff000000) == 0)
+		return (a);
+	return (b & 0xffffff);
 }
 
 static void print_surface(SDL_Surface *interface[NB_CHAMPS],
@@ -36,7 +50,10 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 		if (!(i % 3))
 			pos->y += font_size + 3;
 		pos->y += font_size + 3;
+		//fonction interdite :)
 		SDL_BlitSurface(interface[i], NULL, screen, pos);
+		(void)blend_menu;
+		//draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
 	}
 }
 
