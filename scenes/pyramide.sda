@@ -2,8 +2,8 @@
 #	skybox: textures/skybox.jpg
 
 CAMERA
-	pos: -3.75375 1 -2.358667
-	rot: 0 68.754935 0
+	pos: -1.356488 1 3.45723
+	rot: 0 143.239448 0
 	POINTLIGHT
 		color: #FFFFFF
 		intensity: 80
@@ -11,10 +11,13 @@ CAMERA
 EMPTY
 	name: pyramide
 	TRIANGLE
+		texture: textures/herbe.jpg
 		vertex1: 1 2 0.5
 		vertex2: 2 0 0
 		color: #FF0000
 	TRIANGLE
+		texture: textures/herbe.jpg
+		vertex0: 0 0 0
 		vertex1: 1 2 0.5
 		vertex2: 1 0 2
 		color: #00FF00
@@ -25,6 +28,7 @@ EMPTY
 		vertex2: 1 0 2
 		color: #0000FF
 	TRIANGLE
+		texture: textures/herbe.jpg
 		vertex0: 0 0 0
 		vertex1: 1 0 2
 		vertex2: 2 0 0
