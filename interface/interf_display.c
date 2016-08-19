@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/19 02:26:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/19 02:43:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,19 @@ static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp de
 	ft_putstr("\n");
 }
 
+/*
+** "a" is the "original pixel"
+** "b" is the copied pixels (the one you are trying to copy)
+** in case of the menu color: the sdl_ttf just has invert alpha
+*/
 
 static unsigned int	blend_menu(unsigned int a, unsigned b)
 {
-	if ((b & 0xff000000) == 0)
-		return (a);
-	return (b & 0xffffff);
+	const unsigned int	alpha = 0xff - ((b & 0xff000000) >> 24);
+	const float			pc = (float)alpha / (float)0xff;
+
+	b = (b & 0xffffff) | (alpha << 24);
+	return (draw_color_lerp(b, a, pc));
 }
 
 static void print_surface(SDL_Surface *interface[NB_CHAMPS],
@@ -51,9 +58,9 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 			pos->y += font_size + 3;
 		pos->y += font_size + 3;
 		//fonction interdite :)
-		SDL_BlitSurface(interface[i], NULL, screen, pos);
+		//SDL_BlitSurface(interface[i], NULL, screen, pos);
 		(void)blend_menu;
-		//draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
+		draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
 	}
 }
 
