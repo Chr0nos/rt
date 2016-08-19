@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/25 14:26:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/19 15:49:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,35 @@
 #include "shaders.h"
 #include "texture.h"
 #include "libft.h"
+#include "mesh.h"
 
 unsigned int			shader_color_normal_intersection(const t_render *r)
 {
 	const t_texture		*tex = rt_obj_get_normal(r->obj_intersect);
 	const unsigned int	*pixels_texture = (tex) ? tex->surface->pixels : NULL;
-	double				u;
-	double				v;
+	t_v2f				uv;
 
 	if (!pixels_texture)
 		return (0);
 	if (r->obj_intersect->type & SPHERE)
 	{
-		u = 0.5 + (atan2(r->normal.z, r->normal.x) / (2 * M_PI));
-		v = 0.5 - (asin(r->normal.y) / M_PI);
+		uv = (t_v2f){
+			(float)(0.5 + (atan2(r->normal.z, r->normal.x) / (2.0 * M_PI))),
+			(float)(0.5 - (asin(r->normal.y) / M_PI))
+		};
 	}
+	else if (r->obj_intersect->type & TRIANGLE)
+		uv = get_uv_triangle(r->obj_intersect, r->intersection);
 	else
 	{
-		u = fabs((double)((int)((fabs((r->normal.x != 0.0 ? r->intersection.z :
-			r->intersection.x)) * 1.0) * 1000.0) % 1000) * 0.001);
-		v = fabs((double)((int)((fabs((r->normal.y != 0.0 ? r->intersection.z :
-			r->intersection.y)) * 1.0) * 1000.0) % 1000) * 0.001);
+		uv = (t_v2f){
+			(float)fabs((double)((int)(((r->normal.x != 0.0 ? r->intersection.z :
+			r->intersection.x) * 1.0) * 1000.0) % 1000) * 0.001),
+			(float)fabs((double)((int)(((r->normal.y != 0.0 ? r->intersection.z :
+			r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)
+		};
 	}
-	return (pixels_texture[tex->surface->w *
-		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
+	return (draw_suv(tex->surface, uv));
 }
 
 void					shader_normalmap(t_shader *s, t_render *r, t_obj *light)
