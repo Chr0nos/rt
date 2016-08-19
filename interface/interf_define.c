@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 
 #include "interface.h"
-#include "sda.h"
+
+SDL_Rect	*define_position(SDL_Rect *pos, Uint8 x, Uint8 y)
+{
+	pos->x = x;
+	pos->y = y;
+	return (pos);
+}
 
 SDL_Color	*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b)
 {
@@ -46,67 +52,6 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	else
 		ft_putstr("fail define texte\n");
 	return (NULL);
-}
-
-void init_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
-{
-	char	*tmp_color;
-
-	if ((!obj) || (!obj->content))
-		return ;
-	if (obj->cfgbits & SDB_COLOR)
-		tmp_color = sda_export_color(obj, NULL);
-	else
-		tmp_color = ft_strdup("none");
-	*champs_obj[0] = ft_itoa((int)obj->id);
-	if (obj->cfgbits & SDB_NAME)
-		*champs_obj[1] = ft_strdup(obj->name);
-	else
-		*champs_obj[1] = ft_strdup("no data");
-	if (obj->type)
-		*champs_obj[2] = search_str_type(obj->type);
-	else
-		*champs_obj[2] = ft_strdup("no data");
-	*champs_obj[3] = ft_dtoa(obj->trans.w.x, 0);
-	*champs_obj[4] = ft_dtoa(obj->trans.w.y, 0);
-	*champs_obj[5] = ft_dtoa(obj->trans.w.z, 0);
-	*champs_obj[6] = ft_dtoa(obj->rotation.x, 2);
-	*champs_obj[7] = ft_dtoa(obj->rotation.y, 2);
-	*champs_obj[8] = ft_dtoa(obj->rotation.z, 2);
-	if (ft_strlen(tmp_color) == 9)
-	{
-		*champs_obj[9] = ft_strndup(tmp_color + 3, 2);
-		*champs_obj[10] = ft_strndup(tmp_color + 5, 2);
-		*champs_obj[11] = ft_strndup(tmp_color + 7, 2);
-		*champs_obj[12] = ft_strndup(tmp_color + 1, 2); //tmp
-	}
-	else if (ft_strlen(tmp_color) == 7)
-	{
-		*champs_obj[9] = ft_strndup(tmp_color + 1, 2);
-		*champs_obj[10] = ft_strndup(tmp_color + 3, 2);
-		*champs_obj[11] = ft_strndup(tmp_color + 5, 2);
-		*champs_obj[12] = ft_strdup("none"); //tmp
-	}
-	else
-	{
-		*champs_obj[9] = ft_strdup("none R");;
-		*champs_obj[10] = ft_strdup("none G");;
-		*champs_obj[11] = ft_strdup("none B");;
-		*champs_obj[12] = ft_strdup("none transparency"); //tmp
-	}
-	if (obj->cfgbits & SDB_TEXTURE)
-		*champs_obj[13] = sda_export_texture(obj, NULL);
-	else
-		*champs_obj[13] = ft_strdup("no data");
-	if (obj->cfgbits & SDB_REFRACT)
-		*champs_obj[14] = ft_dtoa(obj->refractive_index, 0);
-	else
-		*champs_obj[13] = ft_strdup("no refraction");
-	if (obj->cfgbits & SDB_SIZE)
-		*champs_obj[15] = sda_export_size(obj, NULL);
-	else
-		*champs_obj[15] = ft_strdup("no size");
-	free(tmp_color);
 }
 
 /*

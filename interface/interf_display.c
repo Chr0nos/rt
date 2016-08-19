@@ -12,7 +12,7 @@
 
 #include "interface.h"
 #include "shaders.h"
-
+/*
 static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp debug
 {
 	int	i;
@@ -30,7 +30,7 @@ static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp de
 	}
 	ft_putstr("\n");
 }
-
+*/
 /*
 ** "a" is the "original pixel"
 ** "b" is the copied pixels (the one you are trying to copy)
@@ -55,32 +55,25 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 	while (++i < NB_CHAMPS)
 	{
 		if (!(i % 3))
-			pos->y += font_size + 3;
+			pos->y += font_size;
 		pos->y += font_size + 3;
 		//fonction interdite :)
-		SDL_BlitSurface(interface[i], NULL, screen, pos);
+		//SDL_BlitSurface(interface[i], NULL, screen, pos);
 		(void)blend_menu;
-		//draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
+		draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
 	}
 }
 
 void interface_display(t_rt *rt)
 {
-	ft_putstr("coucou1\n");
-	rt->interf->pos.x = 10;
-	rt->interf->pos.y = 10;
+	define_position(&rt->interf->pos, 20, 10);
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
-	ft_putstr("coucou2\n");
 	init_selected_obj(rt_obj_byid(rt->root, 3), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
-	ft_putstr("coucou3\n");
-	print_debug_champs(rt->interf->champs_obj); //tmp debug
+	//print_debug_champs(rt->interf->champs_obj); //tmp debug
 	init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,
 		rt->interf->police_selected, &rt->interf->color_selected);
-	ft_putstr("coucou4\n");
-	rt->interf->pos.x = 130;
-	rt->interf->pos.y = 10;
-	ft_putstr("coucou5\n");
+	define_position(&rt->interf->pos, 140, 10);
 	print_surface(rt->interf->surface_obj, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
 	free_champs(rt->interf->champs_obj);
