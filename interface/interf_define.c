@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "interface.h"
-#include "sda.h"
 
 SDL_Rect	*define_position(SDL_Rect *pos, Uint8 x, Uint8 y)
 {

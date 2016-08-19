@@ -58,9 +58,9 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 			pos->y += font_size;
 		pos->y += font_size + 3;
 		//fonction interdite :)
-		SDL_BlitSurface(interface[i], NULL, screen, pos);
+		//SDL_BlitSurface(interface[i], NULL, screen, pos);
 		(void)blend_menu;
-		//draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
+		draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
 	}
 }
 
