@@ -18,7 +18,7 @@
 # include <SDL2/SDL_ttf.h>
 # include <SDL2/SDL.h>
 
-# define NB_CHAMPS  16
+# define NB_CHAMPS  17
 # define LARGER_SIZE 30
 
 typedef struct s_rt t_rt;
@@ -44,6 +44,7 @@ void init_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE]);
 void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
 	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color);
 SDL_Color	*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b);
+SDL_Rect	*define_position(SDL_Rect *pos, Uint8 x, Uint8 y);
 TTF_Font	*define_police(TTF_Font *police, char *name, int size, int selected);
 SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
 void free_champs(char *champs[NB_CHAMPS][LARGER_SIZE]);

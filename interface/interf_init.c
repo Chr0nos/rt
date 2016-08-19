@@ -38,9 +38,10 @@ static void init_str_data(char *interface[NB_CHAMPS][LARGER_SIZE])
 	*interface[10] = ft_strdup("color.G ........... :");
 	*interface[11] = ft_strdup("color.B ........... :");
 	*interface[12] = ft_strdup("transparence :");
-	*interface[13] = ft_strdup("reflection (%) :");
-	*interface[14] = ft_strdup("refraction (%) :");
-	*interface[15] = ft_strdup("size ................ :");
+	*interface[13] = ft_strdup("texture ............ :");
+	*interface[14] = ft_strdup("reflection (%) :");
+	*interface[15] = ft_strdup("refraction (%) :");
+	*interface[16] = ft_strdup("size ................ :");
 }
 
 static void init_font(t_interf *interf)
@@ -52,8 +53,7 @@ static void init_font(t_interf *interf)
 		"interface/font/angelina.ttf", interf->font_size, 0);
 	interf->police_selected = define_police(interf->police_selected,
 		"interface/font/angelina.ttf", interf->font_size, 1);
-	interf->pos.x = 10;
-	interf->pos.y = 10;
+	define_position(&interf->pos, 10, 10);
 	interf->id_selected = 3; //tmp
 }
 

@@ -12,7 +12,7 @@
 
 #include "interface.h"
 #include "libft.h"
-
+/*
 static change_more
 
 static change_less
@@ -26,4 +26,4 @@ int	change_data(t_rt *rt)
 		return (1);
 	else
 		return (0);
-}
+}*/
