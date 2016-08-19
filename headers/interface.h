@@ -39,8 +39,8 @@ typedef struct  s_interface
 }               t_interf;
 
 void  init_interface(t_rt *rt);
-void draw_interface(t_rt *rt);
-void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE]);
+void interface_display(t_rt *rt);
+void init_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE]);
 void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
 	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color);
 SDL_Color	*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b);
