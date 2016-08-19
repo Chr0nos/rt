@@ -26,7 +26,7 @@ static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp de
 			ft_putchar('\n');
 		}
 		else
-			ft_putstr("warning: null intem in champs\n");
+			ft_putstr("warning: null item in champs\n");
 	}
 	ft_putstr("\n");
 }
@@ -64,16 +64,15 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 	}
 }
 
-void draw_interface(t_rt *rt)
+void interface_display(t_rt *rt)
 {
-	//print_debug_champs(rt->interf->champs_txt); //tmp debug
 	ft_putstr("coucou1\n");
 	rt->interf->pos.x = 10;
 	rt->interf->pos.y = 10;
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
 	ft_putstr("coucou2\n");
-	define_selected_obj(rt_obj_byid(rt->root, rt->interf->id_selected), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
+	init_selected_obj(rt_obj_byid(rt->root, 3), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
 	ft_putstr("coucou3\n");
 	print_debug_champs(rt->interf->champs_obj); //tmp debug
 	init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,

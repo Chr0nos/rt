@@ -71,6 +71,7 @@ void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
 
 void init_interface(t_rt *rt)
 {
+	rt->interf = (t_interf *)ft_memalloc(sizeof(t_interf));
 	init_ttf();
 	init_str_data(rt->interf->champs_txt);
 	init_font(rt->interf);

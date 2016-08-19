@@ -48,13 +48,16 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	return (NULL);
 }
 
-void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+void init_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
 	char	*tmp_color;
 
 	if ((!obj) || (!obj->content))
 		return ;
-	tmp_color = sda_export_color(obj, NULL);
+	if (obj->cfgbits & SDB_COLOR)
+		tmp_color = sda_export_color(obj, NULL);
+	else
+		tmp_color = ft_strdup("none");
 	*champs_obj[0] = ft_itoa((int)obj->id);
 	if (obj->cfgbits & SDB_NAME)
 		*champs_obj[1] = ft_strdup(obj->name);
@@ -70,28 +73,40 @@ void define_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	*champs_obj[6] = ft_dtoa(obj->rotation.x, 2);
 	*champs_obj[7] = ft_dtoa(obj->rotation.y, 2);
 	*champs_obj[8] = ft_dtoa(obj->rotation.z, 2);
-	if (obj->cfgbits & SDB_COLOR)
+	if (ft_strlen(tmp_color) == 9)
+	{
+		*champs_obj[9] = ft_strndup(tmp_color + 3, 2);
+		*champs_obj[10] = ft_strndup(tmp_color + 5, 2);
+		*champs_obj[11] = ft_strndup(tmp_color + 7, 2);
+		*champs_obj[12] = ft_strndup(tmp_color + 1, 2); //tmp
+	}
+	else if (ft_strlen(tmp_color) == 7)
 	{
 		*champs_obj[9] = ft_strndup(tmp_color + 1, 2);
 		*champs_obj[10] = ft_strndup(tmp_color + 3, 2);
 		*champs_obj[11] = ft_strndup(tmp_color + 5, 2);
+		*champs_obj[12] = ft_strdup("none"); //tmp
 	}
 	else
 	{
-		*champs_obj[9] = NULL;
-		*champs_obj[10] = NULL;
-		*champs_obj[11] = NULL;
+		*champs_obj[9] = ft_strdup("none R");;
+		*champs_obj[10] = ft_strdup("none G");;
+		*champs_obj[11] = ft_strdup("none B");;
+		*champs_obj[12] = ft_strdup("none transparency"); //tmp
 	}
-	*champs_obj[12] = ft_strdup("?????"); //tmp
 	if (obj->cfgbits & SDB_TEXTURE)
 		*champs_obj[13] = sda_export_texture(obj, NULL);
 	else
 		*champs_obj[13] = ft_strdup("no data");
-	*champs_obj[14] = ft_dtoa(obj->refractive_index, 0);
+	if (obj->cfgbits & SDB_REFRACT)
+		*champs_obj[14] = ft_dtoa(obj->refractive_index, 0);
+	else
+		*champs_obj[13] = ft_strdup("no refraction");
 	if (obj->cfgbits & SDB_SIZE)
 		*champs_obj[15] = sda_export_size(obj, NULL);
 	else
-		*champs_obj[15] = ft_strdup("no data");
+		*champs_obj[15] = ft_strdup("no size");
+	free(tmp_color);
 }
 
 /*
