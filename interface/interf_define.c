@@ -56,6 +56,4 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 
 /*
 define_font_size;
-
-define_selected_object;
 */

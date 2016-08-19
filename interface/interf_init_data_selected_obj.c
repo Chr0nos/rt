@@ -13,6 +13,22 @@
 #include "interface.h"
 #include "sda.h"
 
+/*
+** fontion pour definir l'objet selecteionne a ajouter
+*/
+
+void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
+	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NB_CHAMPS)
+	{
+		surface[i] = define_texte(police, *champs[i], color);
+	}
+}
+
 static void init_color_selected_obj(t_obj *obj,
 	char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
@@ -59,7 +75,7 @@ void init_selected_obj(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 		*champs_obj[13] = sda_export_texture(obj, NULL);
 	else
 		*champs_obj[13] = ft_strdup("no texture");
-	if (obj->cfgbits & SDB_REFLECT)
+	if (obj->cfgbits & SDB_REFLECT) // bug
 		*champs_obj[14] = sda_export_reflect(obj, NULL);
 	else
 		*champs_obj[14] = ft_strdup("no reflection");

@@ -35,6 +35,7 @@ typedef struct  s_interface
   SDL_Color   color_selected;
   SDL_Rect    pos;
   int         font_size;
+  int         scale;
   t_uint         id_selected;
 }               t_interf;
 

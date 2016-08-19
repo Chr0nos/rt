@@ -11,11 +11,29 @@
 /* ************************************************************************** */
 
 #include "interface.h"
-#include "libft.h"
-/*
-static change_more
 
-static change_less
+/*
+void obj_data_more(int scale, int index,
+	char *interf_champs[NB_CHAMPS][LARGER_SIZE])
+{
+	char *tmp;
+
+	tmp = ft_atoi(interf_champs[index]);
+	tmp += scale;
+	free (interf_champs[index]);
+	interf_champs[index] = ft_itoa(tmp);
+}
+
+void obj_data_less(int scale, int index,
+	char *interf_champs[NB_CHAMPS][LARGER_SIZE])
+{
+	char *tmp;
+
+	tmp = ft_atoi(interf_champs[index]);
+	tmp -= scale;
+	free (interf_champs[index]);
+	interf_champs[index] = ft_itoa(tmp);
+}
 
 static change_object
 
@@ -26,4 +44,6 @@ int	change_data(t_rt *rt)
 		return (1);
 	else
 		return (0);
-}*/
+}
+
+*/

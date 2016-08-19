@@ -57,18 +57,24 @@ static void init_font(t_interf *interf)
 	interf->id_selected = 3; //tmp
 }
 
-void init_surface_data(char *champs[NB_CHAMPS][LARGER_SIZE],
-	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
-{
-	int	i;
+/*
 
-	i = -1;
-	while (++i < NB_CHAMPS)
-	{
-		surface[i] = define_texte(police, *champs[i], color);
-	}
+construction de la fonction pas finie .... :'(
+
+static	t_lst	*init_button(t_lst	*buton)
+{
+	t_lst	*head;
+	SDL_Surface	*carre;
+	SDL_Surface	*arrow_left;
+	SDL_Surface	*arrow_right;
+
+	button = lstnewlink()
+	head = button;
+
+	return (button);
 }
 
+*/
 void init_interface(t_rt *rt)
 {
 	rt->interf = (t_interf *)ft_memalloc(sizeof(t_interf));
@@ -77,5 +83,6 @@ void init_interface(t_rt *rt)
 	init_font(rt->interf);
 	init_surface_data(rt->interf->champs_txt, rt->interf->surface_txt,
 		rt->interf->police_classic, &rt->interf->color_classic);
+//	init_button(rt->interf->button);
 	free_champs(rt->interf->champs_txt);
 }

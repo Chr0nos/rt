@@ -31,6 +31,7 @@ static void print_debug_champs(char *interface[NB_CHAMPS][LARGER_SIZE]) //tmp de
 	ft_putstr("\n");
 }
 */
+
 /*
 ** "a" is the "original pixel"
 ** "b" is the copied pixels (the one you are trying to copy)
@@ -69,7 +70,7 @@ void interface_display(t_rt *rt)
 	define_position(&rt->interf->pos, 20, 10);
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
-	init_selected_obj(rt_obj_byid(rt->root, 3), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
+	init_selected_obj(rt_obj_byid(rt->root, 5), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
 	//print_debug_champs(rt->interf->champs_obj); //tmp debug
 	init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,
 		rt->interf->police_selected, &rt->interf->color_selected);
