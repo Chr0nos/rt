@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/19 15:43:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/20 12:52:08 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct			s_mesh
 	char				*filepath;
 }						t_mesh;
 
-t_v2f					get_uv_triangle(t_obj *obj, t_v4d i);
+t_v2f					get_uv_triangle(t_obj *obj, t_v4d p);
 int						add_mesh_from_obj(t_obj *obj, const char *filepath);
 
 #endif
