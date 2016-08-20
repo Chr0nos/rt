@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/18 18:03:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/20 13:58:10 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,17 @@ typedef struct			s_sda_cfg
 
 typedef struct			s_sda_obj
 {
-	int 				ac;
+	int					ac;
 	char				**av;
-	t_vertex			*v;
+	t_v4d				*v;
+	t_v4d				*n;
+	t_v2f				*uv;
 	size_t				size_v;
 	size_t				select_v;
+	size_t				size_n;
+	size_t				select_n;
+	size_t				size_uv;
+	size_t				select_uv;
 	t_obj				*parent;
 }						t_sda_obj;
 

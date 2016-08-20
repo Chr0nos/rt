@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/17 23:11:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/20 15:38:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,36 @@ static unsigned int		clamp(int x, const unsigned int max)
 static int		parse_obj_f(t_sda_obj *s)
 {
 	t_obj			*t;
+	t_triangle		*c;
 	const char		**arg = (const char **)(size_t)s->av;
-	const int		x[3] = {ft_atoi(arg[1]), ft_atoi(arg[2]), ft_atoi(arg[3])};
+	const char		*value[3];
+	const int		v[3] = {ft_atoi(ft_strsplit(arg[1], '/')[0]),
+	ft_atoi(ft_strsplit(arg[2], '/')[0]), ft_atoi(ft_strsplit(arg[3], '/')[0])};
 
+	value[0] = ft_strsplit(arg[1], '/')[1];
+	value[1] = ft_strsplit(arg[2], '/')[1];
+	value[2] = ft_strsplit(arg[3], '/')[1];
 	IFRET__(!(t = rt_factory_alloc(TRIANGLE, s->parent)), -3);
-	((t_triangle*)(t->content))->v1 = s->v[clamp(x[0], (uint)s->size_v) - 1];
-	((t_triangle*)(t->content))->v2 = s->v[clamp(x[1], (uint)s->size_v) - 1];
-	((t_triangle*)(t->content))->v3 = s->v[clamp(x[2], (uint)s->size_v) - 1];
+	c = t->content;
+	c->v1.pos = s->v[clamp(v[0], (uint)s->size_v) - 1];
+	c->v2.pos = s->v[clamp(v[1], (uint)s->size_v) - 1];
+	c->v3.pos = s->v[clamp(v[2], (uint)s->size_v) - 1];
+	if (value[0] && value[1] && value[2] && s->uv)
+	{
+		c->v1.uv = s->uv[clamp(ft_atoi(value[0]), (uint)s->size_uv) - 1];
+		c->v2.uv = s->uv[clamp(ft_atoi(value[1]), (uint)s->size_uv) - 1];
+		c->v3.uv = s->uv[clamp(ft_atoi(value[2]), (uint)s->size_uv) - 1];
+	}
+	free(value);
+	value[0] = ft_strsplit(arg[1], '/')[2];
+	value[1] = ft_strsplit(arg[2], '/')[2];
+	value[2] = ft_strsplit(arg[3], '/')[2];
+	if (value[0] && value[1] && value[2] && s->n)
+	{
+		c->v1.normal = s->n[clamp(ft_atoi(value[0]), (uint)s->size_n) - 1];
+		c->v2.normal = s->n[clamp(ft_atoi(value[1]), (uint)s->size_n) - 1];
+		c->v3.normal = s->n[clamp(ft_atoi(value[2]), (uint)s->size_n) - 1];
+	}
 	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
 	((t_triangle*)t->content)->color = 0xff0000;
 	//((t_triangle*)t->content)->reflect = 0xb0;
@@ -40,19 +63,49 @@ static int		parse_obj_f(t_sda_obj *s)
 	return (1);
 }
 
+static int		parse_obj_n(t_sda_obj *s)
+{
+	if ((s->select_n >= s->size_n) || (!s->n))
+	{
+		s->size_n += 3;
+		s->n = (t_v4d*)ft_realloc(s->n,
+			(unsigned int)(sizeof(t_v4d) * (s->size_n - 3)),
+			(unsigned int)(sizeof(t_v4d) * s->size_n));
+	}
+	s->n[s->select_n] = (t_v4d){ft_atod(s->av[1]),
+								ft_atod(s->av[2]),
+								ft_atod(s->av[3]), 0.0};
+	s->select_n++;
+	return (1);
+}
+
+static int		parse_obj_uv(t_sda_obj *s)
+{
+	if ((s->select_uv >= s->size_uv) || (!s->uv))
+	{
+		s->size_uv += 3;
+		s->uv = (t_v2f*)ft_realloc(s->uv,
+			(unsigned int)(sizeof(t_v2f) * (s->size_uv - 3)),
+			(unsigned int)(sizeof(t_v2f) * s->size_uv));
+	}
+	s->uv[s->select_uv] = (t_v2f){(float)ft_atod(s->av[1]),
+								(float)ft_atod(s->av[2])};
+	s->select_uv++;
+	return (1);
+}
+
 static int		parse_obj_v(t_sda_obj *s)
 {
 	if ((s->select_v >= s->size_v) || (!s->v))
 	{
 		s->size_v += 3;
-		s->v = (t_vertex*)ft_realloc(s->v,
-			(unsigned int)(sizeof(t_vertex) * (s->size_v - 3)),
-			(unsigned int)(sizeof(t_vertex) * s->size_v));
+		s->v = (t_v4d*)ft_realloc(s->v,
+			(unsigned int)(sizeof(t_v4d) * (s->size_v - 3)),
+			(unsigned int)(sizeof(t_v4d) * s->size_v));
 	}
-	s->v[s->select_v].pos = (t_v4d){ft_atod(s->av[1]),
+	s->v[s->select_v] = (t_v4d){ft_atod(s->av[1]),
 								ft_atod(s->av[2]),
 								ft_atod(s->av[3]), 0.0};
-	s->v[s->select_v].uv = (t_v2f){0.0, 0.0};
 	s->select_v++;
 	return (1);
 }
@@ -65,6 +118,8 @@ inline static int	parse_obj(t_sda_obj *s, char *line)
 		ft_printf("\t-Loading %s object..\n", s->av[1]);
 	IFRET__(s->ac < 4, 1);
 	IFRET__(!ft_strcmp(s->av[0], "v"), parse_obj_v(s));
+	IFRET__(!ft_strcmp(s->av[0], "vn"), parse_obj_n(s));
+	IFRET__(!ft_strcmp(s->av[0], "vt"), parse_obj_uv(s));
 	IFRET__(!ft_strcmp(s->av[0], "f"), parse_obj_f(s));
 	return (1);
 }
@@ -79,7 +134,7 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	IFRET__(!obj, -1);
 	IFRET__((fd = open(filepath, O_RDONLY)) < 0, -2);
 	IFRET__(!(obj = rt_factory_alloc(EMPTY, obj)), -4);
-	s = (t_sda_obj){0, NULL, NULL, 0, 0, obj};
+	s = (t_sda_obj){0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, obj};
 	obj->cfgbits |= SDB_NOEXPORT;
 	ft_printf("Loading %s..\n", filepath);
 	ret = 0;
@@ -99,6 +154,10 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 	}
 	if (s.v)
 		free(s.v);
+	if (s.uv)
+		free(s.uv);
+	if (s.v)
+		free(s.n);
 	close(fd);
 	return (ret);
 }
