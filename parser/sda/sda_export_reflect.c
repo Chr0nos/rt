@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 00:51:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 19:11:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/21 11:26:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*sda_export_reflect(t_obj *obj, t_sda_export *e)
 		return (ft_itoa((int)((t_setting*)obj->content)->reflect));
 	}
 	reflect = rt_obj_get_reflect(obj);
-	if (e->setting->reflect == reflect)
+	if ((e) && (e->setting->reflect == reflect))
 		return (NULL);
 	return (ft_itoa(reflect));
 }

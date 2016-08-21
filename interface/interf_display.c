@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/19 12:09:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 11:31:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 		pos->y += font_size + 3;
 		//fonction interdite :)
 		//SDL_BlitSurface(interface[i], NULL, screen, pos);
-		(void)blend_menu;
-		draw_blitsurface_blend(screen, interface[i], (t_v2i){pos->x, pos->y}, &blend_menu);
+		if (interface[i])
+			draw_blitsurface_blend(screen, interface[i],
+					(t_v2i){pos->x, pos->y}, &blend_menu);
 	}
 }
 
