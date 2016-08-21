@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/19 15:52:06 by alhote           ###   ########.fr        #
+#    Updated: 2016/08/21 17:55:00 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -205,9 +205,13 @@ ifeq ($(OPSYS),Darwin)
 			sub("Error ","",$$1);\
 			if ($$2 == " C++ comment") { print "\033[0;33m"$$1"\033[32m"$$2 }\
 			else { print "\033[0;33m"$$1"\033[0m"$$2 }\
-		}'
+		}
 else
 	@printf "\e[33mNo Norminette here\e[m\n"
 endif
+
+debug:
+	make CC="clang -g3" fclean multi
+	lldb "./rt"
 
 .PHONY: all re clean fclean pull norme
