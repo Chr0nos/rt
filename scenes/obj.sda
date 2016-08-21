@@ -8,5 +8,7 @@ CAMERA
 		pos: 5 0 0
 
 MESH
-	color: #0000FF
-	obj: scenes/test_group.obj
+	color: #FF0000
+	texture: textures/die.png
+	normal: textures/die_normal.png
+	obj: scenes/cube.obj

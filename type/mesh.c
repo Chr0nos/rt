@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/21 14:53:04 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 15:37:29 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ static int		parse_obj_f(t_sda_obj *s)
 	free(value);
 	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
 	c->color = s->mesh->color;
+	if((c->texture = s->mesh->texture))
+		t->cfgbits |= SDB_TEXTURE;
+	if((c->normal = s->mesh->normal))
+		t->cfgbits |= SDB_NORMAL;
 	//((t_triangle*)t->content)->reflect = 0xb0;
 	//t->cfgbits |= SDB_REFLECT;
 	rt_box_update(t);
