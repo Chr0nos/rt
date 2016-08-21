@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/21 11:31:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/21 11:41:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,23 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	return (draw_color_lerp(b, a, pc));
 }
 
+/*
+** this function is here to clamp the "pos" rect to the window size and prevent
+** any crash du to screen size < menu size
+*/
+
+static void	clamp_rect(SDL_Rect *pos, SDL_Surface *screen)
+{
+	(void)pos;
+	(void)screen;
+}
+
 static void print_surface(SDL_Surface *interface[NB_CHAMPS],
 	SDL_Surface *screen, SDL_Rect *pos, int font_size)
 {
 	int	i;
 
+	clamp_rect(pos, screen);
 	i = -1;
 	while (++i < NB_CHAMPS)
 	{
