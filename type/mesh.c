@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/21 15:37:29 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 16:54:13 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int		parse_obj_f(t_sda_obj *s)
 		c->v1.uv = s->uv[clamp(ft_atoi(value[0]), (uint)s->size_uv) - 1];
 		c->v2.uv = s->uv[clamp(ft_atoi(value[1]), (uint)s->size_uv) - 1];
 		c->v3.uv = s->uv[clamp(ft_atoi(value[2]), (uint)s->size_uv) - 1];
+		t->cfgbits |= SDB_VERTEX0_UV | SDB_VERTEX1_UV | SDB_VERTEX2_UV;
 	}
 	free(value);
 	value[0] = ft_strsplit(arg[1], '/')[2];
