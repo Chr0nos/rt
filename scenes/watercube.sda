@@ -1,5 +1,5 @@
 SETTING
-	skybox: textures/skybox_space.jpg
+	skybox: textures/skybox.jpg
 #	skybox: textures/skybox.jpg
 CAMERA
 	pos: 9.778539 1.877445 9.550097
@@ -56,7 +56,7 @@ CUBE
 SPHERE
 	name: rock
 	pos: 0 -0.3 0
-	color: #5F8A5F
-	texture: textures/rock.jpg
-	normal: textures/rock_normal.jpg
+	color: #DD5F8A5F
+	#texture: textures/rock.jpg
+	#normal: textures/rock_normal.jpg
 	sdisable: specular

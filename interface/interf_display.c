@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/21 11:41:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/21 18:48:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,16 @@ void interface_display(t_rt *rt)
 	define_position(&rt->interf->pos, 20, 10);
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
-	init_selected_obj(rt_obj_byid(rt->root, 5), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
-	//print_debug_champs(rt->interf->champs_obj); //tmp debug
-	init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,
-		rt->interf->police_selected, &rt->interf->color_selected);
-	define_position(&rt->interf->pos, 140, 10);
-	print_surface(rt->interf->surface_obj, rt->sys.screen,
-		&rt->interf->pos, rt->interf->font_size);
-	free_champs(rt->interf->champs_obj);
-	free_surfaces(rt->interf->surface_obj);
+	if (rt_obj_byid(rt->root, 5))
+	{
+		init_selected_obj(rt_obj_byid(rt->root, 5), rt->interf->champs_obj); //systeme de selection d'objet a implementer == event.
+		//print_debug_champs(rt->interf->champs_obj); //tmp debug
+		init_surface_data(rt->interf->champs_obj, rt->interf->surface_obj,
+			rt->interf->police_selected, &rt->interf->color_selected);
+		define_position(&rt->interf->pos, 140, 10);
+		print_surface(rt->interf->surface_obj, rt->sys.screen,
+			&rt->interf->pos, rt->interf->font_size);
+		free_champs(rt->interf->champs_obj);
+		free_surfaces(rt->interf->surface_obj);
+	}
 }

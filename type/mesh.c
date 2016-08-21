@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/20 15:38:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 17:37:44 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int		parse_obj_f(t_sda_obj *s)
 		c->v1.uv = s->uv[clamp(ft_atoi(value[0]), (uint)s->size_uv) - 1];
 		c->v2.uv = s->uv[clamp(ft_atoi(value[1]), (uint)s->size_uv) - 1];
 		c->v3.uv = s->uv[clamp(ft_atoi(value[2]), (uint)s->size_uv) - 1];
+		t->cfgbits |= SDB_VERTEX0_UV | SDB_VERTEX1_UV | SDB_VERTEX2_UV;
 	}
 	free(value);
 	value[0] = ft_strsplit(arg[1], '/')[2];
@@ -55,10 +56,15 @@ static int		parse_obj_f(t_sda_obj *s)
 		c->v2.normal = s->n[clamp(ft_atoi(value[1]), (uint)s->size_n) - 1];
 		c->v3.normal = s->n[clamp(ft_atoi(value[2]), (uint)s->size_n) - 1];
 	}
-	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2);
-	((t_triangle*)t->content)->color = 0xff0000;
-	//((t_triangle*)t->content)->reflect = 0xb0;
-	//t->cfgbits |= SDB_REFLECT;
+	free(value);
+	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2 |
+		SDB_REFLECT);
+	c->color = s->mesh->color;
+	if ((c->texture = s->mesh->texture))
+		t->cfgbits |= SDB_TEXTURE;
+	if ((c->normal = s->mesh->normal))
+		t->cfgbits |= SDB_NORMAL;
+	c->reflect = s->mesh->reflect;
 	rt_box_update(t);
 	return (1);
 }
@@ -133,8 +139,10 @@ int				add_mesh_from_obj(t_obj *obj, const char *filepath)
 
 	IFRET__(!obj, -1);
 	IFRET__((fd = open(filepath, O_RDONLY)) < 0, -2);
+	s = (t_sda_obj){0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, NULL,
+		obj->content};
 	IFRET__(!(obj = rt_factory_alloc(EMPTY, obj)), -4);
-	s = (t_sda_obj){0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, obj};
+	s.parent = obj;
 	obj->cfgbits |= SDB_NOEXPORT;
 	ft_printf("Loading %s..\n", filepath);
 	ret = 0;

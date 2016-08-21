@@ -4,8 +4,13 @@ SETTING
 CAMERA
 	pos: 8.859556 1 7.073508
 	rot: 0 -126.050714 0
-	POINTLIGHT
-		pos: 5 0 0
+
+SUNLIGHT
+	pos: 5 5 5
 
 MESH
-	obj: scenes/test_group.obj
+	color: #FF0000
+	#texture: textures/die.png
+	#normal: textures/die_normal.png
+	reflect: 110
+	obj: scenes/cube.obj
