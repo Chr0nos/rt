@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/18 20:52:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/21 12:25:56 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum			e_type
 	MESH = 1 << 30,
 	RADIUS = SPHERE | CUBE | CYL | CONE | CONE_INF,
 	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | CONE_INF |
-		TRIANGLE,
+		TRIANGLE | MESH,
 	NOCHECKBOX = PLAN | CYL | CONE_INF,
 	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | CONE_INF | TRIANGLE |
 		EMPTY,

@@ -8,4 +8,5 @@ CAMERA
 		pos: 5 0 0
 
 MESH
+	color: #0000FF
 	obj: scenes/test_group.obj

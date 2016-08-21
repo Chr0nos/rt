@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/20 13:40:51 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 11:56:43 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ typedef struct			s_triangle
 
 typedef struct			s_mesh
 {
+	unsigned int		color;
 	char				*filepath;
+	t_texture			*texture;
 }						t_mesh;
 
 t_v2f					get_uv_triangle(t_obj *obj, t_v4d p);

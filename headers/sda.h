@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/20 13:58:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/21 14:51:07 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct			s_sda_obj
 	size_t				size_uv;
 	size_t				select_uv;
 	t_obj				*parent;
+	t_mesh				*mesh;
 }						t_sda_obj;
 
 int						sda_lvl(char *line);
