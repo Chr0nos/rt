@@ -54,6 +54,10 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	return (NULL);
 }
 
-/*
-define_font_size;
-*/
+void		define_interf_obj(t_obj *obj, t_rt *rt)
+{
+	if (obj->cfgbits & VISIBLE || obj->cfgbits & LIGHTTYPE)
+		rt->interf->obj_selected = obj;
+	else
+		rt->interf->obj_selected = NULL;
+}

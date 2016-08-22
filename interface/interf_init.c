@@ -23,25 +23,41 @@ static void init_ttf(void)
 		ft_putstr("TTF_Init : okay.\n");
 }
 
-static void init_str_data(char *interface[NB_CHAMPS][LARGER_SIZE])
+static void init_champs_txt(char *champs_txt[NB_CHAMPS][LARGER_SIZE])
 {
-	*interface[0] = ft_strdup("Id ................... :");
-	*interface[1] = ft_strdup("Name ........... :");
-	*interface[2] = ft_strdup("Type .............. :");
-	*interface[3] = ft_strdup("pos.X ............. :");
-	*interface[4] = ft_strdup("pos.Y .............. :");
-	*interface[5] = ft_strdup("pos.Z ............. :");
-	*interface[6] = ft_strdup("dir.X ............... :");
-	*interface[7] = ft_strdup("dir.Y ................ :");
-	*interface[8] = ft_strdup("dir.Z ............... :");
-	*interface[9] = ft_strdup("color.R ............ :");
-	*interface[10] = ft_strdup("color.G ........... :");
-	*interface[11] = ft_strdup("color.B ........... :");
-	*interface[12] = ft_strdup("transparence :");
-	*interface[13] = ft_strdup("texture ............ :");
-	*interface[14] = ft_strdup("reflection (%) :");
-	*interface[15] = ft_strdup("refraction (%) :");
-	*interface[16] = ft_strdup("size ................ :");
+	*champs_txt[0] = ft_strdup("Id ................... :");
+	*champs_txt[1] = ft_strdup("");
+	*champs_txt[2] = ft_strdup("Type .............. :");
+	*champs_txt[3] = ft_strdup("Name ........... :");
+	*champs_txt[4] = ft_strdup("texture ............ :");
+	*champs_txt[5] = ft_strdup("");
+	*champs_txt[6] = ft_strdup("pos.X ............. :");
+	*champs_txt[7] = ft_strdup("pos.Y .............. :");
+	*champs_txt[8] = ft_strdup("pos.Z ............. :");
+	*champs_txt[9] = ft_strdup("");
+	*champs_txt[10] = ft_strdup("dir.X ............... :");
+	*champs_txt[11] = ft_strdup("dir.Y ................ :");
+	*champs_txt[12] = ft_strdup("dir.Z ............... :");
+	*champs_txt[13] = ft_strdup("");
+	*champs_txt[14] = ft_strdup("color.R ............ :");
+	*champs_txt[15] = ft_strdup("color.G ........... :");
+	*champs_txt[16] = ft_strdup("color.B ........... :");
+	*champs_txt[17] = ft_strdup("");
+	*champs_txt[18] = ft_strdup("transparence :");
+	*champs_txt[19] = ft_strdup("reflection (%) :");
+	*champs_txt[20] = ft_strdup("refraction (%) :");
+	*champs_txt[21] = ft_strdup("");
+	*champs_txt[22] = ft_strdup("size ................ :");
+	*champs_txt[23] = NULL;
+}
+
+static void init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+{
+	int	i;
+
+	i = -1;
+	while (++i < NB_CHAMPS)
+		*champs_obj[i] = ft_strdup("");
 }
 
 static void init_font(t_interf *interf)
@@ -54,7 +70,8 @@ static void init_font(t_interf *interf)
 	interf->police_selected = define_police(interf->police_selected,
 		"interface/font/angelina.ttf", interf->font_size, 1);
 	define_position(&interf->pos, 10, 10);
-	interf->id_selected = 3; //tmp
+	interf->obj_selected = NULL; //tmp
+	interf->scale = 1;
 }
 
 /*
@@ -77,12 +94,12 @@ static	t_lst	*init_button(t_lst	*buton)
 */
 void init_interface(t_rt *rt)
 {
-	rt->interf = (t_interf *)ft_memalloc(sizeof(t_interf));
 	init_ttf();
-	init_str_data(rt->interf->champs_txt);
+	init_champs_txt(rt->interf->champs_txt);
+	init_champs_obj(rt->interf->champs_txt);
 	init_font(rt->interf);
-	init_surface_data(rt->interf->champs_txt, rt->interf->surface_txt,
+	fill_surfaces(rt->interf->champs_txt, rt->interf->surface_txt,
 		rt->interf->police_classic, &rt->interf->color_classic);
-//	init_button(rt->interf->button);
+//	init_button(rt->interf->button); dessiner les jolis boutons de scale et de ENTRER
 	free_champs(rt->interf->champs_txt);
 }

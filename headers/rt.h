@@ -104,6 +104,7 @@ int				getkeybit(const int keycode);
 int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);
+t_obj 			*mouseclick_obj(t_obj *obj, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
 int				rt_event_resize(SDL_Event *event, t_rt *rt);
 

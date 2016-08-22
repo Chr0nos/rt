@@ -45,7 +45,9 @@ int				display(t_rt *rt)
 	else
 	{
 		rt_render(rt);
-		interface_display(rt); // nb diana : ajouter si mode interface ou pas ->voir KEY = I.
+		ft_putnbr(rt->interf->mode_activated);
+		if (rt->interf->mode_activated)
+			interface_display(rt); // nb diana : ajouter si mode interface ou pas ->voir KEY = I.
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;
 	}

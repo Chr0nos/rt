@@ -45,6 +45,22 @@ static int		togglefilters(t_rt *rt, int keycode)
 	return (0);
 }
 
+static int		togglefinterf(t_rt *rt)
+{
+	if (!rt->interf->mode_activated &&
+		rt->sys.geometry.x > 260 && rt->sys.geometry.y >= 768)
+	{
+		rt->interf->mode_activated = 1;
+		init_interface(rt);
+	}
+	else if (rt->interf->mode_activated)
+	{
+		rt->interf->mode_activated = 0;
+		clean_interface(rt);
+	}
+	return (0);
+}
+
 int				keydown(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
@@ -57,6 +73,8 @@ int				keydown(int keycode, t_rt *rt)
 		camera_save(rt);
 	else if (keycode == SDLK_f)
 		return (togglefs(rt));
+	else if (keycode == SDLK_i && (!(rt->keyboard & MENU)))
+			return (togglefinterf(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))
 		return (togglefilters(rt, keycode));
 	else if ((keycode == SDLK_x) && (!(rt->keyboard & MENU)))
