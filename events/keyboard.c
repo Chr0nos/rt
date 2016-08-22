@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/22 18:44:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/22 18:55:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ static int		switch_camera(t_rt *rt)
 	t_obj	*newcam;
 
 	cam = rt->root->content;
-	newcam = rt_obj_nexttype(rt->root, cam, CAMERA);
-	if (!newcam)
+	if (!(newcam = rt_obj_nexttype(rt->root, cam, CAMERA)))
 		newcam = rt_obj_nexttype(rt->root, NULL, CAMERA);
-	if (newcam == cam)
+	if ((newcam == cam) || (!newcam))
 	{
 		ft_putendl("no more camera");
 		return (0);

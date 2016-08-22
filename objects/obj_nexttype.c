@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 18:22:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/22 18:32:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/22 18:55:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	rt_obj_nexttype_foreach(t_obj *obj, int mode, void *userdata)
 		look->lock = 1;
 		return (OK);
 	}
-	if (obj->type & look->type)
+	if ((look->lock) && (obj->type & look->type))
 	{
 		look->next = obj;
 		return (STOP_ALL);
