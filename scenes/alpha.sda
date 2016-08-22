@@ -1,4 +1,7 @@
 CAMERA
+CAMERA
+	pos: -2.026952 1.468349 5.43881
+	rot: 28.647889 126.050714 0
 SETTING
 	skybox: textures/skybox.jpg
 CUBE

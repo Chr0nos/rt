@@ -13,11 +13,9 @@ SPHERE
 	name: earth
 	size: 6.371
 	pos: 0 0 10
-	color: #00000000
 	texture: ./textures/earth.jpg
 	normal: ./textures/earth_normal.jpg
 	sdisable: specular
-	reflect: 0
 	POINTLIGHT
 		pos: 15 5 -5
 		intensity: 200
