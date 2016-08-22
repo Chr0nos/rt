@@ -10,7 +10,7 @@ SUNLIGHT
 
 MESH
 	color: #FF0000
-	#texture: textures/die.png
+	texture: textures/die.png
 	#normal: textures/die_normal.png
 	reflect: 110
 	obj: scenes/cube.obj

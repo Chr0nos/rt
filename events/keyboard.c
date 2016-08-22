@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 18:01:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/22 18:38:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ static int		togglefilters(t_rt *rt, int keycode)
 	return (0);
 }
 
+static int		switch_camera(t_rt *rt)
+{
+	t_obj	*cam;
+
+	cam = rt->root->content;
+	cam = rt_obj_nexttype(rt->root, cam, CAMERA);
+	if (cam)
+		rt->root->content = cam;
+	else
+		rt->root->content = rt_obj_nexttype(rt->root, NULL, CAMERA);
+	rt->keyboard |= FORCE_DISPLAY;
+	return (0);
+}
+
 int				keydown(int keycode, t_rt *rt)
 {
 	const int		keybit = getkeybit(keycode);
@@ -67,6 +81,8 @@ int				keydown(int keycode, t_rt *rt)
 		textures_used_display(rt->root);
 	else if (keycode == SDLK_l)
 		rt_debug(rt->root, 0);
+	else if (keycode == SDLK_m)
+		return (switch_camera(rt));
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;

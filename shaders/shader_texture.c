@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/19 15:47:49 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/22 18:18:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 			r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)
 		};
 	}
-	return (draw_suv(tex->surface, uv));
+	return (draw_suv_smooth(tex->surface, uv));
 }
 
 void				shader_texture(t_shader *s, t_render *r, t_obj *light)

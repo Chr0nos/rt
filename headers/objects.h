@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/18 18:32:40 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/22 18:29:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ typedef struct			s_obj
 	t_limit				*limits;
 }						t_obj;
 
+typedef struct			s_obj_lookup
+{
+	unsigned int		type;
+	unsigned int		lock;
+	t_obj				*current;
+	t_obj				*next;
+}						t_obj_lookup;
+
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj					*rt_obj_addchild(t_obj *parent, t_obj *child);
@@ -61,5 +69,7 @@ unsigned int			rt_obj_get_lvl(t_obj *obj);
 t_obj					*rt_obj_get_root(t_obj *obj);
 unsigned int			rt_obj_count(t_obj *obj, unsigned int type_mask);
 t_obj					*rt_obj_atpx(struct s_rt *rt, t_v2i px);
+t_obj					*rt_obj_nexttype(t_obj *node, t_obj *current,
+	unsigned int type);
 
 #endif
