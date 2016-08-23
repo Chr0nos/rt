@@ -30,7 +30,7 @@ SPHERE
 		name: moon
 		pos: 38.44 0 0
 		size: 1.737
-		color: #00ffffff
+		color: #808080
 		texture: ./textures/moon.jpg
 		normal: ./textures/moon_normal.jpg
 		sdisable: specular

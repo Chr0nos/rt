@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/22 19:08:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/23 14:26:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "texture.h"
 #include "libft.h"
 #include "mesh.h"
+#include "sda.h"
 
 unsigned int		shader_color_texture_intersection(const t_render *r)
 {
@@ -44,6 +45,9 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 			r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)
 		};
 	}
+	if (r->obj_intersect->cfgbits & SDB_COLOR)
+		return (blend_add(draw_suv_smooth(tex->surface, uv),
+			((t_cube*)r->obj_intersect->content)->color));
 	return (draw_suv_smooth(tex->surface, uv));
 }
 
