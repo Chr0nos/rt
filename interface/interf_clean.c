@@ -14,7 +14,7 @@
 
 void clean_interface(t_rt *rt)
 {
-	free_champs(rt->interf->champs_obj);
+	//free_champs(rt->interf->champs_obj);
 	free_surfaces(rt->interf->surface_txt);
 	TTF_CloseFont(rt->interf->police_classic);
 	TTF_CloseFont(rt->interf->police_selected);
@@ -25,20 +25,12 @@ void clean_interface(t_rt *rt)
 //ft_free_tab((void**)(unsigned long)champs)
 //penser a metre un NULL a la fin de champs
 
-void free_old_data_obj(t_obj *obj)
-{
-	if (obj->name)
-		free(obj->name);
-	if (((t_cube*)obj->content)->texture)
-		free(((t_cube*)obj->content)->texture);
-}
-
 void free_champs(char *champs[NB_CHAMPS][LARGER_SIZE])
 {
 	int		i;
 
 	i = -1;
-	while (*champs[i])
+	while (++i < NB_CHAMPS - 1)
 		free (*champs[i]);
 }
 
@@ -47,6 +39,6 @@ void free_surfaces(SDL_Surface *surface[NB_CHAMPS])
 	int		i;
 
 	i = -1;
-	while (surface[i])
+	while (++i < NB_CHAMPS - 1)
 		free (surface[i]);
 }

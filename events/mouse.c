@@ -53,10 +53,10 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
-t_obj *mouseclick_obj(t_obj *obj, t_rt *rt)
+static void mouseclick_obj(t_obj *obj, t_rt *rt)
 {
 	if (!obj)
-		return (NULL);
+		return ;
 	if (obj->cfgbits & SDB_TEXTURE)
 	{
 		draw_perlin_alpha(rt_obj_get_texture(obj)->surface,
@@ -66,8 +66,9 @@ t_obj *mouseclick_obj(t_obj *obj, t_rt *rt)
 		((t_cube*)obj->content)->color = 0xff;
 	else
 		((t_cube*)obj->content)->color = 0xff0000;
-	rt->keyboard |= FORCE_DISPLAY;
-	return (obj);
+	rt->interf->obj_selected = rt_obj_byid(rt->root, obj->id);
+	if (rt->interf->mode_activated)
+		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
 }
 
 int				mouseclick(SDL_Event *event, t_rt *rt)
@@ -85,7 +86,8 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 				 	rt->sys.geometry.x >= 256 && pos.x < 256 && pos.x > 0)
 				interf_event(&pos, rt);
 			else
-				define_interf_obj(mouseclick_obj(rt_obj_atpx(rt, pos), rt), rt);
+				mouseclick_obj(rt_obj_atpx(rt, pos), rt);
+			rt->keyboard |= FORCE_DISPLAY;
 		}
 		else if (event->button.button == SDL_BUTTON_RIGHT)
 			rt->keyboard |= ZOOMOUT;

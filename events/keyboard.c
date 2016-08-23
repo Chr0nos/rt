@@ -58,6 +58,7 @@ static int		togglefinterf(t_rt *rt)
 		rt->interf->mode_activated = 0;
 		clean_interface(rt);
 	}
+	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }
 

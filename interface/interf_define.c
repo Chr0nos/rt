@@ -53,11 +53,17 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 		ft_putstr("fail define texte\n");
 	return (NULL);
 }
-
+/*
 void		define_interf_obj(t_obj *obj, t_rt *rt)
 {
-	if (obj->cfgbits & VISIBLE || obj->cfgbits & LIGHTTYPE)
+	if (obj && (obj->cfgbits & VISIBLE || obj->cfgbits & LIGHTTYPE))
+	{
 		rt->interf->obj_selected = obj;
+		init_selected_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+	}
 	else
+	{
 		rt->interf->obj_selected = NULL;
+	}
 }
+*/
