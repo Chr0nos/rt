@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/24 18:57:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 19:48:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,17 @@ char			*search_str_type(int type);
 void			rt_puttype(int type, const int fd);
 t_type			rt_gettype(const char *str);
 
+/*
+** events
+*/
+
 int				getkeybit(const int keycode);
 int				keydown(int keycode, t_rt *rt);
 int				keyrlz(int keycode, t_rt *rt);
 int				mouseclick(SDL_Event *event, t_rt *rt);
 int				sdl_event(SDL_Event *event, t_rt *rt);
 int				rt_event_resize(SDL_Event *event, t_rt *rt);
+int				toggle_key(int keycode, t_rt *rt);
 
 void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);

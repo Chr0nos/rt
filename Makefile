@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/24 18:56:06 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/24 19:49:26 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o mesh.o
 
 EVENTDIR=events
-EVENT=mouse.o keyboard.o keybit.o events.o resize.o
+EVENT=mouse.o keyboard.o keybit.o events.o resize.o toggle.o
 
 OBJECTS_DIR=objects
 OBJECTS=obj_child.o obj_nparent.o obj_init.o obj_rotate.o obj_byid.o \

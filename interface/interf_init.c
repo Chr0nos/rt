@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   interf_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/17 10:40:34 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/24 20:03:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "draw.h"
 
-static void init_ttf(void)
+static void			init_ttf(t_rt *rt)
 {
 	if (TTF_Init() == -1)
 	{
 		ft_printf("Erreur initialisation TTF_Init : %s\n", TTF_GetError());
-		exit(EXIT_FAILURE);
+		rt_quit(rt, EXIT_FAILURE);
 	}
 	else
 		ft_putstr("TTF_Init : okay.\n");
 }
 
-static void init_champs_txt(char *champs_txt[NB_CHAMPS][LARGER_SIZE])
+static void			init_champs_txt(char *champs_txt[NB_CHAMPS][LARGER_SIZE])
 {
 	*champs_txt[I_SCALE] = ft_strdup("-100  -10  -1  +1  +10 +100");
 	*champs_txt[I_VIDE1] = ft_strdup("");
@@ -56,7 +56,7 @@ static void init_champs_txt(char *champs_txt[NB_CHAMPS][LARGER_SIZE])
 	*champs_txt[I_END] = NULL;
 }
 
-static void init_font(t_interf *interf)
+static void			init_font(t_interf *interf)
 {
 	define_color(&interf->color_classic, 255, 255, 255);
 	define_color(&interf->color_selected, 210, 255, 50);
@@ -66,17 +66,18 @@ static void init_font(t_interf *interf)
 	interf->police_selected = define_police(interf->police_selected,
 		"interface/font/pointfree.ttf", interf->font_size, 0);
 }
+
 /*
-static	void	init_button(t_draw	*win)
-{
-	win->win = NULL;
-	win->screen = NULL;
-	win->geometry = (t_v2i){275, 768};
-	draw_init(win, win->geometry, "interface");
-}
+** static	void	init_button(t_draw	*win)
+** {
+**	win->win = NULL;
+**	win->screen = NULL;
+**	win->geometry = (t_v2i){275, 768};
+**	draw_init(win, win->geometry, "interface");
+** }
 */
 
-void init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+void				init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
 	int	i;
 
@@ -85,9 +86,10 @@ void init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	{
 		if (i == I_ID)
 			*champs_obj[I_ID] = ft_strdup("no object");
-		else if (i != I_VIDE1 && i != I_VIDE2 && i != I_VIDE3
-			&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
-			&& i != I_VIDE8 && i != I_ENTER && i != I_SCALE)
+		else if ((i != I_VIDE1) && (i != I_VIDE2) && (i != I_VIDE3)
+			&& (i != I_VIDE4) && (i != I_VIDE5) && (i != I_VIDE6) &&
+			(i != I_VIDE7) && (i != I_VIDE8) && (i != I_ENTER) &&
+			(i != I_SCALE))
 			*champs_obj[i] = ft_strdup("0");
 		else
 			*champs_obj[i] = ft_strdup("");
@@ -95,9 +97,9 @@ void init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	*champs_obj[I_END] = NULL;
 }
 
-void init_interface(t_rt *rt)
+void				init_interface(t_rt *rt)
 {
-	init_ttf();
+	init_ttf(rt);
 	init_font(rt->interf);
 	define_position(&rt->interf->pos, 0, 0);
 	init_champs_txt(rt->interf->champs_txt);
