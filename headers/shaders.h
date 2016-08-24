@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/12 12:32:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 16:38:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct		s_shaders
 	int				(*vertex_shader)(t_render *r, t_obj *o);
 	t_shader		*shader;
 }					t_shaders;
+
+typedef struct		s_shader_uvfunc
+{
+	t_type			type;
+	t_v2f			(*uv)(const t_render *);
+}					t_shader_uvfunc;
 
 void				*shader_get(t_shader *s, SHT t, SHF f);
 t_shaders			*shaders_init(void);
