@@ -35,4 +35,6 @@ void			rt_configure(t_rt *rt)
 	rt->menu.background = NULL;
 	rt->menu.positions = NULL;
 	rt->rayfunc = &rt_render_ray;
+	rt->interf = (t_interf *)ft_memalloc(sizeof(t_interf));
+	rt->interf->obj_selected = NULL;
 }

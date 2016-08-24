@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/20 16:52:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 17:59:59 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int				display(t_rt *rt)
 	else
 	{
 		rt_render(rt);
-		//interface_display(rt); // nb diana : ajouter si mode interface ou pas ->voir KEY = I.
+		if (rt->interf->mode_activated)
+			interface_display(rt);
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;
 	}

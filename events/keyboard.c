@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/22 18:55:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 17:59:34 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ static int		switch_camera(t_rt *rt)
 		return (0);
 	}
 	rt->root->content = newcam;
+}
+
+static int		togglefinterf(t_rt *rt)
+{
+	if (!rt->interf->mode_activated &&
+		rt->sys.geometry.x > 260 && rt->sys.geometry.y >= 768)
+	{
+		rt->interf->mode_activated = 1;
+		init_interface(rt);
+	}
+	else if (rt->interf->mode_activated)
+	{
+		rt->interf->mode_activated = 0;
+		clean_interface(rt);
+	}
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }
@@ -75,6 +90,8 @@ int				keydown(int keycode, t_rt *rt)
 		camera_save(rt);
 	else if (keycode == SDLK_f)
 		return (togglefs(rt));
+	else if (keycode == SDLK_i && (!(rt->keyboard & MENU)))
+			return (togglefinterf(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))
 		return (togglefilters(rt, keycode));
 	else if ((keycode == SDLK_x) && (!(rt->keyboard & MENU)))

@@ -50,10 +50,24 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	if ((texte = TTF_RenderText_Blended(police, txt, *color)) != NULL)
 		return (texte);
 	else
-		ft_putstr("fail define texte\n");
+	{
+		ft_putstr("fail define texte : [");
+		ft_putstr(txt);
+		ft_putstr("]\n");
+	}
 	return (NULL);
 }
-
 /*
-define_font_size;
+void		define_interf_obj(t_obj *obj, t_rt *rt)
+{
+	if (obj && (obj->cfgbits & VISIBLE || obj->cfgbits & LIGHTTYPE))
+	{
+		rt->interf->obj_selected = obj;
+		init_selected_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+	}
+	else
+	{
+		rt->interf->obj_selected = NULL;
+	}
+}
 */
