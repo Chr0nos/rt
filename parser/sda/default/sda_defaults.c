@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 21:24:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 18:19:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:22:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		sda_set_defaults(t_obj *root, t_rt *rt)
 		(t_sda_default){CONE, &sda_default_cone},
 		(t_sda_default){TRIANGLE, &sda_default_triangle},
 		(t_sda_default){SETTING, &sda_default_setting},
-		(t_sda_default){~0u, &sda_default_shaders},
+		(t_sda_default){SDA_SDISABLE, &sda_default_shaders},
 		(t_sda_default){SDA_TEXTURE, &sda_default_texture},
 		(t_sda_default){SDA_SIZE, &sda_default_size}
 	};
