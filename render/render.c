@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 23:14:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 23:29:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-t_uint				rt_render_ray(t_rt *rt, t_ray *ray)
+unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
 	r = (t_render){
-		ray, rt,
-		NULL,
+		ray, rt, NULL,
 		HUGE_VAL,
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
@@ -86,7 +85,7 @@ t_uint				rt_render_ray(t_rt *rt, t_ray *ray)
 	return (rt_render_opacity(rt, ray, &r));
 }
 
-t_uint				rt_render_bray(t_rt *rt, t_ray *ray)
+unsigned int		rt_render_bray(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
