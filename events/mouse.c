@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/18 20:20:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 20:14:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		menu_update_params(t_rt *rt)
 	rt->keyboard &= FULLSCREEN;
 	rt->keyboard |= FORCE_DISPLAY;
 	rt->settings.cfgbits &= RT_CFGB_INMENU;
-	//textures_cleanup(rt->root, rt->textures);
+	textures_cleanup(rt->root, rt->textures);
 }
 
 static int		menu_click(SDL_Event *event, t_rt *rt)
@@ -53,7 +53,7 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
-static void mouseclick_obj(t_obj *obj, t_rt *rt)
+static void		mouseclick_obj(t_obj *obj, t_rt *rt)
 {
 	if (!obj)
 		return ;
@@ -86,23 +86,12 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
-			if (rt->interf->mode_activated && rt->sys.geometry.y >= 768 &&
-				 	rt->sys.geometry.x > 280 && pos.x < 280 && pos.x > 0)
+			if ((rt->interf->mode_activated) && (rt->sys.geometry.y >= 768) &&
+				(rt->sys.geometry.x > 280) && (pos.x < 280 && pos.x > 0))
 				interf_event(&pos, rt);
 			else
 				mouseclick_obj(rt_obj_atpx(rt, pos), rt);
 		}
-		else if (event->button.button == SDL_BUTTON_RIGHT)
-			rt->keyboard |= ZOOMOUT;
-	}
-	else
-	{
-		if ((event->button.button == SDL_BUTTON_LEFT) &&
-			(rt->keyboard & ZOOMIN))
-			rt->keyboard ^= ZOOMIN;
-		else if ((event->button.button == SDL_BUTTON_RIGHT) &&
-			(rt->keyboard & ZOOMOUT))
-			rt->keyboard ^= ZOOMOUT;
 	}
 	return (0);
 }

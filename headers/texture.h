@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 11:42:16 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/12 17:57:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 20:53:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_list					*textures_used(t_obj *root);
 void					textures_used_display(t_obj *root);
 t_texture				*texture_last(t_texture *lst);
 void					textures_cleanup(t_obj *node, t_texture **lst);
-void					texture_remove(t_texture **tex);
+t_texture				*texture_remove(t_texture *tex, t_texture **root);
 void					textures_display(t_texture *t);
 char					*texture_cleanpath(char *filepath);
 

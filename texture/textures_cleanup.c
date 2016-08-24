@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 12:38:56 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 16:25:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 20:58:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,16 @@ void			textures_cleanup(t_obj *node, t_texture **lst)
 	t_list		*used;
 	t_texture	*x;
 
-	//textures_display(*lst);
 	textures_used_display(node);
 	used = textures_used(node);
 	x = *lst;
 	while (x)
 	{
 		if (!textures_lstsearch(used, x))
-		{
-			texture_remove(&x);
-			if (!x->prev)
-				*lst = x;
-		}
+			x = texture_remove(x, lst);
 		else
 			x = x->next;
 	}
+	ft_putendl("caca");
+	textures_display(*lst);
 }
