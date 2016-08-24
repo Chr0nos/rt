@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/24 16:40:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:16:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 		(t_shader_uvfunc){TRIANGLE, &shader_texture_uv_triangle}
 	};
 
-	if ((!tex) | (!tex->surface->pixels))
+	if ((!tex) | (!tex->surface) | (!tex->surface->pixels))
 		return (0);
 	p = 2;
 	while ((p--) && (!(x[p].type & r->obj_intersect->type)))

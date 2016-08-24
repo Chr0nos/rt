@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/21 15:24:54 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/24 18:19:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SDA_H
 # define SDA_SETUP_TYPES 24
 # define SDA_COUNT_SHADER 6
+# define SDA_COUNT_DEFAULTS 8
 # define FLOATCMP(x, y) ((x > y) || (x < y))
 # include "objects.h"
 # include "rt.h"
@@ -131,6 +132,18 @@ typedef struct			s_sda_obj
 	t_mesh				*mesh;
 }						t_sda_obj;
 
+typedef struct			s_sda_default
+{
+	unsigned int		type_mask;
+	void				(*exec)(t_rt *, t_obj *);
+}						t_sda_default;
+
+typedef struct			s_sda_default_config
+{
+	t_sda_default		def[SDA_COUNT_DEFAULTS];
+	t_rt				*rt;
+}						t_sda_default_config;
+
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
 int						sda_eval(const char *line, t_sda *e,
@@ -210,5 +223,19 @@ int						sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_obj(t_sda *e, t_obj *obj, char **av);
+
+/*
+** sda default functions
+*/
+
+void					sda_default_lights(t_rt *rt, t_obj *obj);
+void					sda_default_camera(t_rt *rt, t_obj *obj);
+void					sda_default_setting(t_rt *rt, t_obj *obj);
+void					sda_default_triangle(t_rt *rt, t_obj *obj);
+void					sda_default_cone(t_rt *rt, t_obj *obj);
+void					sda_default_shaders(t_rt *rt, t_obj *obj);
+void					sda_default_texture(t_rt *rt, t_obj *obj);
+void					sda_default_size(t_rt *rt, t_obj *obj);
+
 
 #endif

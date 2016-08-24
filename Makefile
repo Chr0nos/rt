@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/24 17:21:58 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/24 18:18:59 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,9 @@ SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
 	sda_export_vertex.o sda_export_obj.o
 
 SDA_DEFAULT_DIR=parser/sda/default
-SDA_DEFAULT=sda_defaults.o
+SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
+			sda_default_setting.o sda_default_triangle.o sda_default_cone.o \
+			sda_default_shaders.o sda_default_texture.o sda_default_size.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
