@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:23:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/06 17:47:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 20:10:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ static int		sda_setup_vertex(t_vertex *vertex, char **av, unsigned char n,
 	return (1);
 }
 
-int			sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av)
+int				sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
 	return (sda_setup_vertex(sda_vertex_x(obj, 0), av, 0, obj));
 }
 
-int			sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av)
+int				sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
 	return (sda_setup_vertex(sda_vertex_x(obj, 1), av, 1, obj));
 }
 
-int			sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av)
+int				sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
 	return (sda_setup_vertex(sda_vertex_x(obj, 2), av, 2, obj));
