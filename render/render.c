@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 19:22:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 23:14:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "render.h"
 #include "shaders.h"
 
-static unsigned int		get_background_color(t_render *r)
+static unsigned int	get_background_color(t_render *r)
 {
 	t_texture		*tex;
 	unsigned int	*pixels_texture;
@@ -31,7 +31,7 @@ static unsigned int		get_background_color(t_render *r)
 		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
 }
 
-int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
+int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render	*r;
 	t_v4d		impact;
@@ -58,7 +58,7 @@ int				rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
+t_uint				rt_render_ray(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
@@ -78,10 +78,7 @@ t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
-		//	rt->settings.ambiant_light);
 			0xff000000);
-			//s->color_render = blend_lighten(s->color_render, r->rt->settings.ambiant_light);
-		//rt->settings.ambiant_light);
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
@@ -89,7 +86,7 @@ t_uint			rt_render_ray(t_rt *rt, t_ray *ray)
 	return (rt_render_opacity(rt, ray, &r));
 }
 
-t_uint			rt_render_bray(t_rt *rt, t_ray *ray)
+t_uint				rt_render_bray(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
@@ -112,7 +109,7 @@ t_uint			rt_render_bray(t_rt *rt, t_ray *ray)
 	return (rt_render_opacity(rt, ray, &r));
 }
 
-void			rt_render(t_rt *rt)
+void				rt_render(t_rt *rt)
 {
 	if ((rt->settings.mode & MODE) == ALTERNATIVEMODE)
 		rt_init_alterate_rendermode(rt, &rt_rays);
