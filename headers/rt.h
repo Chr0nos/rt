@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/16 00:26:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:57:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,23 @@ typedef struct	s_rtcfg
 	t_texture		*skybox;
 }				t_rtcfg;
 
-
-typedef struct s_interface t_interf;
+typedef struct s_interface	t_interf;
 
 typedef struct	s_rt
 {
 	t_draw			sys;
-	t_obj				*root;
+	t_obj			*root;
 	t_rtree			tree;
-	int					keyboard;
-	int					mouse;
+	int				keyboard;
+	int				mouse;
 	t_rtcfg			settings;
-	struct s_rt	*rts;
+	struct s_rt		*rts;
 	size_t			rts_size;
 	t_menu			menu;
 	t_texture		**textures;
-	t_interf	*interf;
+	t_interf		*interf;
 	t_uint			(*rayfunc)(struct s_rt *rt, t_ray *ray);
-}							t_rt;
+}				t_rt;
 
 void			rt_putbits(unsigned int bits);
 void			rt_configure(t_rt *rt);
@@ -124,6 +123,7 @@ void			update_cube(t_box *a, const t_box *b);
 void			rt_update_camera(t_v2i geometry, t_camera *cam);
 int				camera_reset(t_rt *rt);
 void			camera_save(t_rt *rt);
+int				camera_switch(t_rt *rt);
 
 void			rt_box_update(t_obj *obj);
 void			rt_bounds_update(t_obj *node);

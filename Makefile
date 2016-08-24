@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/24 18:18:59 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/24 18:56:06 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o blend.o putbits.o parser/parser.o check_camera.o \
-	rt_quit.o export.o signal.o uv.o
+	rt_quit.o export.o signal.o uv.o camera_switch.o
 
 TEXTURE_DIR=texture
 TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
@@ -118,7 +118,7 @@ ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface
-INTER= interf_init.o interf_display.o interf_define.o interf_clean.o \
+INTER=interf_init.o interf_display.o interf_define.o interf_clean.o \
 		interf_data_selected_obj.o interf_event.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 19:12:58 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/19 22:45:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:50:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int					yolo_setup_cone(t_obj *obj, size_t ac, char **av)
 		(float)(obj->trans.w.x + bsize.x),
 		(float)(obj->trans.w.y - size), (float)(obj->trans.w.y),
 		(float)(obj->trans.w.z - bsize.y), (float)(obj->trans.w.z + bsize.y)};
+	obj->cfgbits |= SDB_ANGLE | SDB_COLOR | SDB_SIZE;
 	return (0);
 }

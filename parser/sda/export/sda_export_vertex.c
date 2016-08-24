@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 16:54:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:21:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:47:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mesh.h"
 #include "libft.h"
 
-static void	sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
+static void		sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
 	const int uv_mask)
 {
 	str[0] = sda_double_short(ft_dtoa(v->pos.x, 6));
@@ -30,7 +30,7 @@ static void	sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
 		str[3] = NULL;
 }
 
-char	*sda_export_vertex0(t_obj *obj, t_sda_export *e)
+char			*sda_export_vertex0(t_obj *obj, t_sda_export *e)
 {
 	t_triangle	*tri;
 	char		*str[6];
@@ -52,7 +52,7 @@ char	*sda_export_vertex0(t_obj *obj, t_sda_export *e)
 	return (result);
 }
 
-char	*sda_export_vertex1(t_obj *obj, t_sda_export *e)
+char			*sda_export_vertex1(t_obj *obj, t_sda_export *e)
 {
 	t_triangle	*tri;
 	char		*str[6];
@@ -74,7 +74,7 @@ char	*sda_export_vertex1(t_obj *obj, t_sda_export *e)
 	return (result);
 }
 
-char	*sda_export_vertex2(t_obj *obj, t_sda_export *e)
+char			*sda_export_vertex2(t_obj *obj, t_sda_export *e)
 {
 	t_triangle	*tri;
 	char		*str[6];

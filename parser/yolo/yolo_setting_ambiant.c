@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 15:54:59 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/13 13:29:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:48:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ int			yolo_setting_ambiant(char **parms, size_t size, t_rtcfg *rset)
 	c = (unsigned char)((float)0xff *
 		geo_clamp((float)ft_atod(parms[1]), 0.0f, 1.0f));
 	rset->ambiant_light = (unsigned int)(c | (c << 8) | (c << 16));
-	//rset->ambiant_light = fmin(1.0, ft_atod(parms[1]) / MID_LIGHT_POWER);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 18:14:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/29 22:29:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:51:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)
 		deg2rad(ft_atod(av[CAMERA_OR_Y])),
 		deg2rad(ft_atod(av[CAMERA_OR_Z])),
 		1.0});
+	obj->cfgbits |= SDB_FOV | SDB_ROT;
 	yolo_camera_save(obj);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 17:59:34 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/24 18:58:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,6 @@ static int		togglefilters(t_rt *rt, int keycode)
 	return (0);
 }
 
-static int		switch_camera(t_rt *rt)
-{
-	t_obj	*cam;
-	t_obj	*newcam;
-
-	cam = rt->root->content;
-	if (!(newcam = rt_obj_nexttype(rt->root, cam, CAMERA)))
-		newcam = rt_obj_nexttype(rt->root, NULL, CAMERA);
-	if ((newcam == cam) || (!newcam))
-	{
-		ft_putendl("no more camera");
-		return (0);
-	}
-	rt->root->content = newcam;
-}
-
 static int		togglefinterf(t_rt *rt)
 {
 	if (!rt->interf->mode_activated &&
@@ -91,7 +75,7 @@ int				keydown(int keycode, t_rt *rt)
 	else if (keycode == SDLK_f)
 		return (togglefs(rt));
 	else if (keycode == SDLK_i && (!(rt->keyboard & MENU)))
-			return (togglefinterf(rt));
+		return (togglefinterf(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))
 		return (togglefilters(rt, keycode));
 	else if ((keycode == SDLK_x) && (!(rt->keyboard & MENU)))
@@ -103,7 +87,7 @@ int				keydown(int keycode, t_rt *rt)
 	else if (keycode == SDLK_l)
 		rt_debug(rt->root, 0);
 	else if (keycode == SDLK_m)
-		return (switch_camera(rt));
+		return (camera_switch(rt));
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 14:33:16 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 17:39:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:48:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int		sda_setup_texture_perlin(t_sda *e, t_obj *obj, char **av)
 {
 	(void)av;
-
 	rt_obj_set_texture(obj, texture_perlin(e->rt->textures,
 		(t_v2i){ft_atoi(av[0]), ft_atoi(av[1])}));
 	return (1);

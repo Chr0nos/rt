@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 11:06:08 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/24 18:52:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define MINFOV 5.0
 # define MAXFOV 180.0
 # include "rt.h"
+# include "sda.h"
 
 typedef struct		s_parser_cfg
 {

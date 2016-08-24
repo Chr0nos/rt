@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 11:04:14 by dboudy            #+#    #+#             */
-/*   Updated: 2016/07/13 17:59:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:51:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int					yolo_setup_cone_inf(t_obj *obj, size_t ac, char **av)
 		deg2rad(ft_atod(av[CYL_OR_Y])),
 		deg2rad(ft_atod(av[CYL_OR_Z])),
 		1.0});
+	obj->cfgbits |= SDB_COLOR | SDB_SIZE | SDB_ROT;
 	return (0);
 }

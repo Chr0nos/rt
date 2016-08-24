@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/18 13:31:13 by qloubier          #+#    #+#             */
-/*   Updated: 2016/06/19 22:49:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/24 18:50:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int					yolo_setup_plight(t_obj *obj, size_t ac, char **av)
 	}
 	ft_strtoupper(av[PLIGHT_COLOR]);
 	((t_plight *)obj->content)->color = yolo_setup_color(av[PLIGHT_COLOR]);
+	obj->cfgbits |= SDB_COLOR | SDB_SIZE;
 	return (0);
 }
