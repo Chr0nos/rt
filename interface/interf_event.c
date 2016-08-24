@@ -13,57 +13,72 @@
 #include "interface.h"
 #include "keyboard.h"
 
-static int	change_interf_scale(int x)
+static int	change_scale(int x)
 {
-	if (x < 42)
+	if (x < 46)
 		return (-100);
-	else if (x < 84)
+	else if (x < 92)
 		return (-10);
-	else if (x < 126)
+	else if (x < 138)
 		return (-1);
-	else if (x < 168)
+	else if (x < 184)
 		return (1);
-	else if (x < 210)
+	else if (x < 230)
 		return (10);
-	else if (x < 252)
+	else if (x < 270)
 		return (100);
 	else
 		return (0);
 }
 
-static void change_one_champs_obj(int scale, int y,
+static char	*change_type(char *type)
+{
+	t_type	nb_of_type;
+	t_type	new_type;
+
+	nb_of_type = 16;
+	new_type = rt_gettype(type) + 1;
+	if (new_type > nb_of_type)
+		new_type = 1;
+	return (search_str_type(new_type));
+}
+
+static void change_one_champs(int scale, int y,
 	char *interf_champs[NB_CHAMPS][LARGER_SIZE])
 {
 	double	tmp;
 	int		index;
 
-	index = (int)(y / 25);
-	ft_putstr("index = ");
-	ft_putnbr(index);
-	ft_putchar('\n');
+	index = (int)(y / 28);
 	tmp = 0.0;
-	if ((index < NB_CHAMPS - 1 && index > I_TEXT) || index > I_TYPE)
+	if ((index < I_END && index > I_TEXT))
 	{
-		ft_putstr("le champs vallait = ");
-		ft_putstr(*interf_champs[index]);
-		ft_putchar('\n');
 		if (index >= I_COL_R && index <= I_ALPHA)
 		{
-			tmp = ft_basetoul(*interf_champs[index], "0123456789ABCDEF");
-			tmp += scale; //a additionner en hexa
+			tmp = ft_atod(*interf_champs[index]);
+			tmp += scale;
+			if (tmp > 255)
+				tmp = 255;
+			else if (tmp < 0)
+				tmp = 0;
 			free (*interf_champs[index]);
-			*interf_champs[index] = ft_dtoa(tmp, 2); // remettre en hexa
+			*interf_champs[index] = ft_dtoa(tmp, 2);
 		}
 		else
 		{
 			tmp = ft_atod(*interf_champs[index]);
-			tmp += scale;
 			free (*interf_champs[index]);
-			*interf_champs[index] = ft_dtoa(tmp, 2);
+			if (index >= I_DIRX && index <= I_DIRZ)
+			{
+				tmp += (scale * 0.01);
+				*interf_champs[index] = ft_dtoa(tmp, 6);
+			}
+			else
+			{
+				tmp += scale;
+				*interf_champs[index] = ft_dtoa(tmp, 2);
+			}
 		}
-		ft_putstr("maintenant il vaut = ");
-		ft_putstr(*interf_champs[index]);
-		ft_putchar('\n');
 	}
 }
 
@@ -71,7 +86,6 @@ static void change_selected_obj(t_rt *rt)
 {
 	static t_uint	root_id = 1;
 
-	ft_putstr("recherche obj next\n");
 	if (rt->interf->obj_selected)
 		rt->interf->obj_selected = rt_obj_byid(rt->root,
 			(t_uint)((int)rt->interf->obj_selected->id + rt->interf->scale));
@@ -81,7 +95,8 @@ static void change_selected_obj(t_rt *rt)
 		if ((rt->interf->obj_selected->next) == NULL)
 			root_id = 1;
 	}
-	init_selected_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+	init_champs_obj(rt->interf->champs_obj);
+	fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
 }
 
 static void change_str_obj(t_interf *champs_obj, int index)
@@ -92,7 +107,6 @@ static void change_str_obj(t_interf *champs_obj, int index)
 (void)champs_obj;
 (void)index;
 	ft_putstr("\033[01;032mPlease enter new name for this object :\n\033[;m]");
-	ft_putstr("\033[01;032mLecture entree standard a implementer\033[;m]"); //tmp
 /* en attente lecture entree standard
 	free(*champs_obj[index])
 	*champs_obj[index] = ft_strdup(str_in);
@@ -102,25 +116,28 @@ static void change_str_obj(t_interf *champs_obj, int index)
 
 int	interf_event(t_v2i *mouse_pos, t_rt *rt)
 {
-	if (mouse_pos->y > 0 && mouse_pos->y < 40)
-	{
-		rt->interf->scale = change_interf_scale(mouse_pos->x);
-		ft_putstr("nouveau scale = ");
-		ft_putnbr(rt->interf->scale);
-		ft_putchar('\n');
-	}
-	else if (mouse_pos->y >= 50 && mouse_pos->y < 75) // CLICK SUR CHAMPS OBJ ID
+	int	size;
+	int pas;
+	int	click;
+
+	size = 28;
+	pas = 8;
+	click = mouse_pos->y;
+	if (click >= I_SCALE * size + pas && click <= I_VIDE1 * size + pas)
+		rt->interf->scale = change_scale(mouse_pos->x);
+	else if (click >= I_ID * size + pas && click< I_VIDE2 * size + pas) // CLICK SUR CHAMPS OBJ ID
 		change_selected_obj(rt);
-	else if (mouse_pos->y >= 100 && mouse_pos->y < 125) // CLICK SUR CHAMPS TYPE
-		change_str_obj(rt->interf, 3);
-//		change_type_obj(rt->interf, 1);
-	else if (mouse_pos->y >= 125 && mouse_pos->y < 150) // CLICK SUR CHAMPS NAME
-		change_str_obj(rt->interf, 3);
-	else if (mouse_pos->y >= 150 && mouse_pos->y < 175) // CLICK SUR CHAMPS TEXTURE
-		change_str_obj(rt->interf, 4);
-	else if (mouse_pos->y >= 200 && mouse_pos->y < 675) // CLICK SUR CHAMPS
-		change_one_champs_obj(rt->interf->scale, mouse_pos->y - 50, rt->interf->champs_obj);
-	else if (mouse_pos->y >= 700 && mouse_pos->y < 750) //  CLICK SUR BUTTON ENTER
+	else if (click >= I_TYPE * size + pas && click < I_NAME * size + pas) // CLICK SUR CHAMPS TYPE
+		change_type(*rt->interf->champs_obj[I_TYPE]);
+	else if (click >= I_NAME * size + pas && click < I_TEXT * size + pas) // CLICK SUR CHAMPS NAME
+		change_str_obj(rt->interf, I_NAME);
+	else if (click >= I_TEXT * size + pas && click < I_VIDE3 * size + pas) // CLICK SUR CHAMPS TEXTURE
+		change_str_obj(rt->interf, I_TEXT);
+	else if (click >= I_POSX * size + pas && click < I_VIDE8 * size + pas) // CLICK SUR CHAMPS
+		change_one_champs(rt->interf->scale, mouse_pos->y - pas, rt->interf->champs_obj);
+	else if (click >= I_ENTER * size + pas && click < I_END * size + pas) //  CLICK SUR BUTTON ENTER
 		change_all_data_obj(rt, rt->interf->champs_obj);
+	rt_bounds_update(rt->root);
+	rt->keyboard |= FORCE_DISPLAY;
 	return (1);
 }

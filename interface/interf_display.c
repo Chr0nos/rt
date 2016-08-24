@@ -44,16 +44,17 @@ static void print_surface(SDL_Surface *tab_surface[NB_CHAMPS],
 {
 	int	i;
 
+	(void)font_size;
 	clamp_rect(pos, screen);
 	i = -1;
-	while (++i < NB_CHAMPS - 1)
+	while (++i != I_END)
 	{
 		if (tab_surface[i] && i != I_VIDE1 && i != I_VIDE2 && i != I_VIDE3
 			&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
 			&& i != I_VIDE8)
 			draw_blitsurface_blend(screen, tab_surface[i],
 				(t_v2i){pos->x, pos->y}, &blend_menu);
-		pos->y += font_size;
+		pos->y += 28;
 		//else
 		//	pos->y += font_size + 3;
 	}
@@ -61,18 +62,12 @@ static void print_surface(SDL_Surface *tab_surface[NB_CHAMPS],
 
 void interface_display(t_rt *rt)
 {
-	/*
-	** affichage partie blanche :
-	*/
-	define_position(&rt->interf->pos, 10, 2);
+	define_position(&rt->interf->pos, 5, 8);
 	print_surface(rt->interf->surface_txt, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
-	/*
-	** affichage partie jaune :
-	*/
 	fill_surfaces(rt->interf->champs_obj, rt->interf->surface_obj,
-		rt->interf->police_classic, &rt->interf->color_selected);
-	define_position(&rt->interf->pos, 130, 2);
+		rt->interf->police_selected, &rt->interf->color_selected);
+	define_position(&rt->interf->pos, 150, 8);
 	print_surface(rt->interf->surface_obj, rt->sys.screen,
 		&rt->interf->pos, rt->interf->font_size);
 	free_surfaces(rt->interf->surface_obj);

@@ -50,7 +50,11 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	if ((texte = TTF_RenderText_Blended(police, txt, *color)) != NULL)
 		return (texte);
 	else
-		ft_putstr("fail define texte\n");
+	{
+		ft_putstr("fail define texte : [");
+		ft_putstr(txt);
+		ft_putstr("]\n");
+	}
 	return (NULL);
 }
 /*
