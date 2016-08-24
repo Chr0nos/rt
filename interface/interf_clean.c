@@ -12,12 +12,15 @@
 
 #include "interface.h"
 
-
-/*
- ** Le moment venu penser a :
- ** add TTF_CLoseFont(police);
- ** add TTF_Quit;
-*/
+void clean_interface(t_rt *rt)
+{
+	free_champs(rt->interf->champs_obj);
+	free_surfaces(rt->interf->surface_txt);
+	TTF_CloseFont(rt->interf->police_classic);
+	TTF_CloseFont(rt->interf->police_selected);
+	TTF_Quit();
+	ft_putstr("TTF_quit ...\n");
+}
 
 //ft_free_tab((void**)(unsigned long)champs)
 //penser a metre un NULL a la fin de champs
@@ -27,8 +30,8 @@ void free_champs(char *champs[NB_CHAMPS][LARGER_SIZE])
 	int		i;
 
 	i = -1;
-	while (++i < NB_CHAMPS)
-		free (*(champs[i]));
+	while (++i != I_END)
+		free (*champs[i]);
 }
 
 void free_surfaces(SDL_Surface *surface[NB_CHAMPS])
@@ -36,6 +39,6 @@ void free_surfaces(SDL_Surface *surface[NB_CHAMPS])
 	int		i;
 
 	i = -1;
-	while (++i < NB_CHAMPS)
+	while (++i != I_END)
 		free (surface[i]);
 }

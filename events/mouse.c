@@ -53,7 +53,7 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
-static void		mouseclick_obj(t_obj *obj, t_rt *rt)
+static void mouseclick_obj(t_obj *obj, t_rt *rt)
 {
 	if (!obj)
 		return ;
@@ -66,6 +66,12 @@ static void		mouseclick_obj(t_obj *obj, t_rt *rt)
 		((t_cube*)obj->content)->color = 0xff;
 	else
 		((t_cube*)obj->content)->color = 0xff0000;
+	rt->interf->obj_selected = rt_obj_byid(rt->root, obj->id);
+	if (rt->interf->mode_activated)
+	{
+		init_champs_obj(rt->interf->champs_obj);
+		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+	}
 	rt->keyboard |= FORCE_DISPLAY;
 }
 
@@ -76,10 +82,16 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 	SDL_GetMouseState(&pos.x, &pos.y);
 	if (rt->keyboard & MENU)
 		return (menu_click(event, rt));
-	if (event->motion.type == SDL_MOUSEBUTTONDOWN)
+	else if (event->motion.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
-			mouseclick_obj(rt_obj_atpx(rt, pos), rt);
+		{
+			if (rt->interf->mode_activated && rt->sys.geometry.y >= 768 &&
+				 	rt->sys.geometry.x > 280 && pos.x < 280 && pos.x > 0)
+				interf_event(&pos, rt);
+			else
+				mouseclick_obj(rt_obj_atpx(rt, pos), rt);
+		}
 		else if (event->button.button == SDL_BUTTON_RIGHT)
 			rt->keyboard |= ZOOMOUT;
 	}

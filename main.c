@@ -92,7 +92,6 @@ int				main(int ac, char **av)
 	t_rt	rt;
 
 	rt_configure(&rt);
-	init_interface(&rt);
 	signal(SIGUSR1, &rt_signal);
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
