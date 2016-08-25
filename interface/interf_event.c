@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 12:00:27 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/25 13:15:49 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*change_type(char *type)
 	return (search_str_type(new_type));
 }
 
-static void change_str_obj(t_interf *interf, int i)
+static void	change_str_obj(t_interf *interf, int i)
 {
 	char	*str_in;
 
@@ -60,10 +60,16 @@ static void change_str_obj(t_interf *interf, int i)
 		interf->obj_selected->cfgbits |= SDB_TEXTURE;
 	free(*(interf->champs_obj[i]));
 	*(interf->champs_obj[i]) = ft_strdup(str_in);
+	ft_putstr("\033[01;032m nous avons enregistre :");
+	ft_putstr(*(interf->champs_obj[i]));
+	ft_putstr("\n\033[;m]");
 	free(str_in);
+	ft_putstr("\033[01;032m et en partant :");
+	ft_putstr(*(interf->champs_obj[i]));
+	ft_putstr("\n\033[;m]");
 }
 
-int	interf_event(t_v2i *mouse_pos, t_rt *rt)
+int			interf_event(t_v2i *mouse_pos, t_rt *rt)
 {
 	int		size;
 	int		click;
@@ -72,7 +78,7 @@ int	interf_event(t_v2i *mouse_pos, t_rt *rt)
 	click = mouse_pos->y;
 	if (click >= I_SCALE * size + 8 && click <= I_VIDE1 * size + 8)
 		rt->interf->scale = change_scale(mouse_pos->x);
-	else if (click >= I_ID * size + 8 && click< I_VIDE2 * size + 8)
+	else if (click >= I_ID * size + 8 && click < I_VIDE2 * size + 8)
 		change_selected_obj(rt);
 	else if (click >= I_TYPE * size + 8 && click < I_NAME * size + 8)
 		change_type(*rt->interf->champs_obj[I_TYPE]);
@@ -81,7 +87,7 @@ int	interf_event(t_v2i *mouse_pos, t_rt *rt)
 	else if (click >= I_TEXT * size + 8 && click < I_VIDE3 * size + 8)
 		change_str_obj(rt->interf, I_TEXT);
 	else if ((click >= I_POSX * size + 8 && click < I_VIDE5 * size + 8)
-		|| (click >= I_REFL * size + 8 && click <= I_SIZE * size + 8))
+		|| (click >= I_REFL * size + 8 && click < I_VIDE8 * size + 8))
 		change_one(rt->interf->scale, click - 8, rt->interf->champs_obj);
 	else if (click >= I_COL_R * size + 8 && click < I_REFL * size + 8)
 		change_color(rt->interf->scale, click - 8, rt->interf->champs_obj);
