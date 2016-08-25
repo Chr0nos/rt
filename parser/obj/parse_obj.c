@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 21:32:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 21:37:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,16 @@ int						parse_obj_f(t_sda_obj *s)
 {
 	t_obj			*t;
 	t_triangle		*c;
-	const char		**arg = (const char **)(size_t)s->av;
-	const int		v[3] = {ft_atoi(ft_strsplit(arg[1], '/')[0]),
-	ft_atoi(ft_strsplit(arg[2], '/')[0]), ft_atoi(ft_strsplit(arg[3], '/')[0])};
+	char			**split[3];
+	int				v[3];
 
+	split[0] = ft_strsplit(s->av[1], '/');
+	split[1] = ft_strsplit(s->av[2], '/');
+	split[2] = ft_strsplit(s->av[3], '/');
+	v[0] = ft_atoi(split[0][0]);
+	v[1] = ft_atoi(split[1][0]);
+	v[2] = ft_atoi(split[2][0]);
+	ft_freesplit_multi(split, 3);
 	IFRET__(!(t = rt_factory_alloc(TRIANGLE, s->parent)), -3);
 	c = t->content;
 	c->v1.pos = s->v[obj_max(v[0], (uint)s->size_v) - 1];
@@ -119,7 +125,7 @@ int						parse_obj(t_obj *obj, const char *filepath)
 		}
 		else if (ret != 0)
 		{
-			ft_free_tab(s.av, (size_t)s.ac);
+			ft_freesplit(s.av);
 			free(s.av);
 		}
 		free(line);
