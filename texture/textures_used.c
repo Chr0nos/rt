@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 11:16:11 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 15:38:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 06:20:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		textures_used_display_foreach(void *content)
 
 	tex = content;
 	if (tex->filepath)
-		ft_printf("texture in use: %s\n", tex->filepath);
+		ft_printf("#texture in use: %s\n", tex->filepath);
 }
 
 void			textures_used_display(t_obj *root)

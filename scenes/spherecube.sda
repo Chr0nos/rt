@@ -17,14 +17,11 @@ CUBE
 		SPHERE
 			size: 1.3
 			pos: 0 0 0
-			color: #8c6ed1
 			texture: ./textures/earthhd.jpg
 		SPHERE
 			size: 1
 			pos: 10 10 10
 			color: #ff0000
-
-
 EMPTY
 	PLAN
 		pos: 0 -1.5 0

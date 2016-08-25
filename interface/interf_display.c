@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 05:07:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 06:05:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 
 static void	clamp_rect(SDL_Rect *pos, SDL_Surface *screen)
 {
-	(void)pos;
-	(void)screen;
+	if (screen->w < pos->w)
+		pos->w = screen->w;
+	if (screen->h < pos->h)
+		pos->h = screen->h;
 }
 
 static void print_surface(SDL_Surface *tab_surface[NB_CHAMPS],

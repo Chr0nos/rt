@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 23:02:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 06:22:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_obj	*rt_parser(const char *filepath, t_rt *rt)
 {
 	const char	*end = ft_strrchr((char*)(unsigned long)filepath, '.');
 
-	ft_printf("trying to open %s\n", filepath);
+	ft_printf("#trying to open %s\n", filepath);
 	if (!end)
 		return (NULL);
 	else if (!ft_strcmp(end, ".yolo"))
@@ -56,7 +56,7 @@ t_obj	*rt_parser(const char *filepath, t_rt *rt)
 	}
 	IFRET__(!ft_strcmp(end, ".sda"), sda_parse(filepath, rt));
 	IFRET__(!ft_strcmp(end, ".obj"), rt_parser_obj(filepath, rt));
-	ft_putstr_fd("unknow file type: ", 2);
+	ft_putstr_fd("#unknow file type: ", 2);
 	ft_putendl_fd(end, 2);
 	return (NULL);
 }

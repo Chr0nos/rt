@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 18:13:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 06:21:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_texture			*texture_search(t_texture *tex,
 	{
 		if (!ft_strcmp(tex->filepath, real_path))
 		{
-			ft_printf("skipping load of %s\n", real_path);
+			ft_printf("#skipping load of %s\n", real_path);
 			free(real_path);
 			return (tex);
 		}
