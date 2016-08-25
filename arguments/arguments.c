@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 13:56:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 01:14:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:25:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			arg_parse(t_rt *rt, int ac, char **av)
 	{
 		index = arg_parse_option(arg_list, ARG_NUM, *av);
 		if (index < 0)
-			return (arg_parse_error("error: unknow option", 2), 2);
+			return (arg_parse_error("error: unknow option", 2));
 		ac--;
 		av++;
 		if (ac < arg_list[index].params_mins)

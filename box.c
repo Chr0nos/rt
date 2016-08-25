@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/17 21:21:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:32:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,16 @@ static void		rt_box_update_triangle(t_obj *obj)
 	}
 }
 
+static void		rt_box_update_cone(t_obj *obj, const t_v4f *p)
+{
+	t_v4f	r;
+
+	r.x = (float)(((t_cone *)(obj->content))->angle.w);
+	r.y = ((t_cone *)(obj->content))->size;
+	obj->hitbox = (t_box){p->x - r.x * r.y, p->x + r.x * r.y, p->y - r.y,
+		p->y, p->z - r.x * r.y, p->z + r.x * r.y};
+}
+
 void			rt_box_update(t_obj *obj)
 {
 	const t_v4f		p = draw_convert_v4d_to_v4f(obj->trans.w);
@@ -115,12 +125,7 @@ void			rt_box_update(t_obj *obj)
 			p.z - r.x, p.z + r.x};
 	}
 	else if (obj->type == CONE)
-	{
-		r.x = (float)(((t_cone *)(obj->content))->angle.w);
-		r.y = ((t_cone *)(obj->content))->size;
-		obj->hitbox = (t_box){p.x - r.x * r.y, p.x + r.x * r.y, p.y - r.y,
-			p.y, p.z - r.x * r.y, p.z + r.x * r.y};
-	}
+		rt_box_update_cone(obj, &p);
 	else if (obj->type == TRIANGLE)
 		rt_box_update_triangle(obj);
 	else

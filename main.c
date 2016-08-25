@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 15:49:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:33:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int				rt_start(t_rt *rt)
 		SDL_Delay(1);
 	if (rt->keyboard & MENU)
 		menu_clean(rt->rts, -1);
-	//draw_quit(&rt->sys);
 	return (0);
 }
 
