@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interf_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/21 18:48:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 05:07:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	const float			pc = (float)alpha / (float)0xff;
 
 	b = (b & 0xffffff) | (alpha << 24);
+	if ((R(b) > 240) && (G(b) > 240) && (B(b) > 240) &&
+		(R(a) > 240) && (G(a) > 240) && (B(a) > 240))
+	{
+		b = blend_darken(b, 0x606060);
+		return (draw_color_lerp(b, a, pc - 0.3f));
+	}
 	return (draw_color_lerp(b, a, pc));
 }
 
