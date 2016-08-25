@@ -6,16 +6,13 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:01:36 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/19 15:01:40 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/25 11:48:14 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "sda.h"
 
-/*
-** fontion pour definir l'objet selecteionne a ajouter
-*/
 static void	fill_champs_vide(char *champs[NB_CHAMPS][LARGER_SIZE])
 {
 	*champs[I_SCALE] = ft_strdup(" ");
@@ -30,8 +27,9 @@ static void	fill_champs_vide(char *champs[NB_CHAMPS][LARGER_SIZE])
 	*champs[I_ENTER] = ft_strdup(" ");
 	*champs[I_END] = NULL;
 }
+
 void fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
-	SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
+		SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
 {
 	int	i;
 
@@ -39,32 +37,32 @@ void fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
 	while (++i != I_END)
 	{
 		if (i != I_VIDE1 && i != I_VIDE2 && i != I_VIDE3
-			&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
-			&& i != I_VIDE8)
+				&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
+				&& i != I_VIDE8)
 			surface[i] = define_texte(police, *champs[i], color);
 	}
 	surface[I_END] = NULL;
 }
 
 /*
-static int	clamp(int x)
-{
-	if (x < 0)
-		return (0);
-	return ((x > 0xff) ? 0xff : x);
-}
+   static int	clamp(int x)
+   {
+   if (x < 0)
+   return (0);
+   return ((x > 0xff) ? 0xff : x);
+   }
 
-static void set_color(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
-{
-	unsigned char	vals[4];
+   static void set_color(t_obj *obj, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+   {
+   unsigned char	vals[4];
 
-	vals[0] = (unsigned char)clamp(ft_atoi(*champs_obj[I_ALPHA]));
-	vals[1] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_R]));
-	vals[2] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_G]));
-	vals[3] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_B]));
-	((t_cube*)obj->content)->color = *(unsigned int *)(unsigned long)vals;
-}
-*/
+   vals[0] = (unsigned char)clamp(ft_atoi(*champs_obj[I_ALPHA]));
+   vals[1] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_R]));
+   vals[2] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_G]));
+   vals[3] = (unsigned char)clamp(ft_atoi(*champs_obj[I_COL_B]));
+   ((t_cube*)obj->content)->color = *(unsigned int *)(unsigned long)vals;
+   }
+   */
 
 void	change_all_data_obj(t_rt *rt, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
@@ -84,19 +82,19 @@ void	change_all_data_obj(t_rt *rt, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 	//((t_cube*)rt->interf->obj_selected->content)->texture->filepath = ft_strdup("textures/cadeau1.jpg"); // test
 	obj->trans.w = (t_v4d){
 		ft_atod(*champs_obj[I_POSX]),
-		ft_atod(*champs_obj[I_POSY]),
-		ft_atod(*champs_obj[I_POSZ]), 0.0};
+			ft_atod(*champs_obj[I_POSY]),
+			ft_atod(*champs_obj[I_POSZ]), 0.0};
 	rt_obj_rotate(obj, (t_v4d){
-		ft_atod(*champs_obj[I_DIRX]),
-		ft_atod(*champs_obj[I_DIRY]),
-		ft_atod(*champs_obj[I_DIRZ]), 0.0});
+			ft_atod(*champs_obj[I_DIRX]),
+			ft_atod(*champs_obj[I_DIRY]),
+			ft_atod(*champs_obj[I_DIRZ]), 0.0});
 	//sda_setup_color(NULL, rt->interf->obj_selected, &color);
 	((t_cube*)obj->content)->color = (t_uint)(
-			((t_uint)(ft_atoi(*champs_obj[I_COL_B]) & 0x000000ff) |
-			((t_uint)(ft_atoi(*champs_obj[I_COL_G]) << 8) & 0x0000ff00) |
-			((t_uint)(ft_atoi(*champs_obj[I_COL_R]) << 16) & 0x00ff0000) |
-			((t_uint)(ft_atoi(*champs_obj[I_ALPHA]) << 24) & 0xff000000)
-			));
+		((t_uint)(ft_atoi(*champs_obj[I_COL_B]) & 0x000000ff) |
+		 ((t_uint)(ft_atoi(*champs_obj[I_COL_G]) << 8) & 0x0000ff00) |
+		 ((t_uint)(ft_atoi(*champs_obj[I_COL_R]) << 16) & 0x00ff0000) |
+		 ((t_uint)(ft_atoi(*champs_obj[I_ALPHA]) << 24) & 0xff000000)
+		));
 	((t_cube*)obj->content)->reflect = ((unsigned char)ft_atoi(*champs_obj[I_REFL]));
 	obj->cfgbits |= SDB_REFRACT | SDB_REFLECT | SDB_SIZE;
 	obj->refractive_index = ft_atod(*champs_obj[I_REFR]);
@@ -105,21 +103,21 @@ void	change_all_data_obj(t_rt *rt, char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 }
 
 static void fill_color_selected_obj(t_obj *obj,
-	char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+		char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
-		t_rgb color;
-		t_uint alpha;
-		t_uint tmp;
+	t_rgb color;
+	t_uint alpha;
+	t_uint tmp;
 
-		tmp = ((t_cube*)obj->content)->color;
-		color.b = tmp & 0xff;
-		color.g = tmp >> 8 & 0xff;
-		color.r = tmp >> 16 & 0xff;
-		alpha = tmp >> 24 & 0xff;
-		*champs_obj[I_COL_R] = ft_itoa((int)color.r);
-		*champs_obj[I_COL_G] = ft_itoa((int)color.g);
-		*champs_obj[I_COL_B] = ft_itoa((int)color.b);
-		*champs_obj[I_ALPHA] = ft_itoa((int)alpha);
+	tmp = ((t_cube*)obj->content)->color;
+	color.b = tmp & 0xff;
+	color.g = tmp >> 8 & 0xff;
+	color.r = tmp >> 16 & 0xff;
+	alpha = tmp >> 24 & 0xff;
+	*champs_obj[I_COL_R] = ft_itoa((int)color.r);
+	*champs_obj[I_COL_G] = ft_itoa((int)color.g);
+	*champs_obj[I_COL_B] = ft_itoa((int)color.b);
+	*champs_obj[I_ALPHA] = ft_itoa((int)alpha);
 }
 
 void fill_champs_obj(t_obj *obj,
