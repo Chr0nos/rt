@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 21:37:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 23:30:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void				parse_obj_f_setuv(t_obj *t, t_sda_obj *s, t_triangle *c)
 	split[0] = ft_strsplit(s->av[1], '/');
 	split[1] = ft_strsplit(s->av[2], '/');
 	split[2] = ft_strsplit(s->av[3], '/');
+	if (parse_obj_checksplit(split, 2) < 0)
+		return ;
 	if ((split[0][1]) && (split[1][1]) && (split[2][1]))
 	{
 		c->v1.uv = s->uv[obj_max(ft_atoi(split[0][1]), (uint)s->size_uv) - 1];
@@ -44,6 +46,8 @@ static void				parse_obj_f_normal(t_sda_obj *s, t_triangle *c)
 	split[0] = ft_strsplit(s->av[1], '/');
 	split[1] = ft_strsplit(s->av[2], '/');
 	split[2] = ft_strsplit(s->av[3], '/');
+	if (parse_obj_checksplit(split, 3) < 0)
+		return ;
 	if ((split[0][2]) && (split[1][2]) && (split[2][2]))
 	{
 		c->v1.normal = s->n[obj_max(ft_atoi(split[0][2]), (uint)s->size_n) - 1];
@@ -67,6 +71,8 @@ int						parse_obj_f(t_sda_obj *s)
 	split[0] = ft_strsplit(s->av[1], '/');
 	split[1] = ft_strsplit(s->av[2], '/');
 	split[2] = ft_strsplit(s->av[3], '/');
+	if (parse_obj_checksplit(split, 1) < 0)
+		return (-1);
 	v[0] = ft_atoi(split[0][0]);
 	v[1] = ft_atoi(split[1][0]);
 	v[2] = ft_atoi(split[2][0]);

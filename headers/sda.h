@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 21:30:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 23:24:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,5 +252,6 @@ int						parse_obj_f(t_sda_obj *s);
 unsigned int			obj_max(int x, const unsigned int max);
 void					parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
 	t_triangle *c);
+int						parse_obj_checksplit(char ***split, int min);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/25 21:31:12 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/25 23:25:22 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
 
 PARSE_OBJ_DIR=parser/obj
 PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
-		parser_obj_n.o parser_obj_max.o parser_obj_cfgbits.o
+		parser_obj_n.o parser_obj_max.o parser_obj_cfgbits.o \
+		parser_obj_checksplit.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
