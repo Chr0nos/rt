@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 20:14:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 04:38:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,16 @@ static void		mouseclick_obj(t_obj *obj, t_rt *rt)
 		return ;
 	if (obj->cfgbits & SDB_TEXTURE)
 	{
-		draw_perlin_alpha(rt_obj_get_texture(obj)->surface,
-			(t_v2f){0.1f, 0.1f});
+		// draw_perlin_alpha(rt_obj_get_texture(obj)->surface,
+		// 	(t_v2f){0.1f, 0.1f});
 	}
+	else if (obj->cfgbits & SDB_NORMAL)
+		;
 	else if (((t_cube*)obj->content)->color == 0xff0000)
 		((t_cube*)obj->content)->color = 0xff;
 	else
 		((t_cube*)obj->content)->color = 0xff0000;
-	rt->interf->obj_selected = rt_obj_byid(rt->root, obj->id);
+	rt->interf->obj_selected = obj;
 	if (rt->interf->mode_activated)
 	{
 		init_champs_obj(rt->interf->champs_obj);

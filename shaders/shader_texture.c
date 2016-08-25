@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/24 18:29:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 04:15:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "render.h"
 #include "shaders.h"
 #include "texture.h"
-#include "libft.h"
 #include "mesh.h"
 #include "sda.h"
 

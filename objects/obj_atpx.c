@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:50:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 01:39:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 04:36:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,27 @@
 #include "sda.h"
 
 /*
-** for textured objects we need to compute the position of the texture etc
-** using the shaders system, so for this we need to compute lights
-** note: it's done in only one ray
+** for textured objects we need to compute the position of the texture
+** for this we directly use the shader system withous using the light system
+** in case of the texture shader is disabled on the objects
+** the raw color of the object will be unsed to retrive the alpha
+** if the alpha is == to 0xff then the item will NOT be selected and considered
+** as invisible
 */
 
-static void		obj_atpx_real_light(t_rt *rt, t_render *r)
+static void		obj_atpx_texture(t_render *r)
 {
-	r->normal = r->obj_intersect->normal(r->obj_intersect, &(r->intersection));
-	rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, r);
-	r->ray->color = shaders_compute_color(r->obj_intersect->shader,
-		0xff000000);
+	t_shader	*s;
+
+	s = sda_setup_getshader_addr(r->obj_intersect->shader->shader,
+		(void*)(unsigned long)&shader_texture);
+	if ((!s) || (!s->enabled))
+	{
+		r->ray->color = ((t_cube*)r->obj_intersect->content)->color;
+		return ;
+	}
+	s->exec(s, r, NULL);
+	r->ray->color = s->blend(s->color_render, s->color_base);
 }
 
 static t_obj	*obj_atpx_real(t_rt *rt, t_ray *ray)
@@ -47,12 +57,12 @@ static t_obj	*obj_atpx_real(t_rt *rt, t_ray *ray)
 	if (!(r.obj_intersect->cfgbits & SDB_TEXTURE))
 		ray->color = ((t_cube*)r.obj_intersect->content)->color;
 	else
-		obj_atpx_real_light(rt, &r);
-	if ((ray->color & 0xff000000) == 0xff000000)
+		obj_atpx_texture(&r);
+	ft_printf("alpha: %d -- %d\n", (int)A(ray->color), (int)ray->color);
+	if (A(ray->color) == 0xff)
 	{
 		ray->start = geo_addv4(r.intersection, geo_multv4(ray->dir,
 			geo_dtov4d(0.01)));
-		ray->lenght = r.lowest_lenght;
 		return (obj_atpx_real(rt, ray));
 	}
 	return (r.obj_intersect);
@@ -82,5 +92,5 @@ t_obj			*rt_obj_atpx(t_rt *rt, t_v2i px)
 	rt->tree = rt_render_tree(rt->root);
 	obj = obj_atpx_real(rt, &ray);
 	free(rt->tree.bounded);
-	return (obj);
+	return ((obj) ? rt_obj_byid(rt->root, obj->id) : NULL);
 }

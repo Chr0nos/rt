@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:44:55 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/23 15:41:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 04:18:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ unsigned int		to_rgb(unsigned int a, unsigned int r,
 
 unsigned int		blend_normal(unsigned int a, unsigned int b)
 {
-	(void)b;
 	if (!A(a))
 		return (a);
 	else

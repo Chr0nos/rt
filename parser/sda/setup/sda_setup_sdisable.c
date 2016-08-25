@@ -6,13 +6,24 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 15:17:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 15:39:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 04:24:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "shaders.h"
 #include "libft.h"
+
+void	*sda_setup_getshader_addr(t_shader *s, void *item)
+{
+	while (s)
+	{
+		if (item == (void*)(unsigned long)s->exec)
+			return (s);
+		s = s->next;
+	}
+	return (NULL);
+}
 
 int			sda_setup_sdisable_real(t_shader *shader, void *target)
 {
