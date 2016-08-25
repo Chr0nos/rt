@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 04:15:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 15:46:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				shader_texture(t_shader *s, t_render *r, t_obj *light)
 {
 	(void)light;
 	(void)s;
-	if (rt_obj_get_texture(r->obj_intersect))
+	if (r->obj_intersect->cfgbits & SDB_TEXTURE)
 		s->color_render = shader_color_texture_intersection(r);
 	else
 		s->color_render = ((t_cube*)(r->obj_intersect->content))->color;
