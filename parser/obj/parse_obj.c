@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 23:30:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 23:36:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ int						parse_obj_f(t_sda_obj *s)
 	parse_obj_f_setuv(t, s, c);
 	parse_obj_f_normal(s, c);
 	parse_obj_setcfgbits(t, s, c);
-	c->color = s->mesh->color;
-	c->reflect = s->mesh->reflect;
 	rt_box_update(t);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 21:30:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 21:30:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 23:35:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,6 @@ void				parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
 		t->cfgbits |= SDB_TEXTURE;
 	if ((c->normal = s->mesh->normal))
 		t->cfgbits |= SDB_NORMAL;
+	c->color = s->mesh->color;
+	c->reflect = s->mesh->reflect;
 }

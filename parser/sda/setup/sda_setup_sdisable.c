@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 15:17:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 04:24:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 23:36:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "shaders.h"
 #include "libft.h"
 
-void	*sda_setup_getshader_addr(t_shader *s, void *item)
+void		*sda_setup_getshader_addr(t_shader *s, void *item)
 {
 	while (s)
 	{
