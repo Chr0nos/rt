@@ -1,0 +1,12 @@
+CAMERA
+	pos: 0 3.528864 -4.173942
+	rot: 17.188733 0 0
+PLAN
+	color: #FFFFFF
+POINTLIGHT
+	color: #FFFFFF
+	pos: 0 5 0
+	intensity: 50
+SPHERE
+	color: #55FF0000
+	pos: 0 3 0
