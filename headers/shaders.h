@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/24 16:38:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 08:48:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define SHADERS_H
 # include "rt.h"
 # include "render.h"
-# define A(C) ((C & 0xFF000000) >> 24)
-# define R(C) ((C & 0x00FF0000) >> 16)
-# define G(C) ((C & 0x0000FF00) >> 8)
-# define B(C) (C & 0x000000FF)
+# include "blend.h"
 # define SHT t_shatyp
 # define SHF t_shafnc
 
@@ -82,16 +79,7 @@ void				shader_normalmap(t_shader *s, t_render *r, t_obj *light);
 void				shader_reflection(t_shader *s, t_render *r, t_obj *light);
 unsigned int		shader_color_texture_intersection(const t_render *r);
 unsigned int		shader_color_normal_intersection(const t_render *r);
-unsigned int		blend_normal(unsigned int a, unsigned int b);
-unsigned int		blend_add(unsigned int a, unsigned int b);
-unsigned int		blend_sub(unsigned int a, unsigned int b);
-unsigned int		blend_multiply(unsigned int a, unsigned int b);
-unsigned int		blend_lighten(unsigned int a, unsigned int b);
-unsigned int		blend_darken(unsigned int a, unsigned int b);
-unsigned int		blend_overlay(unsigned int a, unsigned int b);
 void				shaders_activate_only(t_shaders *s, unsigned int n);
 void				shaders_activate_all(t_shaders *s);
-unsigned int		to_rgb(unsigned int a, unsigned int r, unsigned int g,
-	unsigned int b);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/24 19:49:26 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/25 08:51:00 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
-	configure.o blend.o putbits.o parser/parser.o check_camera.o \
+	configure.o putbits.o parser/parser.o check_camera.o \
 	rt_quit.o export.o signal.o uv.o camera_switch.o
 
 TEXTURE_DIR=texture
