@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 06:22:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 18:02:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	IFRET__(!(mesh = rt_factory_alloc(MESH, root)), NULL);
 	mesh->cfgbits |= SDB_OBJ;
 	((t_mesh*)mesh->content)->filepath = ft_strdup(filepath);
-	if (add_mesh_from_obj(mesh, filepath) < 0)
+	if (parse_obj(mesh, filepath) < 0)
 	{
 		rt_node_free(root);
 		return (NULL);
@@ -42,7 +42,7 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	return (root);
 }
 
-t_obj	*rt_parser(const char *filepath, t_rt *rt)
+t_obj			*rt_parser(const char *filepath, t_rt *rt)
 {
 	const char	*end = ft_strrchr((char*)(unsigned long)filepath, '.');
 

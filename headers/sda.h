@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 04:25:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 21:30:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,5 +237,20 @@ void					sda_default_cone(t_rt *rt, t_obj *obj);
 void					sda_default_shaders(t_rt *rt, t_obj *obj);
 void					sda_default_texture(t_rt *rt, t_obj *obj);
 void					sda_default_size(t_rt *rt, t_obj *obj);
+
+/*
+** Obj parser, it is in the sda because of his strong implication with the
+** sda configurations bits system
+*/
+
+int						parse_obj(t_obj *obj, const char *filepath);
+int						parse_obj_dispatch(t_sda_obj *s, char *line);
+int						parse_obj_n(t_sda_obj *s);
+int						parse_obj_uv(t_sda_obj *s);
+int						parse_obj_v(t_sda_obj *s);
+int						parse_obj_f(t_sda_obj *s);
+unsigned int			obj_max(int x, const unsigned int max);
+void					parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
+	t_triangle *c);
 
 #endif
