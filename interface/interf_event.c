@@ -6,12 +6,13 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/17 10:40:22 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/25 13:15:49 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "keyboard.h"
+#include "sda.h"
 
 static int	change_scale(int x)
 {
@@ -43,99 +44,54 @@ static char	*change_type(char *type)
 	return (search_str_type(new_type));
 }
 
-static void change_one_champs(int scale, int y,
-	char *interf_champs[NB_CHAMPS][LARGER_SIZE])
+static void	change_str_obj(t_interf *interf, int i)
 {
-	double	tmp;
-	int		index;
+	char	*str_in;
 
-	index = (int)(y / 28);
-	tmp = 0.0;
-	if ((index < I_END && index > I_TEXT))
-	{
-		if (index >= I_COL_R && index <= I_ALPHA)
-		{
-			tmp = ft_atod(*interf_champs[index]);
-			tmp += scale;
-			if (tmp > 255)
-				tmp = 255;
-			else if (tmp < 0)
-				tmp = 0;
-			free (*interf_champs[index]);
-			*interf_champs[index] = ft_dtoa(tmp, 2);
-		}
-		else
-		{
-			tmp = ft_atod(*interf_champs[index]);
-			free (*interf_champs[index]);
-			if (index >= I_DIRX && index <= I_DIRZ)
-			{
-				tmp += (scale * 0.01);
-				*interf_champs[index] = ft_dtoa(tmp, 6);
-			}
-			else
-			{
-				tmp += scale;
-				*interf_champs[index] = ft_dtoa(tmp, 2);
-			}
-		}
-	}
-}
-
-static void change_selected_obj(t_rt *rt)
-{
-	static t_uint	root_id = 1;
-
-	if (rt->interf->obj_selected)
-		rt->interf->obj_selected = rt_obj_byid(rt->root,
-			(t_uint)((int)rt->interf->obj_selected->id + rt->interf->scale));
-	if (!(rt->interf->obj_selected))
-	{
-		rt->interf->obj_selected = rt_obj_byid(rt->root, root_id++);
-		if ((rt->interf->obj_selected->next) == NULL)
-			root_id = 1;
-	}
-	init_champs_obj(rt->interf->champs_obj);
-	fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
-}
-
-static void change_str_obj(t_interf *champs_obj, int index)
-{
-//	char	*str_in;
-
-//	str_in =
-(void)champs_obj;
-(void)index;
-	ft_putstr("\033[01;032mPlease enter new name for this object :\n\033[;m]");
-/* en attente lecture entree standard
-	free(*champs_obj[index])
-	*champs_obj[index] = ft_strdup(str_in);
+	ft_putstr("\033[01;032mPlease enter the new name of this object :\n");
+	ft_putstr("\033[;m]");
+	ft_get_next_line(1, &str_in);
+	ft_putstr("\033[01;032m Vous avez tape :");
+	ft_putstr(str_in);
+	ft_putstr("\n\033[;m]");
+	if (i == I_NAME)
+		interf->obj_selected->cfgbits |= SDB_NAME;
+	else
+		interf->obj_selected->cfgbits |= SDB_TEXTURE;
+	free(*(interf->champs_obj[i]));
+	*(interf->champs_obj[i]) = ft_strdup(str_in);
+	ft_putstr("\033[01;032m nous avons enregistre :");
+	ft_putstr(*(interf->champs_obj[i]));
+	ft_putstr("\n\033[;m]");
 	free(str_in);
-*/
+	ft_putstr("\033[01;032m et en partant :");
+	ft_putstr(*(interf->champs_obj[i]));
+	ft_putstr("\n\033[;m]");
 }
 
-int	interf_event(t_v2i *mouse_pos, t_rt *rt)
+int			interf_event(t_v2i *mouse_pos, t_rt *rt)
 {
-	int	size;
-	int pas;
-	int	click;
+	int		size;
+	int		click;
 
 	size = 28;
-	pas = 8;
 	click = mouse_pos->y;
-	if (click >= I_SCALE * size + pas && click <= I_VIDE1 * size + pas)
+	if (click >= I_SCALE * size + 8 && click <= I_VIDE1 * size + 8)
 		rt->interf->scale = change_scale(mouse_pos->x);
-	else if (click >= I_ID * size + pas && click< I_VIDE2 * size + pas) // CLICK SUR CHAMPS OBJ ID
+	else if (click >= I_ID * size + 8 && click < I_VIDE2 * size + 8)
 		change_selected_obj(rt);
-	else if (click >= I_TYPE * size + pas && click < I_NAME * size + pas) // CLICK SUR CHAMPS TYPE
+	else if (click >= I_TYPE * size + 8 && click < I_NAME * size + 8)
 		change_type(*rt->interf->champs_obj[I_TYPE]);
-	else if (click >= I_NAME * size + pas && click < I_TEXT * size + pas) // CLICK SUR CHAMPS NAME
+	else if (click >= I_NAME * size + 8 && click < I_TEXT * size + 8)
 		change_str_obj(rt->interf, I_NAME);
-	else if (click >= I_TEXT * size + pas && click < I_VIDE3 * size + pas) // CLICK SUR CHAMPS TEXTURE
+	else if (click >= I_TEXT * size + 8 && click < I_VIDE3 * size + 8)
 		change_str_obj(rt->interf, I_TEXT);
-	else if (click >= I_POSX * size + pas && click < I_VIDE8 * size + pas) // CLICK SUR CHAMPS
-		change_one_champs(rt->interf->scale, mouse_pos->y - pas, rt->interf->champs_obj);
-	else if (click >= I_ENTER * size + pas && click < I_END * size + pas) //  CLICK SUR BUTTON ENTER
+	else if ((click >= I_POSX * size + 8 && click < I_VIDE5 * size + 8)
+		|| (click >= I_REFL * size + 8 && click < I_VIDE8 * size + 8))
+		change_one(rt->interf->scale, click - 8, rt->interf->champs_obj);
+	else if (click >= I_COL_R * size + 8 && click < I_REFL * size + 8)
+		change_color(rt->interf->scale, click - 8, rt->interf->champs_obj);
+	else if (click >= I_ENTER * size + 8 && click < I_END * size + 8)
 		change_all_data_obj(rt, rt->interf->champs_obj);
 	rt_bounds_update(rt->root);
 	rt->keyboard |= FORCE_DISPLAY;

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/18 20:08:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/25 15:48:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_texture	*texture_create_set(t_texture *tex, char *filepath,
 	SDL_Surface *std_surface, t_texture **lst)
 {
 	tex->filepath = filepath;
-	ft_printf("loaded texture: %s\n", tex->filepath);
+	ft_printf("#loaded texture: %s\n", tex->filepath);
 	tex->surface = std_surface;
 	tex->next = *lst;
 	tex->prev = NULL;
