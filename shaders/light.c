@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/20 16:59:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 04:12:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 ** latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 */
 
+static t_v4d	rt_specular_pow_intelight(t_obj *light, t_render *r)
+{
+	return ((light->type == SUNLIGHT ?
+		geo_normv4(light->trans.w) :
+		geo_normv4(geo_subv4(light->trans.w, r->intersection))));
+}
+
 void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 {
 	double			latt;
 	double			li;
 	t_v4d			reflect;
-	const t_v4d		intelight = (light->type == SUNLIGHT ?
-		geo_normv4(light->trans.w) :
-		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
+	const t_v4d		intelight = rt_specular_pow_intelight(light, r);
 	const double	dot = 2.0 * geo_dotv4(intelight, r->normal);
 
 	(void)s;
