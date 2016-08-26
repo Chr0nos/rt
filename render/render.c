@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 17:34:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 18:40:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,13 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 	if ((!rn) && (!on))
 		return (OK);
 	r->lowest_lenght = r->ray->lenght;
-	//objet negatif et rayon positif: on affiche pas et on rends le rayon netatif
-	if ((on) && (!rn))
-	{
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
-		r->ray->start = geo_addv4(r->ray->start, geo_multv4(r->ray->dir,
-			geo_dtov4d(0.01)));
-		return (-1);
-	}
-	//objet et rayon netatif: on avance le rayon et on inverse la polaritee du rayon
-	if ((on) && (rn))
+	if (on)
 	{
 		r->ray->flags ^= FLAG_CSG_NEGATIVE;
-		return (OK);
+		if (rn)
+			return (OK);
+		//pour les objets negatifs avec rayon positif
+		//r->ray->start = geo_addv4(r->ray->start, geo_multv4(r->ray->dir, geo_dtov4d(0.01)));
 	}
 	return (-1);
 }
