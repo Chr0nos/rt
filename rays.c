@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:42:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 14:53:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void			rt_rays(t_rt *rt)
 	((t_camera*)cam->content)->raypos = cam->trans.w;
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
+	ray.flags = 0;
 	rt_rays_pixels(rt, &ray, rt->sys.screen->pixels, cam->trans);
 }

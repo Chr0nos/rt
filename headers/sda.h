@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:24:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 15:03:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 24
+# define SDA_SETUP_TYPES 25
 # define SDA_COUNT_SHADER 6
 # define SDA_COUNT_DEFAULTS 8
 # define FLOATCMP(x, y) ((x > y) || (x < y))
@@ -52,7 +52,8 @@ enum					e_sda_cfgbit
 	SDB_VERTEX2_UV = 1 << 25,
 	SDB_OBJ = 1 << 26,
 	SDB_NOEXPORT = 1 << 27,
-	SDB_LIMIT = 1 << 28
+	SDB_LIMIT = 1 << 28,
+	SDB_CSG = 1 << 29
 };
 
 enum					e_sda_setting
@@ -77,7 +78,8 @@ enum					e_sda_setting
 	SDA_HEIGHTMAP = PLAN,
 	SDA_TEX_PERLIN = SDA_TEXTURE,
 	SDA_VERTEX = TRIANGLE,
-	SDA_OBJ = MESH
+	SDA_OBJ = MESH,
+	SDA_CSG = VISIBLE
 };
 
 typedef struct			s_sda_eval
@@ -224,6 +226,7 @@ int						sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_obj(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_csg(t_sda *e, t_obj *obj, char **av);
 
 /*
 ** sda default functions

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 17:58:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/26 15:01:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 struct s_shaders;
 struct s_rt;
 
+enum	e_obj_flags
+{
+	FLAG_CSG_NEGATIVE = 1
+};
+
 typedef struct			s_obj
 {
 	t_type				type;
 	t_uint				id;
 	int					cfgbits;
+	int					flags;
 	t_mattf				trans;
 	t_v4d				rotation;
 	t_box				bounds;

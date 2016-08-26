@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/14 18:51:42 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/26 15:03:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	sda_settings_init_bis(t_sda_cfg *cfg)
 		SDA_VERTEX, 3, SDB_VERTEX2};
 	cfg[23] = (T){"obj:", &sda_setup_obj, &sda_export_obj,
 		SDA_OBJ, 1, SDB_OBJ};
+	cfg[24] = (T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG};
 }
 
 void		sda_settings_init(t_sda_cfg *cfg)
