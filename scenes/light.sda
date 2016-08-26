@@ -5,8 +5,9 @@ PLAN
 	color: #FFFFFF
 POINTLIGHT
 	color: #FFFFFF
-	pos: 0 5 0
+	pos: 5 5 0
 	intensity: 50
 SPHERE
 	color: #55FF0000
+	texture: textures/herbe.jpg
 	pos: 0 3 0
