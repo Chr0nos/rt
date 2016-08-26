@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/25 11:34:01 by dboudy           ###   ########.fr        #
+#    Updated: 2016/08/25 23:25:22 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,11 @@ SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
 			sda_default_setting.o sda_default_triangle.o sda_default_cone.o \
 			sda_default_shaders.o sda_default_texture.o sda_default_size.o
 
+PARSE_OBJ_DIR=parser/obj
+PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
+		parser_obj_n.o parser_obj_max.o parser_obj_cfgbits.o \
+		parser_obj_checksplit.o
+
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o putbits.o parser/parser.o check_camera.o \
@@ -92,7 +97,7 @@ RENDER_DIR=render
 RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
 
 TYPEDIR=type
-TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o mesh.o
+TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o
 
 EVENTDIR=events
 EVENT=mouse.o keyboard.o keybit.o events.o resize.o toggle.o
@@ -136,7 +141,8 @@ ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(INTER:%.o=$(OBJBUILDDIR)/$(INTER_DIR)/%.o) \
 	$(SDA_SETUP:%.o=$(OBJBUILDDIR)/$(SDA_SETUP_DIR)/%.o) \
 	$(SDA_EXPORT:%.o=$(OBJBUILDDIR)/$(SDA_EXPORT_DIR)/%.o) \
-	$(SDA_DEFAULT:%.o=$(OBJBUILDDIR)/$(SDA_DEFAULT_DIR)/%.o)
+	$(SDA_DEFAULT:%.o=$(OBJBUILDDIR)/$(SDA_DEFAULT_DIR)/%.o) \
+	$(PARSE_OBJ:%.o=$(OBJBUILDDIR)/$(PARSE_OBJ_DIR)/%.o)
 
 ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(YOLO:%.o=$(YOLODIR)/%.c) \
@@ -153,7 +159,8 @@ ALLSRC=$(OBJ:%.o=$(OBJBUILDDIR)/%.c) \
 	$(INTER:%.o=$(INTER_DIR)/%.c) \
 	$(SDA_SETUP:%.o=$(SDA_SETUP_DIR)/%.c) \
 	$(SDA_EXPORT:%.o=$(SDA_EXPORT_DIR)/%.c) \
-	$(SDA_DEFAULT:%.o=$(SDA_DEFAULT_DIR)/%.c)
+	$(SDA_DEFAULT:%.o=$(SDA_DEFAULT_DIR)/%.c) \
+	$(PARSE_OBJ:%.o=$(PARSE_OBJ_DIR)/%.c)
 
 ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(YOLODIR) \
@@ -170,7 +177,8 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(INTER_DIR) \
 		$(OBJBUILDDIR)/$(SDA_SETUP_DIR) \
 		$(OBJBUILDDIR)/$(SDA_EXPORT_DIR) \
-		$(OBJBUILDDIR)/$(SDA_DEFAULT_DIR)
+		$(OBJBUILDDIR)/$(SDA_DEFAULT_DIR) \
+		$(OBJBUILDDIR)/$(PARSE_OBJ_DIR)
 
 all: $(NAME)
 

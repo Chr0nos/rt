@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   boxel.h                                            :+:      :+:    :+:   */
+/*   parser_obj_max.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/20 20:30:01 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/26 03:49:53 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/25 21:29:40 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/25 21:29:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BOXEL_H
-# define BOXEL_H
-# include "rt.h"
+#include "sda.h"
 
-typedef enum		e_boxtype
+unsigned int			obj_max(int x, const unsigned int max)
 {
-	VOXEL8_BOX,
-	VOXEL16_BOX,
-	VOXEL32_BOX,
-	VOXEL64_BOX,
-	OCTO_BOX
-}					t_bxty;
-
-typedef struct		s_boxtree
-{
-	t_bxty			type;
-	void			*data;
-}					t_boxtree;
-
-#endif
+	if (x < 1)
+		return (1);
+	return ((unsigned int)x > max) ? max : (unsigned int)x;
+}

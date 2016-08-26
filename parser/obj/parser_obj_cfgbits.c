@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_quit.c                                          :+:      :+:    :+:   */
+/*   parser_obj_cfgbits.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/21 15:01:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:42:38 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/25 21:30:30 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/25 23:35:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "draw.h"
+#include "sda.h"
 
-int		rt_quit(t_rt *rt, int retcode)
+void				parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
+	t_triangle *c)
 {
-	if (rt->settings.cfgbits & RT_CFGB_FREESCREEN)
-	{
-		SDL_FreeSurface(rt->sys.screen);
-		rt->sys.screen = NULL;
-	}
-	if (rt->sys.screen)
-		draw_quit(&rt->sys);
-	textures_free(*rt->textures);
-	rt_node_free(rt->root);
-	free(rt->textures);
-	return (retcode);
+	t->cfgbits |= (SDB_COLOR | SDB_VERTEX0 | SDB_VERTEX1 | SDB_VERTEX2 |
+		SDB_REFLECT);
+	if ((c->texture = s->mesh->texture))
+		t->cfgbits |= SDB_TEXTURE;
+	if ((c->normal = s->mesh->normal))
+		t->cfgbits |= SDB_NORMAL;
+	c->color = s->mesh->color;
+	c->reflect = s->mesh->reflect;
 }

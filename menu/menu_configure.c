@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 17:40:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 04:08:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ static void		*menu_confiture_id(void *userdata)
 	return (d->sys.screen);
 }
 
+static void		menu_configure_rts_setup(t_menu_id **id, t_rt *rt,
+	t_list *files, int p)
+{
+	*id = &rt->menu.id[p];
+	(*id)->id = 0;
+	(*id)->dest = &rt->rts[p];
+	(*id)->src = rt;
+	(*id)->file = (const char *)files->content;
+}
+
 size_t			menu_configure_rts(t_rt *rt, t_list *files)
 {
 	int				p;
@@ -66,13 +76,9 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 	rt->menu.id = malloc(sizeof(t_menu_id) * rt->rts_size);
 	menu_configure_thumbs_size(rt);
 	p = -1;
-	while (files && (++p > -1))
+	while ((files) && (++p > -1))
 	{
-		id = &rt->menu.id[p];
-		id->id = 0;
-		id->dest = &rt->rts[p];
-		id->src = rt;
-		id->file = (const char *)files->content;
+		menu_configure_rts_setup(&id, rt, files, p);
 		if (menu_confiture_id(id) == NULL)
 		{
 			ft_putstr_fd("menu has failed on: ", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   puttype.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 06:15:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:43:02 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/26 00:34:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ char			*search_str_type(int type)
 	p = 17;
 	while ((p--) && (types[p].type != type))
 		;
-	if (p < 0)
-		return (ft_strdup("UNKNOW"));
-	else
-		return (ft_strdup(types[p].str));
+	return ((p < 0) ? ft_strdup("UNKNOW") : ft_strdup(types[p].str));
 }
 
 void			rt_puttype(int type, const int fd)

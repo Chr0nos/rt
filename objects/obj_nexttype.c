@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 18:22:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/22 18:55:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 04:10:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	rt_obj_nexttype_foreach(t_obj *obj, int mode, void *userdata)
 	return (OK);
 }
 
-t_obj	*rt_obj_nexttype(t_obj *node, t_obj *current, unsigned int type)
+t_obj		*rt_obj_nexttype(t_obj *node, t_obj *current, unsigned int type)
 {
 	t_obj_lookup	look;
 

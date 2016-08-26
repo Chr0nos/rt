@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_quit.c                                          :+:      :+:    :+:   */
+/*   parser_obj_n.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/21 15:01:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:42:38 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/25 21:24:12 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/25 21:24:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "draw.h"
+#include "sda.h"
+#include "libft.h"
 
-int		rt_quit(t_rt *rt, int retcode)
+int				parse_obj_n(t_sda_obj *s)
 {
-	if (rt->settings.cfgbits & RT_CFGB_FREESCREEN)
+	if ((s->select_n >= s->size_n) || (!s->n))
 	{
-		SDL_FreeSurface(rt->sys.screen);
-		rt->sys.screen = NULL;
+		s->size_n += 3;
+		s->n = (t_v4d*)ft_realloc(s->n,
+			(unsigned int)(sizeof(t_v4d) * (s->size_n - 3)),
+			(unsigned int)(sizeof(t_v4d) * s->size_n));
 	}
-	if (rt->sys.screen)
-		draw_quit(&rt->sys);
-	textures_free(*rt->textures);
-	rt_node_free(rt->root);
-	free(rt->textures);
-	return (retcode);
+	s->n[s->select_n] = (t_v4d){ft_atod(s->av[1]),
+								ft_atod(s->av[2]),
+								ft_atod(s->av[3]),
+								0.0};
+	s->select_n++;
+	return (1);
 }

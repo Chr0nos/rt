@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 14:21:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:42:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,32 @@ char			rt_rays_pc(const t_v2i *geometry, const t_v2i *px)
 	posy = (float)(px->y);
 	posx = (float)(px->x);
 	return ((char)(
-		((1.0f - (posx / endx)) + ((1.0f - (posy / endy)) / endx)) * 100.0f 
-	));
+		((1.0f - (posx / endx)) + ((1.0f - (posy / endy)) / endx)) * 100.0f));
+}
+
+/*
+** this function flush the image to the screen evrey 100 pixels (width)
+*/
+
+static void		rt_ray_refresh(const t_v2i *px, t_rt *rt)
+{
+	if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px->x % 100)) &&
+		(rt->sys.screen))
+		sdl_flush(rt);
+}
+
+/*
+** preparation of the rt_rays_pixels function
+*/
+
+static void		rt_rays_pixels_init(t_v2i *px, t_rt *rt, t_v4d *rad,
+	t_camera *camp)
+{
+	*px = (t_v2i){0, 0};
+	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
+		rt_signal_singletone((t_v2i*)&rt->sys.geometry, px, 0);
+	px->x = rt->sys.geometry.x;
+	*rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
 }
 
 static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
@@ -38,12 +62,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 	t_v4d			rad;
 	t_camera		*camp;
 
-	px = (t_v2i){0, 0};
-	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
-		rt_signal_singletone((t_v2i*)&rt->sys.geometry, &px, 0);
 	camp = ((t_obj*)rt->root->content)->content;
-	px.x = rt->sys.geometry.x;
-	rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
+	rt_rays_pixels_init(&px, rt, &rad, camp);
 	while (px.x--)
 	{
 		px.y = rt->sys.geometry.y;
@@ -56,9 +76,7 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 			pixels[px.y * rt->sys.geometry.x + px.x] = rt->rayfunc(rt, ray);
 			rad.y -= rad.w;
 		}
-		if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px.x % 100)) &&
-			(rt->sys.screen))
-			sdl_flush(rt);
+		rt_ray_refresh(&px, rt);
 		rad.x -= rad.z;
 	}
 	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))

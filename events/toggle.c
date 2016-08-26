@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 02:30:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:29:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ int				toggle_key(int keycode, t_rt *rt)
 		return (camera_reset(rt));
 	else if (keycode == SDLK_y)
 		camera_save(rt);
-	else if (keycode == SDLK_f)
-		return (togglefs(rt));
-	else if (keycode == SDLK_i && (!(rt->keyboard & MENU)))
+	IFRET__(keycode == SDLK_f, togglefs(rt));
+	if (keycode == SDLK_i && (!(rt->keyboard & MENU)))
 		return (togglefinterf(rt));
 	else if ((keycode >= SDLK_1) && (keycode <= SDLK_7))
 		return (togglefilters(rt, keycode));

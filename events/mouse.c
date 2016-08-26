@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 04:38:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 00:28:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static void		mouseclick_obj(t_obj *obj, t_rt *rt)
 	if (!obj)
 		return ;
 	if (obj->cfgbits & SDB_TEXTURE)
-	{
-		// draw_perlin_alpha(rt_obj_get_texture(obj)->surface,
-		// 	(t_v2f){0.1f, 0.1f});
-	}
+		;
 	else if (obj->cfgbits & SDB_NORMAL)
 		;
 	else if (((t_cube*)obj->content)->color == 0xff0000)

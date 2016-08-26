@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:22:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 15:28:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 04:05:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void			menu_clean(t_rt *rt, int keep_id)
 			rt_node_free(rt->rts[size].root);
 			SDL_FreeSurface(rt->rts[size].sys.screen);
 			rt->rts[size].sys.screen = NULL;
-			//textures_free(rt->rts[size].textures);
 		}
 	}
 	if (rt->menu.background)
