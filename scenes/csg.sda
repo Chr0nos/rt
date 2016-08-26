@@ -1,3 +1,8 @@
+SETTING
+	skybox: textures/skybox.jpg
+CAMERA
+	pos: 0 -2.088392 0.080411
+	rot: -45.836622 0 0
 CAMERA
 	pos: 0 0.053351 1.4635
 	rot: -45.836623 0 0
@@ -18,3 +23,11 @@ CUBE
 		pos: 1 0 0
 		color: #ff0000
 		csg: negative
+CUBE
+	pos: 2 0 2
+	color: #50b000
+
+#PLAN
+#	pos: 0 -2 0
+#	color: #b0b0b0
+#	reflect: 200

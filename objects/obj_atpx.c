@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:50:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 14:54:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 23:46:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ t_obj			*rt_obj_atpx(t_rt *rt, t_v2i px)
 	ray.start = cam->trans.w;
 	ray.limit = 0.0;
 	ray.count = 1;
-	ray.flags = 0;
 	((t_camera*)cam->content)->raypos = cam->trans.w;
 	rad.x = camp->rayfix.x - (camp->rayfix.z * (rt->sys.geometry.x - px.x));
 	rad.y = camp->rayfix.y - (camp->rayfix.w * (rt->sys.geometry.y - px.y));

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 19:51:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 00:00:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,30 @@ static unsigned int	get_background_color(t_render *r)
 /*
 ** if the function return OK -> we draw the pixels
 ** in ANY other case: the object will not be showed
-** vars:
-** rn : ray negative (1 if the ray is negative, 0 else)
-** on : object negative (1 for negative, 0 if not)
 */
 
 static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 {
-	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
 	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
 
 	(void)impact;
-	//pas d etat pour le rayon: on lui donne l etat de l objet et on recomence
-	if (r->ray->flags & FLAG_CSG_NONE)
+	if (!r->obj_intersect)
 	{
-		r->ray->flags &= ~FLAG_CSG_NONE;
-		r->ray->flags |= on;
-		return (rt_render_csg(obj, r, impact));
+		//si l objet touche (donc le premier) est negatif: on affiche pas
+		r->obj_intersect = obj;
+		return ((!on) ? OK : -1);
 	}
-	//objet positif et rayon positif: tout baigne
-	if ((!rn) && (!on))
-		return (OK);
 	r->lowest_lenght = r->ray->lenght;
+	//r->intersection = *impact;
+	if (r->obj_intersect == obj)
+		return (OK);
+	if ((!on) && (!r->obj_intersect))
+		return (OK);
 	if (on)
 	{
-		r->ray->flags ^= FLAG_CSG_NEGATIVE;
-		if (rn)
+		if (obj == r->obj_intersect)
 			return (OK);
-		//pour les objets negatifs avec rayon positif
-		//r->ray->start = geo_addv4(r->ray->start, geo_multv4(r->ray->dir, geo_dtov4d(0.01)));
+		r->obj_intersect = obj;
 	}
 	return (-1);
 }
@@ -87,9 +82,9 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else if (rt_render_csg(obj, r, &impact) == OK)
 		{
+			//r->obj_intersect = obj;
 			r->intersection = impact;
 			r->lowest_lenght = r->ray->lenght;
-			r->obj_intersect = obj;
 		}
 	}
 	return (OK);
@@ -106,11 +101,11 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir
 	};
-	ray->flags = FLAG_CSG_NONE;
-	//ray->flags = FLAG_CSG_NEGATIVE;
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
+	if ((r.obj_intersect) && (r.obj_intersect->flags & FLAG_CSG_NEGATIVE))
+		r.obj_intersect = NULL;
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));

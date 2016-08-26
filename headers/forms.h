@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/26 14:52:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 23:46:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ typedef struct			s_ray
 	double				lenght;
 	t_uint				color;
 	int					count;
-	int					flags;
 }						t_ray;
 
 typedef struct			s_box
