@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 15:01:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 19:46:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ struct s_rt;
 
 enum	e_obj_flags
 {
-	FLAG_CSG_NEGATIVE = 1
+	FLAG_CSG_NEGATIVE = 1,
+	FLAG_CSG_NONE = 1 << 1
 };
 
 typedef struct			s_obj

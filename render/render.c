@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 18:40:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/26 19:51:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
 
 	(void)impact;
+	//pas d etat pour le rayon: on lui donne l etat de l objet et on recomence
+	if (r->ray->flags & FLAG_CSG_NONE)
+	{
+		r->ray->flags &= ~FLAG_CSG_NONE;
+		r->ray->flags |= on;
+		return (rt_render_csg(obj, r, impact));
+	}
 	//objet positif et rayon positif: tout baigne
 	if ((!rn) && (!on))
 		return (OK);
@@ -99,7 +106,7 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir
 	};
-	ray->flags = 0;
+	ray->flags = FLAG_CSG_NONE;
 	//ray->flags = FLAG_CSG_NEGATIVE;
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
