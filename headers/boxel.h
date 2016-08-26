@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   boxel.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 20:30:01 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/20 22:33:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/08/26 03:49:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BOXEL_H
-#define BOXEL_H
-
+# define BOXEL_H
 # include "rt.h"
 
 typedef enum		e_boxtype
@@ -29,7 +28,5 @@ typedef struct		s_boxtree
 	t_bxty			type;
 	void			*data;
 }					t_boxtree;
-
-
 
 #endif
