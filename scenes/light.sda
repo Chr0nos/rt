@@ -1,0 +1,16 @@
+CAMERA
+	pos: -4.344039 1.993194 -2.041245
+	rot: 11.459154 34.377466 0
+
+PLAN
+	color: #555555
+	#texture: ./textures/herbe.jpg
+POINTLIGHT
+	color: #FFFFFF
+	pos: 5 5 0
+	intensity: 100
+MESH
+	color: #000000
+	texture: textures/vitrail.png
+	pos: 0 0 0
+	obj: scenes/plan_vitrail.obj

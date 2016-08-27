@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 23:36:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 16:28:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int				parse_obj_init(t_sda_obj *s, t_obj *obj,
 	IFRET__(!obj, -1);
 	IFRET__((*fd = open(filepath, O_RDONLY)) < 0, -2);
 	*s = (t_sda_obj){0, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, NULL,
-		obj->content};
+		obj->content, obj};
 	if (!(obj = rt_factory_alloc(EMPTY, obj)))
 	{
 		close(*fd);
@@ -107,6 +107,9 @@ static int				parse_obj_init(t_sda_obj *s, t_obj *obj,
 	}
 	obj->cfgbits |= SDB_NOEXPORT;
 	s->parent = obj;
+	sda_default_texture(NULL, s->mesh_obj);
+	if (!(s->mesh_obj->cfgbits & SDB_NORMAL))
+		s->mesh->normal = NULL;
 	return (1);
 }
 
