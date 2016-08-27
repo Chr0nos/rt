@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/27 11:41:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/27 16:35:40 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 		geo_dtov4d(-0.00001)));
 	ray.dir = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
-	//ray.lenght = (double)INFINITY;
 	sw = (t_render){&ray, r->rt, NULL, HUGE_VAL, 0.0,
 			(t_v4d){0.0, 0.0, 0.0, 0.0}, ray.dir};
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
@@ -46,17 +45,12 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 		{
 			if (A(color))
 			{
-				shadow = to_rgb(A(color), 0, 0, 0);
+				shadow = blend_add(shadow, to_rgb(A(color), 0, 0, 0));
 				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
 				to_rgb(0, A(color) - 0x22, A(color) - 0x22, A(color) - 0x22));
-				//color = blend_sub(0xFFFFFF, color);
 				s->color_render = blend_add(color, s->color_render);
 			}
 			s->color_render = blend_sub(s->color_render, shadow);
-			//s->color_render= to_rgb(0xFF, R(s->color_render), G(s->color_render), B(s->color_render));
-			//shaders_disable_nexts(s);
 		}
 	}
-	//else
-	//	s->color_render = blend_add(s->color_render, shadow);
 }

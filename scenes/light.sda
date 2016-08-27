@@ -4,7 +4,7 @@ CAMERA
 
 PLAN
 	color: #000000
-	texture: ./textures/herbe.jpg
+	#texture: ./textures/herbe.jpg
 POINTLIGHT
 	color: #FFFFFF
 	pos: 5 5 0
