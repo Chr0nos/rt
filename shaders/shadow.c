@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/27 16:35:40 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/27 17:40:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,38 @@
 #include "rt.h"
 #include "shaders.h"
 
+static void		set_color_shader_shadow(t_render *r, unsigned int *render,
+	t_render *sw, t_obj *light)
+{
+	unsigned int	shad;
+	unsigned int	color;
+
+	shad = (light->type == SUNLIGHT ? 0x55000000 : 0x99000000);
+	color = 0x0;
+	if (sw->obj_intersect)
+	{
+		color = shader_color_texture_intersection(sw);
+		if (sw->obj_intersect != r->obj_intersect &&
+			((geo_distv4(light->trans.w, r->intersection)
+		> geo_distv4(sw->obj_intersect->trans.w, r->intersection))
+		|| (light->type == SUNLIGHT)))
+		{
+			if (A(color))
+			{
+				shad = blend_add(shad, to_rgb(A(color), 0, 0, 0));
+				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
+				to_rgb(0, A(color), A(color), A(color)));
+				*render = blend_add(color, *render);
+			}
+			*render = blend_sub(*render, shad);
+		}
+	}
+}
+
 void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 {
 	t_ray			ray;
 	t_render		sw;
-	unsigned int	shadow;
-	unsigned int	color;
 
 	ray = *r->ray;
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
@@ -30,27 +56,5 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 			(t_v4d){0.0, 0.0, 0.0, 0.0}, ray.dir};
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
 	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
-	color = 0x0;
-	shadow = (light->type == SUNLIGHT ? 0x55000000 : 0x11000000);
-	if (sw.obj_intersect)
-	{
-		if (rt_obj_get_texture(sw.obj_intersect))
-			color = shader_color_texture_intersection(&sw);
-		else
-			color = ((t_cube*)(sw.obj_intersect->content))->color;
-		if (sw.obj_intersect != r->obj_intersect &&
-			((geo_distv4(light->trans.w, r->intersection)
-		> geo_distv4(sw.obj_intersect->trans.w, r->intersection))
-		|| (light->type == SUNLIGHT)))
-		{
-			if (A(color))
-			{
-				shadow = blend_add(shadow, to_rgb(A(color), 0, 0, 0));
-				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
-				to_rgb(0, A(color) - 0x22, A(color) - 0x22, A(color) - 0x22));
-				s->color_render = blend_add(color, s->color_render);
-			}
-			s->color_render = blend_sub(s->color_render, shadow);
-		}
-	}
+	set_color_shader_shadow(r, &s->color_render, &sw, light);
 }

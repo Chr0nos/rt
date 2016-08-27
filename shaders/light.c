@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/26 04:12:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 17:30:37 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
 	latt = geo_dotv4(r->normal, light_vector);
-	if (latt > 0.0)
+	if (latt > 0.0 || A(shader_color_texture_intersection(r)))
 	{
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
 			(light->type == SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));

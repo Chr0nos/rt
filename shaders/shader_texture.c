@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 15:46:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 17:32:32 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 	};
 
 	if ((!tex) || (!tex->surface->pixels))
-		return (0);
+		return ((r->obj_intersect->cfgbits & SDB_COLOR ?
+			((t_cube*)r->obj_intersect->content)->color : 0));
 	p = 2;
 	while ((p--) && (!(x[p].type & r->obj_intersect->type)))
 		;
