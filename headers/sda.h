@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:24:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 16:28:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct			s_sda_obj
 	size_t				select_uv;
 	t_obj				*parent;
 	t_mesh				*mesh;
+	t_obj				*mesh_obj;
 }						t_sda_obj;
 
 typedef struct			s_sda_default

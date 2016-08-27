@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 23:16:04 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 23:29:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 16:11:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int			parse_obj_checksplit(char ***split, int min)
 	int		size;
 
 	p = 3;
-	if (ft_tabcount((void**)(unsigned long)split) < 3)
-		return (checksplit_clean(split, -1));
+	while (p < 3)
+		if (!split[p])
+			return (checksplit_clean(split, -1));
 	while (p--)
 	{
 		size = (int)ft_tabcount((void**)(unsigned long)split[p]);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/15 11:46:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/27 10:41:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			rt_obj_init_shader(t_obj *obj)
 	shader_init(obj->shader, &shader_normalmap, 0xff000000, &blend_add);
 	shader_init(obj->shader, &rt_light_pow, 0xFF2E2E2E, &blend_multiply);
 	shader_init(obj->shader, &shader_reflection, 0xFF000000, &blend_add);
-	shader_init(obj->shader, &shader_shadow, 0xFFFFFFFF, blend_multiply);
+	shader_init(obj->shader, &shader_shadow, 0xFF000000, &blend_normal);
 	shader_init(obj->shader, &rt_specular_pow, 0xFF000000, &blend_add);
 }
 
