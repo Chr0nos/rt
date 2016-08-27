@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/25 22:45:16 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/27 11:41:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
 		{
 			if (A(color))
 			{
-				//shadow = to_rgb(0x11, 0, 0, 0);
-				color = to_rgb(0xFF, R(color), G(color), B(color));
+				shadow = to_rgb(A(color), 0, 0, 0);
+				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
+				to_rgb(0, A(color) - 0x22, A(color) - 0x22, A(color) - 0x22));
 				//color = blend_sub(0xFFFFFF, color);
 				s->color_render = blend_add(color, s->color_render);
 			}

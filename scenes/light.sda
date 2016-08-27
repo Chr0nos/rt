@@ -7,7 +7,8 @@ POINTLIGHT
 	color: #FFFFFF
 	pos: 5 5 0
 	intensity: 50
-SPHERE
-	color: #55FF0000
-	texture: textures/herbe.jpg
+MESH
+	color: #00000000
+	texture: textures/vitrail.png
 	pos: 0 3 0
+	obj: scenes/plan_vitrail.obj
