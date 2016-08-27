@@ -1,14 +1,16 @@
 CAMERA
-	pos: 0 3.528864 -4.173942
-	rot: 17.188733 0 0
+	pos: -3.763245 2.683923 4.379039
+	rot: 22.91831 143.239448 0
+
 PLAN
-	color: #FFFFFF
+	color: #000000
+	texture: ./textures/herbe.jpg
 POINTLIGHT
 	color: #FFFFFF
 	pos: 5 5 0
 	intensity: 50
 MESH
-	color: #00000000
+	color: #000000
 	texture: textures/vitrail.png
-	pos: 0 3 0
+	pos: 0 0 0
 	obj: scenes/plan_vitrail.obj
