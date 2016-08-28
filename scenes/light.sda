@@ -1,10 +1,11 @@
 CAMERA
-	pos: -4.344039 1.993194 -2.041245
-	rot: 11.459154 34.377466 0
+	pos: -3.733355 1.989712 4.676684
+	rot: 11.459154 148.969025 0
 
 PLAN
 	color: #555555
-	#texture: ./textures/herbe.jpg
+	texture: ./textures/rock.jpg
+
 POINTLIGHT
 	color: #FFFFFF
 	pos: 5 5 0
