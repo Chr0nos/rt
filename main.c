@@ -92,8 +92,8 @@ int				main(int ac, char **av)
 
 	rt_configure(&rt);
 	signal(SIGUSR1, &rt_signal);
+	ft_putstr("\033[01;34mTry -h to more information\033[;m");
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
-	ft_putstr("try -h to display help");
 	return (rt_quit(&rt, rt_normal(&rt, ac - 1, av + 1)));
 }
