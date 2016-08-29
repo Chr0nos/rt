@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/13 13:59:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/29 15:56:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void			rt_configure(t_rt *rt)
 	rt->keyboard = FORCE_DISPLAY;
 	rt->settings = (t_rtcfg){0, 0xFF2E2E2E, RTMODE, 8, COLOR_BLACK, COLOR_BLACK,
 		0x00, 1.0f, 0, NULL};
-	rt->textures = malloc(8);
+	if (!(rt->textures = malloc(sizeof(t_texture**))))
+	{
+		ft_putstr_fd("error: failed to malloc textures container\n", 2);
+		exit(1);
+	}
 	*rt->textures = NULL;
 	rt->menu.thumb.x = 240;
 	rt->menu.thumb.y = 238;
