@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 11:38:42 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/29 17:08:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@
 
 typedef struct	s_rt t_rt;
 
-typedef struct  s_interface
+typedef struct	s_interface
 {
-	int         mode_activated;
-	char        *champs_obj[NB_CHAMPS][LARGER_SIZE];
+	int			mode_activated;
+	char		*champs_obj[NB_CHAMPS][LARGER_SIZE];
 	char		*champs_txt[NB_CHAMPS][LARGER_SIZE];
 	SDL_Surface	*surface_txt[NB_CHAMPS];
 	SDL_Surface	*surface_obj[NB_CHAMPS];
-	TTF_Font    *police_classic;
-	TTF_Font    *police_selected;
-	SDL_Color   color_classic;
-	SDL_Color   color_selected;
-	SDL_Rect    pos;
-	int         font_size;
-	int         scale;
-	t_obj       *obj_selected;
-}               t_interf;
+	TTF_Font	*police_classic;
+	TTF_Font	*police_selected;
+	SDL_Color	color_classic;
+	SDL_Color	color_selected;
+	SDL_Rect	pos;
+	int			font_size;
+	int			scale;
+	t_obj		*obj_selected;
+}				t_interf;
 
 void		init_interface(t_rt *rt);
 void 		interface_display(t_rt *rt);
@@ -88,7 +88,6 @@ TTF_Font	*define_police(TTF_Font *police, char *name, int size, int selec);
 SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
 
 void 		clean_interface(t_rt *rt);
-void 		free_champs(char *champs[NB_CHAMPS][LARGER_SIZE]);
 void 		free_surfaces(SDL_Surface *surfaces[NB_CHAMPS]);
 
 #endif

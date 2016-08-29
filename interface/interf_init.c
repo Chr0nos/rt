@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/24 20:03:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/29 17:01:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,5 @@ void				init_interface(t_rt *rt)
 		rt->interf->police_classic, &rt->interf->color_classic);
 	rt->interf->scale = 0;
 //	init_button(&rt->interf->win);
-	free_champs(rt->interf->champs_txt);
+	ft_freesplit(*rt->interf->champs_txt);
 }
