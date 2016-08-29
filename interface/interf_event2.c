@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 11:33:19 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 13:16:19 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/29 17:47:40 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	change_one(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE])
 
 	index = (int)(y / 28);
 	tmp = 0.0;
-	if ((index < I_END && index > I_TEXT))
+	if ((index <= I_SIZE && index >= I_POSX))
 	{
 		tmp = ft_atod(*champs[index]);
 		free(*champs[index]);

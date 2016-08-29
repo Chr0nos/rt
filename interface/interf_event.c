@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 13:15:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/29 17:47:36 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static int	change_scale(int x)
 
 static char	*change_type(char *type)
 {
-	t_type	nb_of_type;
+	int		nb_of_type;
 	t_type	new_type;
 
 	nb_of_type = 16;
 	new_type = rt_gettype(type) + 1;
-	if (new_type > nb_of_type)
+	if (new_type > (t_type)nb_of_type)
 		new_type = 1;
 	return (search_str_type(new_type));
 }
@@ -49,24 +49,15 @@ static void	change_str_obj(t_interf *interf, int i)
 	char	*str_in;
 
 	ft_putstr("\033[01;032mPlease enter the new name of this object :\n");
-	ft_putstr("\033[;m]");
 	ft_get_next_line(1, &str_in);
-	ft_putstr("\033[01;032m Vous avez tape :");
-	ft_putstr(str_in);
-	ft_putstr("\n\033[;m]");
+	ft_putstr("\n\033[;m]\n");
 	if (i == I_NAME)
 		interf->obj_selected->cfgbits |= SDB_NAME;
 	else
 		interf->obj_selected->cfgbits |= SDB_TEXTURE;
 	free(*(interf->champs_obj[i]));
 	*(interf->champs_obj[i]) = ft_strdup(str_in);
-	ft_putstr("\033[01;032m nous avons enregistre :");
-	ft_putstr(*(interf->champs_obj[i]));
-	ft_putstr("\n\033[;m]");
 	free(str_in);
-	ft_putstr("\033[01;032m et en partant :");
-	ft_putstr(*(interf->champs_obj[i]));
-	ft_putstr("\n\033[;m]");
 }
 
 int			interf_event(t_v2i *mouse_pos, t_rt *rt)
