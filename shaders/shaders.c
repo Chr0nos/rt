@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:57:51 by alhote            #+#    #+#             */
-/*   Updated: 2016/07/17 21:33:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/29 15:59:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ unsigned int		shaders_compute_color(t_shaders *s, unsigned int color)
 	return (color);
 }
 
-void			shaders_disable_nexts(t_shader *s)
+void				shaders_disable_nexts(t_shader *s)
 {
 	t_shader	*shader;
 
