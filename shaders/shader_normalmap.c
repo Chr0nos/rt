@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/19 15:49:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/29 16:06:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 #include "texture.h"
 #include "libft.h"
 #include "mesh.h"
+
+static t_v2f			shader_normalmap_uv(const t_render *r)
+{
+	return ((t_v2f){
+		(float)fabs((double)((int)(((r->normal.x != 0.0 ? r->intersection.z :
+		r->intersection.x) * 1.0) * 1000.0) % 1000) * 0.001),
+		(float)fabs((double)((int)(((r->normal.y != 0.0 ? r->intersection.z :
+		r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)});
+}
 
 unsigned int			shader_color_normal_intersection(const t_render *r)
 {
@@ -36,14 +45,7 @@ unsigned int			shader_color_normal_intersection(const t_render *r)
 	else if (r->obj_intersect->type & TRIANGLE)
 		uv = get_uv_triangle(r->obj_intersect, r->intersection);
 	else
-	{
-		uv = (t_v2f){
-			(float)fabs((double)((int)(((r->normal.x != 0.0 ? r->intersection.z :
-			r->intersection.x) * 1.0) * 1000.0) % 1000) * 0.001),
-			(float)fabs((double)((int)(((r->normal.y != 0.0 ? r->intersection.z :
-			r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)
-		};
-	}
+		uv = shader_normalmap_uv(r);
 	return (draw_suv(tex->surface, uv));
 }
 

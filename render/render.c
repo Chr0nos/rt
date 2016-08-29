@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/29 20:41:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 01:23:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,32 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
 
 	(void)impact;
+	r->lowest_lenght = r->ray->lenght;
 	if (!r->obj_intersect)
 	{
 		r->obj_intersect = obj;
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
+		if (!rn)
+			r->ray->flags |= FLAG_CSG_NEGATIVE;
 		return ((!on) ? OK : -1);
 	}
-	if ((!on) && (!rn))
-		r->lowest_lenght = r->ray->lenght;
-	if (r->obj_intersect == obj)
+	if ((on) && (!rn))
 	{
 		r->ray->flags ^= FLAG_CSG_NEGATIVE;
-		return (OK);
+		r->obj_intersect = obj;
+		//r->ray->start = geo_addv4(r->ray->start,
+		//	geo_multv4(r->ray->dir,
+		//		(t_v4d){0.01, 0.01, 0.01, 1.0}));
+		//rt_node_foreach(r->rt->tree.bounded, PREFIX, &rt_render_foreach, r);
+		return (-1);
 	}
-	if ((!on) && (!r->obj_intersect))
+	else if ((!on) && (rn))
+		return (-1);
+	else if ((!on) && (!on))
 	{
 		r->obj_intersect = obj;
+		r->ray->flags &= ~FLAG_CSG_NEGATIVE;
 		return (OK);
 	}
-	if (on)
-	{
-		if (obj == r->obj_intersect)
-			return (OK);
-		r->obj_intersect = obj;
-	}
-	//r->ray->start = geo_addv4(r->ray->start,
-	//	geo_multv4(r->ray->dir, geo_multv4(r->ray->dir, geo_dtov4d(0.01))));
-	//rt_node_foreach(r->rt->tree.bounded, PREFIX, &rt_render_foreach, r);
 	return (-1);
 }
 
@@ -90,10 +89,10 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
 			;
-		else// if (rt_render_csg(obj, r, &impact) == OK)
+		else if (rt_render_csg(obj, r, &impact) == OK)
 		{
 			(void)rt_render_csg;
-			r->obj_intersect = obj;
+			//r->obj_intersect = obj;
 			r->intersection = impact;
 			r->lowest_lenght = r->ray->lenght;
 		}

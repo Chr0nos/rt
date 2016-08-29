@@ -7,11 +7,8 @@ PLAN
 	texture: ./textures/rock.jpg
 
 POINTLIGHT
-	color: #FFFFFF
 	pos: 5 5 0
 	intensity: 100
 MESH
-	color: #000000
 	texture: textures/vitrail.png
-	pos: 0 0 0
 	obj: scenes/plan_vitrail.obj
