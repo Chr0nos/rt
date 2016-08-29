@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/29 16:14:59 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/29 16:28:08 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_texture		*texture_create_set(t_texture *tex, char *filepath,
 	return (tex);
 }
 
-static t_texture	*texture_create_file(t_texture **lst, char *filepath)
+static t_texture		*texture_create_file(t_texture **lst, char *filepath)
 {
 	t_texture		*tex;
 	SDL_Surface		*surface;
