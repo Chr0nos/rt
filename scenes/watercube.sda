@@ -14,7 +14,7 @@ EMPTY
 PLAN
 	name: mer
 	reflect: 120
-	color: #CCffffff
+	color: #CC808080
 	normal: textures/water_normal.png
 	sdisable: shadow
 	refract: 1.03

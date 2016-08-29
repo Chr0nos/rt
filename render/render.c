@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/27 00:14:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/29 20:41:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,22 @@ static unsigned int	get_background_color(t_render *r)
 static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 {
 	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
+	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
 
 	(void)impact;
 	if (!r->obj_intersect)
 	{
-		//si l objet touche (donc le premier) est negatif: on affiche pas
 		r->obj_intersect = obj;
+		r->ray->flags |= FLAG_CSG_NEGATIVE;
 		return ((!on) ? OK : -1);
 	}
-	r->lowest_lenght = r->ray->lenght;
-	//r->intersection = *impact;
+	if ((!on) && (!rn))
+		r->lowest_lenght = r->ray->lenght;
 	if (r->obj_intersect == obj)
+	{
+		r->ray->flags ^= FLAG_CSG_NEGATIVE;
 		return (OK);
+	}
 	if ((!on) && (!r->obj_intersect))
 	{
 		r->obj_intersect = obj;
@@ -63,6 +67,9 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 			return (OK);
 		r->obj_intersect = obj;
 	}
+	//r->ray->start = geo_addv4(r->ray->start,
+	//	geo_multv4(r->ray->dir, geo_multv4(r->ray->dir, geo_dtov4d(0.01))));
+	//rt_node_foreach(r->rt->tree.bounded, PREFIX, &rt_render_foreach, r);
 	return (-1);
 }
 
@@ -83,9 +90,10 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
 			;
-		else if (rt_render_csg(obj, r, &impact) == OK)
+		else// if (rt_render_csg(obj, r, &impact) == OK)
 		{
-			//r->obj_intersect = obj;
+			(void)rt_render_csg;
+			r->obj_intersect = obj;
 			r->intersection = impact;
 			r->lowest_lenght = r->ray->lenght;
 		}
@@ -104,6 +112,7 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir
 	};
+	ray->flags = 0;
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
