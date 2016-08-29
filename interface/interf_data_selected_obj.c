@@ -1,17 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interf_init_data_selected_obj.c                    :+:      :+:    :+:   */
+/*   interf_data_selected_obj.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:01:36 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 13:14:59 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/29 17:09:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "sda.h"
+#include "libft.h"
+
+/*
+** set la texture filepath sur current en utilisant le parseur de sda
+** retours: -1 en cas d erreur
+** 0 si la texture existe deja ( n a rien fait en dehors de set a l objet)
+** 1 = ok ca a bien load et set
+*/
+
+static int	interf_settexture(const char *filepath, t_rt *rt, t_obj *current)
+{
+	t_sda	s;
+	char	**av;
+	int		ret;
+
+	s = (t_sda){0, rt, rt->root, current, 0, 0};
+	if (!(av = ft_strsplit(filepath, ' ')))
+		return (-1);
+	ret = sda_setup_texture(&s, current, av);
+	ft_freesplit(av);
+	return (ret);
+}
 
 static void	fill_champs_vide(char *champs[NB_CHAMPS][LARGER_SIZE])
 {
@@ -51,7 +73,8 @@ void		change_all_data_obj(t_rt *rt, char *champs[NB_CHAMPS][LARGER_SIZE])
 		free(obj->name);
 		obj->name = ft_strdup(*champs[I_NAME]); // test
 	}
-	//	if (obj->cfgbits & SDB_TEXTURE)
+	if (obj->cfgbits & SDB_TEXTURE)
+		interf_settexture(*champs[I_TEXT], rt, obj);
 	//		sda_setup_texture(NULL, obj, champs[I_TEXT]);
 	obj->trans.w = (t_v4d){
 		ft_atod(*champs[I_POSX]), ft_atod(*champs[I_POSY]),
@@ -63,7 +86,7 @@ void		change_all_data_obj(t_rt *rt, char *champs[NB_CHAMPS][LARGER_SIZE])
 	set_color(obj, champs);
 	((t_cube*)obj->content)->reflect = (unsigned char)ft_atoi(*champs[I_REFL]);
 	obj->refractive_index = ft_atod(*champs[I_REFR]);
-	((t_cube*)obj->content)->size = (float)ft_atod(*champs[I_SIZE]);
+	//((t_cube*)obj->content)->size = (float)ft_atod(*champs[I_SIZE]);
 	fill_champs_obj(obj, champs);
 }
 
@@ -90,7 +113,7 @@ void		fill_champs_obj(t_obj *obj,
 {
 	if ((!obj) || (!obj->content))
 		return ;
-	free_champs(champs_obj);
+	ft_freesplit(*champs_obj);
 	*champs_obj[I_ID] = ft_itoa((int)obj->id);
 	*champs_obj[I_TYPE] = (obj->type) ?
 		search_str_type(obj->type) : ft_strdup("INVALID");
