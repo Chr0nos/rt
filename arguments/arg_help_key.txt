@@ -1,23 +1,56 @@
-**************************************************************
-* Description des touches a ecrire :
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-*   - Use xxxxx to xxxxxxxxxxxxxxxxxxxxxxxx ;
-***************************************************************
+***********************************************************************
+* CAMERA :
+	W ... : ZOOM_IN		^	S ........ : ZOOM_OUT
+	A ... : RIGHT		^	D ........ : LEFT
+	SPACE : UP		^	C | CRTL_L : DOWN
+	E ... : ROLL_RIGHT	^	Q ........ : ROLL_LEFT
+	
+	ARROWS :
+	LEFT ... : ROTATE_LEFT	^	RIGHT ... : ROTATE_RIGHT
+	UP ..... : ROTATE_UP	^	DOWN .... : ROTATE_DOWN
+
+	LSHIFT : MOVE FASTER
+	P : Force DISPLAY
+	Y : Checkpoint camera position
+	R : Camera RESET initial position
+	M : Camera SWITCH !!!!!!!!! m est utilisé en keybit more_ambiant
+
+* LIGHT :
+	m : more ambiant light
+	n : less ambient light
+
+* EXPORT :
+	B : convert image to BMP
+	X : export data current from the tree in the terminal (SDA format)
+	T : display Textures used
+	L : display tree to debug
+	
+* OTHERS :
+	F : ??????
+
+* FILTRES :
+	1: red		4: yellow
+	2: green	5: magenta
+	3: blue		6:cyan
+	7: sepia	
+
+* INTERFACE :
+	I: to launch / quit mode interface
+	Click mouse left: to choose an object or param to scale
+
+	-100 -10 -1 +1 +10 +100 : choose an incrementing factor
+	Id : Change object
+	Type : just give you an information on type of the current object
+	Name : define a new name to object
+	Texture : define a pathspec of texture
+	Pos.X pos.Y pos.Z : change the coordinates of the position of objects
+	Dir.X dir.Y dir.Z : change direction of the objects
+	R G B transparency : change colors parameters
+	Reflection : change the percentage of reflection
+	Refrection : change th percentage of refraction
+	ENTER : to confirm all changement in object and display
+
+* EXIT :
+	ECHAP: to quit
+
+******************************************************************************

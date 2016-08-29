@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/27 17:40:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/27 21:09:28 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 		{
 			if (A(color))
 			{
-				shad = blend_add(shad, to_rgb(A(color), 0, 0, 0));
+				shad = blend_add(shad, to_rgb(A(color) / 2, 0, 0, 0));
 				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
 				to_rgb(0, A(color), A(color), A(color)));
 				*render = blend_add(color, *render);
