@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/25 23:25:22 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/29 15:51:56 by edelangh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,6 +181,11 @@ ALLDIR=$(OBJBUILDDIR) \
 		$(OBJBUILDDIR)/$(PARSE_OBJ_DIR)
 
 all: $(NAME)
+	@if [ $(OPSYS) = 'Darwin' ] ; then \
+		if [ -z $(LD_LIBRARY_PATH) ] ; then \
+			echo "PLIZ: export LD_LIBRARY_PATH=~/.brew/lib"; \
+		fi; \
+	fi
 
 multi:
 	make -j
