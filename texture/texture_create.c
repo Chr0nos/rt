@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 15:48:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/29 16:07:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-char				*texture_cleanpath(char *filepath)
+char					*texture_cleanpath(char *filepath)
 {
 	char	*tmp;
 	int		p;
@@ -31,7 +31,7 @@ char				*texture_cleanpath(char *filepath)
 	return (filepath);
 }
 
-static t_texture	*texture_create_set(t_texture *tex, char *filepath,
+static t_texture		*texture_create_set(t_texture *tex, char *filepath,
 	SDL_Surface *std_surface, t_texture **lst)
 {
 	tex->filepath = filepath;
@@ -74,7 +74,7 @@ static t_texture		*texture_create_file(t_texture **lst, char *filepath)
 		texture_cleanpath(filepath), std_surface, lst));
 }
 
-t_texture			*texture_create(t_texture **lst, char *filepath)
+t_texture				*texture_create(t_texture **lst, char *filepath)
 {
 	t_v2i			noise_size;
 	size_t			tab_size;
