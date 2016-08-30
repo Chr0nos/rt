@@ -63,7 +63,6 @@ int				rt_start(t_rt *rt)
 
 int				rt_normal(t_rt *rt, const char *path)
 {
-	printf("normal: %s\n", path);
 	if (!path || ls_isdir(path) == 1)
 		menu_init(rt, path);
 	else
