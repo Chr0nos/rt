@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/22 11:50:39 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 16:45:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static void		rt_cube_setpos(t_ray *r, t_v4d *v)
 	}
 }
 
-int				rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_cube_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	(void)obj;
-	rt_cube_setpos(r, v);
+	rt_cube_setpos(r, &v->in);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 10:30:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/07/19 22:27:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 17:12:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		rt_cone_inf_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 	return (1);
 }
 
-int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	t_sphere_inter	s;
 	t_v4d			v_sub;
@@ -61,7 +61,7 @@ int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_v4d *v)
 				geo_dotv4(r->dir, rot) * geo_dotv4(v_sub, rot)));
 	s.c = geo_dotv4(v_sub, v_sub) - (calc_size * geo_dotv4(v_sub, rot)
 			* geo_dotv4(v_sub, rot));
-	return (rt_cone_inf_solve(&s, r, v));
+	return (rt_cone_inf_solve(&s, r, &v->in));
 }
 
 t_v4d			rt_cone_inf_normale(t_obj *obj, t_v4d *v)

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 04:04:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:45:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 	return (1);
 }
 
-int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_sphere_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	t_sphere_inter	s;
 	const t_v4d		*c = &obj->trans.w;
@@ -50,7 +50,7 @@ int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	s.a = geo_dotv4(r->dir, r->dir);
 	s.b = 2.0 * geo_dotv4(r->dir, geo_subv4(r->start, *c));
 	s.c = geo_dotv4(tmp_c, tmp_c) - radius * radius;
-	return (rt_sphere_solve(&s, r, v));
+	return (rt_sphere_solve(&s, r, &v->in));
 }
 
 t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v)

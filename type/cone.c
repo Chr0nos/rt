@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/07/19 22:25:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 17:11:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int		rt_cone_inter_limit(t_v4d *ab, t_obj *obj, t_ray *r, double *tb)
 	return (0);
 }
 
-int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_cone_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	double			t;
 	t_v4d			ab;
@@ -72,7 +72,7 @@ int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v)
 		return (0);
 	t = tb[0];
 	r->lenght = t;
-	rt_cone_setv(v, r, &t);
+	rt_cone_setv(&v->in, r, &t);
 	return (1);
 }
 

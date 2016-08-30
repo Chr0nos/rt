@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 01:23:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 17:18:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static unsigned int	get_background_color(t_render *r)
 ** in ANY other case: the object will not be showed
 */
 
-static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
+static inline int	rt_render_csg(t_obj *obj, t_render *r, t_intersect *impact)
 {
 	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
 	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
@@ -55,10 +55,7 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 	{
 		r->ray->flags ^= FLAG_CSG_NEGATIVE;
 		r->obj_intersect = obj;
-		//r->ray->start = geo_addv4(r->ray->start,
-		//	geo_multv4(r->ray->dir,
-		//		(t_v4d){0.01, 0.01, 0.01, 1.0}));
-		//rt_node_foreach(r->rt->tree.bounded, PREFIX, &rt_render_foreach, r);
+		//modif ray start here
 		return (-1);
 	}
 	else if ((!on) && (rn))
@@ -74,11 +71,11 @@ static inline int	rt_render_csg(t_obj *obj, t_render *r, t_v4d *impact)
 
 int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
-	t_render	*r;
-	t_v4d		impact;
+	t_render		*r;
+	t_intersect		impact;
 
 	(void)mode;
-	impact = (t_v4d){0.0, 0.0, 0.0, 0.0};
+	impact = (t_intersect){geo_dtov4d(0.0), geo_dtov4d(0.0), 0};
 	r = userdata;
 	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
 		return (STOP_NODE);
@@ -93,7 +90,7 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		{
 			(void)rt_render_csg;
 			//r->obj_intersect = obj;
-			r->intersection = impact;
+			r->intersection = impact.in;
 			r->lowest_lenght = r->ray->lenght;
 		}
 	}
@@ -112,6 +109,7 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		ray->dir
 	};
 	ray->flags = 0;
+	ray->intersect.flags = 0;
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);

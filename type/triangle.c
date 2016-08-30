@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/30 05:00:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 17:15:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 #include "mesh.h"
 #define EPSILON 0.000001
 
-static inline int	rt_triangle_inter2(t_ray *r, t_v4d *impact, const double t)
+static inline int	rt_triangle_inter2(t_ray *r, t_intersect *v, const double t)
 {
-	*impact = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(t)));
+	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(t)));
+	v->flags = INTER_IN;
 	r->lenght = t;
 	return (1);
 }
 
-int					rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *impact)
+int					rt_triangle_inter(t_obj *obj, t_ray *r, t_intersect *impact)
 {
 	t_v4d			e[2];
 	t_v4d			pqt[3];
@@ -45,12 +46,12 @@ int					rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *impact)
 	if ((uvt[0] < 0.0) || (uvt[0] > 1.0) || (uvt[1] < 0.0) ||
 		(uvt[0] + uvt[1] > 1.0) || (uvt[2] < EPSILON))
 		return (0);
-	if (geo_dotv4(r->dir, rt_triangle_normale(obj, impact)) > 0.0)
+	if (geo_dotv4(r->dir, rt_triangle_normale(obj, &impact->in)) > 0.0)
 		triangle->normal_fix = 1;
 	return (rt_triangle_inter2(r, impact, uvt[2]));
 }
 
-t_v4d			rt_triangle_normale(t_obj *obj, t_v4d *v)
+t_v4d				rt_triangle_normale(t_obj *obj, t_v4d *v)
 {
 	t_v4d		e1;
 	t_v4d		e2;

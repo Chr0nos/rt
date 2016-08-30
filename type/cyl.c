@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cyl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/30 14:33:05 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 17:12:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 	return (1);
 }
 
-int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_cyl_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	t_sphere_inter	s;
 	double			tmp[4];
@@ -61,7 +61,7 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
 	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) + r->dir.y * (r->start.y - c->y)
 			+ r->dir.z * (r->start.z - c->z)) - (2 * tmp[1] * tmp[3] / tmp[0]);
 	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) / tmp[0]);
-	return (rt_cyl_solve(&s, r, v));
+	return (rt_cyl_solve(&s, r, &v->in));
 }
 
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)

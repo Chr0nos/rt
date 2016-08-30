@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 19:46:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:31:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ enum	e_obj_flags
 	FLAG_CSG_NONE = 1 << 1
 };
 
+enum	e_flag_intersect
+{
+	INTER_IN = 1,
+	INTER_OUT = 1 << 2
+};
+
 typedef struct			s_obj
 {
 	t_type				type;
@@ -39,7 +45,7 @@ typedef struct			s_obj
 	struct s_obj		*childs;
 	struct s_obj		*next;
 	void				*content;
-	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
+	int					(*inters)(struct s_obj *, t_ray *, t_intersect *);
 	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
 	struct s_shaders	*shader;
 	double				refractive_index;
