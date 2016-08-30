@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 15:20:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/20 12:11:23 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:01:30 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_shaders	*shaders_init(void)
 }
 
 t_shader	*shader_init(t_shaders *shaders,
-	void (*shader)(t_shader *s, t_render *r, t_obj *o), unsigned int color,
+	void (*shader)(t_shader *s, t_render *r, t_obj *o, unsigned int *color),
+	unsigned int color,
 	unsigned int (*blend)(unsigned int a, unsigned int b))
 {
 	t_shader	*s;

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 23:29:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 21:41:03 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
+		r.ray->color = 0xFFFFFF00;
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
-		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
-			0xff000000);
+//		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
+//			0xff000000);
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
@@ -100,8 +101,9 @@ unsigned int		rt_render_bray(t_rt *rt, t_ray *ray)
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
-	if (r.obj_intersect)
+	if (r.obj_intersect) {
 		r.ray->color = ((t_cube *)r.obj_intersect->content)->color;
+	}
 	else
 		return (get_background_color(&r));
 	ray->lenght = r.lowest_lenght;

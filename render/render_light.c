@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 17:47:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/13 17:56:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:42:59 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				rt_render_light(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	r = userdata;
 	origin = *r->ray;
-	shaders_exec(r->obj_intersect->shader, r, obj);
+	shaders_exec(r->obj_intersect->shader, r, obj, &(origin.color));
 	*r->ray = origin;
 	return (OK);
 }
