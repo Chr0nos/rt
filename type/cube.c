@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 16:45:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 18:28:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,25 @@
 #define CUBE_ZMAX 5
 #define CUBE_SIDES 6
 
-static void		rt_cube_setpos(t_ray *r, t_v4d *v)
+static void		rt_cube_setpos(t_ray *r, t_intersect *v)
 {
 	if (v)
 	{
-		*v = geo_addv4(r->start,
+		v->in = geo_addv4(r->start,
 				geo_multv4(r->dir, (t_v4d){
 					r->lenght,
 					r->lenght,
 					r->lenght,
 					0.0
 					}));
+		v->flags = INTER_IN;
 	}
 }
 
 int				rt_cube_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	(void)obj;
-	rt_cube_setpos(r, &v->in);
+	rt_cube_setpos(r, v);
 	return (1);
 }
 
