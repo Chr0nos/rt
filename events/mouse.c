@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:28:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 19:32:09 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ static void		mouseclick_obj(t_obj *obj, t_rt *rt)
 	else
 		((t_cube*)obj->content)->color = 0xff0000;
 	rt->interf->obj_selected = obj;
-	if (rt->interf->mode_activated)
-	{
-		init_champs_obj(rt->interf->champs_obj);
-		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
-	}
+//	if (rt->interf->mode_activated)
+//	{
+//		init_champs_obj(rt->interf->champs_obj);
+//		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+//	}
 	rt->keyboard |= FORCE_DISPLAY;
 }
 

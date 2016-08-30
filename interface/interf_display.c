@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 13:23:35 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:09:40 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 ** this function is here to clamp the "pos" rect to the window size and prevent
 ** any crash du to screen size < menu size
 */
-
+/*
 static void			clamp_rect(SDL_Rect *pos, SDL_Surface *screen)
 {
 	if (screen->w < pos->w)
@@ -47,35 +47,31 @@ static void			clamp_rect(SDL_Rect *pos, SDL_Surface *screen)
 		pos->h = screen->h;
 }
 
-void				fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
-		SDL_Surface *surface[NB_CHAMPS], TTF_Font *police, SDL_Color *color)
+*/
+static void			print_scale(SDL_Surface **tab_surface, SDL_Surface *screen, SDL_Rect *pos)
 {
-	int	i;
+	int			i;
 
 	i = -1;
-	while (++i != I_END)
+	while (tab_surface[++i])
 	{
-		if (i != I_VIDE1 && i != I_VIDE2 && i != I_VIDE3
-				&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
-				&& i != I_VIDE8)
-			surface[i] = define_texte(police, *champs[i], color);
+		draw_blitsurface_blend(screen, tab_surface[i],
+				(t_v2i){pos->x, pos->y}, &blend_menu);
+		pos->x += 45;
 	}
-	surface[I_END] = NULL;
 }
 
 static void			print_surface(SDL_Surface *tab_surface[NB_CHAMPS],
-		SDL_Surface *screen, SDL_Rect *pos, int font_size)
+		SDL_Surface *screen, SDL_Rect *pos)
 {
 	int	i;
 
-	(void)font_size;
-	clamp_rect(pos, screen);
+	//clamp_rect(pos, screen);
 	i = -1;
 	while (++i != I_END)
 	{
-		if (tab_surface[i] && i != I_VIDE1 && i != I_VIDE2 && i != I_VIDE3
-				&& i != I_VIDE4 && i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7
-				&& i != I_VIDE8)
+		if (tab_surface[i] && i != I_VIDE2 && i != I_VIDE3 && i != I_VIDE4
+			&& i != I_VIDE5 && i != I_VIDE6 && i != I_VIDE7 && i != I_VIDE8)
 			draw_blitsurface_blend(screen, tab_surface[i],
 					(t_v2i){pos->x, pos->y}, &blend_menu);
 		pos->y += 28;
@@ -85,12 +81,12 @@ static void			print_surface(SDL_Surface *tab_surface[NB_CHAMPS],
 void				interface_display(t_rt *rt)
 {
 	define_position(&rt->interf->pos, 5, 8);
-	print_surface(rt->interf->surface_txt, rt->sys.screen,
-			&rt->interf->pos, rt->interf->font_size);
+	print_scale(rt->interf->surface_scale, rt->sys.screen, &rt->interf->pos);
+	define_position(&rt->interf->pos, 5, 64);
+	print_surface(rt->interf->surface_txt, rt->sys.screen, &rt->interf->pos);
 	fill_surfaces(rt->interf->champs_obj, rt->interf->surface_obj,
 			rt->interf->police_selected, &rt->interf->color_selected);
-	define_position(&rt->interf->pos, 150, 8);
-	print_surface(rt->interf->surface_obj, rt->sys.screen,
-			&rt->interf->pos, rt->interf->font_size);
+	define_position(&rt->interf->pos, 150, 64);
+	print_surface(rt->interf->surface_obj, rt->sys.screen, &rt->interf->pos);
 	free_surfaces(rt->interf->surface_obj);
 }
