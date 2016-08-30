@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 17:18:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 17:25:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
 			;
-		else if (rt_render_csg(obj, r, &impact) == OK)
+		else// if (rt_render_csg(obj, r, &impact) == OK)
 		{
 			(void)rt_render_csg;
-			//r->obj_intersect = obj;
+			r->obj_intersect = obj;
 			r->intersection = impact.in;
 			r->lowest_lenght = r->ray->lenght;
 		}
