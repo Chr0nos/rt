@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:09:40 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:37:51 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	return (draw_color_lerp(b, a, pc));
 }
 
-/*
-** this function is here to clamp the "pos" rect to the window size and prevent
-** any crash du to screen size < menu size
-*/
-/*
-static void			clamp_rect(SDL_Rect *pos, SDL_Surface *screen)
-{
-	if (screen->w < pos->w)
-		pos->w = screen->w;
-	if (screen->h < pos->h)
-		pos->h = screen->h;
-}
-
-*/
 static void			print_scale(SDL_Surface **tab_surface, SDL_Surface *screen, SDL_Rect *pos)
 {
 	int			i;
@@ -66,7 +52,6 @@ static void			print_surface(SDL_Surface *tab_surface[NB_CHAMPS],
 {
 	int	i;
 
-	//clamp_rect(pos, screen);
 	i = -1;
 	while (++i != I_END)
 	{
@@ -84,9 +69,9 @@ void				interface_display(t_rt *rt)
 	print_scale(rt->interf->surface_scale, rt->sys.screen, &rt->interf->pos);
 	define_position(&rt->interf->pos, 5, 64);
 	print_surface(rt->interf->surface_txt, rt->sys.screen, &rt->interf->pos);
+	free_surfaces(rt->interf->surface_obj, NB_CHAMPS);
 	fill_surfaces(rt->interf->champs_obj, rt->interf->surface_obj,
 			rt->interf->police_selected, &rt->interf->color_selected);
 	define_position(&rt->interf->pos, 150, 64);
 	print_surface(rt->interf->surface_obj, rt->sys.screen, &rt->interf->pos);
-	free_surfaces(rt->interf->surface_obj);
 }

@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:06:40 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:44:49 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	change_scale(int x, t_interf *in)
 		in->scale = 100;
 	else
 		in->scale = 0;
-	free_surfaces(in->surface_scale);
+	free_surfaces(in->surface_scale, 7);
 	fill_surface_scale(in, i_scale);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:10:53 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:49:11 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ static void		init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 		if (i == I_ID)
 			*champs_obj[I_ID] = ft_strdup("no object");
 		else if ((i != I_VIDE2) && (i != I_VIDE3) &&
-			(i != I_VIDE4) && (i != I_VIDE5) && (i != I_VIDE6) &&
-			(i != I_VIDE7) && (i != I_VIDE8) && (i != I_ENTER))
+				(i != I_VIDE4) && (i != I_VIDE5) && (i != I_VIDE6) &&
+				(i != I_VIDE7) && (i != I_VIDE8) && (i != I_ENTER))
 			*champs_obj[i] = ft_strdup("0");
 		else
 			*champs_obj[i] = ft_strdup("\t");
@@ -104,9 +104,11 @@ void		init_interface(t_rt *rt)
 	rt->interf->champs_scale = ft_strsplit("-100 -10 -1 +1 +10 +100", ' ');
 	if (rt->interf->obj_selected != NULL)
 		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
-	fill_surface_scale(	rt->interf, -1);
+	fill_surface_scale(rt->interf, -1);
 	fill_surfaces(rt->interf->champs_txt, rt->interf->surface_txt,
-		rt->interf->police_classic, &rt->interf->color_classic);
-//	init_button(&rt->interf->win);
+			rt->interf->police_classic, &rt->interf->color_classic);
+	fill_surfaces(rt->interf->champs_obj, rt->interf->surface_obj,
+			rt->interf->police_selected, &rt->interf->color_selected);
+	//	init_button(&rt->interf->win);
 	ft_freesplit(*rt->interf->champs_txt);
 }

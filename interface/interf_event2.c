@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 11:33:19 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 19:34:00 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:54:14 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ void			change_selected_obj(t_rt *rt)
 			;
 	}
 	rt->interf->obj_selected = protect_change(rt, obj, &root_id);
-//	init_champs_obj(rt->interf->champs_obj);
 	fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
 }

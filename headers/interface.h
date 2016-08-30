@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 19:31:16 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:35:36 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,12 @@ typedef struct	s_interface
 	SDL_Color	color_classic;
 	SDL_Color	color_selected;
 	SDL_Rect	pos;
-	int			font_size;
 	int			scale;
 	t_obj		*obj_selected;
 }				t_interf;
 
 void		init_interface(t_rt *rt);
 void 		interface_display(t_rt *rt);
-//void 		init_champs_obj(char *interface[NB_CHAMPS][LARGER_SIZE]);
 void 		fill_champs_obj(t_obj *obj, char *champs[NB_CHAMPS][LARGER_SIZE]);
 void 		fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
 				SDL_Surface *surf[NB_CHAMPS], TTF_Font *pol, SDL_Color *col);
@@ -90,6 +88,6 @@ TTF_Font	*define_police(TTF_Font *police, char *name, int size, int selec);
 SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
 
 void 		clean_interface(t_rt *rt);
-void 		free_surfaces(SDL_Surface *surfaces[NB_CHAMPS]);
+void 		free_surfaces(SDL_Surface *surfaces[NB_CHAMPS], int max);
 
 #endif
