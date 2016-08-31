@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/30 16:36:37 by dboudy           ###   ########.fr        #
+#    Updated: 2016/08/31 19:33:18 by edelangh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ FILTER_DIR=filter
 FILTER=filter.o rgb.o ymc.o sepia.o
 
 SHADER_DIR=shaders
-SHADER=shaders.o shaders_init.o ambiant.o light.o shadow.o damier.o \
+SHADER=shaders.o shaders_init.o light.o shadow.o \
 	reflection.o shader_texture.o shader_normalmap.o
 
 ARG_DIR=arguments
