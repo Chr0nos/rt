@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:29:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 21:05:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,21 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 		r->lowest_lenght = v->len_in;
 		r->intersection = v->in;
 		r->ray->lenght = v->len_in;
-		r->obj_intersect = obj;
 		r->ray->intersect = *v;
+		r->obj_intersect = obj;
+		r->ray->obj_intersect = obj;
+		return ;
 	}
 	else if (v->flags & INTER_OUT)
 	{
-		if (!ray_in_range(r->ray, v->len_in, v->len_out))
-			return ;
-		r->ray->lenght_min = v->len_in;
-		r->ray->lenght_max = v->len_out;
-		r->ray->lenght = v->len_out;
-		r->lowest_lenght = v->len_in;
-		r->obj_intersect = rt_obj_atpx_real(r->rt, r->ray);
+		if (ray_in_range(r->ray, v->len_in, v->len_out))
+		{
+			r->ray->lenght_min = v->len_in;
+			r->ray->lenght_max = v->len_out;
+			r->ray->lenght = v->len_out;
+			r->lowest_lenght = v->len_in;
+			r->obj_intersect = rt_obj_atpx_real(r->rt, r->ray);
+		}
 	}
 	else if (r->ray->lenght > v->len_in)
 	{
@@ -46,6 +49,7 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 		r->lowest_lenght = v->len_in;
 		r->obj_intersect = rt_obj_atpx_real(r->rt, r->ray);
 	}
+	r->ray->obj_negative = obj;
 }
 
 void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
