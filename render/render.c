@@ -6,7 +6,7 @@
 /*   By: rnicolet <rnicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by rnicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 17:45:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 20:07:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		IFRET__(!(obj->type & VISIBLE), OK);
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
 			;
-		else if (r->lowest_lenght < impact.len_in)
+		else if (r->lowest_lenght < r->ray->lenght)
 			;
 		else
 			rt_render_csg(obj, r, &impact);
@@ -70,8 +70,6 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
-	if ((r.obj_intersect) && (r.obj_intersect->flags & FLAG_CSG_NEGATIVE))
-		r.obj_intersect = NULL;
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));

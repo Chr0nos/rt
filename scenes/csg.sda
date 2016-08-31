@@ -26,6 +26,9 @@ CUBE
 CUBE
 	pos: 2 0 2
 	color: #50b000
+	CUBE
+		pos: 0 0 6
+		color: #ff0000
 
 PLAN
 	pos: 0 -2 0

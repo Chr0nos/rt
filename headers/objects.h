@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 16:31:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 20:11:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct			s_obj_lookup
 	t_obj				*next;
 }						t_obj_lookup;
 
+struct s_rt;
+
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
 t_obj					*rt_obj_addchild(t_obj *parent, t_obj *child);
@@ -82,6 +84,7 @@ unsigned int			rt_obj_get_lvl(t_obj *obj);
 t_obj					*rt_obj_get_root(t_obj *obj);
 unsigned int			rt_obj_count(t_obj *obj, unsigned int type_mask);
 t_obj					*rt_obj_atpx(struct s_rt *rt, t_v2i px);
+t_obj					*rt_obj_atpx_real(struct s_rt *rt, t_ray *ray);
 t_obj					*rt_obj_nexttype(t_obj *node, t_obj *current,
 	unsigned int type);
 

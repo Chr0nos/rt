@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/31 15:59:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 19:32:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ typedef struct			s_ray
 	int					count;
 	int					flags;
 	t_intersect			intersect;
+	double				lenght_min;
+	double				lenght_max;
 }						t_ray;
 
 typedef struct			s_box

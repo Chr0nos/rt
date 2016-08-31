@@ -6,49 +6,49 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 17:45:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 20:29:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void			rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
+static inline int	ray_in_range(t_ray *ray, double min, double max)
 {
-	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
-	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
+	return ((ray->lenght < max) && (ray->lenght > min));
+}
 
-	r->lowest_lenght = v->len_in;
-	r->obj_intersect = obj;
-	//p + p = p
-	if ((!on) && (!rn))
+void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
+{
+	if (!ray_in_range(r->ray, r->ray->lenght_min, r->ray->lenght_max))
+		return ;
+	if (!(obj->flags & FLAG_CSG_NEGATIVE))
 	{
+		r->lowest_lenght = v->len_in;
 		r->intersection = v->in;
-	}
-	//n + p = n
-	if ((on) && (!rn))
-	{
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
-		//r->lowest_lenght = v->len_in;
-		if (v->flags & INTER_OUT)
-		{
-			//r->obj_intersect = obj->parent;
-		}
-	}
-	//n + n = p
-	if ((on) && (rn))
-	{
-		r->ray->flags &= ~FLAG_CSG_NEGATIVE;
 		r->ray->lenght = v->len_in;
-		r->intersection = v->in;
+		r->obj_intersect = obj;
+		r->ray->intersect = *v;
 	}
-	//p + n = n
-	if ((on) && (!rn))
+	else if (v->flags & INTER_OUT)
 	{
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
+		if (!ray_in_range(r->ray, v->len_in, v->len_out))
+			return ;
+		r->ray->lenght_min = v->len_in;
+		r->ray->lenght_max = v->len_out;
+		r->ray->lenght = v->len_out;
+		r->lowest_lenght = v->len_in;
+		r->obj_intersect = rt_obj_atpx_real(r->rt, r->ray);
+	}
+	else if (r->ray->lenght > v->len_in)
+	{
+		r->ray->lenght_min = v->len_in;
+		r->ray->lenght_max = (double)INFINITY;
+		r->lowest_lenght = v->len_in;
+		r->obj_intersect = rt_obj_atpx_real(r->rt, r->ray);
 	}
 }
 
-void			rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
+void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
 {
 	r->obj_intersect = obj;
 	r->intersection = v->in;

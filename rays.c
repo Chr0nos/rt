@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 23:45:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 19:51:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
 		while (px.y--)
 		{
 			ray->count = 6;
+			ray->lenght_min = 0.0;
+			ray->lenght_max = (double)INFINITY;
 			ray->dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &m);
 			pixels[px.y * rt->sys.geometry.x + px.x] = rt->rayfunc(rt, ray);
