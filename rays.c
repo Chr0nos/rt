@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 18:09:13 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 19:47:16 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 #include "filter.h"
+#include "threading.h"
 #include <unistd.h>
 
 char			rt_rays_pc(const t_v2i *geometry, const t_v2i *px)
@@ -55,23 +56,11 @@ static void		rt_rays_pixels_init(t_v2i *px, t_rt *rt, t_v4d *rad,
 	*rad = (t_v4d){camp->rayfix.x, 0.0, camp->rayfix.z, camp->rayfix.w};
 }
 
-#include <pthread.h>
-
-typedef struct	s_rays_thread_args
+static void		*rt_rays_pixels_threaded(t_rays_thread_args *args)
 {
-	t_rt			*rt;
-	unsigned int	*pixels;
-	t_m4			m;
-	int				index;
-	int				thread_count;
-}				t_rays_thread_args;
-
-static void		*rt_rays_pixels_threaded(void *vargs)
-{
-	t_v2i		px;
-	t_v4d		rad;
-	t_camera	*camp;
-	t_rays_thread_args	*args = (t_rays_thread_args*)vargs;
+	t_v2i				px;
+	t_v4d				rad;
+	t_camera			*camp;
 	camp = ((t_obj*)args->rt->root->content)->content;
 	rt_rays_pixels_init(&px, args->rt, &rad, camp);
 
@@ -101,27 +90,27 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 	return NULL;
 }
 
-#define THREAD_COUNT 4
-
 static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 	t_m4 m)
 {
 	pthread_t			threads[THREAD_COUNT];
 	t_rays_thread_args	args[THREAD_COUNT];
-	int			i;
-	int			thread_count = THREAD_COUNT;
+	int					i;
 
-	for (i = 0; i < thread_count; ++i) {
+	i = -1;
+	while (++i < THREAD_COUNT)
+	{
 		args[i].rt = rt;
 		args[i].pixels = pixels;
 		args[i].m = m;
 		args[i].index = i;
-		args[i].thread_count = thread_count;
-		pthread_create(threads + i, NULL, &rt_rays_pixels_threaded, args + i);
+		args[i].thread_count = THREAD_COUNT;
+		pthread_create(threads + i, NULL,
+				(void *(*)(void*))&rt_rays_pixels_threaded, args + i);
 	}
-	for (i = 0; i < thread_count; ++i) {
+	i = -1;
+	while (++i < THREAD_COUNT)
 		pthread_join(threads[i], NULL);
-	}
 	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
 		rt_signal_singletone(NULL, NULL, 1);
 	filter_apply(rt->sys.screen, rt->keyboard);
