@@ -6,27 +6,27 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 06:29:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 06:35:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "render.h"
 #include "shaders.h"
+#define PI_INV 1.0 / M_PI
+#define PI2_INV 1.0 / (2.0 * M_PI)
 
 static unsigned int	get_background_color(t_render *r)
 {
-	t_texture		*tex;
-	unsigned int	*pixels_texture;
-	double			u;
-	double			v;
+	const t_texture		*tex = r->rt->settings.skybox;
+	unsigned int		*pixels_texture = (tex) ? tex->surface->pixels : NULL;
+	double				u;
+	double				v;
 
-	if (!r->rt->settings.skybox)
+	if (!pixels_texture)
 		return (r->rt->settings.bgcolor);
-	tex = r->rt->settings.skybox;
-	pixels_texture = tex->surface->pixels;
-	u = 0.5 + (atan2(r->ray->dir.z, r->ray->dir.x) / (2.0 * M_PI));
-	v = 0.5 - (asin(r->ray->dir.y) / M_PI);
+	u = 0.5 + (atan2(r->ray->dir.z, r->ray->dir.x) * PI2_INV);
+	v = 0.5 - (asin(r->ray->dir.y) * PI_INV);
 	return (pixels_texture[tex->surface->w *
 		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
 }
