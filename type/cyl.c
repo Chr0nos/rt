@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 17:12:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 04:55:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,15 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	t_sphere_inter	s;
 	double			tmp[4];
-	const t_v4d		*c = &obj->trans.w;
-	const t_v4d		*rot = &obj->rotation;
 	const double	radius = (double)((t_cyl*)obj->content)->radius;
+	const t_v4d		x = geo_subv4(r->start, obj->trans.w);
 
-	tmp[0] = rot->x * rot->x + rot->y * rot->y + rot->z * rot->z;
-	tmp[1] = r->dir.x * rot->x + r->dir.y * rot->y + r->dir.z * rot->z;
-	tmp[2] = (r->start.x - c->x) * (r->start.x - c->x) + (r->start.y - c->y) *
-		(r->start.y - c->y) + (r->start.z - c->z) * (r->start.z - c->z);
-	tmp[3] = rot->x * (r->start.x - c->x) + rot->y * (r->start.y - c->y) +
-		rot->z * (r->start.z - c->z);
-	s.a = (r->dir.x * r->dir.x + r->dir.y * r->dir.y + r->dir.z * r->dir.z) -
-		((tmp[1] * tmp[1]) / tmp[0]);
-	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) + r->dir.y * (r->start.y - c->y)
-			+ r->dir.z * (r->start.z - c->z)) - (2 * tmp[1] * tmp[3] / tmp[0]);
+	tmp[0] = geo_dotv4(obj->rotation, obj->rotation);
+	tmp[1] = geo_dotv4(r->dir, obj->rotation);
+	tmp[2] = geo_dotv4(x, x);
+	tmp[3] = geo_dotv4(obj->rotation, x);
+	s.a = geo_dotv4(r->dir, r->dir) - (tmp[1] * tmp[1] / tmp[0]);
+	s.b = 2.0 * geo_dotv4(r->dir, x) - (2 * tmp[1] * tmp[3] / tmp[0]);
 	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) / tmp[0]);
 	return (rt_cyl_solve(&s, r, &v->in));
 }
