@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 18:01:31 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/31 06:10:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 16:00:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 static void		rt_cone_setv(t_intersect *v, t_ray *r, const double *tb)
 {
 	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(tb[0])));
+	v->len_in = tb[0];
 	v->flags = INTER_IN;
 	if (tb[1] >= 0.0)
 	{
 		v->flags |= INTER_OUT;
 		v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(tb[1])));
+		v->len_out = tb[1];
 	}
 }
 

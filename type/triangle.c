@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:03:40 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/30 17:15:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 16:02:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 static inline int	rt_triangle_inter2(t_ray *r, t_intersect *v, const double t)
 {
 	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(t)));
+	v->len_in = t;
 	v->flags = INTER_IN;
 	r->lenght = t;
 	return (1);

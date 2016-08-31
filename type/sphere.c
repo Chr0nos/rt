@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 18:20:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 16:02:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ static void		rt_sphere_set_impact(const t_sphere_inter *s, const t_ray *r,
 	t_intersect *v, char flags)
 {
 	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol1)));
+	v->len_in = s->sol1;
 	if (flags & INTER_OUT)
+	{
 		v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol2)));
+		v->len_out = s->sol2;
+	}
 	v->flags = flags;
 }
 

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/31 06:05:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 16:01:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ static void		rt_cyl_setintersect(t_intersect *v, const t_ray *r,
 	const t_sphere_inter *s)
 {
 	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol1)));
+	v->len_in = s->sol1;
 	v->flags = INTER_IN;
 	if (s->delta == 0.0)
 	{
 		v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol2)));
+		v->len_out = s->sol2;
 		v->flags |= INTER_OUT;
 	}
 }

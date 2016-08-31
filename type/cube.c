@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 02:55:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 16:00:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 
 static void			rt_cube_setintersect(t_ray *r, t_intersect *v, double *tb)
 {
+	v->len_in = tb[0];
 	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(tb[0])));
 	v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(tb[1])));
+	v->len_out = tb[1];
 	v->flags = INTER_IN | (tb[1] < 0.0) ? 0 : INTER_OUT;
 }
 

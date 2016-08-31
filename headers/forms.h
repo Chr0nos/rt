@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/30 16:28:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 15:59:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ typedef struct			s_camera
 
 typedef struct			s_intersect
 {
+	double				len_in;
+	double				len_out;
 	t_v4d				in;
 	t_v4d				out;
 	char				flags;
