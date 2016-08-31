@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 17:41:39 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 17:57:23 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char			rt_rays_pc(const t_v2i *geometry, const t_v2i *px)
 
 static void		rt_ray_refresh(const t_v2i *px, t_rt *rt)
 {
-	if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px->x % 100)) &&
+	if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px->x % 200)) &&
 		(rt->sys.screen))
 		sdl_flush(rt);
 }
@@ -95,8 +95,7 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 			args->pixels[px.y * args->rt->sys.geometry.x + px.x] = args->rt->rayfunc(args->rt, &ray);
 			rad.y -= rad.w;
 		}
-		if (args->index == 0)
-			rt_ray_refresh(&px, args->rt);
+		rt_ray_refresh(&px, args->rt);
 		rad.x += rad.z;
 	}
 	return NULL;
