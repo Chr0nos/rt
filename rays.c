@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 14:54:58 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 17:14:59 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 			ray.count = 6;
 			ray.dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &(args->m));
-			// rt_render_ray
 			args->pixels[px.y * args->rt->sys.geometry.x + px.x] = args->rt->rayfunc(args->rt, &ray);
 			rad.y -= rad.w;
 		}
@@ -103,15 +102,17 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 	return NULL;
 }
 
+#define THREAD_COUNT 4
+
 static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 	t_m4 m)
 {
-	pthread_t			threads[4];
-	t_rays_thread_args	args[4];
+	pthread_t			threads[THREAD_COUNT];
+	t_rays_thread_args	args[THREAD_COUNT];
 	int			i;
-	int			thread_count = 4;
+	int			thread_count = THREAD_COUNT;
 
-	for (i = 0; i < 4; ++i) {
+	for (i = 0; i < thread_count; ++i) {
 		args[i].rt = rt;
 		args[i].pixels = pixels;
 		args[i].m = m;
@@ -119,9 +120,8 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].thread_count = thread_count;
 		pthread_create(threads + i, NULL, &rt_rays_pixels_threaded, args + i);
 	}
-	for (i = 0; i < 4; ++i) {
+	for (i = 0; i < thread_count; ++i) {
 		pthread_join(threads[i], NULL);
-//		pthread_join(threads[i], NULL);
 	}
 	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
 		rt_signal_singletone(NULL, NULL, 1);

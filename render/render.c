@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 14:51:27 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 17:11:49 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 {
 	t_render		r;
 	unsigned int	colors[MAX_SHADERS];
-	int				i;
 
 	r = (t_render){
 		ray, rt, NULL,
@@ -76,7 +75,11 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
 
+
+	if (r.obj_intersect)
+	{
 	t_shader		*shader = r.obj_intersect->shader->shader;
+	int				i;
 	i = 0;
 	while (shader)
 	{
@@ -86,17 +89,13 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		}
 		shader = shader->next;
 	}
-
-	if (r.obj_intersect)
-	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		r.ray->color = 0xFFFFFF00;
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
 				0xff000000, (unsigned int *)colors);
 	}
-	ray->lenght = r.lowest_lenght;
-	if (!r.obj_intersect)
+	else
 		return (get_background_color(&r));
 	return (rt_render_opacity(rt, ray, &r));
 }
