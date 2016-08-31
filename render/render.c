@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 21:41:03 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 14:51:27 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,40 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 
 unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 {
-	t_render	r;
+	t_render		r;
+	unsigned int	colors[MAX_SHADERS];
+	int				i;
 
 	r = (t_render){
 		ray, rt, NULL,
 		HUGE_VAL,
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
-		ray->dir
+		ray->dir,
+		(unsigned int*)colors
 	};
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
+
+	t_shader		*shader = r.obj_intersect->shader->shader;
+	i = 0;
+	while (shader)
+	{
+		if (shader->enabled)
+		{
+			colors[i++] = shader->color_render;
+		}
+		shader = shader->next;
+	}
+
 	if (r.obj_intersect)
 	{
 		r.normal = r.obj_intersect->normal(r.obj_intersect, &(r.intersection));
 		r.ray->color = 0xFFFFFF00;
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
-//		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
-//			0xff000000);
+		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
+				0xff000000, (unsigned int *)colors);
 	}
 	ray->lenght = r.lowest_lenght;
 	if (!r.obj_intersect)
@@ -96,7 +111,8 @@ unsigned int		rt_render_bray(t_rt *rt, t_ray *ray)
 		HUGE_VAL,
 		0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
-		ray->dir
+		ray->dir,
+		NULL
 	};
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);

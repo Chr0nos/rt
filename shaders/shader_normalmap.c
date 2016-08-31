@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/29 16:06:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 14:31:18 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ unsigned int			shader_color_normal_intersection(const t_render *r)
 	return (draw_suv(tex->surface, uv));
 }
 
-void					shader_normalmap(t_shader *s, t_render *r, t_obj *light)
+void					shader_normalmap(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
 {
 	t_v4d				transformation_vector;
 	unsigned int		color_normal;
 
 	(void)light;
 	(void)s;
+	(void)color_render;
 	color_normal = shader_color_normal_intersection(r);
 	if (color_normal)
 	{

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 21:43:29 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 14:54:58 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,21 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 			args->pixels[px.y * args->rt->sys.geometry.x + px.x] = args->rt->rayfunc(args->rt, &ray);
 			rad.y -= rad.w;
 		}
-		rt_ray_refresh(&px, args->rt);
+		if (args->index == 0)
+			rt_ray_refresh(&px, args->rt);
 		rad.x -= rad.z;
 	}
 	return NULL;
 }
 
-static void		rt_rays_pixels(t_rt *rt, t_ray *ray, unsigned int *pixels,
-	t_m4 m) // CLEAN RAY
+static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
+	t_m4 m)
 {
 	pthread_t			threads[4];
 	t_rays_thread_args	args[4];
 	int			i;
 	int			thread_count = 4;
 
-	(void)ray;
 	for (i = 0; i < 4; ++i) {
 		args[i].rt = rt;
 		args[i].pixels = pixels;
@@ -135,5 +135,5 @@ void			rt_rays(t_rt *rt)
 	cam = (t_obj*)rt->root->content;
 	rt_update_camera(rt->sys.geometry, cam->content);
 	((t_camera*)cam->content)->raypos = cam->trans.w;
-	rt_rays_pixels(rt, NULL, rt->sys.screen->pixels, cam->trans);
+	rt_rays_pixels(rt, rt->sys.screen->pixels, cam->trans);
 }
