@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 17:57:23 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/08/31 18:09:13 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ static void		*rt_rays_pixels_threaded(void *vargs)
 	ray.limit = 0.0;
 	ray.dir = (t_v4d){0.0, 0.0, 1.0, 0.0};
 
-	px.x = args->rt->sys.geometry.x * args->index / args->thread_count;
+	px.x = args->rt->sys.geometry.x / args->thread_count * args->index;
 	rad.x -= rad.z * (args->rt->sys.geometry.x - px.x);
 	int end = px.x + args->rt->sys.geometry.x / args->thread_count;
 	while (px.x++ < end)
 	{
-		px.y = args->rt->sys.geometry.y;
+		px.y = args->rt->sys.geometry.y - 1;
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
