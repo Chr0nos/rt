@@ -6,16 +6,23 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/31 04:57:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 05:56:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "sphere.h"
 
-static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
+static void		rt_cyl_setintersect(t_intersect *v, const t_ray *r,
+	const t_sphere_inter *s)
 {
-	double			t;
+	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol1)));
+	v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol2)));
+	v->flags = INTER_IN | (s->delta == 0.0) ? 0 : INTER_OUT;
+}
+
+static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_intersect *v)
+{
 	double			delta_sqrt;
 	double			sa2;
 
@@ -25,20 +32,19 @@ static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 	delta_sqrt = sqrt(s->delta);
 	sa2 = s->a * 2.0;
 	if (s->delta == 0.0)
-		t = (-s->b - delta_sqrt) / sa2;
+		s->sol1 = (-s->b - delta_sqrt) / sa2;
 	else
 	{
 		s->sol1 = (-s->b - delta_sqrt) / sa2;
 		s->sol2 = (s->b - delta_sqrt) / sa2;
-		t = (s->sol1 < s->sol2 ? s->sol1 : s->sol2);
-		t = (t < 0.0 ? s->sol1 : s->sol2);
-		if (t < 0.0)
+		if ((s->sol1 < s->sol2) && (s->sol2 < 0.0))
+			draw_swap(&s->sol1, &s->sol2);
+		if (s->sol1 < 0.0)
 			return (0);
 	}
 	if (v)
-		*v = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
-			r->start.z + r->dir.z * t, 0.0};
-	r->lenght = t;
+		rt_cyl_setintersect(v, r, s);
+	r->lenght = s->sol1;
 	return (1);
 }
 
@@ -56,7 +62,7 @@ int				rt_cyl_inter(t_obj *obj, t_ray *r, t_intersect *v)
 	s.a = geo_dotv4(r->dir, r->dir) - (tmp[1] * tmp[1] * tmp[0]);
 	s.b = 2.0 * geo_dotv4(r->dir, x) - (2 * tmp[1] * tmp[3] * tmp[0]);
 	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) * tmp[0]);
-	return (rt_cyl_solve(&s, r, &v->in));
+	return (rt_cyl_solve(&s, r, v));
 }
 
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v)
