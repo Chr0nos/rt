@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:39:45 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/19 01:41:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 21:07:44 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,9 @@ SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color)
 	else
 	{
 		ft_putstr("fail define texte : [");
+		free(texte);
 		ft_putstr(txt);
 		ft_putstr("]\n");
 	}
 	return (NULL);
 }
-/*
-void		define_interf_obj(t_obj *obj, t_rt *rt)
-{
-	if (obj && (obj->cfgbits & VISIBLE || obj->cfgbits & LIGHTTYPE))
-	{
-		rt->interf->obj_selected = obj;
-		init_selected_obj(rt->interf->obj_selected, rt->interf->champs_obj);
-	}
-	else
-	{
-		rt->interf->obj_selected = NULL;
-	}
-}
-*/

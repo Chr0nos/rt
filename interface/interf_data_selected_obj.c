@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:01:36 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/29 17:09:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 21:54:26 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** 1 = ok ca a bien load et set
 */
 
-static int	interf_settexture(const char *filepath, t_rt *rt, t_obj *current)
+static void	interf_settexture(char *filepath, t_rt *rt, t_obj *current)
 {
 	t_sda	s;
 	char	**av;
@@ -29,24 +29,27 @@ static int	interf_settexture(const char *filepath, t_rt *rt, t_obj *current)
 
 	s = (t_sda){0, rt, rt->root, current, 0, 0};
 	if (!(av = ft_strsplit(filepath, ' ')))
-		return (-1);
+		return ;
 	ret = sda_setup_texture(&s, current, av);
 	ft_freesplit(av);
-	return (ret);
+	if (ret != 1)
+	{
+		current->cfgbits ^= SDB_TEXTURE;
+		free(filepath);
+		filepath = ft_strdup("no texture");
+	}
 }
 
 static void	fill_champs_vide(char *champs[NB_CHAMPS][LARGER_SIZE])
 {
-	*champs[I_SCALE] = ft_strdup(" ");
-	*champs[I_VIDE1] = ft_strdup(" ");
-	*champs[I_VIDE2] = ft_strdup(" ");
-	*champs[I_VIDE3] = ft_strdup(" ");
-	*champs[I_VIDE4] = ft_strdup(" ");
-	*champs[I_VIDE5] = ft_strdup(" ");
-	*champs[I_VIDE6] = ft_strdup(" ");
-	*champs[I_VIDE7] = ft_strdup(" ");
-	*champs[I_VIDE8] = ft_strdup(" ");
-	*champs[I_ENTER] = ft_strdup(" ");
+	*champs[I_VIDE2] = ft_strdup("\t");
+	*champs[I_VIDE3] = ft_strdup("\t");
+	*champs[I_VIDE4] = ft_strdup("\t");
+	*champs[I_VIDE5] = ft_strdup("\t");
+	*champs[I_VIDE6] = ft_strdup("\t");
+	*champs[I_VIDE7] = ft_strdup("\t");
+	*champs[I_VIDE8] = ft_strdup("\t");
+	*champs[I_ENTER] = ft_strdup("\t");
 	*champs[I_END] = NULL;
 }
 
@@ -71,11 +74,11 @@ void		change_all_data_obj(t_rt *rt, char *champs[NB_CHAMPS][LARGER_SIZE])
 	if (obj->cfgbits & SDB_NAME)
 	{
 		free(obj->name);
-		obj->name = ft_strdup(*champs[I_NAME]); // test
+		if (!(obj->name = ft_strdup(*champs[I_NAME])))
+				obj->cfgbits ^= SDB_NAME;
 	}
 	if (obj->cfgbits & SDB_TEXTURE)
 		interf_settexture(*champs[I_TEXT], rt, obj);
-	//		sda_setup_texture(NULL, obj, champs[I_TEXT]);
 	obj->trans.w = (t_v4d){
 		ft_atod(*champs[I_POSX]), ft_atod(*champs[I_POSY]),
 		ft_atod(*champs[I_POSZ]), 0.0};
@@ -86,7 +89,8 @@ void		change_all_data_obj(t_rt *rt, char *champs[NB_CHAMPS][LARGER_SIZE])
 	set_color(obj, champs);
 	((t_cube*)obj->content)->reflect = (unsigned char)ft_atoi(*champs[I_REFL]);
 	obj->refractive_index = ft_atod(*champs[I_REFR]);
-	//((t_cube*)obj->content)->size = (float)ft_atod(*champs[I_SIZE]);
+	obj->refractive_index = ft_atod(*champs[I_REFR]);
+	((t_cube*)obj->content)->size = (float)ft_atod(*champs[I_SIZE]);
 	fill_champs_obj(obj, champs);
 }
 
@@ -132,7 +136,7 @@ void		fill_champs_obj(t_obj *obj,
 		sda_export_reflect(obj, NULL) : ft_strdup("0");
 	*champs_obj[I_REFR] = (obj->cfgbits & SDB_REFRACT) ?
 		ft_dtoa(obj->refractive_index, 0) : ft_strdup("0");
-	*champs_obj[I_SIZE] = (obj->cfgbits & SDB_SIZE) ?
-		ft_itoa((int)((t_cube*)obj->content)->size) : ft_strdup("0");
+	if (!(*champs_obj[I_SIZE] = sda_export_size(obj, NULL)))
+		ft_strdup("1");
 	fill_champs_vide(champs_obj);
 }

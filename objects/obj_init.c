@@ -21,7 +21,7 @@ void			rt_obj_init_shader(t_obj *obj)
 		return ;
 	}
 	shader_init(obj->shader, &shader_texture, 0xFF000000, &blend_normal);
-	shader_init(obj->shader, &shader_normalmap, 0xff000000, &blend_add);
+	shader_init(obj->shader, &shader_normalmap, 0xFF000000, &blend_add);
 	shader_init(obj->shader, &rt_light_pow, 0xFF2E2E2E, &blend_multiply);
 	shader_init(obj->shader, &shader_reflection, 0xFF000000, &blend_add);
 	shader_init(obj->shader, &shader_shadow, 0xFF000000, &blend_normal);

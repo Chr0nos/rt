@@ -174,7 +174,7 @@ t_v4d			rt_mesh_normale(t_obj *obj, t_v4d *v);
 
 int				rt_export_bmp(t_rt *rt, int ac, char **av);
 int				rt_export(t_rt *rt, int ac, char **av);
-int				rt_normal(t_rt *rt, int ac, char **av);
+int				rt_normal(t_rt *rt, const  char *path);
 
 int				rt_quit(t_rt *rt, int retcode);
 int				sdl_flush(t_rt *rt);

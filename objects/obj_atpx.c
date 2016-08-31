@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:50:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:12:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 21:08:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		obj_atpx_texture(t_render *r)
 		r->ray->color = ((t_cube*)r->obj_intersect->content)->color;
 		return ;
 	}
-	s->exec(s, r, NULL);
+	s->exec(s, r, NULL, NULL);
 	r->ray->color = s->blend(s->color_render, s->color_base);
 }
 
@@ -47,7 +47,8 @@ t_obj			*rt_obj_atpx_real(t_rt *rt, t_ray *ray)
 	r = (t_render){
 		ray, rt, NULL, HUGE_VAL,
 		0.0, (t_v4d){0.0, 0.0, 0.0, 0.0},
-		ray->dir
+		ray->dir,
+		NULL
 	};
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);

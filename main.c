@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:33:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 20:57:20 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int				rt_start(t_rt *rt)
 	return (0);
 }
 
-int				rt_normal(t_rt *rt, int ac, char **av)
+int				rt_normal(t_rt *rt, const char *path)
 {
-	if ((ac == 0) || (ls_isdir(av[0]) == 1))
-		menu_init(rt, av[0]);
+	if (!path || ls_isdir(path) == 1)
+		menu_init(rt, path);
 	else
 	{
-		if (!(rt->root = rt_parser(av[0], rt)))
+		if (!(rt->root = rt_parser(path, rt)))
 		{
 			ft_putendl_fd("error.", 2);
 			return (1);
@@ -92,8 +92,8 @@ int				main(int ac, char **av)
 
 	rt_configure(&rt);
 	signal(SIGUSR1, &rt_signal);
-	ft_putstr("\033[01;34mTry -h to more information\033[;m");
+	ft_putstr("\033[01;34mTry -h to more information\033[;m\n\n");
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));
-	return (rt_quit(&rt, rt_normal(&rt, ac - 1, av + 1)));
+	return (rt_quit(&rt, rt_normal(&rt, NULL)));
 }

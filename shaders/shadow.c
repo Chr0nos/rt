@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/27 21:09:28 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/31 14:46:08 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,20 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 	}
 }
 
-void			shader_shadow(t_shader *s, t_render *r, t_obj *light)
+void			shader_shadow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
 {
 	t_ray			ray;
 	t_render		sw;
 
+	(void)s;
 	ray = *r->ray;
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
 		geo_dtov4d(-0.00001)));
 	ray.dir = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	sw = (t_render){&ray, r->rt, NULL, HUGE_VAL, 0.0,
-			(t_v4d){0.0, 0.0, 0.0, 0.0}, ray.dir};
+			(t_v4d){0.0, 0.0, 0.0, 0.0}, ray.dir, color_render};
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
 	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
-	set_color_shader_shadow(r, &s->color_render, &sw, light);
+	set_color_shader_shadow(r, color_render, &sw, light);
 }

@@ -6,14 +6,15 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 11:33:19 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/25 13:16:19 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:54:14 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "keyboard.h"
 
-void	change_color(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE])
+void			change_color(int scale, int y,
+		char *champs[NB_CHAMPS][LARGER_SIZE])
 {
 	double	tmp;
 	int		index;
@@ -36,14 +37,15 @@ void	change_color(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE])
 	}
 }
 
-void	change_one(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE])
+void			change_one(int scale, int y,
+		char *champs[NB_CHAMPS][LARGER_SIZE])
 {
 	double	tmp;
 	int		index;
 
 	index = (int)(y / 28);
 	tmp = 0.0;
-	if ((index < I_END && index > I_TEXT))
+	if ((index <= I_SIZE && index >= I_POSX))
 	{
 		tmp = ft_atod(*champs[index]);
 		free(*champs[index]);
@@ -60,19 +62,44 @@ void	change_one(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE])
 	}
 }
 
-void	change_selected_obj(t_rt *rt)
+static t_obj	*protect_change(t_rt *rt, t_obj *obj, t_uint *root_id)
 {
-	static t_uint	root_id = 1;
-
-	if (rt->interf->obj_selected)
-		rt->interf->obj_selected = rt_obj_byid(rt->root,
-			(t_uint)((int)rt->interf->obj_selected->id + rt->interf->scale));
-	if (!(rt->interf->obj_selected))
+	if (!obj || (obj &&
+				!(obj->next) && !(obj->childs) && !(obj->parent->childs)))
 	{
-		rt->interf->obj_selected = rt_obj_byid(rt->root, root_id++);
-		if ((rt->interf->obj_selected->next) == NULL)
-			root_id = 1;
+		*root_id = 0;
+		while (!(obj = rt_obj_byid(rt->root, (*root_id)++))
+				&& *root_id < 9000000)
+			;
+		if (*root_id == 9000000)
+		{
+			ft_putstr("\n/033[01;33mError, root scene\
+					not contain valid ID\n\n");
+			exit(1);
+		}
 	}
-	init_champs_obj(rt->interf->champs_obj);
+	return (obj);
+}
+
+void			change_selected_obj(t_rt *rt)
+{
+	static t_uint	root_id = 0;
+	t_obj			*obj;
+
+	obj = rt->interf->obj_selected;
+	if (obj)
+	{
+		if (!rt->interf->scale)
+			rt->interf->scale = 1;
+		root_id = (t_uint)(rt->interf->scale + (int)obj->id);
+		obj = rt_obj_byid(rt->root, root_id);
+	}
+	if (!(obj))
+	{
+		while (!(obj = rt_obj_byid(rt->root, root_id++))
+				&& root_id < 5000)
+			;
+	}
+	rt->interf->obj_selected = protect_change(rt, obj, &root_id);
 	fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
 }

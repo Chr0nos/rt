@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/27 17:30:37 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/31 15:03:49 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_v4d	rt_specular_pow_intelight(t_obj *light, t_render *r)
 		geo_normv4(geo_subv4(light->trans.w, r->intersection))));
 }
 
-void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
+void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
 {
 	double			latt;
 	double			li;
@@ -48,7 +48,7 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity) /
 		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 5.0)))
 			/ MID_LIGHT_POWER * 255.0;
-		s->color_render = blend_lighten(s->color_render,
+		*color_render = blend_lighten(*color_render,
 			to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li));
 	}
 }
@@ -57,13 +57,15 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light)
 ** ambiant light and diffuse
 */
 
-void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
+void			rt_light_pow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
 {
 	double			latt;
 	double			li;
 	unsigned int	color;
 	t_v4d			light_vector;
 
+	(void)s;
+	(void)light;
 	light_vector = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
@@ -77,5 +79,5 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light)
 	}
 	else
 		color = r->rt->settings.ambiant_light;
-	s->color_render = blend_lighten(s->color_render, color);
+	*color_render = blend_lighten(*color_render, color);
 }
