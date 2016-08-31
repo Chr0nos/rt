@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 02:16:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 06:29:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,31 @@ static unsigned int	get_background_color(t_render *r)
 		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
 }
 
+static int			rt_render_csg(t_obj *obj, const t_render *r, t_intersect *v)
+{
+	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
+	const char		sn = r->ray->flags & FLAG_CSG_NEGATIVE;
+
+	if ((!on) && (!sn))
+		return (OK);
+	if ((on) && (!sn))
+	{
+		r->ray->flags |= FLAG_CSG_NEGATIVE;
+		if (v->flags & INTER_OUT)
+			r->ray->lenght = geo_distv4(r->ray->start, v->out);
+		else
+			r->ray->lenght = (double)INFINITY;
+		return (-1);
+	}
+	if ((on) && (sn))
+	{
+		r->ray->flags ^= FLAG_CSG_NEGATIVE;
+		r->ray->lenght = geo_distv4(r->ray->start, v->in);
+		return (OK);
+	}
+	return (-1);
+}
+
 int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render		*r;
@@ -49,7 +74,7 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else if (r->lowest_lenght < r->ray->lenght)
 			;
-		else// if (rt_render_csg(obj, r, &impact) == OK)
+		else if (rt_render_csg(obj, r, &impact) == OK)
 		{
 			r->obj_intersect = obj;
 			r->intersection = impact.in;
