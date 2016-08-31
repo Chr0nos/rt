@@ -1,8 +1,8 @@
 SETTING
 	skybox: textures/skybox.jpg
 CAMERA
-	pos: 0 -2.088392 0.080411
-	rot: -45.836622 0 0
+	pos: 1.089379 0.67732 -2.165487
+	rot: 5.729579 0 0
 CAMERA
 	pos: 0 0.053351 1.4635
 	rot: -45.836623 0 0
@@ -14,7 +14,7 @@ CUBE
 	pos: 0 0 2
 	#texture: textures/feuillage.jpg
 	color: #00ffff
-	sdisable: specular shadow
+	#sdisable: specular shadow
 	POINTLIGHT
 		pos: 0 0 -4
 	POINTLIGHT
@@ -27,7 +27,6 @@ CUBE
 	pos: 2 0 2
 	color: #50b000
 
-#PLAN
-#	pos: 0 -2 0
-#	color: #b0b0b0
-#	reflect: 200
+PLAN
+	pos: 0 -2 0
+	color: #b0b0b0

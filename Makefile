@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/30 01:24:53 by snicolet         ###   ########.fr        #
+#    Updated: 2016/08/31 17:07:46 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,8 @@ TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
 		textures_display.o
 
 RENDER_DIR=render
-RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
+RENDER=render.o render_light.o render_tree.o refract.o render_mode.o \
+	render_csg.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o

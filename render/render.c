@@ -6,7 +6,7 @@
 /*   By: rnicolet <rnicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by rnicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 16:05:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 17:45:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,47 +31,6 @@ static unsigned int	get_background_color(t_render *r)
 		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
 }
 
-static int			rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
-{
-	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
-	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
-
-	//p + p = p
-	if ((!on) && (!rn))
-	{
-		r->obj_intersect = obj;
-		r->intersection = v->in;
-		return (OK);
-	}
-	//n + p = n
-	if ((on) && (!rn))
-	{
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
-		if (v->flags & INTER_OUT)
-		{
-			r->ray->lenght = v->len_out;
-			return rt_render_foreach(obj->parent, 0, r);
-			//r->obj_intersect = obj->parent;
-		}
-		else
-			r->ray->lenght = (double)INFINITY;
-		return (-1);
-	}
-	//n + n = p
-	if ((on) && (rn))
-	{
-		r->ray->flags &= ~FLAG_CSG_NEGATIVE;
-		r->ray->lenght = v->len_in;
-		r->intersection = v->in;
-		r->obj_intersect = obj;
-		return (OK);
-	}
-	//p + n = n
-	if ((on) && (!rn))
-		r->ray->flags |= FLAG_CSG_NEGATIVE;
-	return (-1);
-}
-
 int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render		*r;
@@ -88,14 +47,11 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		IFRET__(!(obj->type & VISIBLE), OK);
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
 			;
-		else if (r->lowest_lenght < r->ray->lenght)
+		else if (r->lowest_lenght < impact.len_in)
 			;
-		else if (rt_render_csg(obj, r, &impact) == OK)
-		{
-		//	r->obj_intersect = obj;
-		//	r->intersection = impact.in;
-			r->lowest_lenght = r->ray->lenght;
-		}
+		else
+			rt_render_csg(obj, r, &impact);
+		//	rt_render_nocsg(obj, r, &impact);
 	}
 	return (OK);
 }
