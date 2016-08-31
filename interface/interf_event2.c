@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 11:33:19 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 14:13:55 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:54:14 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static t_obj	*protect_change(t_rt *rt, t_obj *obj, t_uint *root_id)
 	{
 		*root_id = 0;
 		while (!(obj = rt_obj_byid(rt->root, (*root_id)++))
-				&& *root_id < 5000)
+				&& *root_id < 9000000)
 			;
-		if (*root_id == 5000)
+		if (*root_id == 9000000)
 		{
 			ft_putstr("\n/033[01;33mError, root scene\
 					not contain valid ID\n\n");
@@ -101,6 +101,5 @@ void			change_selected_obj(t_rt *rt)
 			;
 	}
 	rt->interf->obj_selected = protect_change(rt, obj, &root_id);
-	init_champs_obj(rt->interf->champs_obj);
 	fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
 }

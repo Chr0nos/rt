@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:42:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/29 17:01:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 21:44:05 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,22 @@
 
 void	clean_interface(t_rt *rt)
 {
-//	free_champs(rt->interf->champs_obj);
 	ft_freesplit(*rt->interf->champs_obj);
-	free_surfaces(rt->interf->surface_txt);
+	ft_freesplit(rt->interf->champs_scale);
+	free_surfaces(rt->interf->surface_txt, NB_CHAMPS);
+	free_surfaces(rt->interf->surface_scale, 7);
+	free_surfaces(rt->interf->surface_obj, NB_CHAMPS);
 	TTF_CloseFont(rt->interf->police_classic);
 	TTF_CloseFont(rt->interf->police_selected);
 	TTF_Quit();
 	ft_putstr("TTF_quit ...\n");
 }
 
-//ft_free_tab((char**)(unsigned long)champs, sizeof(*champs));
-//penser a metre un NULL a la fin de champs
-
-void	free_surfaces(SDL_Surface *surface[NB_CHAMPS])
+void	free_surfaces(SDL_Surface *surface[NB_CHAMPS], int max)
 {
 	int		i;
 
 	i = -1;
-	while (++i != I_END)
-		free(surface[i]);
+	while (++i < max - 1)
+		SDL_FreeSurface(surface[i]);
 }

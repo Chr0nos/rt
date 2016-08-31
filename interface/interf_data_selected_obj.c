@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:01:36 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/29 18:30:39 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/30 21:54:26 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,24 @@ static void	interf_settexture(char *filepath, t_rt *rt, t_obj *current)
 		return ;
 	ret = sda_setup_texture(&s, current, av);
 	ft_freesplit(av);
-	if (ret == -1)
+	if (ret != 1)
+	{
 		current->cfgbits ^= SDB_TEXTURE;
+		free(filepath);
+		filepath = ft_strdup("no texture");
+	}
 }
 
 static void	fill_champs_vide(char *champs[NB_CHAMPS][LARGER_SIZE])
 {
-	*champs[I_SCALE] = ft_strdup(" ");
-	*champs[I_VIDE1] = ft_strdup(" ");
-	*champs[I_VIDE2] = ft_strdup(" ");
-	*champs[I_VIDE3] = ft_strdup(" ");
-	*champs[I_VIDE4] = ft_strdup(" ");
-	*champs[I_VIDE5] = ft_strdup(" ");
-	*champs[I_VIDE6] = ft_strdup(" ");
-	*champs[I_VIDE7] = ft_strdup(" ");
-	*champs[I_VIDE8] = ft_strdup(" ");
-	*champs[I_ENTER] = ft_strdup(" ");
+	*champs[I_VIDE2] = ft_strdup("\t");
+	*champs[I_VIDE3] = ft_strdup("\t");
+	*champs[I_VIDE4] = ft_strdup("\t");
+	*champs[I_VIDE5] = ft_strdup("\t");
+	*champs[I_VIDE6] = ft_strdup("\t");
+	*champs[I_VIDE7] = ft_strdup("\t");
+	*champs[I_VIDE8] = ft_strdup("\t");
+	*champs[I_ENTER] = ft_strdup("\t");
 	*champs[I_END] = NULL;
 }
 
