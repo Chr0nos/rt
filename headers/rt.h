@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/30 16:40:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 02:03:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int				camera_switch(t_rt *rt);
 
 void			rt_box_update(t_obj *obj);
 void			rt_bounds_update(t_obj *node);
-int				raybox_check(t_ray *r, t_box *box);
+int				raybox_cube_check(t_ray *r, t_box *box);
 
 void			rt_rays(t_rt *rt);
 

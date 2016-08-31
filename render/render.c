@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 17:25:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 02:16:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,44 +31,6 @@ static unsigned int	get_background_color(t_render *r)
 		(int)(v * tex->surface->h) + (int)(u * tex->surface->w)]);
 }
 
-
-/*
-** if the function return OK -> we draw the pixels
-** in ANY other case: the object will not be showed
-*/
-
-static inline int	rt_render_csg(t_obj *obj, t_render *r, t_intersect *impact)
-{
-	const char		on = obj->flags & FLAG_CSG_NEGATIVE;
-	const char		rn = r->ray->flags & FLAG_CSG_NEGATIVE;
-
-	(void)impact;
-	r->lowest_lenght = r->ray->lenght;
-	if (!r->obj_intersect)
-	{
-		r->obj_intersect = obj;
-		if (!rn)
-			r->ray->flags |= FLAG_CSG_NEGATIVE;
-		return ((!on) ? OK : -1);
-	}
-	if ((on) && (!rn))
-	{
-		r->ray->flags ^= FLAG_CSG_NEGATIVE;
-		r->obj_intersect = obj;
-		//modif ray start here
-		return (-1);
-	}
-	else if ((!on) && (rn))
-		return (-1);
-	else if ((!on) && (!on))
-	{
-		r->obj_intersect = obj;
-		r->ray->flags &= ~FLAG_CSG_NEGATIVE;
-		return (OK);
-	}
-	return (-1);
-}
-
 int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 {
 	t_render		*r;
@@ -77,9 +39,10 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	(void)mode;
 	impact = (t_intersect){geo_dtov4d(0.0), geo_dtov4d(0.0), 0};
 	r = userdata;
-	if ((!(obj->type & NOCHECKBOX)) && (!raybox_check(r->ray, &obj->bounds)))
+	if ((!(obj->type & NOCHECKBOX)) &&
+		(!raybox_cube_check(r->ray, &obj->bounds)))
 		return (STOP_NODE);
-	if ((obj->type & NOCHECKBOX) || (raybox_check(r->ray, &obj->hitbox)))
+	if ((obj->type & NOCHECKBOX) || (raybox_cube_check(r->ray, &obj->hitbox)))
 	{
 		IFRET__(!(obj->type & VISIBLE), OK);
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
@@ -88,7 +51,6 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 			;
 		else// if (rt_render_csg(obj, r, &impact) == OK)
 		{
-			(void)rt_render_csg;
 			r->obj_intersect = obj;
 			r->intersection = impact.in;
 			r->lowest_lenght = r->ray->lenght;
@@ -102,9 +64,7 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 	t_render	r;
 
 	r = (t_render){
-		ray, rt, NULL,
-		HUGE_VAL,
-		0.0,
+		ray, rt, NULL, HUGE_VAL, 0.0,
 		(t_v4d){0.0, 0.0, 0.0, 0.0},
 		ray->dir
 	};
