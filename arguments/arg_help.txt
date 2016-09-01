@@ -1,15 +1,16 @@
-.._______________________________________________________________..
-||                                                               ||
-||                      WELCOME IN OUR RT MENU                   ||
-\\_______________________________________________________________//
-|                                                                 |
-| Next time, add map and try option :                             |
-|  -e  : output scene to sda format.                              |
-|  -b  : export scene to image bmp & choose a destination path    |
-|        -> ./rt -e scenes/test.sda ~Desktop/my_image.bmp         |
-|  -s  : define your map size.                                    |
-|        -> ./rt -s 800x800 scenes/test.sda                       |
-|  -fs : full screen mode.                                        |
-|  -x  : disable refresh mode.                                    |
-|_________________________________________________________________|
-|____________________________  ENJOY _____________________________|
+@[01;31m.._________________________________________________________________________..
+||                                                                         ||
+||                           WELCOME IN OUR RT MENU                        @[31m||
+\\_________________________________________________________________________//
+|                                                                           |
+|   @[04;35mNext time, add map and try option :@[;m                                     @[;01;31m|
+|  @[32m  -e  :@[36m output scene to sda format.                                      @[31m|
+|  @[32m  -b  :@[36m export scene to image bmp & choose a destination path            @[31m|
+|        @[36m->   ./rt -e scenes/test.sda ~Desktop/my_image.bmp                 @[31m|
+|  @[32m  -s  :@[36m define your map size.                                            @[31m|
+|        @[36m  -> ./rt -s 800x800 scenes/test.sda                               @[31m|
+|  @[32m  -fs :@[36m full screen mode.                                                @[31m|
+|  @[32m  -x  :@[36m disable refresh mode.                                            @[31m|
+|___________________________________________________________________________|
+|_________________________________@[35m  ENJOY @[31m__________________________________|
+

@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:29:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 11:18:57 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
+#include "arguments.h"
 #include "libft.h"
 #include "menu.h"
 #include "sda.h"
@@ -90,5 +91,7 @@ int				toggle_key(int keycode, t_rt *rt)
 		rt->keyboard |= FORCE_DISPLAY;
 		return (camera_switch(rt));
 	}
+	else if (keycode == SDLK_h)
+		arg_display_help(rt, 0, NULL);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:37:51 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/31 20:25:03 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void				interface_display(t_rt *rt)
 			rt->interf->police_selected, &rt->interf->color_selected);
 	define_position(&rt->interf->pos, 150, 64);
 	print_surface(rt->interf->surface_obj, rt->sys.screen, &rt->interf->pos);
+	SDL_BlitSurface(rt->sys.screen, NULL, rt->interf->interf_screen, &(SDL_Rect){0,0, 280, 766});
 }

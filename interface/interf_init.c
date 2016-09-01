@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:49:11 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/31 19:55:26 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		init_interface(t_rt *rt)
 {
 	init_ttf(rt);
 	rt->interf->scale = 0;
+	rt->interf->interf_screen = draw_make_surface((t_v2i){767, 300});
 	init_font(rt->interf);
 	define_position(&rt->interf->pos, 0, 0);
 	init_champs_txt(rt->interf->champs_txt);

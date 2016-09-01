@@ -1,56 +1,55 @@
-***********************************************************************
-* CAMERA :
-	W ... : ZOOM_IN		^	S ........ : ZOOM_OUT
-	A ... : RIGHT		^	D ........ : LEFT
-	SPACE : UP		^	C | CRTL_L : DOWN
-	E ... : ROLL_RIGHT	^	Q ........ : ROLL_LEFT
-	
-	ARROWS :
-	LEFT ... : ROTATE_LEFT	^	RIGHT ... : ROTATE_RIGHT
-	UP ..... : ROTATE_UP	^	DOWN .... : ROTATE_DOWN
-
-	LSHIFT : MOVE FASTER
-	P : Force DISPLAY
-	Y : Checkpoint camera position
-	R : Camera RESET initial position
-	M : Camera SWITCH !!!!!!!!! m est utilisé en keybit more_ambiant
-
-* LIGHT :
-	m : more ambiant light
-	n : less ambient light
-
-* EXPORT :
-	B : convert image to BMP
-	X : export data current from the tree in the terminal (SDA format)
-	T : display Textures used
-	L : display tree to debug
-	
-* OTHERS :
-	F : ??????
-
-* FILTRES :
-	1: red		4: yellow
-	2: green	5: magenta
-	3: blue		6:cyan
-	7: sepia	
-
-* INTERFACE :
-	I: to launch / quit mode interface
-	Click mouse left: to choose an object or param to scale
-
-	-100 -10 -1 +1 +10 +100 : choose an incrementing factor
-	Id : Change object
-	Type : just give you an information on type of the current object
-	Name : define a new name to object
-	Texture : define a pathspec of texture
-	Pos.X pos.Y pos.Z : change the coordinates of the position of objects
-	Dir.X dir.Y dir.Z : change direction of the objects
-	R G B transparency : change colors parameters
-	Reflection : change the percentage of reflection
-	Refrection : change th percentage of refraction
-	ENTER : to confirm all changement in object and display
-
-* EXIT :
-	ECHAP: to quit
-
-******************************************************************************
+@[01;31m*****************************************************************************
+@[31m*  @[04;35m* CAMERA :@[;01;03;32m
+@[31m*@[32m	 W ... : ZOOM_IN		^	S ........ : ZOOM_OUT
+@[31m*@[32m	 A ... : RIGHT			^	D ........ : LEFT
+@[31m*@[32m	 SPACE : UP			^	C | CRTL_L : DOWN
+@[31m*@[32m	 E ... : ROLL_RIGHT		^	Q ........ : ROLL_LEFT
+@[31m*	
+@[31m*	 @[;03;32mARROWS :@[01;32m
+@[31m*@[32m	 LEFT ... : ROTATE_LEFT		^	RIGHT ... : ROTATE_RIGHT
+@[31m*@[32m	 UP ..... : ROTATE_UP		^	DOWN .... : ROTATE_DOWN
+@[31m*
+@[31m*@[32m	 LSHIFT : MOVE FASTER@[01;32m
+@[31m*@[32m	 P : Force DISPLAY
+@[31m*@[32m	 Y : Checkpoint camera position
+@[31m*@[32m	 R : Camera RESET initial position
+@[31m*@[32m	 M : Camera SWITCH
+@[31m* 
+@[31m*  @[;01;04;35m* LIGHT :@[;01;03;33m
+@[31m*@[33m	 h : more ambiant light
+@[31m*@[33m	 n : less ambient light
+@[31m*
+@[31m*  @[;01;04;35m* EXPORT :@[;01;03;36m
+@[31m*@[36m	 B : convert image to BMP
+@[31m*@[36m	 X : export data current from the tree in the terminal (SDA format)
+@[31m*@[36m	 T : display Textures used
+@[31m*@[36m	 L : display tree to debug
+@[31m*	
+@[31m*  @[;01;04;35m* OTHERS :@[;01;03;34m F : Full-screen
+@[31m*
+@[31m*  @[;01;04;35m* FILTRES :@[;01;03;36m
+@[31m*@[36m	 1 : red		4 : yellow
+@[31m*@[36m	 2 : green		5 : magenta
+@[31m*@[36m	 3 : blue		6 : cyan
+@[31m*@[36m	 7 : sepia	
+@[31m*
+@[31m*  @[;01;04;35m* INTERFACE :@[;03;33m I :@[01;33m to launch / quit mode interface
+@[31m*	 @[;03;33mMouse left :@[01;33m to choose an object or param to scale@[01;33m
+@[31m*
+@[31m*@[33m	 -100 -10 -1 +1 +10 +100 : choose an incrementing factor	
+@[31m*@[33m	 Id		 : Change object
+@[31m*@[33m	 Type 		 : just give you information on type of the current object
+@[31m*@[33m	 Name 		 : define a new name to object
+@[31m*@[33m	 Texture	 : define a pathspec of texture
+@[31m*@[33m 	 Pos.X Y Z	 : change the coordinates of the position of objects
+@[31m*@[33m 	 Dir.X Y Z	 : change direction of the objects
+@[31m*@[33m	 R G B		 : change colors parameters
+@[31m*@[33m	 Transparency	 : add or change transparency
+@[31m*@[33m	 Reflection	 : change the percentage of reflection
+@[31m*@[33m	 Refrection	 : change th percentage of refraction
+@[31m*
+@[31m*	 @[;03;33mENTER :@[01;33m to confirm all changement in object and display@[01;33m
+@[31m*
+@[31m*  @[;01;04;35m* EXIT :@[;01;03;32m ECHAP: to quit
+@[31m*  
+@[;01;31m******************************************************************************

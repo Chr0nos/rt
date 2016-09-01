@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:42:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/28 16:03:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 11:14:18 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			getkeybit(const int keycode)
 		{KC_P, FORCE_DISPLAY},
 		{KC_LSHIFT, FAST},
 		{SDLK_n, AMBIANT_MORE | FORCE_DISPLAY},
-		{SDLK_h, AMBIANT_LESS | FORCE_DISPLAY}
+		{SDLK_j, AMBIANT_LESS | FORCE_DISPLAY}
 	};
 	unsigned int	p;
 
