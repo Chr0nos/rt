@@ -16,8 +16,8 @@
 @[31m*@[32m	 M : Camera SWITCH
 @[31m* 
 @[31m*  @[;01;04;35m* LIGHT :@[;01;03;33m
-@[31m*@[33m	 h : more ambiant light
-@[31m*@[33m	 n : less ambient light
+@[31m*@[33m	 + : more ambiant light
+@[31m*@[33m	 - : less ambient light
 @[31m*
 @[31m*  @[;01;04;35m* EXPORT :@[;01;03;36m
 @[31m*@[36m	 B : convert image to BMP
