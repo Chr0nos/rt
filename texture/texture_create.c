@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 18:27:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:31:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_texture				*texture_create(t_texture **lst, char *filepath)
 		noise_size = (t_v2i){ft_atoi(tab[1]), ft_atoi(tab[2])};
 	else
 		noise_size = (t_v2i){200, 200};
-	ft_free_tab(tab, tab_size);
+	ft_freesplit(tab);
 	free(filepath);
 	free(tab);
 	return (texture_perlin(lst, noise_size));
