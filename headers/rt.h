@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/24 19:48:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 20:12:11 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int				rt_export(t_rt *rt, int ac, char **av);
 int				rt_normal(t_rt *rt, const  char *path);
 
 int				rt_quit(t_rt *rt, int retcode);
-int				sdl_flush(t_rt *rt);
+int				sdl_flush(const t_rt *rt);
 int				togglefs(t_rt *rt);
 char			rt_rays_pc(const t_v2i *geometry,
 	const t_v2i *px);
