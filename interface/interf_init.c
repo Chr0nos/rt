@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:49:11 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 17:15:08 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	init_champs_txt(char *champs_txt[NB_CHAMPS][LARGER_SIZE])
 	*champs_txt[I_SIZE] = ft_strdup("Size ....... :");
 	*champs_txt[I_VIDE8] = ft_strdup("\t");
 	*champs_txt[I_ENTER] = ft_strdup("----------- ENTER ----------");
-	*champs_txt[I_END] = NULL;
 }
 
 static void	init_font(t_interf *interf)
@@ -59,22 +58,12 @@ static void	init_font(t_interf *interf)
 	define_color(&interf->color_classic, 255, 255, 255);
 	define_color(&interf->color_selected, 210, 255, 50);
 	interf->police_classic = define_police(interf->police_classic,
-		"interface/font/monkey.ttf", 25, 0);
+			"interface/font/monkey.ttf", 25, 0);
 	interf->police_selected = define_police(interf->police_selected,
-		"interface/font/pointfree.ttf", 19, 0);
+			"interface/font/pointfree.ttf", 19, 0);
 }
 
-/*
-** static	void	init_button(t_draw	*win)
-** {
-**	win->win = NULL;
-**	win->screen = NULL;
-**	win->geometry = (t_v2i){275, 768};
-**	draw_init(win, win->geometry, "interface");
-** }
-*/
-
-static void		init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
+static void	init_champs_obj(char *champs_obj[NB_CHAMPS][LARGER_SIZE])
 {
 	int	i;
 
@@ -97,8 +86,10 @@ void		init_interface(t_rt *rt)
 {
 	init_ttf(rt);
 	rt->interf->scale = 0;
+	rt->interf->interf_screen = draw_make_surface((t_v2i){767, 300});
 	init_font(rt->interf);
 	define_position(&rt->interf->pos, 0, 0);
+	*(rt->interf->champs_txt[I_END]) = NULL;
 	init_champs_txt(rt->interf->champs_txt);
 	init_champs_obj(rt->interf->champs_obj);
 	rt->interf->champs_scale = ft_strsplit("-100 -10 -1 +1 +10 +100", ' ');
@@ -109,6 +100,5 @@ void		init_interface(t_rt *rt)
 			rt->interf->police_classic, &rt->interf->color_classic);
 	fill_surfaces(rt->interf->champs_obj, rt->interf->surface_obj,
 			rt->interf->police_selected, &rt->interf->color_selected);
-	//	init_button(&rt->interf->win);
 	ft_freesplit(*rt->interf->champs_txt);
 }

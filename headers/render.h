@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 21:09:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:15:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_render
 	unsigned int	*colors_renders;
 }					t_render;
 
-void				rt_init_alterate_rendermode(t_rt *rt, void (*cbf)(t_rt *));
 void				rt_init_rt_rendermode(t_rt *rt, void (*cbf)(t_rt *));
 
 t_uint				rt_render_ray(t_rt *rt, t_ray *ray);

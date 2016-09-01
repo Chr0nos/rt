@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/08/31 21:10:01 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/01 18:16:38 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,8 +126,8 @@ ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 
 INTER_DIR=interface
 INTER=interf_init.o interf_display.o interf_define.o interf_clean.o \
-		interf_data_selected_obj.o interf_event.o interf_event2.o \
-		interf_fill_surface.o
+		interf_change_obj.o interf_event.o interf_event2.o \
+		interf_fill_surface.o interf_fill_obj.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \

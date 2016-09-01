@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:44:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 17:24:22 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	change_scale(int x, t_interf *in)
 		in->scale = -100;
 	else if (x < 92 && (i_scale = 1))
 		in->scale = -10;
-	else if (x < 138 && (i_scale = 2)) 
+	else if (x < 138 && (i_scale = 2))
 		in->scale = -1;
 	else if (x < 184 && (i_scale = 3))
 		in->scale = 1;
@@ -67,13 +67,9 @@ static void	change_str_obj(t_interf *interf, int i)
 
 void		interf_event(t_v2i *mouse_pos, t_rt *rt)
 {
-	int			size;
-	int			click;
-	t_interf	*in;
+	const int			size = 28;
+	const int			click = mouse_pos->y;
 
-	size = 28;
-	click = mouse_pos->y;
-	in = rt->interf;
 	if (click >= 0 && click <= size + 8)
 		change_scale(mouse_pos->x, rt->interf);
 	else if (click >= I_ID * size + 64 && click < I_VIDE2 * size + 64)
@@ -81,18 +77,18 @@ void		interf_event(t_v2i *mouse_pos, t_rt *rt)
 	else if (!(rt->interf->obj_selected))
 		return ;
 	else if (click >= I_TYPE * size + 64 && click < I_NAME * size + 64)
-		change_type(*in->champs_obj[I_TYPE]);
+		change_type(*rt->interf->champs_obj[I_TYPE]);
 	else if (click >= I_NAME * size + 64 && click < I_TEXT * size + 64)
-		change_str_obj(in, I_NAME);
+		change_str_obj(rt->interf, I_NAME);
 	else if (click >= I_TEXT * size + 64 && click < I_VIDE3 * size + 64)
-		change_str_obj(in, I_TEXT);
+		change_str_obj(rt->interf, I_TEXT);
 	else if ((click >= I_POSX * size + 64 && click < I_VIDE5 * size + 64)
-		|| (click >= I_REFL * size + 64 && click < I_VIDE8 * size + 64))
-		change_one(in->scale, click - 64, in->champs_obj);
+			|| (click >= I_REFL * size + 64 && click < I_VIDE8 * size + 64))
+		change_one(rt->interf->scale, click - 64, rt->interf->champs_obj);
 	else if (click >= I_COL_R * size + 64 && click < I_REFL * size + 64)
-		change_color(in->scale, click - 64, in->champs_obj);
+		change_color(rt->interf->scale, click - 64, rt->interf->champs_obj);
 	else if (click >= I_ENTER * size + 64 && click < I_END * size + 64)
-		change_all_data_obj(rt, in->champs_obj);
+		change_all_data_obj(rt, rt->interf->champs_obj);
 	rt_bounds_update(rt->root);
 	rt->keyboard |= FORCE_DISPLAY;
 }

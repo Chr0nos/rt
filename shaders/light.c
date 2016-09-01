@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/31 15:03:49 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 17:41:50 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static t_v4d	rt_specular_pow_intelight(t_obj *light, t_render *r)
 		geo_normv4(geo_subv4(light->trans.w, r->intersection))));
 }
 
-void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	double			latt;
 	double			li;
@@ -57,7 +58,8 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light, unsigned int *col
 ** ambiant light and diffuse
 */
 
-void			rt_light_pow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	double			latt;
 	double			li;

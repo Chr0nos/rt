@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/31 14:31:18 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:53:32 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include "mesh.h"
 
-static t_v2f			shader_normalmap_uv(const t_render *r)
+static t_v2f	shader_normalmap_uv(const t_render *r)
 {
 	return ((t_v2f){
 		(float)fabs((double)((int)(((r->normal.x != 0.0 ? r->intersection.z :
@@ -27,7 +27,7 @@ static t_v2f			shader_normalmap_uv(const t_render *r)
 		r->intersection.y) * 1.0) * 1000.0) % 1000) * 0.001)});
 }
 
-unsigned int			shader_color_normal_intersection(const t_render *r)
+unsigned int	shader_color_normal_intersection(const t_render *r)
 {
 	const t_texture		*tex = rt_obj_get_normal(r->obj_intersect);
 	const unsigned int	*pixels_texture = (tex) ? tex->surface->pixels : NULL;
@@ -49,7 +49,8 @@ unsigned int			shader_color_normal_intersection(const t_render *r)
 	return (draw_suv(tex->surface, uv));
 }
 
-void					shader_normalmap(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void			shader_normalmap(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	t_v4d				transformation_vector;
 	unsigned int		color_normal;

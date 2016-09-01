@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 19:50:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 20:06:26 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "menu.h"
 #include "interface.h"
 
-int				sdl_flush(t_rt *rt)
+int				sdl_flush(const t_rt *rt)
 {
 	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);

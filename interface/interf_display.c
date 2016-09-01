@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:37:51 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 17:25:30 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	return (draw_color_lerp(b, a, pc));
 }
 
-static void			print_scale(SDL_Surface **tab_surface, SDL_Surface *screen, SDL_Rect *pos)
+static void			print_scale(SDL_Surface **tab_surface,
+		SDL_Surface *screen, SDL_Rect *pos)
 {
 	int			i;
 
