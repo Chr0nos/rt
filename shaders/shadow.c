@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/08/31 14:46:08 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 12:21:55 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 	unsigned int	shad;
 	unsigned int	color;
 
-	shad = (light->type == SUNLIGHT ? 0x55000000 : 0x99000000);
+	shad = (light->type == SUNLIGHT ? 0x15000000 : 0x35000000);
 	color = 0x0;
 	if (sw->obj_intersect)
 	{
@@ -32,7 +32,7 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 		{
 			if (A(color))
 			{
-				shad = blend_add(shad, to_rgb(A(color) / 2, 0, 0, 0));
+				shad = blend_add(shad, to_rgb((t_uint)(A(color) * 0.5), 0, 0, 0));
 				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
 				to_rgb(0, A(color), A(color), A(color)));
 				*render = blend_add(color, *render);
