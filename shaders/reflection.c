@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:27:31 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/31 17:06:46 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:51:39 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "rt.h"
 #include "shaders.h"
 
-void			shader_reflection(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void			shader_reflection(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	t_ray			ray;
 	unsigned char	reflect;

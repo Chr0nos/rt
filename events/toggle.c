@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 15:06:33 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 17:27:38 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ int				toggle_key(int keycode, t_rt *rt)
 	else if (keycode == SDLK_m)
 		return (camera_switch(rt));
 	else if (keycode == SDLK_h)
-		arg_display_help(rt, 0, NULL);	
+		arg_display_help(rt, 0, NULL);
 	return (0);
 }

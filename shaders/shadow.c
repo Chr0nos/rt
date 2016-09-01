@@ -6,7 +6,7 @@
 /*   By: hantlowt <hantlowt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/09/01 12:21:55 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 16:09:09 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 		{
 			if (A(color))
 			{
-				shad = blend_add(shad, to_rgb((t_uint)(A(color) * 0.5), 0, 0, 0));
+				shad = blend_add(shad,
+						to_rgb((t_uint)(A(color) * 0.5), 0, 0, 0));
 				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
 				to_rgb(0, A(color), A(color), A(color)));
 				*render = blend_add(color, *render);
@@ -42,7 +43,8 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 	}
 }
 
-void			shader_shadow(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void			shader_shadow(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	t_ray			ray;
 	t_render		sw;

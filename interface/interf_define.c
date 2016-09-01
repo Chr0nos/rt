@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:39:45 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:07:44 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 17:27:05 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ SDL_Color	*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b)
 
 TTF_Font	*define_police(TTF_Font *police, char *name, int size, int selected)
 {
-
 	if ((police = TTF_OpenFont(name, size)) != NULL)
 	{
 		if (selected)
