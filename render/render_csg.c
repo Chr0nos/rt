@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 18:13:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:53:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 		r->ray->intersect = *v;
 		r->ray->obj_intersect = obj;
 		r->ray->obj_negative = NULL;
+		//todo: utiliser la normale de l objet negatif pour recuperer ma normale
 	}
+	// else if (r->ray->obj_negative == obj)
+	// 	;
+	// bon.. decouverte par serandipite: ca fais des objets en union cette merde
+	// else if (r->ray->intersect.len_out < v->len_in)
+	// 	;
 	else if ((!(v->flags & INTER_OUT)) || (v->len_out < r->lowest_lenght))
 	{
 		r->obj_intersect = NULL;
@@ -42,8 +48,15 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 		r->ray->obj_negative = obj;
 		r->ray->intersect_negative = *v;
 		r->ray->lenght_min = v->len_in;
-		r->ray->lenght_max = v->len_out;
-		//r->lowest_lenght = v->len_in;
+		if (v->flags & INTER_OUT)
+		{
+			r->ray->lenght_max = v->len_out;
+			r->lowest_lenght = v->len_out;
+		}
+		else
+		{
+			r->lowest_lenght = v->len_in;
+		}
 		//rt_render_csg(obj->parent, r, v);
 		//rt_render_foreach(obj->parent, PREFIX, r);
 	}
