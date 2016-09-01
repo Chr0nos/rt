@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/01 17:00:33 by dboudy           ###   ########.fr        #
+#    Updated: 2016/09/01 18:45:56 by edelangh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
 		parser_obj_checksplit.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
-	rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
+	rays.o pc_rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o putbits.o parser/parser.o check_camera.o \
 	rt_quit.o export.o signal.o uv.o camera_switch.o
 

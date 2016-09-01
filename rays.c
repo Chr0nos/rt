@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 16:37:14 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:45:10 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,6 @@
 #include "filter.h"
 #include "threading.h"
 #include <unistd.h>
-
-char			rt_rays_pc(const t_v2i *geometry, const t_v2i *px)
-{
-	float		endx;
-	float		posx;
-	float		endy;
-	float		posy;
-
-	endy = (float)(geometry->y);
-	endx = (float)(geometry->x);
-	posy = (float)(px->y);
-	posx = (float)(px->x);
-	return ((char)(
-		((1.0f - (posx / endx)) + ((1.0f - (posy / endy)) / endx)) * 100.0f));
-}
 
 /*
 ** this function flush the image to the screen evrey 100 pixels (width)
