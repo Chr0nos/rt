@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnicolet <rnicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 21:11:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:11:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 	{
 		IFRET__(!(obj->type & VISIBLE), OK);
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
-			;
-		else if (r->lowest_lenght < r->ray->lenght)
 			;
 		else
 			rt_render_csg(obj, r, &impact);
