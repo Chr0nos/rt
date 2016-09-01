@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/31 14:28:53 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:13:53 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 	return (uv_func(tex->surface, uv));
 }
 
-void				shader_texture(t_shader *s, t_render *r, t_obj *light, unsigned int *color_render)
+void				shader_texture(t_shader *s, t_render *r, t_obj *light,
+		unsigned int *color_render)
 {
 	(void)light;
 	(void)s;
