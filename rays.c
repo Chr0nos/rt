@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:13:00 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 16:37:14 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 				args->rt->rayfunc(args->rt, &ray);
 			rad.y -= rad.w;
 		}
-		rt_ray_refresh(&px, args->rt);
+		if (args->index == args->thread_count - 1)
+			rt_ray_refresh(&px, args->rt);
 		rad.x += rad.z;
 	}
 	return (NULL);
