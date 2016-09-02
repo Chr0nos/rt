@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:50:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 21:08:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/02 03:29:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 
 static void		obj_atpx_texture(t_render *r)
 {
-	t_shader	*s;
+	t_shader		*s;
+	unsigned int	color;
 
 	s = sda_setup_getshader_addr(r->obj_intersect->shader->shader,
 		(void*)(unsigned long)&shader_texture);
@@ -36,8 +37,8 @@ static void		obj_atpx_texture(t_render *r)
 		r->ray->color = ((t_cube*)r->obj_intersect->content)->color;
 		return ;
 	}
-	s->exec(s, r, NULL, NULL);
-	r->ray->color = s->blend(s->color_render, s->color_base);
+	s->exec(s, r, NULL, &color);
+	r->ray->color = s->blend(color, s->color_base);
 }
 
 t_obj			*rt_obj_atpx_real(t_rt *rt, t_ray *ray)

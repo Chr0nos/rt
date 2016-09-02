@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/31 19:55:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/01 18:52:14 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define I_ENTER		24
 # define I_END			25
 
-typedef struct	s_rt t_rt;
+typedef	struct s_rt	t_rt;
 
 typedef struct	s_interface
 {
@@ -69,25 +69,28 @@ typedef struct	s_interface
 	t_obj		*obj_selected;
 }				t_interf;
 
-void		init_interface(t_rt *rt);
-void 		interface_display(t_rt *rt);
-void 		fill_champs_obj(t_obj *obj, char *champs[NB_CHAMPS][LARGER_SIZE]);
-void 		fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
+void			init_interface(t_rt *rt);
+void			interface_display(t_rt *rt);
+void			fill_champs_obj(t_obj *o, char *champs[NB_CHAMPS][LARGER_SIZE]);
+void			fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
 				SDL_Surface *surf[NB_CHAMPS], TTF_Font *pol, SDL_Color *col);
-void		fill_surface_scale(t_interf *in, int i_scale);
+void			fill_surface_scale(t_interf *in, int i_scale);
 
-void		interf_event(t_v2i *mouse_pos, t_rt *rt);
-void		change_color(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE]);
-void		change_one(int scale, int y, char *champs[NB_CHAMPS][LARGER_SIZE]);
-void		change_selected_obj(t_rt *rt);
-void		change_all_data_obj(t_rt *rt, char *champs[NB_CHAMPS][LARGER_SIZE]);
+void			interf_event(t_v2i *mouse_pos, t_rt *rt);
+void			change_color(int scale, int y,
+							char *champs[NB_CHAMPS][LARGER_SIZE]);
+void			change_one(int scale, int y,
+							char *champs[NB_CHAMPS][LARGER_SIZE]);
+void			change_selected_obj(t_rt *rt);
+void			change_all_data_obj(t_rt *rt,
+							char *champs[NB_CHAMPS][LARGER_SIZE]);
 
-SDL_Color	*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b);
-SDL_Rect	*define_position(SDL_Rect *pos, Uint8 x, Uint8 y);
-TTF_Font	*define_police(TTF_Font *police, char *name, int size, int selec);
-SDL_Surface	*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
+SDL_Color		*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b);
+SDL_Rect		*define_position(SDL_Rect *pos, Uint8 x, Uint8 y);
+TTF_Font		*define_police(TTF_Font *police, char *name, int s, int select);
+SDL_Surface		*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
 
-void 		clean_interface(t_rt *rt);
-void 		free_surfaces(SDL_Surface *surfaces[NB_CHAMPS], int max);
+void			clean_interface(t_rt *rt);
+void			free_surfaces(SDL_Surface *surfaces[NB_CHAMPS], int max);
 
 #endif
