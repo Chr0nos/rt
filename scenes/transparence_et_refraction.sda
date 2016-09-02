@@ -1,0 +1,57 @@
+CAMERA
+	pos: 6.461164 8.797622 -13.242727
+	rot: 34.377466 0 0
+	al: 10
+
+#SETTING
+#	skybox: textures/skybox.jpg
+
+POINTLIGHT
+	pos: 6 15 0
+
+CUBE
+	color: #0af0af10
+	size: 2
+	CUBE
+		color: #50f0af10
+		pos: 4 0 0
+		size: 2
+		CUBE
+			color: #60f0af10
+			pos: 4 0 0
+			size: 2
+			CUBE
+				color: #d0f0af10
+				pos: 4 0 0
+				size: 2
+	CUBE
+		color: #5ff0df10
+		pos: 0 0 8
+		size: 2
+		refract: 1
+		CUBE
+			color: #5ff0df10
+			pos: 4 0 0
+			size: 2
+			refract: 2
+			CUBE
+				color: #5ff0df10
+				pos: 4 0 0
+				size: 2
+				refract: 4
+				CUBE
+					color: #5ff0df10
+					pos: 4 0 0
+					size: 2
+					refract: 5.5
+
+EMPTY
+	PLAN
+		pos: 0  0 25
+		rot: 90 0 0
+		color: #f402a1
+		texture: perlin: 200 200
+	PLAN
+		pos: 0 -2 0
+		color: #3442d1
+		texture: perlin: 200 200
