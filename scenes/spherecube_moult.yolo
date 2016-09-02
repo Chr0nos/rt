@@ -1,5 +1,4 @@
-CAMERA		3.461165 3.568181 -12.239260		0	0	0	75
-
+CAMERA		3.46 3.56 -12.23		11.45 -17.18 0		75
 #type				SIZE		X		Y		Z			Orientation	Color
 PLAN							0		-2		0			0 0 0		#2e230b
 PLAN							0		200		0			0 0 0		#626177

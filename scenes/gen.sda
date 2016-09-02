@@ -1,4 +1,6 @@
 CAMERA
+	pos: -6.360781 0 0.028578
+	rot: 0 63.025357 0
 	POINTLIGHT
 		intensity: 150
 CUBE
