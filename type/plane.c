@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 19:00:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 16:01:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/02 03:01:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int			rt_plane_inter(t_obj *obj, t_ray *r, t_intersect *v)
 			0.0
 		};
 		v->len_in = t;
+		v->len_out = (double)INFINITY;
 		v->flags = INTER_IN;
 	}
 	r->lenght = t;

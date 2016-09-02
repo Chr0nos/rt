@@ -16,8 +16,6 @@ CUBE
 	color: #00ffff
 	#sdisable: specular shadow
 	POINTLIGHT
-		pos: 0 0 -4
-	POINTLIGHT
 		pos: 0 2 2
 	SPHERE
 		pos: 1 0 0
@@ -29,7 +27,11 @@ CUBE
 	CUBE
 		pos: 0 0 6
 		color: #ff0000
+	CUBE
+		pos: 0.5 0.5 0.5
+		color: #ffff00
 
 PLAN
 	pos: 0 -2 0
 	color: #b0b0b0
+	reflect: 100

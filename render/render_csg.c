@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 19:28:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/02 03:14:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,48 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 {
 	if (r->ray->lenght >= r->lowest_lenght)
 		return ;
-	if (r->ray->obj_negative)
-	{
-		if (r->ray->intersect_negative.len_in < v->len_in)
-			return ;
-		if (!(r->ray->intersect_negative.flags & INTER_OUT))
-			;
-		else if (r->ray->intersect_negative.len_out > v->len_out)
-			return ;
-	}
 	if (!(obj->flags & FLAG_CSG_NEGATIVE))
 	{
-		r->lowest_lenght = v->len_in;
-		r->intersection = v->in;
-		r->obj_intersect = obj;
-		r->ray->lenght = v->len_in;
-		r->ray->intersect = *v;
-		r->ray->obj_intersect = obj;
-		r->ray->obj_negative = NULL;
-		//todo: utiliser la normale de l objet negatif pour recuperer ma normale
+		rt_render_nocsg(obj, r, v);
+		return ;
 	}
-	 else if (r->ray->obj_negative == obj)
-	 	;
-	// bon.. decouverte par serandipite: ca fais des objets en union cette merde
-	// else if (r->ray->intersect.len_out < v->len_in)
-	// 	;
 	else if ((!(v->flags & INTER_OUT)) || (v->len_out < r->lowest_lenght))
 	{
-		r->obj_intersect = NULL;
-		r->ray->obj_intersect = NULL;
-		r->ray->obj_negative = obj;
-		r->ray->intersect_negative = *v;
-		r->ray->lenght_min = v->len_in;
-		if (v->flags & INTER_OUT)
+		t_ray			nray;
+		t_intersect		po;
+
+		if (!obj->parent)
+			return ;
+		//si le batard d objet negatif il a pas de putain de point de sortie on baise le batard de parent
+		if ((!(v->flags & INTER_OUT)) && (obj->parent == r->obj_intersect))
 		{
-			r->ray->lenght_max = v->len_out;
-			r->lowest_lenght = v->len_out;
+			r->ray->obj_intersect = NULL;
+			r->obj_intersect = NULL;
+			r->lowest_lenght = 0.0;
+			return ;
 		}
+		//on copie le batard de rayon
+		nray = *r->ray;
+		//futur moi, n active pas ca, tu va decaller toutes les valeurs de po sinon et tu va pleurer ta mere
+		//nray.start = geo_multv4(nray.dir, geo_dtov4d(v->len_out));
+		obj->parent->inters(obj->parent, &nray, &po);
+		//si le parent se trouve dans le batard d objet negatif on fix le rayon
+		if ((geo_min(v->len_in, v->len_out) < po.len_in) &&
+			(geo_max(v->len_out, v->len_in) > po.len_out) &&
+			(geo_min(v->len_out, v->len_in) < po.len_in))
+		//if ((po.len_in > v->len_in) && (po.len_in < v->len_out))
+		{
+			r->obj_intersect = obj;
+			r->ray->obj_intersect = obj;
+			r->ray->lenght = geo_min(po.len_in, po.len_out);
+			r->lowest_lenght = r->ray->lenght;
+		}
+		//sinon delete le batard d'objet parent car.... il fais chier et devrais pas etre la
 		else
 		{
-			r->lowest_lenght = v->len_in;
+			r->ray->obj_intersect = NULL;
+			r->obj_intersect = NULL;
+			r->lowest_lenght = (double)INFINITY;
 		}
 	}
 }

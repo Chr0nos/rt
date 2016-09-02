@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 16:40:00 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 16:02:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/02 01:04:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ static int		rt_sphere_solve(t_sphere_inter *s, t_ray *r, t_intersect *v)
 	{
 		s->sol1 = (-s->b - s->delta_sqrt) * sa2;
 		s->sol2 = (s->b - s->delta_sqrt) * sa2;
-		if ((s->sol1 < s->sol2) && (s->sol2 < 0.0))
-			draw_swap(&s->sol1, &s->sol2);
-		if (s->sol1 < 0.0)
+		r->lenght = (geo_min(s->sol1, s->sol2) < 0.0) ? s->sol1 : s->sol2;
+		if (r->lenght < 0.0)
 			return (0);
 		flags = INTER_IN | INTER_OUT;
 	}
@@ -72,5 +71,8 @@ t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v)
 {
 	const t_v4d		*c = &obj->trans.w;
 
-	return (geo_normv4(geo_subv4(*v, *c)));
+	if (!(obj->flags & FLAG_CSG_NEGATIVE))
+		return (geo_normv4(geo_subv4(*v, *c)));
+	return (geo_multv4(geo_normv4(geo_subv4(*v, *c)),
+		(t_v4d){-1.0, -1.0, -1.0, 1.0}));
 }
