@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:30:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/02 06:09:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,16 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 
 void		sda_export(const t_rt *rt, const int fd)
 {
-	t_sda_cfg		cfg[SDA_SETUP_TYPES];
+	const t_sda_cfg	*cfg;
 	t_sda_export	export;
 	t_setting		stack_setting;
 	t_obj			setting_obj;
 
+	cfg = g_sda_cfg;
 	rt_obj_init(&setting_obj, SETTING | NOSHADER);
 	setting_obj.content = &stack_setting;
 	stack_setting = (t_setting){0x000000, 1.0f, NULL, 0, 0.0};
-	sda_settings_init(cfg);
-	export = (t_sda_export){(t_sda_cfg*)&cfg, &stack_setting, &setting_obj,
-		NULL, fd};
+	export = (t_sda_export){cfg, &stack_setting, &setting_obj, NULL, fd};
 	ft_putstr_fd("#sda export\n", fd);
 	rt_node_foreach(rt->root, INFIX, &sda_export_item, &export);
 	ft_putstr_fd("#end of file\n", fd);
