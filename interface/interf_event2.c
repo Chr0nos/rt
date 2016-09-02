@@ -6,7 +6,7 @@
 /*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 11:33:19 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:54:14 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/02 14:56:09 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void			change_selected_obj(t_rt *rt)
 	if (!(obj))
 	{
 		while (!(obj = rt_obj_byid(rt->root, root_id++))
-				&& root_id < 5000)
+				&& root_id < 9000000)
 			;
 	}
 	rt->interf->obj_selected = protect_change(rt, obj, &root_id);
