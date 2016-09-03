@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:52:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 20:39:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int					interface_init(t_rt *rt)
 		sizeof(t_interface_cfg) * INTERF_ITEMS);
 	if (TTF_Init() < 0)
 		return (-1);
-	if (!(rt->interf.screen = draw_make_surface((t_v2i){300, 768})))
+	if (!(rt->interf.screen = draw_make_surface(INTERF_GEO)))
 	{
 		TTF_Quit();
 		ft_putstr_fd("error: failed to init menu surface\n", 2);
