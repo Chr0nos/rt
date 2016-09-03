@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 08:38:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:39:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,38 @@ static inline int	rt_isvisible(const t_intersect *v, const t_intersect *po)
 		(geo_min(v->len_out, v->len_in) < po->len_in));
 }
 
+/*
+** this function unset the current selected objet in the render
+** it also set the lowest_lenght to a new value, 0.0 will forbid any other
+** search in the render tree, INFINITY will permit any new objet to be selected
+*/
+
+static inline void	rt_render_unset(t_render *r, double lowest_lenght)
+{
+	r->ray->obj_intersect = NULL;
+	r->obj_intersect = NULL;
+	r->lowest_lenght = lowest_lenght;
+}
+
 static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	t_intersect *v)
 {
 	t_ray			nray;
 	t_intersect		po;
 
-	if (!obj->parent)
+	//si on a pas touche la batard d objet parent on arrete tout pas la peine de se faire chier
+	if ((!obj->parent) || (r->obj_intersect != r->obj_intersect))
 		return ;
 	//si le batard d objet negatif il a pas de putain de point de sortie on baise le batard de parent
 	if ((!(v->flags & INTER_OUT)) && (obj->parent == r->obj_intersect))
 	{
-		r->ray->obj_intersect = NULL;
-		r->obj_intersect = NULL;
-		r->lowest_lenght = 0.0;
+		rt_render_unset(r, 0.0);
 		return ;
 	}
 	//on copie le batard de rayon
 	nray = *r->ray;
 	//futur moi, n active pas ca, tu va decaller toutes les valeurs de po sinon et tu va pleurer ta mere
-	//nray.start = geo_multv4(nray.dir, geo_dtov4d(v->len_out));
+	// nray.start = geo_multv4(nray.dir, geo_dtov4d(v->len_out + SEEK_STEP));
 	obj->parent->inters(obj->parent, &nray, &po);
 	//si le parent se trouve dans le batard d objet negatif on fix le rayon
 	if (rt_isvisible(v, &po))
@@ -55,11 +67,7 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	}
 	//sinon delete le batard d'objet parent car.... il fais chier et devrais pas etre la
 	else
-	{
-		r->ray->obj_intersect = NULL;
-		r->obj_intersect = NULL;
-		r->lowest_lenght = (double)INFINITY;
-	}
+		rt_render_unset(r, (double)INFINITY);
 }
 
 void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)

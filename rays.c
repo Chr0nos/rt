@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 08:49:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:30:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].x_end = args[i].x_start + rt->sys.geometry.x / THREAD_COUNT;
 		if (i == 0)
 			args[i].x_start = 0;
-		pthread_create(threads + i, NULL,
-				(void *(*)(void*))&rt_rays_pixels_threaded, args + i);
+		if (pthread_create(threads + i, NULL,
+			(void *(*)(void*))&rt_rays_pixels_threaded, args + i))
+			ft_putstr_fd("thread creation error\n", 2);
 	}
 	i = -1;
 	while (++i < THREAD_COUNT)
