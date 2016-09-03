@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 06:10:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 12:05:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,6 @@ typedef struct			s_sda_default
 	unsigned int		type_mask;
 	void				(*exec)(t_rt *, t_obj *);
 }						t_sda_default;
-
-typedef struct			s_sda_default_config
-{
-	t_sda_default		def[SDA_COUNT_DEFAULTS];
-	t_rt				*rt;
-}						t_sda_default_config;
 
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
@@ -297,6 +291,17 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 		SDB_VERTEX2},
 	(T){"obj:", &sda_setup_obj, &sda_export_obj, SDA_OBJ, 1, SDB_OBJ},
 	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG}
+};
+
+static const t_sda_default	g_sda_default[SDA_COUNT_DEFAULTS] = {
+	(t_sda_default){CAMERA, &sda_default_camera},
+	(t_sda_default){LIGHTTYPE, &sda_default_lights},
+	(t_sda_default){CONE, &sda_default_cone},
+	(t_sda_default){TRIANGLE, &sda_default_triangle},
+	(t_sda_default){SETTING, &sda_default_setting},
+	(t_sda_default){SDA_SDISABLE, &sda_default_shaders},
+	(t_sda_default){SDA_TEXTURE, &sda_default_texture},
+	(t_sda_default){SDA_SIZE, &sda_default_size}
 };
 
 #endif
