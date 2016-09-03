@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 03:28:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 08:49:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 	rt_rays_pixels_init(&px, args, &rad, &camp);
 	ray = (t_ray){args->m.w, (t_v4d){0.0, 0.0, 1.0, 0.0}, 0.0, 0, 0x0, 0, 0,
 		def_intersect, def_intersect, 0.0, (double)INFINITY, NULL, NULL};
-	while (px.x++ < args->x_end)
+	while (px.x < args->x_end)
 	{
-		px.y = args->rt->sys.geometry.y - 1;
+		px.y = args->rt->sys.geometry.y;
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
@@ -78,6 +78,7 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 		if (args->index == args->thread_count - 1)
 			rt_ray_refresh(&px, args->rt);
 		rad.x += rad.z;
+		px.x++;
 	}
 	return (NULL);
 }
@@ -99,6 +100,8 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].thread_count = THREAD_COUNT;
 		args[i].x_start = rt->sys.geometry.x / THREAD_COUNT * i;
 		args[i].x_end = args[i].x_start + rt->sys.geometry.x / THREAD_COUNT;
+		if (i == 0)
+			args[i].x_start = 0;
 		pthread_create(threads + i, NULL,
 				(void *(*)(void*))&rt_rays_pixels_threaded, args + i);
 	}

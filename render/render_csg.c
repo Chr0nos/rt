@@ -6,11 +6,16 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 07:47:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 08:38:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+/*
+** this function return 1 if the intersect "po" is in inside "v"
+** otherwise: 0
+*/
 
 static inline int	rt_isvisible(const t_intersect *v, const t_intersect *po)
 {
@@ -42,11 +47,10 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	obj->parent->inters(obj->parent, &nray, &po);
 	//si le parent se trouve dans le batard d objet negatif on fix le rayon
 	if (rt_isvisible(v, &po))
-	//if ((po.len_in > v->len_in) && (po.len_in < v->len_out))
 	{
 		r->obj_intersect = obj;
 		r->ray->obj_intersect = obj;
-		r->ray->lenght = geo_min(po.len_in, po.len_out);
+		r->ray->lenght = nray.lenght;
 		r->lowest_lenght = r->ray->lenght;
 	}
 	//sinon delete le batard d'objet parent car.... il fais chier et devrais pas etre la
