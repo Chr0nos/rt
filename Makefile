@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/01 18:45:56 by edelangh         ###   ########.fr        #
+#    Updated: 2016/09/03 10:49:36 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SDA_SETUP=sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
 		sda_setup_size.o sda_setup_intensity.o \
 		sda_setup_include.o sda_setup_angle.o sda_setup_copy.o  \
 		sda_setup_texture.o sda_setup_normal.o sda_setup_name.o \
-		sda_setup_sdisable.o sda_setup_skybox.o sda_setup_background.o
+		sda_setup_sdisable.o sda_setup_skybox.o sda_setup_background.o \
+		sda_setup_csg.o
 
 SDA_EXPORT_DIR=parser/sda/export
 SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
@@ -94,7 +95,8 @@ TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
 		textures_display.o
 
 RENDER_DIR=render
-RENDER=render.o render_light.o render_tree.o refract.o render_mode.o
+RENDER=render.o render_light.o render_tree.o refract.o render_mode.o \
+	render_csg.o render_nocsg.o
 
 TYPEDIR=type
 TYPE=cube.o sphere.o plane.o cone.o cyl.o cone_inf.o triangle.o

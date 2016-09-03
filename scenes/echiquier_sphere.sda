@@ -15,6 +15,7 @@ SETTING
 SPHERE
 	color: #88ff0000
 	pos: 3.0 2.0 3.0
+	reflect: 200
 
 CUBE
 	name: lb

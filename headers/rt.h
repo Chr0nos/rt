@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/01 18:52:40 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/03 07:43:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int				camera_switch(t_rt *rt);
 
 void			rt_box_update(t_obj *obj);
 void			rt_bounds_update(t_obj *node);
-int				raybox_check(t_ray *r, t_box *box);
+int				raybox_cube_check(t_ray *r, t_box *box);
 
 void			rt_rays(t_rt *rt);
 
@@ -153,23 +153,23 @@ int				display(t_rt *rt);
 int				movemyass(t_rt *rt);
 void			camera_rotate(t_rt *rt, const double x, const int dir);
 
-int				rt_sphere_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_sphere_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_sphere_normal(t_obj *obj, t_v4d *v);
-int				rt_plane_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_plane_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_plane_normale(t_obj *obj, t_v4d *v);
-int				rt_cube_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_cube_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v);
-int				rt_cone_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_cone_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_cone_normale(t_obj *obj, t_v4d *v);
-int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_cone_inf_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_cone_inf_normale(t_obj *obj, t_v4d *v);
-int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_cyl_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_cyl_normale(t_obj *obj, t_v4d *v);
-int				rt_tore_inter(t_obj *obj, t_ray *r, t_v4d *v);
+int				rt_tore_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_tore_normale(t_obj *obj, t_v4d *v);
-int				rt_triangle_inter(t_obj *obj, t_ray *r, t_v4d *i);
+int				rt_triangle_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_triangle_normale(t_obj *obj, t_v4d *v);
-int				rt_mesh_inter(t_obj *obj, t_ray *r, t_v4d *i);
+int				rt_mesh_inter(t_obj *obj, t_ray *r, t_intersect *v);
 t_v4d			rt_mesh_normale(t_obj *obj, t_v4d *v);
 
 int				rt_export_bmp(t_rt *rt, int ac, char **av);

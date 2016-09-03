@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   sda_setup_csg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/08 16:55:51 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 18:18:47 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/26 14:57:13 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/26 20:01:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "sda.h"
+#include "libft.h"
+#include "objects.h"
 
-typedef struct	s_sphere_inter
+int		sda_setup_csg(t_sda *e, t_obj *obj, char **av)
 {
-	double		a;
-	double		b;
-	double		c;
-	double		delta;
-	double		sol1;
-	double		sol2;
-	double		delta_sqrt;
-}				t_sphere_inter;
-
-#endif
+	(void)e;
+	if (!ft_strcmp(av[0], "negative"))
+	{
+		obj->flags |= FLAG_CSG_NEGATIVE;
+	//	shaders_disable_nexts(obj->shader->shader);
+	}
+	else if (!ft_strcmp(av[0], "positive"))
+		return (0);
+	else
+		return (-1);
+	return (1);
+}

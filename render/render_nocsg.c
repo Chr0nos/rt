@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   render_nocsg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/08 16:55:51 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 18:18:47 by snicolet         ###   ########.fr       */
+/*   Created: 2016/09/03 10:48:29 by snicolet          #+#    #+#             */
+/*   Updated: 2016/09/03 10:48:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "render.h"
 
-typedef struct	s_sphere_inter
+/*
+** standard rendering mode, withous any csg
+*/
+
+void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
 {
-	double		a;
-	double		b;
-	double		c;
-	double		delta;
-	double		sol1;
-	double		sol2;
-	double		delta_sqrt;
-}				t_sphere_inter;
-
-#endif
+	if (r->ray->lenght >= r->lowest_lenght)
+		return ;
+	r->obj_intersect = obj;
+	r->intersection = v->in;
+	r->lowest_lenght = r->ray->lenght;
+}

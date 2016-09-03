@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/08 16:55:51 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 18:18:47 by snicolet         ###   ########.fr       */
+/*   Created: 2016/08/31 01:54:01 by snicolet          #+#    #+#             */
+/*   Updated: 2016/08/31 02:54:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#ifndef CUBE_H
+# define CUBE_H
 
-typedef struct	s_sphere_inter
+typedef struct		s_cube_cmp
 {
-	double		a;
-	double		b;
-	double		c;
-	double		delta;
-	double		sol1;
-	double		sol2;
-	double		delta_sqrt;
-}				t_sphere_inter;
+	float			*box;
+	float			max;
+	float			dir_axis;
+}					t_cube_cmp;
+
+int					cube_check(float *box, float start, float dir, double *tb);
 
 #endif

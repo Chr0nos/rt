@@ -3,19 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   cyl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:45:12 by dboudy            #+#    #+#             */
-/*   Updated: 2016/06/30 14:33:05 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/31 16:01:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "sphere.h"
 
-static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
+static void		rt_cyl_setintersect(t_intersect *v, const t_ray *r,
+	const t_sphere_inter *s)
 {
-	double			t;
+	v->in = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol1)));
+	v->len_in = s->sol1;
+	v->flags = INTER_IN;
+	if (s->delta == 0.0)
+	{
+		v->out = geo_addv4(r->start, geo_multv4(r->dir, geo_dtov4d(s->sol2)));
+		v->len_out = s->sol2;
+		v->flags |= INTER_OUT;
+	}
+}
+
+static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_intersect *v)
+{
 	double			delta_sqrt;
 	double			sa2;
 
@@ -25,42 +38,36 @@ static int		rt_cyl_solve(t_sphere_inter *s, t_ray *r, t_v4d *v)
 	delta_sqrt = sqrt(s->delta);
 	sa2 = s->a * 2.0;
 	if (s->delta == 0.0)
-		t = (-s->b - delta_sqrt) / sa2;
+		s->sol1 = (-s->b - delta_sqrt) / sa2;
 	else
 	{
 		s->sol1 = (-s->b - delta_sqrt) / sa2;
 		s->sol2 = (s->b - delta_sqrt) / sa2;
-		t = (s->sol1 < s->sol2 ? s->sol1 : s->sol2);
-		t = (t < 0.0 ? s->sol1 : s->sol2);
-		if (t < 0.0)
+		if ((s->sol1 < s->sol2) && (s->sol2 < 0.0))
+			draw_swap(&s->sol1, &s->sol2);
+		if (s->sol1 < 0.0)
 			return (0);
 	}
 	if (v)
-		*v = (t_v4d){r->start.x + r->dir.x * t, r->start.y + r->dir.y * t, \
-			r->start.z + r->dir.z * t, 0.0};
-	r->lenght = t;
+		rt_cyl_setintersect(v, r, s);
+	r->lenght = s->sol1;
 	return (1);
 }
 
-int				rt_cyl_inter(t_obj *obj, t_ray *r, t_v4d *v)
+int				rt_cyl_inter(t_obj *obj, t_ray *r, t_intersect *v)
 {
 	t_sphere_inter	s;
 	double			tmp[4];
-	const t_v4d		*c = &obj->trans.w;
-	const t_v4d		*rot = &obj->rotation;
 	const double	radius = (double)((t_cyl*)obj->content)->radius;
+	const t_v4d		x = geo_subv4(r->start, obj->trans.w);
 
-	tmp[0] = rot->x * rot->x + rot->y * rot->y + rot->z * rot->z;
-	tmp[1] = r->dir.x * rot->x + r->dir.y * rot->y + r->dir.z * rot->z;
-	tmp[2] = (r->start.x - c->x) * (r->start.x - c->x) + (r->start.y - c->y) *
-		(r->start.y - c->y) + (r->start.z - c->z) * (r->start.z - c->z);
-	tmp[3] = rot->x * (r->start.x - c->x) + rot->y * (r->start.y - c->y) +
-		rot->z * (r->start.z - c->z);
-	s.a = (r->dir.x * r->dir.x + r->dir.y * r->dir.y + r->dir.z * r->dir.z) -
-		((tmp[1] * tmp[1]) / tmp[0]);
-	s.b = 2.0 * (r->dir.x * (r->start.x - c->x) + r->dir.y * (r->start.y - c->y)
-			+ r->dir.z * (r->start.z - c->z)) - (2 * tmp[1] * tmp[3] / tmp[0]);
-	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) / tmp[0]);
+	tmp[0] = 1.0 / geo_dotv4(obj->rotation, obj->rotation);
+	tmp[1] = geo_dotv4(r->dir, obj->rotation);
+	tmp[2] = geo_dotv4(x, x);
+	tmp[3] = geo_dotv4(obj->rotation, x);
+	s.a = geo_dotv4(r->dir, r->dir) - (tmp[1] * tmp[1] * tmp[0]);
+	s.b = 2.0 * geo_dotv4(r->dir, x) - (2 * tmp[1] * tmp[3] * tmp[0]);
+	s.c = tmp[2] - (radius * radius) - ((tmp[3] * tmp[3]) * tmp[0]);
 	return (rt_cyl_solve(&s, r, v));
 }
 

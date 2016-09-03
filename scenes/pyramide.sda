@@ -11,22 +11,18 @@ EMPTY
 		texture: textures/herbe.jpg
 		vertex1: 1 2 0.5
 		vertex2: 2 0 0
-		color: #FF0000
 	TRIANGLE
 		texture: textures/herbe.jpg
 		vertex0: 0 0 0
 		vertex1: 1 2 0.5
 		vertex2: 1 0 2
-		color: #00FF00
 	TRIANGLE
 		texture: textures/herbe.jpg
 		vertex0: 2 0 0
 		vertex1: 1 2 0.5
 		vertex2: 1 0 2
-		color: #0000FF
 	TRIANGLE
 		texture: textures/herbe.jpg
 		vertex0: 0 0 0
 		vertex1: 1 0 2
 		vertex2: 2 0 0
-		color: #d232e0

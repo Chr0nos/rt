@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 17:58:49 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/08/31 20:11:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@
 struct s_shaders;
 struct s_rt;
 
+enum	e_obj_flags
+{
+	FLAG_CSG_NEGATIVE = 1,
+	FLAG_CSG_NONE = 1 << 1
+};
+
+enum	e_flag_intersect
+{
+	INTER_IN = 1,
+	INTER_OUT = 1 << 2
+};
+
 typedef struct			s_obj
 {
 	t_type				type;
 	t_uint				id;
 	int					cfgbits;
+	int					flags;
 	t_mattf				trans;
 	t_v4d				rotation;
 	t_box				bounds;
@@ -32,7 +45,7 @@ typedef struct			s_obj
 	struct s_obj		*childs;
 	struct s_obj		*next;
 	void				*content;
-	int					(*inters)(struct s_obj *, t_ray *, t_v4d *);
+	int					(*inters)(struct s_obj *, t_ray *, t_intersect *);
 	t_v4d				(*normal)(struct s_obj *, t_v4d *inter);
 	struct s_shaders	*shader;
 	double				refractive_index;
@@ -47,6 +60,8 @@ typedef struct			s_obj_lookup
 	t_obj				*current;
 	t_obj				*next;
 }						t_obj_lookup;
+
+struct s_rt;
 
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
@@ -69,6 +84,7 @@ unsigned int			rt_obj_get_lvl(t_obj *obj);
 t_obj					*rt_obj_get_root(t_obj *obj);
 unsigned int			rt_obj_count(t_obj *obj, unsigned int type_mask);
 t_obj					*rt_obj_atpx(struct s_rt *rt, t_v2i px);
+t_obj					*rt_obj_atpx_real(struct s_rt *rt, t_ray *ray);
 t_obj					*rt_obj_nexttype(t_obj *node, t_obj *current,
 	unsigned int type);
 

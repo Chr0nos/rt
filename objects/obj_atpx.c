@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 13:50:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 19:24:57 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/02 03:29:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		obj_atpx_texture(t_render *r)
 	r->ray->color = s->blend(color, s->color_base);
 }
 
-static t_obj	*obj_atpx_real(t_rt *rt, t_ray *ray)
+t_obj			*rt_obj_atpx_real(t_rt *rt, t_ray *ray)
 {
 	t_render	r;
 
@@ -60,12 +60,11 @@ static t_obj	*obj_atpx_real(t_rt *rt, t_ray *ray)
 		ray->color = ((t_cube*)r.obj_intersect->content)->color;
 	else
 		obj_atpx_texture(&r);
-	ft_printf("alpha: %d -- %d\n", (int)A(ray->color), (int)ray->color);
 	if (A(ray->color) == 0xff)
 	{
 		ray->start = geo_addv4(r.intersection, geo_multv4(ray->dir,
 			geo_dtov4d(0.01)));
-		return (obj_atpx_real(rt, ray));
+		return (rt_obj_atpx_real(rt, ray));
 	}
 	return (r.obj_intersect);
 }
@@ -92,7 +91,7 @@ t_obj			*rt_obj_atpx(t_rt *rt, t_v2i px)
 		geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &cam->trans);
 	geo_putv4d(ray.dir, 6);
 	rt->tree = rt_render_tree(rt->root);
-	obj = obj_atpx_real(rt, &ray);
+	obj = rt_obj_atpx_real(rt, &ray);
 	free(rt->tree.bounded);
 	return ((obj) ? rt_obj_byid(rt->root, obj->id) : NULL);
 }

@@ -6,14 +6,15 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 21:03:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:32:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/31 02:02:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "cube.h"
 #include "mesh.h"
 
-static int		check(float *box, float start, float dir, double *tb)
+int				cube_check(float *box, float start, float dir, double *tb)
 {
 	double	tmin;
 	double	tmax;
@@ -41,7 +42,7 @@ static int		check(float *box, float start, float dir, double *tb)
 	return (0);
 }
 
-int				raybox_check(t_ray *r, t_box *box)
+int				raybox_cube_check(t_ray *r, t_box *box)
 {
 	double			tb[2];
 	const float		rx = (float)r->dir.x;
@@ -50,17 +51,17 @@ int				raybox_check(t_ray *r, t_box *box)
 
 	tb[0] = (double)-INFINITY;
 	tb[1] = (double)INFINITY;
-	if (check(&(box->xmin), (float)r->start.x, rx, tb))
+	if (cube_check(&(box->xmin), (float)r->start.x, rx, tb))
 		return (0);
 	if (tb[1] < 0.0)
 		return (0);
 	r->lenght = (tb[0] > 0.0) ? tb[0] : tb[1];
-	if (check(&(box->ymin), (float)r->start.y, ry, tb))
+	if (cube_check(&(box->ymin), (float)r->start.y, ry, tb))
 		return (0);
 	if (tb[1] < 0.0)
 		return (0);
 	r->lenght = (tb[0] > 0.0) ? tb[0] : tb[1];
-	if (check(&(box->zmin), (float)r->start.z, rz, tb))
+	if (cube_check(&(box->zmin), (float)r->start.z, rz, tb))
 		return (0);
 	if (tb[1] < 0.0)
 		return (0);

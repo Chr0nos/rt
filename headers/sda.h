@@ -6,15 +6,16 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/27 16:28:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 12:05:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 24
+# define SDA_SETUP_TYPES 25
 # define SDA_COUNT_SHADER 6
 # define SDA_COUNT_DEFAULTS 8
+# define T t_sda_cfg
 # define FLOATCMP(x, y) ((x > y) || (x < y))
 # include "objects.h"
 # include "rt.h"
@@ -52,7 +53,8 @@ enum					e_sda_cfgbit
 	SDB_VERTEX2_UV = 1 << 25,
 	SDB_OBJ = 1 << 26,
 	SDB_NOEXPORT = 1 << 27,
-	SDB_LIMIT = 1 << 28
+	SDB_LIMIT = 1 << 28,
+	SDB_CSG = 1 << 29
 };
 
 enum					e_sda_setting
@@ -77,7 +79,8 @@ enum					e_sda_setting
 	SDA_HEIGHTMAP = PLAN,
 	SDA_TEX_PERLIN = SDA_TEXTURE,
 	SDA_VERTEX = TRIANGLE,
-	SDA_OBJ = MESH
+	SDA_OBJ = MESH,
+	SDA_CSG = VISIBLE
 };
 
 typedef struct			s_sda_eval
@@ -92,11 +95,11 @@ typedef struct			s_sda_eval
 
 typedef struct			s_sda_export
 {
-	struct s_sda_cfg	*cfg;
-	t_setting			*setting;
-	t_obj				*setting_obj;
-	char				*tbl;
-	const int			fd;
+	const struct s_sda_cfg	*cfg;
+	t_setting				*setting;
+	t_obj					*setting_obj;
+	char					*tbl;
+	const int				fd;
 }						t_sda_export;
 
 typedef	struct			s_sda_shader
@@ -139,19 +142,12 @@ typedef struct			s_sda_default
 	void				(*exec)(t_rt *, t_obj *);
 }						t_sda_default;
 
-typedef struct			s_sda_default_config
-{
-	t_sda_default		def[SDA_COUNT_DEFAULTS];
-	t_rt				*rt;
-}						t_sda_default_config;
-
 int						sda_lvl(char *line);
 t_obj					*sda_parse(const char *filepath, t_rt *rt);
 int						sda_eval(const char *line, t_sda *e,
 	const int lvl);
 int						sda_settings(t_sda *e, int ac, char **av);
 void					sda_settings_stack(t_obj *stack, t_obj *s);
-void					sda_settings_init(t_sda_cfg *cfg);
 void					sda_set_defaults(t_obj *root, t_rt *rt);
 t_obj					*sda_parse_rawtree(const char *filepath, t_rt *rt,
 	t_obj *root, int lvl_offset);
@@ -225,6 +221,7 @@ int						sda_setup_vertex_0(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_obj(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_csg(t_sda *e, t_obj *obj, char **av);
 
 /*
 ** sda default functions
@@ -254,5 +251,57 @@ unsigned int			obj_max(int x, const unsigned int max);
 void					parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
 	t_triangle *c);
 int						parse_obj_checksplit(char ***split, int min);
+
+static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
+	(T){"color:", &sda_setup_color, &sda_export_color, SDA_COLOR, 1, SDB_COLOR},
+	(T){"pos:", &sda_setup_pos, &sda_export_pos, SDA_POS, 3, SDB_POS},
+	(T){"rot:", &sda_setup_rot, &sda_export_rot, SDA_ROT, 3, SDB_ROT},
+	(T){"size:", &sda_setup_size, sda_export_size, SDA_SIZE, 1, SDB_SIZE},
+	(T){"al:", &sda_setup_al, &sda_export_al, SDA_AL, 1, SDB_AL},
+	(T){"fov:", &sda_setup_fov, NULL, SDA_FOV, 1, SDB_FOV},
+	(T){"intensity:", &sda_setup_intensity, &sda_export_intensity,
+		SDA_INTEN, 1, SDB_INTEN},
+	(T){"refract:", &sda_setup_refract, &sda_export_refract, SDA_REFRACT, 1,
+		SDB_REFRACT},
+	(T){"include:", &sda_setup_include, NULL, SDA_INCLUDE, 1, SDB_INCLUDE},
+	(T){"angle:", &sda_setup_angle, &sda_export_angle, SDA_ANGLE, 1, SDB_ANGLE},
+	(T){"copy:", &sda_setup_copy, NULL, SDA_COPY, 1, SDB_COPY},
+	(T){"name:", &sda_setup_name, &sda_export_name, SDA_NAME, 1, SDB_NAME},
+	(T){"texture:", &sda_setup_texture, &sda_export_texture, SDA_TEXTURE, 1,
+		SDB_TEXTURE},
+	(T){"reflect:", &sda_setup_reflect, &sda_export_reflect, SDA_REFLECT, 1,
+		SDB_REFLECT},
+	(T){"background:", &sda_setup_background, NULL, SDA_BACKGROUND, 1,
+		SDB_BACKGROUND},
+	(T){"normal:", &sda_setup_normal, &sda_export_normal, SDA_TEXTURE, 1,
+		SDB_NORMAL},
+	(T){"skybox:", &sda_setup_skybox, &sda_export_skybox, SDA_SKYBOX, 1,
+		SDB_SKYBOX},
+	(T){"sdisable:", &sda_setup_sdisable, &sda_export_sdisable, SDA_SDISABLE, 1,
+		SDB_SDISABLE},
+	(T){"heightmap:", &sda_setup_heightmap, NULL, SDA_HEIGHTMAP, 1,
+		SDB_HEIGHTMAP},
+	(T){"texture-perlin:", &sda_setup_texture_perlin, NULL, SDA_TEX_PERLIN, 2,
+		SDB_TEX_PERLIN},
+	(T){"vertex0:", &sda_setup_vertex_0, &sda_export_vertex0, SDA_VERTEX, 3,
+		SDB_VERTEX0},
+	(T){"vertex1:", &sda_setup_vertex_1, &sda_export_vertex1, SDA_VERTEX, 3,
+		SDB_VERTEX1},
+	(T){"vertex2:", &sda_setup_vertex_2, &sda_export_vertex2, SDA_VERTEX, 3,
+		SDB_VERTEX2},
+	(T){"obj:", &sda_setup_obj, &sda_export_obj, SDA_OBJ, 1, SDB_OBJ},
+	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG}
+};
+
+static const t_sda_default	g_sda_default[SDA_COUNT_DEFAULTS] = {
+	(t_sda_default){CAMERA, &sda_default_camera},
+	(t_sda_default){LIGHTTYPE, &sda_default_lights},
+	(t_sda_default){CONE, &sda_default_cone},
+	(t_sda_default){TRIANGLE, &sda_default_triangle},
+	(t_sda_default){SETTING, &sda_default_setting},
+	(t_sda_default){SDA_SDISABLE, &sda_default_shaders},
+	(t_sda_default){SDA_TEXTURE, &sda_default_texture},
+	(t_sda_default){SDA_SIZE, &sda_default_size}
+};
 
 #endif

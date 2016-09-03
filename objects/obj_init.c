@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:00:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/27 10:41:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/08/27 18:51:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_obj			*rt_obj_init(t_obj *obj, int type)
 {
 	obj->id = 0;
 	obj->cfgbits = 0;
+	obj->flags = 0;
 	obj->type = (t_type)(type & ~NOSHADER);
 	obj->next = NULL;
 	obj->childs = NULL;

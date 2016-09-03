@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 18:04:20 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/01 18:15:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void				rt_init_rt_rendermode(t_rt *rt, void (*cbf)(t_rt *));
 t_uint				rt_render_ray(t_rt *rt, t_ray *ray);
 unsigned int		rt_render_opacity(t_rt *rt, const t_ray *ray,
 	const t_render *r);
+void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v);
+void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v);
 int					rt_render_light(t_obj *obj, int mode, void *userdata);
 int					rt_render_shadow(t_obj *obj, int mode, void *userdata);
 int					rt_render_foreach(t_obj *obj, int mode, void *userdata);

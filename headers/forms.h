@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/26 03:51:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:52:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,15 @@ typedef struct			s_camera
 	double				fov;
 	double				fovx;
 }						t_camera;
+
+typedef struct			s_intersect
+{
+	double				len_in;
+	double				len_out;
+	t_v4d				in;
+	t_v4d				out;
+	char				flags;
+}						t_intersect;
 
 typedef struct			s_ray
 {

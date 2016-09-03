@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 17:55:23 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 21:19:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:42:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_parset_cfg
 typedef struct		s_parser_internal
 {
 	unsigned int	type;
-	int				(*inters)(struct s_obj *, t_ray *, t_v4d *);
+	int				(*inters)(struct s_obj *, t_ray *, t_intersect *);
 	t_v4d			(*normal)(struct s_obj *, t_v4d *);
 }					t_parser_internal;
 
