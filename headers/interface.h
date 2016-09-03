@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:51:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 19:58:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ typedef struct				s_interface
 
 static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(t_interface_cfg){"Id ......... :", NULL, (t_v2i){0, 0}, 0, NULL},
-	(t_interface_cfg){"Type ....... :", NULL, (t_v2i){0, 28}, 0, NULL},
-	(t_interface_cfg){"Name ....... :", NULL, (t_v2i){0, 56}, 0, NULL},
-	(t_interface_cfg){"Texture .... :", NULL, (t_v2i){0, 84}, 0, NULL},
-	(t_interface_cfg){"pos.X ...... :", NULL, (t_v2i){0, 112}, 0, NULL},
-	(t_interface_cfg){"pos.Y ...... :", NULL, (t_v2i){0, 140}, 0, NULL},
-	(t_interface_cfg){"pos.Z ...... :", NULL, (t_v2i){0, 168}, 0, NULL},
-	(t_interface_cfg){"dir.X ...... :", NULL, (t_v2i){0, 196}, 0, NULL},
-	(t_interface_cfg){"dir.Y ...... :", NULL, (t_v2i){0, 224}, 0, NULL},
-	(t_interface_cfg){"dir.Z ...... :", NULL, (t_v2i){0, 252}, 0, NULL},
-	(t_interface_cfg){"color.R ... :", NULL, (t_v2i){0, 308}, 0, NULL},
-	(t_interface_cfg){"color.G ... :", NULL, (t_v2i){0, 336}, 0, NULL},
-	(t_interface_cfg){"color.B ... :", NULL, (t_v2i){0, 364}, 0, NULL},
-	(t_interface_cfg){"Transparence :", NULL, (t_v2i){0, 420}, 0, NULL},
-	(t_interface_cfg){"Reflection . :", NULL, (t_v2i){0, 448}, 0, NULL},
-	(t_interface_cfg){"Refraction . :", NULL, (t_v2i){0, 476}, 0, NULL},
-	(t_interface_cfg){"Size ....... :", NULL, (t_v2i){0, 504}, 0, NULL},
-	(t_interface_cfg){"----------- ENTER ----------", NULL, (t_v2i){0, 560}, 0,
+	(t_interface_cfg){"Type ....... :", NULL, (t_v2i){0, 56}, 0, NULL},
+	(t_interface_cfg){"Name ....... :", NULL, (t_v2i){0, 84}, 0, NULL},
+	(t_interface_cfg){"Texture .... :", NULL, (t_v2i){0, 112}, 0, NULL},
+	(t_interface_cfg){"pos.X ...... :", NULL, (t_v2i){0, 168}, 0, NULL},
+	(t_interface_cfg){"pos.Y ...... :", NULL, (t_v2i){0, 196}, 0, NULL},
+	(t_interface_cfg){"pos.Z ...... :", NULL, (t_v2i){0, 224}, 0, NULL},
+	(t_interface_cfg){"dir.X ...... :", NULL, (t_v2i){0, 280}, 0, NULL},
+	(t_interface_cfg){"dir.Y ...... :", NULL, (t_v2i){0, 308}, 0, NULL},
+	(t_interface_cfg){"dir.Z ...... :", NULL, (t_v2i){0, 336}, 0, NULL},
+	(t_interface_cfg){"color.R ... :", NULL, (t_v2i){0, 392}, 0, NULL},
+	(t_interface_cfg){"color.G ... :", NULL, (t_v2i){0, 420}, 0, NULL},
+	(t_interface_cfg){"color.B ... :", NULL, (t_v2i){0, 448}, 0, NULL},
+	(t_interface_cfg){"Transparence :", NULL, (t_v2i){0, 504}, 0, NULL},
+	(t_interface_cfg){"Reflection . :", NULL, (t_v2i){0, 532}, 0, NULL},
+	(t_interface_cfg){"Refraction . :", NULL, (t_v2i){0, 560}, 0, NULL},
+	(t_interface_cfg){"Size ....... :", NULL, (t_v2i){0, 588}, 0, NULL},
+	(t_interface_cfg){"----------- ENTER ----------", NULL, (t_v2i){0, 644}, 0,
 		NULL}
 };
 
