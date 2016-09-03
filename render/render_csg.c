@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 09:39:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:08:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,25 @@ static inline void	rt_render_unset(t_render *r, double lowest_lenght)
 	r->lowest_lenght = lowest_lenght;
 }
 
+/*
+** this function check for the intersect in the parent by launching a ray at the
+** start of the masking object, then we will check if the start is inside or
+** outside the negative object
+** then we append to the ray lenght the distance from start, because all it's
+** distances are from a false starting point we need to compensate
+*/
+
+static inline void	rt_render_csg_parent(t_obj *obj, t_ray *nray,
+	t_intersect *po, const t_intersect *v)
+{
+	(void)v;
+	// nray->start = geo_multv4(nray->dir, geo_dtov4d(v->len_in + 0.01));
+	obj->parent->inters(obj->parent, nray, po);
+	// po->len_in += v->len_in;
+	// po->len_out += v->len_in;
+	// nray->lenght += v->len_in;
+}
+
 static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	t_intersect *v)
 {
@@ -47,6 +66,7 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	if ((!obj->parent) || (r->obj_intersect != r->obj_intersect))
 		return ;
 	//si le batard d objet negatif il a pas de putain de point de sortie on baise le batard de parent
+	//et on interdit tout nouvel objet vu que y a pas de sortie...
 	if ((!(v->flags & INTER_OUT)) && (obj->parent == r->obj_intersect))
 	{
 		rt_render_unset(r, 0.0);
@@ -56,7 +76,8 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	nray = *r->ray;
 	//futur moi, n active pas ca, tu va decaller toutes les valeurs de po sinon et tu va pleurer ta mere
 	// nray.start = geo_multv4(nray.dir, geo_dtov4d(v->len_out + SEEK_STEP));
-	obj->parent->inters(obj->parent, &nray, &po);
+	rt_render_csg_parent(obj, &nray, &po, v);
+	//on chope la batarde d intersection du batard de putain d objet de merde (le parent)
 	//si le parent se trouve dans le batard d objet negatif on fix le rayon
 	if (rt_isvisible(v, &po))
 	{
@@ -79,6 +100,10 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 	else if ((!(v->flags & INTER_OUT)) || (v->len_out < r->lowest_lenght))
 		rt_render_csg_negative(obj, r, v);
 }
+
+/*
+** standard rendering mode, withous any csg
+*/
 
 void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
 {

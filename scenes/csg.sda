@@ -10,7 +10,7 @@ CAMERA
 CAMERA
 	pos: 0 0.544953 2.327974
 	rot: 34.377467 0 0
-CUBE
+SPHERE
 	pos: 0 0 2
 	#texture: textures/feuillage.jpg
 	color: #00ffff
