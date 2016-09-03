@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 10:33:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:48:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,15 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	t_ray			nray;
 	t_intersect		po;
 
-	//si on a pas touche la batard d objet parent on arrete tout pas la peine de se faire chier
 	if ((!obj->parent) || (r->obj_intersect != r->obj_intersect))
 		return ;
-	//si le batard d objet negatif il a pas de putain de point de sortie on baise le batard de parent
-	//et on interdit tout nouvel objet vu que y a pas de sortie...
 	if ((!(v->flags & INTER_OUT)) && (obj->parent == r->obj_intersect))
 	{
 		rt_render_unset(r, 0.0);
 		return ;
 	}
-	//on copie le batard de rayon
 	nray = *r->ray;
 	rt_render_csg_parent(obj, &nray, &po, v);
-	//on chope la batarde d intersection du batard de putain d objet de merde (le parent)
-	//si le parent se trouve dans le batard d objet negatif on fix le rayon
 	if (rt_isvisible(v, &po))
 	{
 		r->obj_intersect = obj;
@@ -87,7 +81,6 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 		r->ray->lenght = nray.lenght;
 		r->lowest_lenght = r->ray->lenght;
 	}
-	//sinon delete le batard d'objet parent car.... il fais chier et devrais pas etre la
 	else
 		rt_render_unset(r, (double)INFINITY);
 }
@@ -100,17 +93,4 @@ void				rt_render_csg(t_obj *obj, t_render *r, t_intersect *v)
 		rt_render_nocsg(obj, r, v);
 	else if ((!(v->flags & INTER_OUT)) || (v->len_out < r->lowest_lenght))
 		rt_render_csg_negative(obj, r, v);
-}
-
-/*
-** standard rendering mode, withous any csg
-*/
-
-void				rt_render_nocsg(t_obj *obj, t_render *r, t_intersect *v)
-{
-	if (r->ray->lenght >= r->lowest_lenght)
-		return ;
-	r->obj_intersect = obj;
-	r->intersection = v->in;
-	r->lowest_lenght = r->ray->lenght;
 }
