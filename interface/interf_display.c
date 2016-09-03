@@ -6,12 +6,13 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 21:53:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 22:11:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "shaders.h"
+#include <SDL2/SDL.h>
 
 /*
 ** "a" is the "original pixel"
@@ -52,17 +53,20 @@ static void			interface_display_value(SDL_Surface *screen,
 {
 	char			*value;
 	SDL_Surface		*value_surface;
-	const t_v2i		offset = INTERF_OFFSET;
+	const t_v2i		offset = (t_v2i){cfg->offset.x + INTERF_VALOFFSET + INTERF_OFFSETX, cfg->offset.y};
 
-	(void)screen;
 	if ((!obj) || (!(obj->type & (unsigned int)cfg->mask)) || (!cfg->get_value))
 		return ;
 	if (!(value = cfg->get_value(obj, NULL)))
 		return ;
-	value_surface = TTF_RenderText_Blended(fonts[1].font, value,
-		interface_color(fonts[1].color));
-	draw_blitsurface(screen, value_surface,
-		(t_v2i){offset.x + INTERF_VALOFFSET, offset.y});
+	if ((value_surface = TTF_RenderText_Blended(fonts[1].font, value,
+		interface_color(fonts[1].color))) != NULL)
+	{
+		if (ft_strlen(value) > 20)
+			value[20] = '\0';
+		draw_blitsurface(screen, value_surface, offset);
+		SDL_FreeSurface(value_surface);
+	}
 	free(value);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 21:52:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 22:13:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 
 # define INTERF_ITEMS		18
 # define INTERF_FONTS		2
-# define INTERF_VALOFFSET	100
-# define INTERF_OFFSET		(t_v2i){15, 15}
-# define INTERF_GEO			(t_v2i){300, 670}
+# define INTERF_VALOFFSET	130
+# define INTERF_OFFSETX		15
+# define INTERF_OFFSETY		15
+# define INTERF_OFFSET		(t_v2i){INTERF_OFFSETX, INTERF_OFFSETY}
+# define INTERF_GEO			(t_v2i){400, 670}
 
 enum						e_inter_flag
 {
