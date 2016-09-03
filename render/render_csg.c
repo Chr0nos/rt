@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 10:48:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:53:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static inline int	rt_isvisible(const t_intersect *v, const t_intersect *po)
 
 static inline void	rt_render_unset(t_render *r, double lowest_lenght)
 {
-	r->ray->obj_intersect = NULL;
 	r->obj_intersect = NULL;
 	r->lowest_lenght = lowest_lenght;
 }
@@ -77,7 +76,6 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	if (rt_isvisible(v, &po))
 	{
 		r->obj_intersect = obj;
-		r->ray->obj_intersect = obj;
 		r->ray->lenght = nray.lenght;
 		r->lowest_lenght = r->ray->lenght;
 	}

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 09:30:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:53:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,15 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 	t_v4d				rad;
 	t_camera			*camp;
 	t_ray				ray;
-	const t_intersect	def_intersect = (t_intersect){0.0, 0.0, geo_dtov4d(0.0),
-		geo_dtov4d(0.0), 0};
 
 	rt_rays_pixels_init(&px, args, &rad, &camp);
-	ray = (t_ray){args->m.w, (t_v4d){0.0, 0.0, 1.0, 0.0}, 0.0, 0, 0x0, 0, 0,
-		def_intersect, def_intersect, 0.0, (double)INFINITY, NULL, NULL};
+	ray = (t_ray){args->m.w, (t_v4d){0.0, 0.0, 1.0, 0.0}, 0.0, 0, 0x0, 0};
 	while (px.x < args->x_end)
 	{
 		px.y = args->rt->sys.geometry.y;
 		rad.y = camp->rayfix.y;
 		while (px.y--)
 		{
-			ray.lenght_min = 0.0;
-			ray.lenght_max = (double)INFINITY;
-			ray.obj_intersect = NULL;
-			ray.obj_negative = NULL;
 			ray.count = 6;
 			ray.dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &(args->m));

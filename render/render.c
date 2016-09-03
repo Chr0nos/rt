@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 10:47:28 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:51:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 static unsigned int	get_background_color(t_render *r)
 {
 	const t_texture		*tex = r->rt->settings.skybox;
-	unsigned int		*pixels_texture = (tex) ? tex->surface->pixels : NULL;
+	unsigned int		*pixels_texture;
 	double				u;
 	double				v;
 
-	if (!pixels_texture)
+	if (!(pixels_texture = (tex) ? tex->surface->pixels : NULL))
 		return (r->rt->settings.bgcolor);
 	u = 0.5 + (atan2(r->ray->dir.z, r->ray->dir.x) * PI2_INV);
 	v = 0.5 - (asin(r->ray->dir.y) * PI_INV);
@@ -77,8 +77,6 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		ray->dir,
 		(unsigned int*)colors
 	};
-	ray->flags = 0;
-	ray->intersect.flags = 0;
 	ray->color = 0xff000000;
 	rt_node_foreach(rt->tree.bounded, INFIX, &rt_render_foreach, &r);
 	rt_node_foreach(rt->tree.unbounded, INFIX, &rt_render_foreach, &r);
