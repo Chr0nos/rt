@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:17:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:23:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	return (draw_color_lerp(b, a, pc));
 }
 
+static unsigned int	blend_noalpha(unsigned int a, unsigned int b)
+{
+	if ((b & 0xff000000) == 0xff000000)
+		return (a);
+	return (b);
+}
+
 void				interface_display(t_rt *rt)
 {
 	int				p;
@@ -49,6 +56,7 @@ void				interface_display(t_rt *rt)
 	if (!screen)
 		return ;
 	p = INTERF_ITEMS;
+	draw_reset_surface(screen, 0xff000000);
 	while (p--)
 	{
 		cfg = &g_interface[p];
@@ -56,5 +64,6 @@ void				interface_display(t_rt *rt)
 			continue ;
 		draw_blitsurface_blend(screen, cfg->title, cfg->offset, &blend_menu);
 	}
-	draw_blitsurface(rt->sys.screen, screen, INTERF_OFFSET);
+	draw_blitsurface_blend(rt->sys.screen, screen, INTERF_OFFSET,
+		&blend_noalpha);
 }
