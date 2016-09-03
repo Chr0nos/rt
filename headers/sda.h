@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:50:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 01:23:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ char					*sda_export_xyz(const t_v4d *v, char radians);
 char					*sda_export_pos(t_obj *obj, t_sda_export *e);
 char					*sda_export_rot(t_obj *obj, t_sda_export *e);
 char					*sda_export_color(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_r(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_g(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_b(t_obj *obj, t_sda_export *e);
 char					*sda_export_size(t_obj *obj, t_sda_export *e);
 char					*sda_export_texture(t_obj *obj, t_sda_export *e);
 char					*sda_export_normal(t_obj *obj, t_sda_export *e);

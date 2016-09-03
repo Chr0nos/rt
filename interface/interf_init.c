@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 21:34:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 01:33:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int			interface_font_init(t_interf *me)
 	me->fonts[0] = (t_interface_font){"interface/font/monkey.ttf", 25,
 		0xffffff, NULL};
 	me->fonts[1] = (t_interface_font){"interface/font/pointfree.ttf", 19,
-		0xe4ffc0, NULL};
+		0xa4ffc0, NULL};
 	n = INTERF_FONTS;
 	while (n--)
 	{

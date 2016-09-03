@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:23:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:56:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 01:27:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,30 @@ void	sda_export_color_raw(unsigned int color, char *color_str)
 	}
 	if (!ft_strncmp(color_str, "00", 2))
 		ft_memmove(color_str, color_str + 2, 9);
+}
+
+char	*sda_export_color_r(t_obj *obj, t_sda_export *e)
+{
+	const unsigned char	c = (((t_cube*)obj->content)->color & 0xff0000) >> 16;
+
+	(void)e;
+	return (ft_itoa((int)c));
+}
+
+char	*sda_export_color_g(t_obj *obj, t_sda_export *e)
+{
+	const unsigned char	c = (((t_cube*)obj->content)->color & 0xff0000) >> 16;
+
+	(void)e;
+	return (ft_itoa((int)c));
+}
+
+char	*sda_export_color_b(t_obj *obj, t_sda_export *e)
+{
+	const unsigned char	c = ((t_cube*)obj->content)->color & 0x0000ff;
+
+	(void)e;
+	return (ft_itoa((int)c));;
 }
 
 char	*sda_export_color(t_obj *obj, t_sda_export *e)

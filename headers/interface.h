@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 22:13:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 01:31:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,25 @@ typedef struct				s_interface
 	t_obj					*obj_selected;
 }							t_interf;
 
+int							interface_init(t_rt *rt);
+void						interface_event(const t_v2i *mouse_pos, t_rt *rt);
+void						interface_display(t_rt *rt);
+void						interface_clean(t_interf *interf);
+SDL_Color					interface_color(unsigned int color);
+
+/*
+** sub exporters
+*/
+
+char						*interf_getid(t_obj *obj, t_sda_export *e);
+char						*interf_getname(t_obj *obj, t_sda_export *e);
+char						*interf_gettype(t_obj *obj, t_sda_export *e);
+
 # define ICFG t_interface_cfg
 
 static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
-	(ICFG){"Id ......... :", (t_v2i){0, 0}, NULL, NULL, 0, ~0},
-	(ICFG){"Type ....... :", (t_v2i){0, 56}, NULL, NULL, 0, ~0},
+	(ICFG){"Id ......... :", (t_v2i){0, 0}, &interf_getid, NULL, 0, ~0},
+	(ICFG){"Type ....... :", (t_v2i){0, 56}, &interf_gettype, NULL, 0, ~0},
 	(ICFG){"Name ....... :", (t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME},
 	(ICFG){"Texture .... :", (t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE},
 	(ICFG){"pos.X ...... :", (t_v2i){0, 168}, NULL, NULL, 0, SDA_POS},
@@ -77,20 +91,14 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"dir.X ...... :", (t_v2i){0, 280}, NULL, NULL, 0, SDA_POS},
 	(ICFG){"dir.Y ...... :", (t_v2i){0, 308}, NULL, NULL, 0, SDA_POS},
 	(ICFG){"dir.Z ...... :", (t_v2i){0, 336}, NULL, NULL, 0, SDA_POS},
-	(ICFG){"color.R ... :", (t_v2i){0, 392}, NULL, NULL, 0, SDA_COLOR},
-	(ICFG){"color.G ... :", (t_v2i){0, 420}, NULL, NULL, 0, SDA_COLOR},
-	(ICFG){"color.B ... :", (t_v2i){0, 448}, NULL, NULL, 0, SDA_COLOR},
+	(ICFG){"color.R ... :", (t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR},
+	(ICFG){"color.G ... :", (t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR},
+	(ICFG){"color.B ... :", (t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR},
 	(ICFG){"Transparence :", (t_v2i){0, 504}, NULL, NULL, 0, SDA_COLOR},
 	(ICFG){"Reflection . :", (t_v2i){0, 532}, NULL, NULL, 0, SDA_REFLECT},
 	(ICFG){"Refraction . :", (t_v2i){0, 560}, NULL, NULL, 0, SDA_REFLECT},
 	(ICFG){"Size ....... :", (t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE},
 	(ICFG){"----------- ENTER ----------", (t_v2i){0, 644}, NULL, NULL, 0, 0}
 };
-
-int							interface_init(t_rt *rt);
-void						interface_event(const t_v2i *mouse_pos, t_rt *rt);
-void						interface_display(t_rt *rt);
-void						interface_clean(t_interf *interf);
-SDL_Color					interface_color(unsigned int color);
 
 #endif
