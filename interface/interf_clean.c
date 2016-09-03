@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:42:24 by dboudy            #+#    #+#             */
-/*   Updated: 2016/08/30 21:44:05 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/03 13:17:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_surfaces(SDL_Surface *surface[NB_CHAMPS], int max)
 {
 	int		i;
 
-	i = -1;
-	while (++i < max - 1)
+	i = max;
+	while (i--)
 		SDL_FreeSurface(surface[i]);
 }
