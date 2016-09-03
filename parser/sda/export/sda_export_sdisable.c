@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/17 16:40:03 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 22:02:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:57:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "shaders.h"
 #include "libft.h"
+#include "objects.h"
 
 static const char	*sda_sdisable_getshadername(t_sda_shader *x,
 	t_shader *shader)

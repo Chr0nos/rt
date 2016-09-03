@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 06:09:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:58:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "rt.h"
 #include "libft.h"
+#include "objects.h"
 #include <stdlib.h>
 #include <unistd.h>
 

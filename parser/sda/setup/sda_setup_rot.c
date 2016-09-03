@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 18:33:44 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 15:25:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:55:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
+#include "objects.h"
 
 int			sda_setup_rot(t_sda *e, t_obj *obj, char **av)
 {

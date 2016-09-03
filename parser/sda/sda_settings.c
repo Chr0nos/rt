@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 06:04:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:51:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
+#include "objects.h"
 
 void		sda_settings_stack(t_obj *stack, t_obj *s)
 {

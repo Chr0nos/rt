@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/31 17:10:32 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:44:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 ** used in rt_render_ray
 */
 # define MAX_SHADERS 16
+
+typedef struct s_render t_render;
 
 typedef enum		e_shader_type
 {

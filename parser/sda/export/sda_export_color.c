@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:23:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 17:07:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:56:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
+#include "objects.h"
 #include <stdlib.h>
 
 void	sda_export_color_raw(unsigned int color, char *color_str)

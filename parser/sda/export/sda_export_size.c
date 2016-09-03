@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 23:40:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/29 18:14:44 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/03 21:57:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 #include <stdlib.h>
+#include "objects.h"
 
 char	*sda_export_size(t_obj *obj, t_sda_export *e)
 {

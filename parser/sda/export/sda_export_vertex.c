@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 16:54:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 18:47:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:58:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "mesh.h"
 #include "libft.h"
+#include "objects.h"
 
 static void		sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
 	const int uv_mask)

@@ -6,11 +6,12 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 18:17:52 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 18:18:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:59:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
+#include "objects.h"
 
 void	sda_default_size(t_rt *rt, t_obj *obj)
 {

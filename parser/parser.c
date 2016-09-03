@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 18:02:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:51:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "sda.h"
 #include "parser.h"
+#include "mesh.h"
 #include "libft.h"
 
 static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)

@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 20:39:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:34:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "rt.h"
 #include <stdlib.h>
 
-static SDL_Color	interface_color(unsigned int color)
+SDL_Color			interface_color(unsigned int color)
 {
 	return ((SDL_Color){
 		(color & 0x00ff0000) >> 16,
@@ -67,8 +67,6 @@ void				interface_clean(t_interf *interf)
 		cfg = &interf->cfg[n];
 		if (cfg->title)
 			SDL_FreeSurface(cfg->title);
-		if (cfg->value)
-			free(cfg->value);
 	}
 	n = INTERF_FONTS;
 	while (n--)

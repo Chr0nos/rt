@@ -6,11 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 17:35:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 17:56:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:59:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
+#include "objects.h"
+#include "mesh.h"
 
 void	sda_default_triangle(t_rt *rt, t_obj *obj)
 {

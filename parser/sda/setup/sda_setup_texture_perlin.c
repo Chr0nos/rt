@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 14:33:16 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 18:48:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:53:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "texture.h"
 #include "libft.h"
+#include "rt.h"
 
 int		sda_setup_texture_perlin(t_sda *e, t_obj *obj, char **av)
 {

@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 00:34:48 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/08 00:13:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:57:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 #include "forms.h"
+#include "objects.h"
 
 char	*sda_export_intensity(t_obj *obj, t_sda_export *e)
 {

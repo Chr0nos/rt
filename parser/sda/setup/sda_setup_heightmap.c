@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/26 22:30:54 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 17:39:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:53:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "texture.h"
 #include "libft.h"
+#include "objects.h"
 
 int			sda_setup_heightmap(t_sda *e, t_obj *obj, char **av)
 {

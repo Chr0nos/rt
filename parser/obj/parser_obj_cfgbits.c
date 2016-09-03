@@ -6,11 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 21:30:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 23:35:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 22:00:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
+#include "objects.h"
+#include "mesh.h"
 
 void				parse_obj_setcfgbits(t_obj *t, const t_sda_obj *s,
 	t_triangle *c)

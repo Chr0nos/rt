@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/03 10:52:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:46:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,10 @@
 # define FORMS_H
 # include "draw.h"
 # include "texture.h"
+# include "forms_bits.h"
 
 typedef unsigned int	t_uint;
 typedef t_m4			t_mattf;
-
-typedef enum			e_type
-{
-	ROOT = 1,
-	CUBE = 1 << 1,
-	PLAN = 1 << 2,
-	SPHERE = 1 << 3,
-	CAMERA = 1 << 4,
-	EMPTY = 1 << 5,
-	SPOT = 1 << 6,
-	POINTLIGHT = 1 << 7,
-	FACE = 1 << 8,
-	INVALID = 1 << 9,
-	CONE = 1 << 10,
-	CYL = 1 << 11,
-	SUNLIGHT = 1 << 12,
-	SETTING = 1 << 13,
-	CONE_INF = 1 << 14,
-	NOSHADER = 1 << 28,
-	TRIANGLE = 1 << 29,
-	MESH = 1 << 30,
-	RADIUS = SPHERE | CUBE | CYL | CONE | CONE_INF,
-	VISIBLE = CUBE | PLAN | SPHERE | FACE | CONE | CYL | CONE_INF |
-	TRIANGLE | MESH,
-	NOCHECKBOX = PLAN | CYL | CONE_INF,
-	BOUNDED = CUBE | SPHERE | FACE | CONE | CYL | CONE_INF | TRIANGLE |
-	EMPTY,
-	LIGHTTYPE = SPOT | POINTLIGHT | SUNLIGHT,
-}						t_type;
 
 enum					e_stop
 {
