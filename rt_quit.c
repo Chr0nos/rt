@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 15:01:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/26 00:42:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 16:30:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ int		rt_quit(t_rt *rt, int retcode)
 	textures_free(*rt->textures);
 	rt_node_free(rt->root);
 	free(rt->textures);
-	free(rt->interf);
 	return (retcode);
 }

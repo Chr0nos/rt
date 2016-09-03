@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 15:42:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 16:35:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void		change_mode_interf(t_rt *rt)
 	{
 		rt->interf.flags ^= INTER_ENABLED;
 	}
+	else
+		rt->interf.flags &= ~INTER_ENABLED;
 }
 
 int				rt_event_resize(SDL_Event *event, t_rt *rt)

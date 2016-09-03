@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 15:24:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:02:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,20 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 void				interface_display(t_rt *rt)
 {
 	int				p;
-	char			*text;
 	SDL_Surface		*screen;
-	SDL_Surface		*value_img;
+	t_interface_cfg	*cfg;
 
-	screen = rt->interf->screen;
+	if (!rt->interf.flags & INTER_INITIALIZED)
+		return ;
+	screen = rt->interf.screen;
+	if (!screen)
+		return ;
 	p = INTERF_ITEMS;
 	while (p--)
 	{
-		value_img = NULL;
-		draw_blitsurface_blend(screen,
-			g_interface[p].title,
-			g_interface[p].offset,
-			&blend_menu);
+		cfg = &g_interface[p];
+		if (!cfg->title)
+			continue ;
+		draw_blitsurface_blend(screen, cfg->title, cfg->offset, &blend_menu);
 	}
 }

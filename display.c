@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:06:26 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/03 16:29:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				display(t_rt *rt)
 	else
 	{
 		rt_render(rt);
-		if (rt->interf->mode_activated)
+		if (rt->interf.flags & INTER_ENABLED)
 			interface_display(rt);
 		if (ret & FORCE_DISPLAY)
 			rt->keyboard ^= FORCE_DISPLAY;

@@ -6,13 +6,13 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 15:35:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 16:28:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 
-void		interface_event(const t_v2i *mouse_pos, t_rt *rt);
+void		interface_event(const t_v2i *mouse_pos, t_rt *rt)
 {
 	(void)mouse_pos;
 	(void)rt;

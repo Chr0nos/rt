@@ -6,14 +6,26 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 15:18:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:06:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "draw.h"
+#include "rt.h"
+#include <stdlib.h>
 
-static int		interface_font_init(t_interf *me)
+static SDL_Color	interface_color(unsigned int color)
+{
+	return ((SDL_Color){
+		(color & 0xff000000) >> 24,
+		(color & 0x00ff0000) >> 16,
+		(color & 0x0000ff00) >> 8,
+		(color & 0x000000ff)
+	});
+}
+
+static int			interface_font_init(t_interf *me)
 {
 	int					n;
 	t_interface_font	*font;
@@ -26,24 +38,65 @@ static int		interface_font_init(t_interf *me)
 	while (n--)
 	{
 		font = &me->fonts[n];
-		font->font = TTF_OpenFont(font->path, font->size);
+		if (!(font->font = TTF_OpenFont(font->path, font->size)))
+			return (-1);
+		TTF_SetFontStyle(font->font, TTF_STYLE_UNDERLINE);
 	}
 	n = INTERF_ITEMS;
 	while (n--)
-		g_interface[p].title = TTF_RenderText_Blended(me->fonts[0].font,
-			g_interface[p].name, (SDL_Color)me->fonts[0].color);
+	{
+		g_interface[n].title = TTF_RenderText_Blended(me->fonts[0].font,
+			g_interface[n].name, interface_color(me->fonts[0].color));
+		if (!g_interface[n].title)
+			return (-2);
+	}
 	return (0);
 }
 
-int				interface_init(t_rt *rt)
+void				interface_clean(t_interf *interf)
 {
-	if (!TTF_Init() < 0)
-		return ;
-	if (!(me->screen = draw_make_surface((t_v2i){768, 300})))
+	int				n;
+	t_interface_cfg	*cfg;
+
+	n = INTERF_FONTS;
+	while (n--)
+	{
+		cfg = &g_interface[n];
+		if (cfg->title)
+			SDL_FreeSurface(cfg->title);
+		if (cfg->value)
+			free(cfg->value);
+	}
+	n = INTERF_FONTS;
+	while (n--)
+	{
+		if (interf->fonts[n].font)
+			TTF_CloseFont(interf->fonts[n].font);
+	}
+	if (interf->screen)
+		SDL_FreeSurface(interf->screen);
+	TTF_Quit();
+	interf->flags &= ~INTER_INITIALIZED;
+}
+
+int					interface_init(t_rt *rt)
+{
+	if (TTF_Init() < 0)
+		return (-1);
+	if (!(rt->interf.screen = draw_make_surface((t_v2i){768, 300})))
 	{
 		TTF_Quit();
-		return (-1);
+		ft_putstr_fd("error: failed to init menu surface\n", 2);
+		return (-2);
 	}
-	interface_font_init(rt->interface);
+	if (interface_font_init(&rt->interf) < 0)
+	{
+		ft_freesplit((char **)(unsigned long)rt->interf.fonts);
+		ft_putstr_fd("error: failed to unit all fonts\n", 2);
+		TTF_Quit();
+		return (-3);
+	}
+	ft_putstr("#Menu init ok\n");
+	rt->interf.flags |= INTER_INITIALIZED;
 	return (0);
 }

@@ -6,13 +6,20 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 15:42:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 16:53:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "keyboard.h"
 #include "draw.h"
+
+static void		rt_configure_interface(t_interf *interf)
+{
+	interf->obj_selected = NULL;
+	interf->screen = NULL;
+	interf->flags = 0;
+}
 
 void			rt_configure(t_rt *rt)
 {
@@ -39,6 +46,5 @@ void			rt_configure(t_rt *rt)
 	rt->menu.background = NULL;
 	rt->menu.positions = NULL;
 	rt->rayfunc = &rt_render_ray;
-	rt->interf.obj_selected = NULL;
-	rt->interf.flags = 0;
+	rt_configure_interface(&rt->interf);
 }
