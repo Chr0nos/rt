@@ -67,10 +67,10 @@ EMPTY
 		texture: ./textures/sand.jpg
 	CUBE
 		pos: 1 -0.02 0
-		color: #880077FF
+		color: #440077FF
 		#texture: ./textures/water.jpg
 		normal: ./textures/water_normal.png
-		reflect: 127
+		#reflect: 127
 
 #PLAN
 #	pos: 0 50 0

@@ -25,5 +25,6 @@ int		rt_quit(t_rt *rt, int retcode)
 	textures_free(*rt->textures);
 	rt_node_free(rt->root);
 	free(rt->textures);
+	free(rt->interf);
 	return (retcode);
 }

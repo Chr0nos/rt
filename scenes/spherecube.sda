@@ -10,7 +10,7 @@ POINTLIGHT
 
 #un cube avec une sphere dedans et une autre un peu plus loin
 CUBE
-	color: #b040af90
+	color: #0a40af90
 	size: 2
 	refract: 4.541
 	EMPTY
@@ -24,6 +24,6 @@ CUBE
 			color: #ff0000
 EMPTY
 	PLAN
-		pos: 0 -1.5 0
+		pos: 0 -2 0
 		color: #344271
 		reflect: 0

@@ -113,23 +113,27 @@ EMPTY
 		pos: 0 0 2
 		copy: lines
 
-EMPTY
-	CYL
-		name: cyl
-		pos: -1 0 -1
-		rot: 0 90 0
-		size: 0.3
-		color: #f0f000
-		reflect: 255
-	EMPTY
-		copy: cyl
-		pos: 8 0 -1
-	EMPTY
-		copy: cyl
-		pos: -1 0 9
-	EMPTY
-		copy: cyl
-		pos: 9 0 9
+CYL
+	name: cyl
+	pos: -1 0 -1
+	rot: 0 1 0
+	size: 0.3
+	color: #f0f000
+CYL
+	rot: 0 1 0
+	pos: 8 0 -1
+	size: 0.3
+	color: #f0f000
+CYL
+	rot: 0 1 0
+	pos: -1 0 9
+	size: 0.3
+	color: #f0f000
+CYL
+	rot: 0 1 0
+	pos: 9 0 9
+	size: 0.3
+	color: #f0f000
 
 PLAN
 	pos: 0 0 10

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/01 17:41:50 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/03 10:28:52 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 	latt = geo_dotv4(r->normal, light_vector);
 	if (latt > 0.0 || A(shader_color_texture_intersection(r)))
 	{
+		latt = (latt < 0.0 ? -latt : latt);
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
 			(light->type == SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));
 		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
