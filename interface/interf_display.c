@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:23:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:55:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 	const unsigned int	alpha = 0xff - ((b & 0xff000000) >> 24);
 	const float			pc = (float)alpha / (float)0xff;
 
+	if (b == 0xff000000)
+		return (a);
 	b = (b & 0xffffff) | (alpha << 24);
 	if ((R(b) > 240) && (G(b) > 240) && (B(b) > 240) &&
 			(R(a) > 240) && (G(a) > 240) && (B(a) > 240))
@@ -32,13 +34,6 @@ static unsigned int	blend_menu(unsigned int a, unsigned b)
 		return (draw_color_lerp(b, a, pc - 0.3f));
 	}
 	return (draw_color_lerp(b, a, pc));
-}
-
-static unsigned int	blend_noalpha(unsigned int a, unsigned int b)
-{
-	if ((b & 0xff000000) == 0xff000000)
-		return (a);
-	return (b);
 }
 
 void				interface_display(t_rt *rt)
@@ -59,11 +54,11 @@ void				interface_display(t_rt *rt)
 	draw_reset_surface(screen, 0xff000000);
 	while (p--)
 	{
-		cfg = &g_interface[p];
+		cfg = &rt->interf.cfg[p];
 		if (!cfg->title)
 			continue ;
-		draw_blitsurface_blend(screen, cfg->title, cfg->offset, &blend_menu);
+		draw_blitsurface(screen, cfg->title, cfg->offset);
 	}
 	draw_blitsurface_blend(rt->sys.screen, screen, INTERF_OFFSET,
-		&blend_noalpha);
+		&blend_menu);
 }
