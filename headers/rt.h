@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/02 03:29:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 07:43:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ void			rt_bounds_update(t_obj *node);
 int				raybox_cube_check(t_ray *r, t_box *box);
 
 void			rt_rays(t_rt *rt);
-int				rt_ray_inobj(const t_ray *ray, const t_intersect *v);
 
 void			rt_node_free(t_obj *node);
 int				rt_node_foreach(t_obj *node, int mode,
