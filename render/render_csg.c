@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 17:06:42 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 10:08:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:33:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ static inline void	rt_render_unset(t_render *r, double lowest_lenght)
 static inline void	rt_render_csg_parent(t_obj *obj, t_ray *nray,
 	t_intersect *po, const t_intersect *v)
 {
-	(void)v;
-	// nray->start = geo_multv4(nray->dir, geo_dtov4d(v->len_in + 0.01));
+	const double		offset = v->len_in + 0.01;
+	const t_v4d			offset_vec = (t_v4d){offset, offset, offset, 1.0};
+
+	(void)offset_vec;
+	nray->start = geo_multv4(nray->dir, offset_vec);
 	obj->parent->inters(obj->parent, nray, po);
-	// po->len_in += v->len_in;
-	// po->len_out += v->len_in;
-	// nray->lenght += v->len_in;
+	po->len_in += offset;
+	po->len_out += offset;
+	nray->lenght += offset;
 }
 
 static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
@@ -74,8 +77,6 @@ static inline void	rt_render_csg_negative(t_obj *obj, t_render *r,
 	}
 	//on copie le batard de rayon
 	nray = *r->ray;
-	//futur moi, n active pas ca, tu va decaller toutes les valeurs de po sinon et tu va pleurer ta mere
-	// nray.start = geo_multv4(nray.dir, geo_dtov4d(v->len_out + SEEK_STEP));
 	rt_render_csg_parent(obj, &nray, &po, v);
 	//on chope la batarde d intersection du batard de putain d objet de merde (le parent)
 	//si le parent se trouve dans le batard d objet negatif on fix le rayon

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 18:24:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 10:45:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int					rt_render_foreach(t_obj *obj, int mode, void *userdata)
 		if ((obj->inters) && (obj->inters(obj, r->ray, &impact) == 0))
 			;
 		else
-			rt_render_csg(obj, r, &impact);
-		//	rt_render_nocsg(obj, r, &impact);
+			//rt_render_csg(obj, r, &impact);
+			rt_render_nocsg(obj, r, &impact);
 	}
 	return (OK);
 }
