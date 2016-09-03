@@ -23,9 +23,9 @@ SPHERE
 	SPHERE
 		name: atmosphere
 		size: 6.5
-		color: #9900BFFF
+		color: #5500BFFF
 		normal: ./textures/clouds_earth_normal.jpg
-		#texture: ./textures/clouds_earth.jpg
+		texture: ./textures/clouds_earth.jpg
 	SPHERE
 		name: moon
 		pos: 38.44 0 0
