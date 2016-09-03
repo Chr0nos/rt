@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/01 18:52:14 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/03 15:38:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,79 +18,66 @@
 # include <SDL2/SDL_ttf.h>
 # include <SDL2/SDL.h>
 
-# define NB_CHAMPS 		26
-# define LARGER_SIZE	30
+# define INTERF_ITEMS	18
+# define INTERF_FONTS	2
 
-# define I_ID			0
-# define I_VIDE2		1
-# define I_TYPE			2
-# define I_NAME			3
-# define I_TEXT			4
-# define I_VIDE3		5
-# define I_POSX			6
-# define I_POSY			7
-# define I_POSZ			8
-# define I_VIDE4		9
-# define I_DIRX			10
-# define I_DIRY			11
-# define I_DIRZ			12
-# define I_VIDE5		13
-# define I_COL_R		14
-# define I_COL_G		15
-# define I_COL_B		16
-# define I_VIDE6		17
-# define I_ALPHA		18
-# define I_REFL			19
-# define I_REFR			20
-# define I_VIDE7		21
-# define I_SIZE			22
-# define I_VIDE8		23
-# define I_ENTER		24
-# define I_END			25
-
-typedef	struct s_rt	t_rt;
-
-typedef struct	s_interface
+enum					e_inter_flag
 {
-	SDL_Surface	*interf_screen;
-	int			mode_activated;
-	char		**champs_scale;
-	char		*champs_obj[NB_CHAMPS][LARGER_SIZE];
-	char		*champs_txt[NB_CHAMPS][LARGER_SIZE];
-	SDL_Surface	*surface_txt[NB_CHAMPS];
-	SDL_Surface	*surface_obj[NB_CHAMPS];
-	SDL_Surface	*surface_scale[7];
-	TTF_Font	*police_classic;
-	TTF_Font	*police_selected;
-	SDL_Color	color_classic;
-	SDL_Color	color_selected;
-	SDL_Rect	pos;
-	int			scale;
-	t_obj		*obj_selected;
-}				t_interf;
+	INTER_SELECTED = 1,
+	INTER_ENABLED = 1 << 1
+};
 
-void			init_interface(t_rt *rt);
-void			interface_display(t_rt *rt);
-void			fill_champs_obj(t_obj *o, char *champs[NB_CHAMPS][LARGER_SIZE]);
-void			fill_surfaces(char *champs[NB_CHAMPS][LARGER_SIZE],
-				SDL_Surface *surf[NB_CHAMPS], TTF_Font *pol, SDL_Color *col);
-void			fill_surface_scale(t_interf *in, int i_scale);
+typedef	struct s_rt		t_rt;
 
-void			interf_event(t_v2i *mouse_pos, t_rt *rt);
-void			change_color(int scale, int y,
-							char *champs[NB_CHAMPS][LARGER_SIZE]);
-void			change_one(int scale, int y,
-							char *champs[NB_CHAMPS][LARGER_SIZE]);
-void			change_selected_obj(t_rt *rt);
-void			change_all_data_obj(t_rt *rt,
-							char *champs[NB_CHAMPS][LARGER_SIZE]);
+typedef struct			s_interface_font
+{
+	const char			*path;
+	const int			size;
+	const unsigned int	color;
+	TTF_Font			*font;
+}						t_interface_font;
 
-SDL_Color		*define_color(SDL_Color *color, Uint8 r, Uint8 g, Uint8 b);
-SDL_Rect		*define_position(SDL_Rect *pos, Uint8 x, Uint8 y);
-TTF_Font		*define_police(TTF_Font *police, char *name, int s, int select);
-SDL_Surface		*define_texte(TTF_Font *police, char *txt, SDL_Color *color);
+typedef struct			s_interface_cfg
+{
+	const char			*name;
+	char				*value;
+	t_v2i				offset;
+	int					flags;
+	SDL_Surface			*title;
+}						t_inteface_cfg;
 
-void			clean_interface(t_rt *rt);
-void			free_surfaces(SDL_Surface *surfaces[NB_CHAMPS], int max);
+typedef struct			s_interface
+{
+	int					flags;
+	SDL_Surface			*screen;
+	t_interface_font	fonts[INTERF_FONTS];
+	t_obj				*obj_selected;
+}						t_interf;
+
+static t_inteface_cfg	g_interface[INTERF_ITEMS] = {
+	(t_inteface_cfg){"Id ......... :", NULL, (t_v2i){0, 0}, 0, NULL},
+	(t_inteface_cfg){"Type ....... :", NULL, (t_v2i){0, 6}, 0, NULL},
+	(t_inteface_cfg){"Name ....... :", NULL, (t_v2i){0, 9}, 0, NULL},
+	(t_inteface_cfg){"Texture .... :", NULL, (t_v2i){0, 12}, 0, NULL},
+	(t_inteface_cfg){"pos.X ...... :", NULL, (t_v2i){0, 18}, 0, NULL},
+	(t_inteface_cfg){"pos.Y ...... :", NULL, (t_v2i){0, 21}, 0, NULL},
+	(t_inteface_cfg){"pos.Z ...... :", NULL, (t_v2i){0, 24}, 0, NULL},
+	(t_inteface_cfg){"dir.X ...... :", NULL, (t_v2i){0, 30}, 0, NULL},
+	(t_inteface_cfg){"dir.Y ...... :", NULL, (t_v2i){0, 33}, 0, NULL},
+	(t_inteface_cfg){"dir.Z ...... :", NULL, (t_v2i){0, 36}, 0, NULL},
+	(t_inteface_cfg){"color.R ... :", NULL, (t_v2i){0, 40}, 0, NULL},
+	(t_inteface_cfg){"color.G ... :", NULL, (t_v2i){0, 43}, 0, NULL},
+	(t_inteface_cfg){"color.B ... :", NULL, (t_v2i){0, 46}, 0, NULL},
+	(t_inteface_cfg){"Transparence :", NULL, (t_v2i){0, 50}, 0, NULL},
+	(t_inteface_cfg){"Reflection . :", NULL, (t_v2i){0, 53}, 0, NULL},
+	(t_inteface_cfg){"Refraction . :", NULL, (t_v2i){0, 56}, 0, NULL},
+	(t_inteface_cfg){"Size ....... :", NULL, (t_v2i){0, 59}, 0, NULL},
+	(t_inteface_cfg){"----------- ENTER ----------", NULL, (t_v2i){0, 62}, 0,
+		NULL}
+};
+
+void					interface_init(t_rt *rt);
+void					interface_event(const t_v2i *mouse_pos, t_rt *rt);
+void					interface_display(t_rt *rt);
 
 #endif

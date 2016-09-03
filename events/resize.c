@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 20:11:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 15:42:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ static void		rt_event_resize_menu(t_rt *rt)
 
 static void		change_mode_interf(t_rt *rt)
 {
-	if (rt->interf->mode_activated &&
-		(rt->sys.geometry.x < 260 || rt->sys.geometry.y < 770))
+	if ((rt->interf.flags & INTER_ENABLED) &&
+		((rt->sys.geometry.x < 260) || (rt->sys.geometry.y < 770)))
 	{
-		rt->interf->mode_activated = 0;
-		clean_interface(rt);
+		rt->interf.flags ^= INTER_ENABLED;
 	}
 }
 
