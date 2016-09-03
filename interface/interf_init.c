@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:06:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:20:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ static SDL_Color	interface_color(unsigned int color)
 		(color & 0x0000ff00) >> 8,
 		(color & 0x000000ff)
 	});
+}
+
+static int			interface_font_prerender(const t_interf *me, int n)
+{
+	t_interface_cfg		*cfg;
+
+	while (n--)
+	{
+		cfg = &g_interface[n];
+		cfg->title = TTF_RenderText_Blended(me->fonts[0].font,
+			cfg->name, interface_color(me->fonts[0].color));
+		if (!cfg->title)
+			return (-2);
+	}
+	return (0);
 }
 
 static int			interface_font_init(t_interf *me)
@@ -42,15 +57,7 @@ static int			interface_font_init(t_interf *me)
 			return (-1);
 		TTF_SetFontStyle(font->font, TTF_STYLE_UNDERLINE);
 	}
-	n = INTERF_ITEMS;
-	while (n--)
-	{
-		g_interface[n].title = TTF_RenderText_Blended(me->fonts[0].font,
-			g_interface[n].name, interface_color(me->fonts[0].color));
-		if (!g_interface[n].title)
-			return (-2);
-	}
-	return (0);
+	return (interface_font_prerender(me, INTERF_ITEMS));
 }
 
 void				interface_clean(t_interf *interf)
@@ -81,9 +88,11 @@ void				interface_clean(t_interf *interf)
 
 int					interface_init(t_rt *rt)
 {
+	if (rt->interf.flags & INTER_INITIALIZED)
+		return (0);
 	if (TTF_Init() < 0)
 		return (-1);
-	if (!(rt->interf.screen = draw_make_surface((t_v2i){768, 300})))
+	if (!(rt->interf.screen = draw_make_surface((t_v2i){300, 768})))
 	{
 		TTF_Quit();
 		ft_putstr_fd("error: failed to init menu surface\n", 2);

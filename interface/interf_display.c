@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:02:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:17:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void				interface_display(t_rt *rt)
 	t_interface_cfg	*cfg;
 
 	if (!rt->interf.flags & INTER_INITIALIZED)
+	{
+		ft_putendl("#Menu: warning: interface not initialized i will hide\n");
 		return ;
+	}
 	screen = rt->interf.screen;
 	if (!screen)
 		return ;
@@ -53,4 +56,5 @@ void				interface_display(t_rt *rt)
 			continue ;
 		draw_blitsurface_blend(screen, cfg->title, cfg->offset, &blend_menu);
 	}
+	draw_blitsurface(rt->sys.screen, screen, INTERF_OFFSET);
 }

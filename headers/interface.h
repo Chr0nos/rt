@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/03 17:00:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 17:18:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define INTERF_ITEMS	18
 # define INTERF_FONTS	2
-//# define INTERF_VALOFF	(t_v2i){100, 0}
+# define INTERF_OFFSET	(t_v2i){15, 15}
 
 enum					e_inter_flag
 {
