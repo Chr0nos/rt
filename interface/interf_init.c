@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/04 01:33:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 00:05:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ void				interface_clean(t_interf *interf)
 		cfg = &interf->cfg[n];
 		if (cfg->title)
 			SDL_FreeSurface(cfg->title);
-	}
-	n = INTERF_FONTS;
-	while (n--)
-	{
 		if (interf->fonts[n].font)
 			TTF_CloseFont(interf->fonts[n].font);
 	}
