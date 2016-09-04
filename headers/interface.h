@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/04 01:31:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 02:03:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ SDL_Color					interface_color(unsigned int color);
 char						*interf_getid(t_obj *obj, t_sda_export *e);
 char						*interf_getname(t_obj *obj, t_sda_export *e);
 char						*interf_gettype(t_obj *obj, t_sda_export *e);
+char						*interf_getalpha(t_obj *obj, t_sda_export *e);
 
 # define ICFG t_interface_cfg
 
@@ -94,9 +95,9 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"color.R ... :", (t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR},
 	(ICFG){"color.G ... :", (t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR},
 	(ICFG){"color.B ... :", (t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR},
-	(ICFG){"Transparence :", (t_v2i){0, 504}, NULL, NULL, 0, SDA_COLOR},
-	(ICFG){"Reflection . :", (t_v2i){0, 532}, NULL, NULL, 0, SDA_REFLECT},
-	(ICFG){"Refraction . :", (t_v2i){0, 560}, NULL, NULL, 0, SDA_REFLECT},
+	(ICFG){"Transparence :", (t_v2i){0, 504}, interf_getalpha, NULL, 0, SDA_COLOR},
+	(ICFG){"Reflection . :", (t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT},
+	(ICFG){"Refraction . :", (t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT},
 	(ICFG){"Size ....... :", (t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE},
 	(ICFG){"----------- ENTER ----------", (t_v2i){0, 644}, NULL, NULL, 0, 0}
 };

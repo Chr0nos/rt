@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/04 01:11:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/04 01:30:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/04 02:04:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ char	*interf_gettype(t_obj *obj, t_sda_export *e)
 {
 	(void)e;
 	return (search_str_type(obj->type));
+}
+
+char	*interf_getalpha(t_obj *obj, t_sda_export *e)
+{
+	(void)e;
+	return (ft_itoa((int)(((t_cube*)obj->content)->color & 0xff000000) >> 24));
 }
