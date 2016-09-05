@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 16:53:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 19:18:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void			rt_configure(t_rt *rt)
 	rt->menu.background = NULL;
 	rt->menu.positions = NULL;
 	rt->rayfunc = &rt_render_ray;
+	rt->render_screen = NULL;
 	rt_configure_interface(&rt->interf);
 }

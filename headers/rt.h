@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/03 16:25:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 19:12:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct	s_rt
 	t_texture		**textures;
 	t_interf		interf;
 	t_uint			(*rayfunc)(struct s_rt *rt, t_ray *ray);
+	SDL_Surface		*render_screen;
 }				t_rt;
 
 void			rt_putbits(unsigned int bits);

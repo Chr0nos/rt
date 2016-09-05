@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/05 03:47:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 19:08:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct				s_interface
 	t_interface_font		fonts[INTERF_FONTS];
 	t_interface_cfg			cfg[INTERF_ITEMS];
 	t_obj					*obj_selected;
+	char					line[32];
 }							t_interf;
 
 int							interface_init(t_rt *rt);
@@ -69,6 +70,7 @@ void						interface_event(const t_v2i *mouse_pos, t_rt *rt);
 void						interface_display(t_rt *rt);
 void						interface_clean(t_interf *interf);
 SDL_Color					interface_color(unsigned int color);
+unsigned int				blend_menu(unsigned int a, unsigned b);
 
 /*
 ** sub exporters
@@ -98,7 +100,7 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"color.R ... :", (t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR},
 	(ICFG){"color.G ... :", (t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR},
 	(ICFG){"color.B ... :", (t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR},
-	(ICFG){"Transparence :", (t_v2i){0, 504}, interf_getalpha, NULL, 0, SDA_COLOR},
+	(ICFG){"Transparence :", (t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR},
 	(ICFG){"Reflection . :", (t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT},
 	(ICFG){"Refraction . :", (t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT},
 	(ICFG){"Size ....... :", (t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE},

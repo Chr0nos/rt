@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 15:01:01 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 16:30:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 20:01:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		rt_quit(t_rt *rt, int retcode)
 		SDL_FreeSurface(rt->sys.screen);
 		rt->sys.screen = NULL;
 	}
+	if (rt->render_screen)
+		SDL_FreeSurface(rt->render_screen);
 	if (rt->sys.screen)
 		draw_quit(&rt->sys);
 	textures_free(*rt->textures);

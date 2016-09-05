@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/04 01:40:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 19:08:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** in case of the menu color: the sdl_ttf just has invert alpha
 */
 
-static unsigned int	blend_menu(unsigned int a, unsigned b)
+unsigned int		blend_menu(unsigned int a, unsigned b)
 {
 	const unsigned int	alpha = 0xff - ((b & 0xff000000) >> 24);
 	const float			pc = (float)alpha / (float)0xff;

@@ -11,6 +11,7 @@ CAMERA
 	pos: 0 0.544953 2.327974
 	rot: 34.377467 0 0
 SPHERE
+	name: bidule
 	pos: 0 0 2
 	#texture: textures/feuillage.jpg
 	color: #00ffff
@@ -19,16 +20,19 @@ SPHERE
 		pos: 0 2 2
 	SPHERE
 		pos: 1 0 0
-		#color: #ff0000
+		color: #ff0000
 		csg: negative
-		texture: textures/moon.jpg
+		sdisable: specular
 CUBE
+	name: matiere
 	pos: 2 0 2
 	color: #50b000
 	CUBE
+		name: truc
 		pos: 0 0 6
 		color: #ff0000
 	CUBE
+		name: machin
 		pos: 0.5 0.5 0.5
 		color: #ffff00
 		#PLAN
