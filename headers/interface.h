@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/04 02:03:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/05 03:47:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ char						*interf_getid(t_obj *obj, t_sda_export *e);
 char						*interf_getname(t_obj *obj, t_sda_export *e);
 char						*interf_gettype(t_obj *obj, t_sda_export *e);
 char						*interf_getalpha(t_obj *obj, t_sda_export *e);
+char						*interf_getpos_x(t_obj *obj, t_sda_export *e);
+char						*interf_getpos_y(t_obj *obj, t_sda_export *e);
+char						*interf_getpos_z(t_obj *obj, t_sda_export *e);
 
 # define ICFG t_interface_cfg
 
@@ -86,9 +89,9 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"Type ....... :", (t_v2i){0, 56}, &interf_gettype, NULL, 0, ~0},
 	(ICFG){"Name ....... :", (t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME},
 	(ICFG){"Texture .... :", (t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE},
-	(ICFG){"pos.X ...... :", (t_v2i){0, 168}, NULL, NULL, 0, SDA_POS},
-	(ICFG){"pos.Y ...... :", (t_v2i){0, 196}, NULL, NULL, 0, SDA_POS},
-	(ICFG){"pos.Z ...... :", (t_v2i){0, 224}, NULL, NULL, 0, SDA_POS},
+	(ICFG){"pos.X ...... :", (t_v2i){0, 168}, &interf_getpos_x, NULL, 0, SDA_POS},
+	(ICFG){"pos.Y ...... :", (t_v2i){0, 196}, &interf_getpos_y, NULL, 0, SDA_POS},
+	(ICFG){"pos.Z ...... :", (t_v2i){0, 224}, &interf_getpos_z, NULL, 0, SDA_POS},
 	(ICFG){"dir.X ...... :", (t_v2i){0, 280}, NULL, NULL, 0, SDA_POS},
 	(ICFG){"dir.Y ...... :", (t_v2i){0, 308}, NULL, NULL, 0, SDA_POS},
 	(ICFG){"dir.Z ...... :", (t_v2i){0, 336}, NULL, NULL, 0, SDA_POS},
