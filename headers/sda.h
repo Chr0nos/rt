@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 16:57:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 21:33:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef	struct s_rt			t_rt;
 typedef struct s_triangle	t_triangle;
 typedef struct s_mesh		t_mesh;
-typedef struct s_shader 	t_shader;
+typedef struct s_shader		t_shader;
 
 typedef struct			s_sda_eval
 {
