@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   damier.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboudy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 15:26:30 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/02 16:08:30 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/06 12:09:27 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "shaders.h"
 
 void		shader_damier(t_shader *s, t_render *r, t_obj *light,
 		t_uint *color_render)
@@ -18,8 +20,8 @@ void		shader_damier(t_shader *s, t_render *r, t_obj *light,
 
 	(void)s;
 	(void)light;
-	color[0] = (t_uint)(r->ray->color - r->ray->color * 0.5);
-	color[1] = (t_uint)(r->ray->color + r->ray->color * 0.5);
+	color[0] = 0;
+	color[1] = 0xFFFFFF;
 	p[0] = (t_uint)(r->intersection.x * 0.5);
 	p[1] = (t_uint)(r->intersection.y * 0.5);
 	p[2] = (t_uint)(r->intersection.z * 0.5);

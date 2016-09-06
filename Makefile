@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/03 10:49:36 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/06 12:04:07 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ FILTER=filter.o rgb.o ymc.o sepia.o
 
 SHADER_DIR=shaders
 SHADER=shaders.o shaders_init.o light.o shadow.o \
-	reflection.o shader_texture.o shader_normalmap.o
+	reflection.o shader_texture.o shader_normalmap.o damier.o
 
 ARG_DIR=arguments
 ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
