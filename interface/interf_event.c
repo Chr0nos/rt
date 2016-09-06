@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/06 19:13:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 21:27:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,24 @@ static int	interface_event_getelem(const t_v2i *mouse_pos, t_rt *rt)
 	return (-1);
 }
 
+static void	interface_event_loadline(t_interf *me, const int p)
+{
+	char	*value;
+
+	if ((value = me->cfg[p].get_value(me->obj_selected, NULL)))
+	{
+		me->line_pos = (int)ft_strlen(value);
+		if (me->line_pos)
+			ft_memcpy(me->line, value, (size_t)(me->line_pos + 1));
+		else
+			me->line[0] = '\0';
+		free(value);
+	}
+}
+
 static void	interface_event_select_id(t_interf *me, const int id)
 {
 	int			p;
-	char		*value;
 
 	p = INTERF_ITEMS;
 	while (p--)
@@ -60,15 +74,14 @@ static void	interface_event_select_id(t_interf *me, const int id)
 		{
 			me->cfg[p].flags |= INTER_SELECTED;
 			if (!me->obj_selected)
-				;
-			else if ((value = me->cfg[p].get_value(me->obj_selected, NULL)))
-				;
-			else
+				continue ;
+			if (!me->cfg[p].get_value)
 			{
-				me->line_pos = (int)ft_strlen(value);
-				ft_memcpy(me->line, value, (size_t)(me->line_pos + 1));
-				free(value);
+				me->line_pos = 0;
+				me->line[0] = '\0';
 			}
+			else
+				interface_event_loadline(me, p);
 		}
 		else if (me->cfg[p].flags & INTER_SELECTED)
 			me->cfg[p].flags ^= INTER_SELECTED;
