@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/06 21:34:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 00:54:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void						interface_display(t_rt *rt);
 void						interface_clean(t_interf *interf);
 SDL_Color					interface_color(unsigned int color);
 unsigned int				blend_menu(unsigned int a, unsigned b);
+t_interface_cfg				*interf_getflag(t_interf *me, int mask, int n);
 
 /*
 ** sub exporters
@@ -86,6 +87,9 @@ char						*interf_getalpha(t_obj *obj, t_sda_export *e);
 char						*interf_getpos_x(t_obj *obj, t_sda_export *e);
 char						*interf_getpos_y(t_obj *obj, t_sda_export *e);
 char						*interf_getpos_z(t_obj *obj, t_sda_export *e);
+char						*interf_getdir_x(t_obj *obj, t_sda_export *e);
+char						*interf_getdir_y(t_obj *obj, t_sda_export *e);
+char						*interf_getdir_z(t_obj *obj, t_sda_export *e);
 
 # define ICFG t_interface_cfg
 
@@ -105,11 +109,11 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"pos.Z ...... :",
 		(t_v2i){0, 224}, &interf_getpos_z, NULL, 0, SDA_POS, NULL},
 	(ICFG){"dir.X ...... :",
-		(t_v2i){0, 280}, NULL, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 280}, &interf_getdir_x, NULL, 0, SDA_POS, NULL},
 	(ICFG){"dir.Y ...... :",
-		(t_v2i){0, 308}, NULL, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 308}, &interf_getdir_y, NULL, 0, SDA_POS, NULL},
 	(ICFG){"dir.Z ...... :",
-		(t_v2i){0, 336}, NULL, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 336}, &interf_getdir_z, NULL, 0, SDA_POS, NULL},
 	(ICFG){"color.R ... :",
 		(t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR, NULL},
 	(ICFG){"color.G ... :",

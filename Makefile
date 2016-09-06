@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/06 16:57:39 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/07 00:54:25 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,8 @@ ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface
-INTER=interf_init.o interf_display.o interf_event.o interf_values.o interf_pos.o
+INTER=interf_init.o interf_display.o interf_event.o interf_values.o \
+	interf_pos.o interf_dir.o interf_tools.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \

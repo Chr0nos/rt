@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/06 21:27:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 00:09:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ static int	interface_event_getelem(const t_v2i *mouse_pos, t_rt *rt)
 	return (-1);
 }
 
+/*
+** this function copy the item value into the current edit buffer
+*/
+
 static void	interface_event_loadline(t_interf *me, const int p)
 {
 	char	*value;
@@ -60,6 +64,11 @@ static void	interface_event_loadline(t_interf *me, const int p)
 		else
 			me->line[0] = '\0';
 		free(value);
+	}
+	else
+	{
+		me->line[0] = '\0';
+		me->line_pos = 0;
 	}
 }
 
