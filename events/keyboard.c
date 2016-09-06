@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 01:01:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 01:22:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static int		keydown_interface_enter(t_rt *rt)
 	cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0);
 	if ((!cfg) || (!cfg->set_value) || (!rt->interf.obj_selected))
 		return (0);
-	cfg->set_value(rt->interf.obj_selected, rt->interf.line);
+	if (cfg->set_value(rt->interf.obj_selected, rt->interf.line) > 0)
+		rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
+	rt->settings.cfgbits &= ~RT_CFG_INTERFEDIT;
 	return (0);
 }
 
@@ -46,7 +48,7 @@ static int		keydown_interface(int keycode, t_rt *rt)
 
 	if (keycode == SDLK_ESCAPE)
 	{
-		rt->settings.cfgbits ^= RT_CFG_INTERFEDIT;
+		rt->settings.cfgbits &= ~RT_CFG_INTERFEDIT;
 		return (0);
 	}
 	if (keycode == SDLK_BACKSPACE)
