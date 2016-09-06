@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 18:41:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:53:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		keydown_interface(int keycode, t_rt *rt)
 		rt->settings.cfgbits ^= RT_CFG_INTERFEDIT;
 		return (0);
 	}
-	if (keycode == SDLK_DELETE)
+	if (keycode == SDLK_BACKSPACE)
 	{
 		p = rt->interf.line_pos - 1;
 		if (p < 0)
@@ -34,13 +34,13 @@ static int		keydown_interface(int keycode, t_rt *rt)
 		rt->interf.line_pos = p;
 		return (0);
 	}
-	p = rt->interf.line_pos + 1;
+	p = rt->interf.line_pos;
 	if (p > INTERF_LINELEN - 1)
 		return (0);
 	rt->interf.line[p] = (char)(keycode & 0xff);
 	rt->interf.line[p + 1] = '\0';
 	ft_putendl(rt->interf.line);
-	rt->interf.line_pos = p;
+	rt->interf.line_pos = p + 1;
 	rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
 	return (0);
 }

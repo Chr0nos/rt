@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/05 19:08:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:48:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,20 @@ static inline int	interface_fit(t_v2i geo)
 }
 
 static void			interface_display_value(SDL_Surface *screen,
-	t_interface_cfg *cfg, t_obj *obj, t_interface_font *fonts)
+	t_interface_cfg *cfg, t_obj *obj, t_rt *rt)
 {
-	char			*value;
-	SDL_Surface		*value_surface;
-	t_v2i			offset;
+	char					*value;
+	SDL_Surface				*value_surface;
+	t_v2i					offset;
+	t_interface_font		*fonts;
 
 	if ((!obj) || (!(obj->type & (unsigned int)cfg->mask)) || (!cfg->get_value))
 		return ;
-	if (!(value = cfg->get_value(obj, NULL)))
+	if (cfg->flags & INTER_SELECTED)
+		value = ft_strdup(rt->interf.line);
+	else if (!(value = cfg->get_value(obj, NULL)))
 		return ;
+	fonts = rt->interf.fonts;
 	if ((value_surface = TTF_RenderText_Blended(fonts[1].font, value,
 		interface_color(fonts[1].color))) != NULL)
 	{
@@ -93,8 +97,7 @@ void				interface_display(t_rt *rt)
 			if (!cfg->title)
 				continue ;
 			draw_blitsurface(screen, cfg->title, cfg->offset);
-			interface_display_value(screen, cfg, rt->interf.obj_selected,
-				rt->interf.fonts);
+			interface_display_value(screen, cfg, rt->interf.obj_selected, rt);
 		}
 		draw_blitsurface_blend(rt->sys.screen, screen, INTERF_OFFSET,
 			&blend_menu);
