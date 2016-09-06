@@ -6,13 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/04 01:23:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 16:57:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SDA_H
 # define SDA_H
-# define SDA_SETUP_TYPES 25
+# define SDA_SETUP_TYPES 26
 # define SDA_COUNT_SHADER 6
 # define SDA_COUNT_DEFAULTS 8
 # define T t_sda_cfg
@@ -167,6 +167,7 @@ int						sda_setup_vertex_1(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_vertex_2(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_obj(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_csg(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_senable(t_sda *e, t_obj *obj, char **av);
 
 /*
 ** sda default functions
@@ -235,7 +236,8 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 	(T){"vertex2:", &sda_setup_vertex_2, &sda_export_vertex2, SDA_VERTEX, 3,
 		SDB_VERTEX2},
 	(T){"obj:", &sda_setup_obj, &sda_export_obj, SDA_OBJ, 1, SDB_OBJ},
-	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG}
+	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG},
+	(T){"senable:", &sda_setup_senable, NULL, SDA_SENABLE, 1, SDB_SENABLE}
 };
 
 static const t_sda_default	g_sda_default[SDA_COUNT_DEFAULTS] = {

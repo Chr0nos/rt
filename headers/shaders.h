@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 14:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/03 21:44:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 16:56:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 /*
 ** used in rt_render_ray
 */
+
 # define MAX_SHADERS 16
 
 typedef struct s_render t_render;
@@ -89,6 +90,8 @@ void				shader_texture(t_shader *s, t_render *r, t_obj *light,
 void				shader_normalmap(t_shader *s, t_render *r, t_obj *light,
 								unsigned int *color_render);
 void				shader_reflection(t_shader *s, t_render *r, t_obj *light,
+								unsigned int *color_render);
+void				shader_damier(t_shader *s, t_render *r, t_obj *light,
 								unsigned int *color_render);
 unsigned int		shader_color_texture_intersection(const t_render *r);
 unsigned int		shader_color_normal_intersection(const t_render *r);

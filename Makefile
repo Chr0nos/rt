@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/05 03:48:25 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/06 16:57:39 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SDA_SETUP=sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
 		sda_setup_include.o sda_setup_angle.o sda_setup_copy.o  \
 		sda_setup_texture.o sda_setup_normal.o sda_setup_name.o \
 		sda_setup_sdisable.o sda_setup_skybox.o sda_setup_background.o \
-		sda_setup_csg.o
+		sda_setup_csg.o sda_setup_senable.o
 
 SDA_EXPORT_DIR=parser/sda/export
 SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
@@ -118,7 +118,7 @@ FILTER=filter.o rgb.o ymc.o sepia.o
 
 SHADER_DIR=shaders
 SHADER=shaders.o shaders_init.o light.o shadow.o \
-	reflection.o shader_texture.o shader_normalmap.o
+	reflection.o shader_texture.o shader_normalmap.o damier.o
 
 ARG_DIR=arguments
 ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \

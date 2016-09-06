@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 21:39:15 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:40:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 16:58:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ enum					e_sda_cfgbit
 	SDB_OBJ = 1 << 26,
 	SDB_NOEXPORT = 1 << 27,
 	SDB_LIMIT = 1 << 28,
-	SDB_CSG = 1 << 29
+	SDB_CSG = 1 << 29,
+	SDB_SENABLE = 1 << 30
 };
 
 enum					e_sda_setting
@@ -71,7 +72,8 @@ enum					e_sda_setting
 	SDA_TEX_PERLIN = SDA_TEXTURE,
 	SDA_VERTEX = TRIANGLE,
 	SDA_OBJ = MESH,
-	SDA_CSG = VISIBLE
+	SDA_CSG = VISIBLE,
+	SDA_SENABLE = VISIBLE
 };
 
 #endif
