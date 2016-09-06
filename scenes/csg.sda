@@ -19,9 +19,9 @@ SPHERE
 		pos: 0 2 2
 	SPHERE
 		pos: 1 0 0
-		#color: #ff0000
+		color: #ffff0000
 		csg: negative
-		texture: textures/moon.jpg
+#		texture: textures/moon.jpg
 CUBE
 	pos: 2 0 2
 	color: #50b000
