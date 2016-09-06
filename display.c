@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/05 20:32:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 17:12:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ int				sdl_flush(const t_rt *rt)
 	return (0);
 }
 
+static void		display_real(t_rt *rt, const int ret)
+{
+	if ((!(rt->settings.cfgbits & RT_CFGB_REFRESHINTER)) ||
+		(!rt->render_screen))
+	{
+		rt_render(rt);
+		rt_display_dumprender(rt);
+	}
+	else
+		draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
+	if (rt->interf.flags & INTER_ENABLED)
+		interface_display(rt);
+	if (ret & FORCE_DISPLAY)
+		rt->keyboard ^= FORCE_DISPLAY;
+}
+
 int				display(t_rt *rt)
 {
 	int		ret;
@@ -50,7 +66,8 @@ int				display(t_rt *rt)
 		ft_putendl("quit requested");
 		return (1);
 	}
-	if ((!(ret & FORCE_DISPLAY)) && (ret == 0) && (!(rt->keyboard & MENU)))
+	if ((!(ret & FORCE_DISPLAY)) && (ret == 0) && (!(rt->keyboard & MENU)) &&
+		(!(rt->settings.cfgbits & RT_CFGB_REFRESHINTER)))
 		return (0);
 	if (rt->keyboard & MENU)
 	{
@@ -59,14 +76,6 @@ int				display(t_rt *rt)
 		menu_display(rt);
 	}
 	else
-	{
-		rt_render(rt);
-		(void)rt_display_dumprender;
-		//rt_display_dumprender(rt);
-		if (rt->interf.flags & INTER_ENABLED)
-			interface_display(rt);
-		if (ret & FORCE_DISPLAY)
-			rt->keyboard ^= FORCE_DISPLAY;
-	}
+		display_real(rt, ret);
 	return (sdl_flush(rt));
 }

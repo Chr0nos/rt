@@ -23,7 +23,7 @@ SPHERE
 		color: #ff0000
 		csg: negative
 		sdisable: specular
-UBE
+CUBE
 	name: matiere
 	pos: 2 0 2
 	color: #50b000
