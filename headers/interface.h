@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/05 19:08:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:26:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct				s_interface_cfg
 typedef struct				s_interface
 {
 	int						flags;
+	int						line_pos;
 	SDL_Surface				*screen;
 	t_interface_font		fonts[INTERF_FONTS];
 	t_interface_cfg			cfg[INTERF_ITEMS];
@@ -66,7 +67,7 @@ typedef struct				s_interface
 }							t_interf;
 
 int							interface_init(t_rt *rt);
-void						interface_event(const t_v2i *mouse_pos, t_rt *rt);
+int							interface_event(const t_v2i *mouse_pos, t_rt *rt);
 void						interface_display(t_rt *rt);
 void						interface_clean(t_interf *interf);
 SDL_Color					interface_color(unsigned int color);
