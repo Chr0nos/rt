@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 18:26:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:42:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		rt_configure_interface(t_interf *interf)
 	interf->screen = NULL;
 	interf->flags = 0;
 	interf->line_pos = 0;
+	interf->line[0] = '\0';
 }
 
 void			rt_configure(t_rt *rt)

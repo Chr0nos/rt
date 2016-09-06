@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 18:38:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:41:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		keydown_interface(int keycode, t_rt *rt)
 		return (0);
 	}
 	p = rt->interf.line_pos + 1;
-	if (p > 31)
+	if (p > INTERF_LINELEN - 1)
 		return (0);
 	rt->interf.line[p] = (char)(keycode & 0xff);
 	rt->interf.line[p + 1] = '\0';

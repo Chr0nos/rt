@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/06 18:26:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/06 18:41:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define INTERF_OFFSETY		15
 # define INTERF_OFFSET		(t_v2i){INTERF_OFFSETX, INTERF_OFFSETY}
 # define INTERF_GEO			(t_v2i){400, 670}
+# define INTERF_LINELEN		32
 
 enum						e_inter_flag
 {
@@ -63,7 +64,7 @@ typedef struct				s_interface
 	t_interface_font		fonts[INTERF_FONTS];
 	t_interface_cfg			cfg[INTERF_ITEMS];
 	t_obj					*obj_selected;
-	char					line[32];
+	char					line[INTERF_LINELEN];
 }							t_interf;
 
 int							interface_init(t_rt *rt);
