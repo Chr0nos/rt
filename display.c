@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 17:12:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 21:54:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,24 @@ int				display(t_rt *rt)
 {
 	int		ret;
 
+	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
+	{
+		if (rt->settings.cfgbits & RT_CFGB_REFRESHINTER)
+		{
+			draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
+			interface_display(rt);
+			sdl_flush(rt);
+			rt->settings.cfgbits ^= RT_CFGB_REFRESHINTER;
+		}
+		return (0);
+	}
 	if ((ret = movemyass(rt)) & QUIT)
 	{
 		ft_putendl("quit requested");
 		return (1);
 	}
-	if ((!(ret & FORCE_DISPLAY)) && (ret == 0) && (!(rt->keyboard & MENU)) &&
+	else if ((!(ret & FORCE_DISPLAY)) && (ret == 0) &&
+		(!(rt->keyboard & MENU)) &&
 		(!(rt->settings.cfgbits & RT_CFGB_REFRESHINTER)))
 		return (0);
 	if (rt->keyboard & MENU)

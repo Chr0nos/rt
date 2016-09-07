@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 18:54:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 21:57:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int		keydown_interface_backspace(int p, t_rt *rt)
 		p = 0;
 	rt->interf.line[p] = '\0';
 	rt->interf.line_pos = p;
+	rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
 	return (0);
 }
 
