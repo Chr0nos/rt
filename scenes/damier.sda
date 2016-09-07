@@ -31,7 +31,7 @@ SPOT
 	size: 300
 	intensity: 300
 EMPTY
-	include: ./scenes/bonhomme_to_include.sda
+	include: ./scenes/zbonhomme_to_include.sda
 	CONE
 		size: 5.5
 		pos: 0 6 0
@@ -45,11 +45,11 @@ EMPTY
 EMPTY
 	pos: -8 0 0
 	rot:  10 -25 25
-	include: ./scenes/bonhomme_damier_to_include.sda
+	include: ./scenes/zbonhomme_damier_to_include.sda
 EMPTY
 	pos: 8 0 0
 	rot: 0 40 0
-	include: ./scenes/bonhomme_to_include.sda
+	include: ./scenes/zbonhomme_to_include.sda
 CYL
 	color: #E1E134
 	pos: 0 8 5
