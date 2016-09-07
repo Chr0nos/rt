@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/07 01:22:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 02:12:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define RT_CFGB_NOREFRESHX 	1u << 2
 # define RT_CFGB_INMENU			1u << 3
 # define RT_CFGB_REFRESHINTER	1u << 4
-# define RT_CFG_INTERFEDIT		1u << 5
+# define RT_CFGB_INTERFEDIT		1u << 5
 
 typedef enum	e_rendflag
 {

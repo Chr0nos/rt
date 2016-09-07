@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 01:22:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 02:25:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ static int		keydown_interface_enter(t_rt *rt)
 {
 	t_interface_cfg		*cfg;
 
+	ft_putstr("enter triggered\n");
 	cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0);
 	if ((!cfg) || (!cfg->set_value) || (!rt->interf.obj_selected))
+	{
+		rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 		return (0);
+	}
 	if (cfg->set_value(rt->interf.obj_selected, rt->interf.line) > 0)
 		rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
-	rt->settings.cfgbits &= ~RT_CFG_INTERFEDIT;
+	rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 	return (0);
 }
 
@@ -48,7 +52,10 @@ static int		keydown_interface(int keycode, t_rt *rt)
 
 	if (keycode == SDLK_ESCAPE)
 	{
-		rt->settings.cfgbits &= ~RT_CFG_INTERFEDIT;
+		rt_putbits(rt->settings.cfgbits);
+		rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
+		ft_putchar('\n');
+		rt_putbits(rt->settings.cfgbits);
 		return (0);
 	}
 	if (keycode == SDLK_BACKSPACE)
@@ -67,11 +74,12 @@ static int		keydown_interface(int keycode, t_rt *rt)
 
 int				keydown(int keycode, t_rt *rt)
 {
-	const int		keybit = getkeybit(keycode);
+	int		keybit;
 
-	if (rt->settings.cfgbits & RT_CFG_INTERFEDIT)
+	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
 		return (keydown_interface(keycode, rt));
 	toggle_key(keycode, rt);
+	keybit = getkeybit(keycode);
 	if ((keybit < 0) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
@@ -81,10 +89,11 @@ int				keydown(int keycode, t_rt *rt)
 
 int				keyrlz(int keycode, t_rt *rt)
 {
-	const int		keybit = getkeybit(keycode);
+	int		keybit;
 
-	if (rt->settings.cfgbits & RT_CFG_INTERFEDIT)
+	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
 		return (0);
+	keybit = getkeybit(keycode);
 	if ((keybit < 0) || (!(rt->keyboard & keybit)))
 		return (0);
 	rt->keyboard ^= keybit;

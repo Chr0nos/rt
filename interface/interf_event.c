@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/07 00:09:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 02:29:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ int			interface_event(const t_v2i *mouse_pos, t_rt *rt)
 	}
 	ft_printf("id: %d\n", id);
 	interface_event_select_id(&rt->interf, id);
-	rt->settings.cfgbits |= RT_CFGB_REFRESHINTER | RT_CFG_INTERFEDIT;
+	rt->settings.cfgbits |= (RT_CFGB_REFRESHINTER | RT_CFGB_INTERFEDIT);
 	return (1);
 }

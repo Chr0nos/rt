@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/05 20:43:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 02:18:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static int		togglefilters(t_rt *rt, int keycode)
 static int		togglefinterf(t_rt *rt)
 {
 	if (!(rt->interf.flags & INTER_ENABLED) &&
-		(rt->sys.geometry.x > 260) && (rt->sys.geometry.y >= 768))
+		(rt->sys.geometry.x > INTERF_GEO.x) &&
+		(rt->sys.geometry.y >= INTERF_GEO.y))
 	{
 		rt->interf.flags |= INTER_ENABLED;
 		interface_init(rt);
