@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 02:25:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 18:54:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				keydown(int keycode, t_rt *rt)
 		return (keydown_interface(keycode, rt));
 	toggle_key(keycode, rt);
 	keybit = getkeybit(keycode);
-	if ((keybit < 0) || (rt->keyboard & QUIT))
+	if ((!keybit) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard |= keybit;
 	menu_kb_copy(rt);
@@ -94,7 +94,7 @@ int				keyrlz(int keycode, t_rt *rt)
 	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
 		return (0);
 	keybit = getkeybit(keycode);
-	if ((keybit < 0) || (!(rt->keyboard & keybit)))
+	if ((!keybit) || (rt->keyboard & QUIT))
 		return (0);
 	rt->keyboard ^= keybit;
 	menu_kb_copy(rt);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 23:17:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 02:40:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 19:02:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ int				movemyass(t_rt *rt)
 	t_m4			m;
 	t_obj			*obj;
 
-	if (k & QUIT)
-		return (QUIT);
-	if (k & MENU)
-		return (k & MENU);
+	if ((k & (MENU | QUIT)) || (!k))
+		return (k & (MENU | QUIT));
 	if (!rt_checkcamera(rt))
 	{
 		ft_putendl_fd("error of doom ! i'm done whith that shit !", 2);
