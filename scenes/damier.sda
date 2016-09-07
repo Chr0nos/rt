@@ -1,0 +1,62 @@
+CAMERA
+	pos: 0 6.193005 -19.865236
+	rot: 5.729576 0 0
+PLAN
+	color: #2222DF
+	pos: 0 0 -20
+	rot: 90 0 0
+	senable: damier
+PLAN
+	color: #1111DF
+	pos: 0 0 20
+	rot: 90 0 0
+	senable: damier
+PLAN
+	color: #DF1111
+	pos: 20 0 0
+	rot: 0 0 90
+	senable: damier
+PLAN
+	color: #DF2222
+	pos: -20 0 0
+	rot: 0 0 90
+	senable: damier
+PLAN
+	color: #FFFFFF
+	pos: 0 -1 -4
+	senable: damier
+SPOT
+	color: #FFFFFF
+	pos: 0 15 -10
+	size: 300
+	intensity: 300
+EMPTY
+	include: ./scenes/bonhomme_to_include.sda
+	CONE
+		size: 5.5
+		pos: 0 6 0
+		color: #00aa00
+		senable: damier
+		CONE
+			size: 4
+			pos: 0 2 0
+			color: #00aa00
+			senable: damier
+EMPTY
+	pos: -8 0 0
+	rot:  10 -25 25
+	include: ./scenes/bonhomme_damier_to_include.sda
+EMPTY
+	pos: 8 0 0
+	rot: 0 40 0
+	include: ./scenes/bonhomme_to_include.sda
+CYL
+	color: #E1E134
+	pos: 0 8 5
+	rot: 1 1 0
+	senable: damier
+CYL
+	color: #EBE842
+	pos: 0 8 5
+	rot: -1 1 0
+	senable: damier
