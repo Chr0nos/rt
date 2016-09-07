@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 21:54:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/07 22:06:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				sdl_flush(const t_rt *rt)
 	return (0);
 }
 
-static void		display_real(t_rt *rt, const int ret)
+static int		display_real(t_rt *rt, const int ret)
 {
 	if ((!(rt->settings.cfgbits & RT_CFGB_REFRESHINTER)) ||
 		(!rt->render_screen))
@@ -55,6 +55,21 @@ static void		display_real(t_rt *rt, const int ret)
 		interface_display(rt);
 	if (ret & FORCE_DISPLAY)
 		rt->keyboard ^= FORCE_DISPLAY;
+	return (0);
+}
+
+static int		refresh_interface(t_rt *rt)
+{
+	if (!rt->render_screen)
+		return (display_real(rt, 0));
+	if (rt->settings.cfgbits & RT_CFGB_REFRESHINTER)
+	{
+		draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
+		interface_display(rt);
+		sdl_flush(rt);
+		rt->settings.cfgbits ^= RT_CFGB_REFRESHINTER;
+	}
+	return (0);
 }
 
 int				display(t_rt *rt)
@@ -62,16 +77,7 @@ int				display(t_rt *rt)
 	int		ret;
 
 	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
-	{
-		if (rt->settings.cfgbits & RT_CFGB_REFRESHINTER)
-		{
-			draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
-			interface_display(rt);
-			sdl_flush(rt);
-			rt->settings.cfgbits ^= RT_CFGB_REFRESHINTER;
-		}
-		return (0);
-	}
+		return (refresh_interface(rt));
 	if ((ret = movemyass(rt)) & QUIT)
 	{
 		ft_putendl("quit requested");
