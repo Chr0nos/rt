@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/08 22:50:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 23:37:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 		(t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT, NULL,
 		SDB_REFRACT},
 	(ICFG){"Size ....... :",
-		(t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE, NULL, SDB_SIZE},
+		(t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE, &sda_setup_size,
+		SDB_SIZE},
 	(ICFG){"----------- ENTER ----------",
 		(t_v2i){0, 644}, NULL, NULL, 0, 0, NULL, 0}
 };
