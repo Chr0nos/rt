@@ -1,7 +1,7 @@
 #sda export
 SETTING
 	color: #000000
-	skybox: textures/skyboxhd.jpg
+	skybox: textures/skybox.jpg
 CAMERA
 	pos: -5.757426 1.232517 9.533418
 	rot: -0.000001 137.509868 0
