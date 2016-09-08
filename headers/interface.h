@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/08 16:59:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 17:23:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"Name ....... :",
 		(t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME, &sda_setup_name},
 	(ICFG){"Texture .... :",
-		(t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE, NULL},
+		(t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE,
+		&sda_setup_texture},
 	(ICFG){"pos.X ...... :",
 		(t_v2i){0, 168}, &interf_getpos_x, NULL, 0, SDA_POS, NULL},
 	(ICFG){"pos.Y ...... :",
