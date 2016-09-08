@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 22:22:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:36:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ char					*sda_export_obj(t_obj *obj, t_sda_export *e);
 ** configure functions
 */
 
+int						sda_setup_color_r(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_color_g(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_color_b(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_pos(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_al(t_sda *e, t_obj *obj, char **av);

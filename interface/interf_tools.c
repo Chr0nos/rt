@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 23:29:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:46:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,13 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 		return (0);
 	if (!(split = ft_strsplit(line, ' ')))
 		return (-2);
-	e = (t_sda){0, rt, rt->root, obj, 0, 0};
-	ret = cfg->set_value(&e, obj, split);
+	if (split[0])
+	{
+		e = (t_sda){0, rt, rt->root, obj, 0, 0};
+		ret = cfg->set_value(&e, obj, split);
+	}
+	else
+		ret = -3;
 	ft_freesplit(split);
 	free(split);
 	if (ret >= 0)

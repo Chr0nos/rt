@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/08 23:03:29 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/09 00:30:22 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,7 @@ SHADER=shaders.o shaders_init.o light.o shadow.o \
 	reflection.o shader_texture.o shader_normalmap.o damier.o
 
 ARG_DIR=arguments
-ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
+ARG= arguments.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface

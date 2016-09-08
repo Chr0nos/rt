@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 20:08:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:27:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,6 @@ static void		mouseclick_obj(t_obj *obj, t_rt *rt, const t_v2i *pos)
 {
 	if (!obj)
 		return ;
-	if (obj->cfgbits & SDB_TEXTURE)
-		;
-	else if (obj->cfgbits & SDB_NORMAL)
-		;
-	else if (((t_cube*)obj->content)->color == 0xff0000)
-		((t_cube*)obj->content)->color = 0xff;
-	else
-		((t_cube*)obj->content)->color = 0xff0000;
 	rt->interf.obj_selected = obj;
 	if (rt->interf.flags & INTER_ENABLED)
 		interface_event(pos, rt);

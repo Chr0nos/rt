@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 14:16:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/27 01:14:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:29:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_v2i				arg_getgeo(const char *s);
 int					arg_parse(t_rt *rt, int ac, char **av);
 int					arg_geometry(t_rt *rt, int ac, char **av);
 int					arg_fs(t_rt *rt, int ac, char **av);
-int					arg_norefresh(t_rt *rt, int ac, char **av);
 int					arg_display_help(t_rt *rt, int ac, char **av);
 
 #endif

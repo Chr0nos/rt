@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/08 23:37:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:39:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,14 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"dir.Z ...... :",
 		(t_v2i){0, 336}, &interf_getdir_z, NULL, 0, SDA_POS, NULL, SDB_ROT},
 	(ICFG){"color.R ... :",
-		(t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR, NULL,
-		SDB_COLOR},
+		(t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR,
+			&sda_setup_color_r, SDB_COLOR},
 	(ICFG){"color.G ... :",
-		(t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR, NULL,
-		SDB_COLOR},
+		(t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR,
+			&sda_setup_color_g, SDB_COLOR},
 	(ICFG){"color.B ... :",
-		(t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR, NULL,
-		SDB_COLOR},
+		(t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR,
+			&sda_setup_color_b, SDB_COLOR},
 	(ICFG){"Transparence :",
 		(t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR, NULL,
 		SDB_COLOR},

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 15:58:22 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/09 00:28:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "filter.h"
 #include "threading.h"
 #include <unistd.h>
-
-/*
-** this function flush the image to the screen evrey 100 pixels (width)
-*/
-
-static void		rt_ray_refresh(const t_v2i *px, const t_rt *rt)
-{
-	if ((!(rt->settings.cfgbits & RT_CFGB_NOREFRESHX)) && (!(px->x % 200)) &&
-		(rt->sys.screen))
-		sdl_flush(rt);
-}
 
 /*
 ** preparation of the rt_rays_pixels function
@@ -39,8 +28,6 @@ static void		rt_rays_pixels_init(t_v2i *px, const t_thread_args *args,
 	rt = args->rt;
 	*camp = ((t_obj*)args->rt->root->content)->content;
 	*px = (t_v2i){0, 0};
-	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
-		rt_signal_singletone(&rt->sys.geometry, px, 0);
 	*rad = (t_v4d){(*camp)->rayfix.x, 0, (*camp)->rayfix.z, (*camp)->rayfix.w};
 	px->x = args->x_start;
 	rad->x -= rad->z * (args->rt->sys.geometry.x - px->x);
@@ -70,8 +57,6 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 			//pthread_mutex_unlock(args->mutex);
 			rad.y -= rad.w;
 		}
-		if (args->index == args->thread_count - 1)
-			rt_ray_refresh(&px, args->rt);
 		rad.x += rad.z;
 		px.x++;
 	}
@@ -109,8 +94,6 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 	i = -1;
 	while (++i < THREAD_COUNT)
 		pthread_join(threads[i], NULL);
-	if (!(rt->settings.cfgbits & RT_CFGB_INMENU))
-		rt_signal_singletone(NULL, NULL, 1);
 	filter_apply(rt->sys.screen, rt->keyboard);
 }
 
