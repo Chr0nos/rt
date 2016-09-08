@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/03 10:28:52 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/08 15:30:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,21 @@ void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light,
 ** ambiant light and diffuse
 */
 
+static t_obj		*relaunch_ray(t_v4d pos, t_v4d dir, t_render *r)
+{
+	t_ray			ray;
+	t_render		sw;
+
+	ray.dir = dir;
+	ray.start = pos;
+	ray.count = 2;
+	sw = (t_render){&ray, r->rt, NULL, HUGE_VAL, 0.0,
+			(t_v4d){0.0, 0.0, 0.0, 0.0}, dir, 0};
+	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
+	rt_node_foreach(sw.rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
+	return (sw.obj_intersect);
+}
+
 void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 		unsigned int *color_render)
 {
@@ -72,7 +87,9 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
 	latt = geo_dotv4(r->normal, light_vector);
-	if (latt > 0.0 || A(shader_color_texture_intersection(r)))
+	if (latt > 0.0 || (A(shader_color_texture_intersection(r)) &&
+		!relaunch_ray(geo_addv4(r->intersection,
+			geo_multv4(light_vector, geo_dtov4d(0.00001))), light_vector, r)))
 	{
 		latt = (latt < 0.0 ? -latt : latt);
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /

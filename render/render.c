@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 19:04:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/05 18:12:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:56:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ unsigned int		rt_render_ray(t_rt *rt, t_ray *ray)
 		rt_node_foreach(rt->tree.light, INFIX, &rt_render_light, &r);
 		r.ray->color = shaders_compute_color(r.obj_intersect->shader,
 				0xff000000, (unsigned int *)colors);
+		r.ray->count--;
 	}
 	else
 		return (get_background_color(&r));

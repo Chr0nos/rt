@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:51:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:56:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	IFRET__(!(mesh = rt_factory_alloc(MESH, root)), NULL);
 	mesh->cfgbits |= SDB_OBJ;
 	((t_mesh*)mesh->content)->filepath = ft_strdup(filepath);
+	((t_mesh*)mesh->content)->color = 0xFF0000;
 	if (parse_obj(mesh, filepath) < 0)
 	{
 		rt_node_free(root);

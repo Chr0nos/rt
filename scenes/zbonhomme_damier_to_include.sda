@@ -1,0 +1,40 @@
+SPHERE
+	color: #FDFDFD
+	pos: 0 1.5 0
+	size: 3
+	senable: damier
+	SPHERE
+	color: #202020
+	pos: 0 1.5 -2.3
+	senable: damier
+	size: 0.4
+		SPHERE
+		color: #303030
+		pos: 0 -1 -0.4
+		size: 0.4
+		senable: damier
+		SPHERE
+		color: #202020
+		pos: 0 -2 -0.4
+		size: 0.4
+		senable: damier
+	SPHERE
+		color: #FDFDFD
+		pos: 0 3 0
+		size: 2
+		senable: damier
+		SPHERE
+			color: #000000
+			pos: 0.7 1.1 -1.3
+			size: 0.4
+			senable: damier
+		SPHERE
+			color: #000000
+			pos: -0.7 1.1 -1.3
+			size: 0.4
+			senable: damier
+		SPHERE
+			color: #ED7F10
+			pos: 0 0.5 -2
+			size: 0.2
+			senable: damier
