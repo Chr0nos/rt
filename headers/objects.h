@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:11:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:19:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct			s_obj
 {
 	t_type				type;
 	t_uint				id;
-	int					cfgbits;
+	size_t				cfgbits;
 	int					flags;
 	t_mattf				trans;
 	t_v4d				rotation;

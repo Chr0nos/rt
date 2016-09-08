@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/03 21:39:15 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 16:58:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:25:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,38 @@
 # define SDA_BITS_H
 # include "forms.h"
 
-enum					e_sda_cfgbit
-{
-	SDB_COLOR = 1,
-	SDB_POS = 1 << 1,
-	SDB_ROT = 1 << 2,
-	SDB_FOV = 1 << 3,
-	SDB_SIZE = 1 << 4,
-	SDB_AL = 1 << 5,
-	SDB_INTEN = 1 << 6,
-	SDB_REFRACT = 1 << 7,
-	SDB_INCLUDE = 1 << 8,
-	SDB_ANGLE = 1 << 9,
-	SDB_COPY = 1 << 10,
-	SDB_NAME = 1 << 11,
-	SDB_TEXTURE = 1 << 12,
-	SDB_REFLECT = 1 << 13,
-	SDB_BACKGROUND = 1 << 14,
-	SDB_NORMAL = 1 << 15,
-	SDB_SKYBOX = 1 << 16,
-	SDB_SDISABLE = 1 << 17,
-	SDB_HEIGHTMAP = 1 << 18,
-	SDB_TEX_PERLIN = 1 << 19 | SDB_TEXTURE,
-	SDB_VERTEX0 = 1 << 20,
-	SDB_VERTEX1 = 1 << 21,
-	SDB_VERTEX2 = 1 << 22,
-	SDB_VERTEX0_UV = 1 << 23,
-	SDB_VERTEX1_UV = 1 << 24,
-	SDB_VERTEX2_UV = 1 << 25,
-	SDB_OBJ = 1 << 26,
-	SDB_NOEXPORT = 1 << 27,
-	SDB_LIMIT = 1 << 28,
-	SDB_CSG = 1 << 29,
-	SDB_SENABLE = 1 << 30
-};
+# define SDB_COLOR			1u
+# define SDB_POS			1u << 1
+# define SDB_ROT			1u << 2
+# define SDB_FOV			1u << 3
+# define SDB_SIZE			1u << 4
+# define SDB_AL				1u << 5
+# define SDB_INTEN			1u << 6
+# define SDB_REFRACT		1u << 7
+# define SDB_INCLUDE		1u << 8
+# define SDB_ANGLE			1u << 9
+# define SDB_COPY			1u << 10
+# define SDB_NAME			1u << 11
+# define SDB_TEXTURE		1u << 12
+# define SDB_REFLECT		1u << 13
+# define SDB_BACKGROUND		1u << 14
+# define SDB_NORMAL			1u << 15
+# define SDB_SKYBOX			1u << 16
+# define SDB_SDISABLE		1u << 17
+# define SDB_HEIGHTMAP		1u << 18
+# define SDB_TEX_PERLIN		1u << 19 | SDB_TEXTURE
+# define SDB_VERTEX0		1u << 20
+# define SDB_VERTEX1		1u << 21
+# define SDB_VERTEX2		1u << 22
+# define SDB_VERTEX0_UV		1u << 23
+# define SDB_VERTEX1_UV		1u << 24
+# define SDB_VERTEX2_UV		1u << 25
+# define SDB_OBJ			1u << 26
+# define SDB_NOEXPORT		1u << 27
+# define SDB_LIMIT			1u << 28
+# define SDB_CSG			1u << 29
+# define SDB_SENABLE		1u << 30
+# define SDB_INTERFACE_EDIT	1u << 31
 
 enum					e_sda_setting
 {

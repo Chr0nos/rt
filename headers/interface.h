@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/08 17:23:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:14:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct				s_interface_cfg
 	int						flags;
 	int						mask;
 	int						(*set_value)(t_sda *, t_obj *, char **);
+	int						bit;
 }							t_interface_cfg;
 
 typedef struct				s_interface
@@ -98,42 +99,49 @@ char						*interf_getdir_z(t_obj *obj, t_sda_export *e);
 
 static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"Id ......... :",
-		(t_v2i){0, 0}, &interf_getid, NULL, 0, ~0, NULL},
+		(t_v2i){0, 0}, &interf_getid, NULL, 0, ~0, NULL, 0},
 	(ICFG){"Type ....... :",
-		(t_v2i){0, 56}, &interf_gettype, NULL, 0, ~0, NULL},
+		(t_v2i){0, 56}, &interf_gettype, NULL, 0, ~0, NULL, 0},
 	(ICFG){"Name ....... :",
-		(t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME, &sda_setup_name},
+		(t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME, &sda_setup_name,
+		SDB_NAME},
 	(ICFG){"Texture .... :",
 		(t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE,
-		&sda_setup_texture},
+		&sda_setup_texture, SDB_TEXTURE},
 	(ICFG){"pos.X ...... :",
-		(t_v2i){0, 168}, &interf_getpos_x, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 168}, &interf_getpos_x, NULL, 0, SDA_POS, NULL, SDB_POS},
 	(ICFG){"pos.Y ...... :",
-		(t_v2i){0, 196}, &interf_getpos_y, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 196}, &interf_getpos_y, NULL, 0, SDA_POS, NULL, SDB_POS},
 	(ICFG){"pos.Z ...... :",
-		(t_v2i){0, 224}, &interf_getpos_z, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 224}, &interf_getpos_z, NULL, 0, SDA_POS, NULL, SDB_POS},
 	(ICFG){"dir.X ...... :",
-		(t_v2i){0, 280}, &interf_getdir_x, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 280}, &interf_getdir_x, NULL, 0, SDA_POS, NULL, SDB_ROT},
 	(ICFG){"dir.Y ...... :",
-		(t_v2i){0, 308}, &interf_getdir_y, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 308}, &interf_getdir_y, NULL, 0, SDA_POS, NULL, SDB_ROT},
 	(ICFG){"dir.Z ...... :",
-		(t_v2i){0, 336}, &interf_getdir_z, NULL, 0, SDA_POS, NULL},
+		(t_v2i){0, 336}, &interf_getdir_z, NULL, 0, SDA_POS, NULL, SDB_ROT},
 	(ICFG){"color.R ... :",
-		(t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR, NULL},
+		(t_v2i){0, 392}, &sda_export_color_r, NULL, 0, SDA_COLOR, NULL,
+		SDB_COLOR},
 	(ICFG){"color.G ... :",
-		(t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR, NULL},
+		(t_v2i){0, 420}, &sda_export_color_g, NULL, 0, SDA_COLOR, NULL,
+		SDB_COLOR},
 	(ICFG){"color.B ... :",
-		(t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR, NULL},
+		(t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR, NULL,
+		SDB_COLOR},
 	(ICFG){"Transparence :",
-		(t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR, NULL},
+		(t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR, NULL,
+		SDB_COLOR},
 	(ICFG){"Reflection . :",
-		(t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT, NULL},
+		(t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT, NULL,
+		SDB_REFLECT},
 	(ICFG){"Refraction . :",
-		(t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT, NULL},
+		(t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT, NULL,
+		SDB_REFRACT},
 	(ICFG){"Size ....... :",
-		(t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE, NULL},
+		(t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE, NULL, SDB_SIZE},
 	(ICFG){"----------- ENTER ----------",
-		(t_v2i){0, 644}, NULL, NULL, 0, 0, NULL}
+		(t_v2i){0, 644}, NULL, NULL, 0, 0, NULL, 0}
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 21:33:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:22:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct			s_sda_cfg
 	char				*(*export)(t_obj *, t_sda_export *);
 	enum e_sda_setting	obj_valid_type;
 	int					argc;
-	int					bit;
+	size_t				bit;
 }						t_sda_cfg;
 
 typedef struct			s_sda_obj
@@ -104,6 +104,7 @@ int						sda_export_bitmap_file(const char *filepath,
 int						sda_setup_sdisable_real(t_shader *shader, void *target);
 int						sda_spliter(const char *line, char ***av, int *ac);
 void					*sda_setup_getshader_addr(t_shader *s, void *item);
+const t_sda_cfg			*sda_settings_bysetup(const void *setup);
 
 /*
 ** exporter

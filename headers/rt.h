@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/07 18:48:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:28:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct	s_rt
 	SDL_Surface		*render_screen;
 }				t_rt;
 
-void			rt_putbits(unsigned int bits);
+void			rt_putbits(size_t bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);

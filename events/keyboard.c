@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 17:01:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 18:35:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int		keydown_interface_enter(t_rt *rt)
 	cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0);
 	if ((!cfg) || (!cfg->set_value) || (!rt->interf.obj_selected))
 	{
+		ft_putstr("#warning: operation not permited\n");
 		rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 		return (0);
 	}
