@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/08 14:48:39 by alhote           ###   ########.fr        #
+#    Updated: 2016/09/08 15:41:46 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -247,8 +247,11 @@ else
 	@printf "\e[33mNo Norminette here\e[m\n"
 endif
 
-debug:
-	make CC="clang -g3 -fsanitize=address" fclean multi
+lldb:
+	make CC="clang -g3"
 	lldb "./rt"
+
+fsanitize:
+	make CC="clang -fsanitize=address"
 
 .PHONY: all re clean fclean pull norme

@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/07 19:14:09 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/08 15:30:35 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static t_obj		*relaunch_ray(t_v4d pos, t_v4d dir, t_render *r)
 
 	ray.dir = dir;
 	ray.start = pos;
+	ray.count = 2;
 	sw = (t_render){&ray, r->rt, NULL, HUGE_VAL, 0.0,
 			(t_v4d){0.0, 0.0, 0.0, 0.0}, dir, 0};
 	rt_node_foreach(sw.rt->tree.bounded, INFIX, &rt_render_foreach, &sw);

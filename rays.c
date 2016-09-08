@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 14:54:10 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/08 15:58:22 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 {
 	pthread_t			threads[THREAD_COUNT];
 	t_thread_args		args[THREAD_COUNT];
-	pthread_mutex_t		*mutex;
+	//pthread_mutex_t		*mutex;
 	int					i;
 
 	i = -1;
-	if (!(mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-		return ;
-	pthread_mutex_init(mutex, NULL);
+	//if (!(mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
+	//	return ;
+	//pthread_mutex_init(mutex, NULL);
 	while (++i < THREAD_COUNT)
 	{
 		args[i].rt = rt;
@@ -99,7 +99,7 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].thread_count = THREAD_COUNT;
 		args[i].x_start = rt->sys.geometry.x / THREAD_COUNT * i;
 		args[i].x_end = args[i].x_start + rt->sys.geometry.x / THREAD_COUNT;
-		args[i].mutex = mutex;
+		//args[i].mutex = mutex;
 		if (i == 0)
 			args[i].x_start = 0;
 		if (pthread_create(threads + i, NULL,
