@@ -6,11 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 00:55:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 17:13:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
+#include "sda.h"
+#include "rt.h"
 
 /*
 ** this function search the N item corresponding to mask in his flags
@@ -30,4 +32,32 @@ t_interface_cfg		*interf_getflag(t_interf *me, int mask, int n)
 			return (&me->cfg[p]);
 	}
 	return (NULL);
+}
+
+int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
+{
+	char				**split;
+	t_sda				e;
+	t_interface_cfg		*cfg;
+	int					ret;
+
+	if ((cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0)) == NULL)
+		return (-1);
+	if (!cfg->set_value)
+		return (0);
+	if (!(split = ft_strsplit(line, ' ')))
+		return (-2);
+	e = (t_sda){0, rt, rt->root, obj, 0, 0};
+	ret = cfg->set_value(&e, obj, split);
+	ft_freesplit(split);
+	free(split);
+	if (ret >= 0)
+		cfg->flags ^= INTER_SELECTED;
+	return (ret);
+}
+
+void				interf_resetline(t_interf *me)
+{
+	me->line[0] = '\0';
+	me->line_pos = 0;
 }

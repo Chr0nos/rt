@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/07 00:54:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 16:59:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct				s_interface_cfg
 	SDL_Surface				*title;
 	int						flags;
 	int						mask;
-	int						(*set_value)(t_obj *, const char *);
+	int						(*set_value)(t_sda *, t_obj *, char **);
 }							t_interface_cfg;
 
 typedef struct				s_interface
@@ -75,6 +75,9 @@ void						interface_clean(t_interf *interf);
 SDL_Color					interface_color(unsigned int color);
 unsigned int				blend_menu(unsigned int a, unsigned b);
 t_interface_cfg				*interf_getflag(t_interf *me, int mask, int n);
+int							interf_setvalue(t_rt *rt, t_obj *obj,
+	const char *line);
+void						interf_resetline(t_interf *me);
 
 /*
 ** sub exporters
@@ -99,7 +102,7 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 	(ICFG){"Type ....... :",
 		(t_v2i){0, 56}, &interf_gettype, NULL, 0, ~0, NULL},
 	(ICFG){"Name ....... :",
-		(t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME, NULL},
+		(t_v2i){0, 84}, &sda_export_name, NULL, 0, SDA_NAME, &sda_setup_name},
 	(ICFG){"Texture .... :",
 		(t_v2i){0, 112}, &sda_export_texture, NULL, 0, SDA_TEXTURE, NULL},
 	(ICFG){"pos.X ...... :",

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 03:44:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 17:01:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ static int		keydown_interface_enter(t_rt *rt)
 		rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 		return (0);
 	}
-	if (cfg->set_value(rt->interf.obj_selected, rt->interf.line) > 0)
+	if (interf_setvalue(rt, rt->interf.obj_selected, rt->interf.line) >= 0)
+	{
 		rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
+		rt->keyboard |= FORCE_DISPLAY;
+		interf_resetline(&rt->interf);
+	}
+	else
+		ft_putstr_fd("error: failed to set value\n", 2);
 	rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 	return (0);
 }
@@ -55,8 +61,7 @@ static int		keydown_interface(int keycode, t_rt *rt)
 	{
 		rt->settings.cfgbits ^= RT_CFGB_INTERFEDIT;
 		rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
-		rt->interf.line_pos = 0;
-		rt->interf.line[0] = '\0';
+		interf_resetline(&rt->interf);
 		return (0);
 	}
 	if (keycode == SDLK_BACKSPACE)
