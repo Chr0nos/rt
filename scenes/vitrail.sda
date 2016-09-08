@@ -9,6 +9,8 @@ PLAN
 POINTLIGHT
 	pos: 5 5 0
 	intensity: 100
+SPHERE
+	pos: 1.5 1.5 0
 MESH
 	texture: textures/vitrail.png
 	obj: scenes/plan_vitrail.obj

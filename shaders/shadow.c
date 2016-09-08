@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/09/05 20:30:38 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/07 21:02:39 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,26 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 	unsigned int	color;
 
 	shad = (light->type == SUNLIGHT ? 0x15000000 : 0x35000000);
-	color = 0x0;
-	if (sw->obj_intersect)
-	{
-		color = shader_color_texture_intersection(sw);
-		if (sw->obj_intersect != r->obj_intersect &&
-			((geo_distv4(light->trans.w, r->intersection)
-		> geo_distv4(sw->obj_intersect->trans.w, r->intersection))
+	color = (sw->obj_intersect ? shader_color_texture_intersection(sw) : 0);
+	if (sw->obj_intersect && sw->obj_intersect != r->obj_intersect &&
+		((geo_distv4(light->trans.w, r->intersection) >
+		geo_distv4(sw->obj_intersect->trans.w, r->intersection))
 		|| (light->type == SUNLIGHT)))
+	{
+		//sw->ray->dir = geo_normv4(geo_subv4(light->trans.w, sw->intersection));
+		sw->ray->start = geo_addv4(sw->intersection, geo_multv4(sw->ray->dir,
+			geo_dtov4d(0.00001)));
+		*sw = (t_render){sw->ray, r->rt, NULL, HUGE_VAL, 0.0,
+				(t_v4d){0.0, 0.0, 0.0, 0.0}, sw->ray->dir, 0};
+		rt_node_foreach(sw->rt->tree.bounded, INFIX, &rt_render_foreach, &sw);
+		rt_node_foreach(sw->rt->tree.unbounded, INFIX, &rt_render_foreach, &sw);
+		if (A(color) && !sw->obj_intersect)
 		{
-			if (A(color))
-			{
-				//shad = blend_add(shad,
-				//		to_rgb((t_uint)(A(color) * 0.5), 0, 0, 0));
-				color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
-				to_rgb(0, A(color), A(color), A(color)));
-				*render = blend_add(color, *render);
-			}
-			*render = blend_sub(*render, shad);
+			color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
+			to_rgb(0, A(color), A(color), A(color)));
+			*render = blend_add(color, *render);
 		}
+		*render = blend_sub(*render, shad);
 	}
 }
 

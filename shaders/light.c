@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/07 16:19:12 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/07 19:14:09 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
 	latt = geo_dotv4(r->normal, light_vector);
 	if (latt > 0.0 || (A(shader_color_texture_intersection(r)) &&
-		!relaunch_ray(r->intersection, light_vector, r)))
+		!relaunch_ray(geo_addv4(r->intersection,
+			geo_multv4(light_vector, geo_dtov4d(0.00001))), light_vector, r)))
 	{
 		latt = (latt < 0.0 ? -latt : latt);
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
