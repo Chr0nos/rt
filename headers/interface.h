@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/08 22:14:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:50:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct				s_interface_cfg
 	int						flags;
 	int						mask;
 	int						(*set_value)(t_sda *, t_obj *, char **);
-	int						bit;
+	size_t					bit;
 }							t_interface_cfg;
 
 typedef struct				s_interface

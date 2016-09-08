@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 17:13:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:47:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 	free(split);
 	if (ret >= 0)
 		cfg->flags ^= INTER_SELECTED;
+	if (ret > 0)
+		obj->cfgbits |= (cfg->bit | SDB_INTERFACE_EDIT);
 	return (ret);
 }
 
