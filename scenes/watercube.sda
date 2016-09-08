@@ -1,62 +1,60 @@
+#sda export
 SETTING
-	skybox: textures/skybox.jpg
-#	skybox: textures/skybox.jpg
+	color: #000000
+	skybox: textures/skyboxhd.jpg
 CAMERA
-	pos: 9.778539 1.877445 9.550097
-	rot: 11.459154 223.453538 0
+	pos: -5.757426 1.232517 9.533418
+	rot: -0.000001 137.509868 0
 SUNLIGHT
-	pos: 5 6 0
-
+	color: #FFFFFF
+	pos: 1 1 0
+	size: 100
+	intensity: 150
 EMPTY
-	pos: 0 2 0
+	pos: -2 0 -2
 	include: scenes/pyramide.sda
-
 PLAN
+	color: #222b4266
 	name: mer
 	reflect: 120
-	color: #CC808080
 	normal: textures/water_normal.png
 	sdisable: shadow
-	refract: 1.03
-	PLAN
-		name: fond
-		pos: 0 -100 0
-
+	refract: 1.3
 CUBE
+	color: #000000
 	pos: 0 -4.98 0
+	size: 10
+	refract: 1.332999
 	texture: textures/sand.jpg
 	normal: textures/water_normal.png
-	size: 10
-	#color: #b00077ff
-	refract: 1.333
 	SPHERE
+		color: #FF0000
 		pos: 0 7 4
-		color: #ff0000
-		normal: textures/water_normal.png
 		reflect: 255
+		normal: textures/water_normal.png
 		SPHERE
+			color: #000000
 			pos: 0 2 0
 			size: 0.5
 			texture: perlin: 200 200
-
 CUBE
+	color: #000000
+	pos: 0 -4.7 0
+	size: 9.5
 	name: sand
 	texture: textures/sand.jpg
-	size: 9.5
-	pos: 0 -4.7 0
 	sdisable: specular
-
 CUBE
+	color: #000000
+	pos: 0 -2.399999 0
+	size: 5
 	name: herbe
 	texture: textures/herbe.jpg
-	size: 5
-	pos: 0 -2.4 0
 	sdisable: specular
-
 SPHERE
-	name: rock
+	color: #5F8A5F
 	pos: 0 -0.3 0
-	color: #DD5F8A5F
-	#texture: textures/rock.jpg
-	#normal: textures/rock_normal.jpg
-	sdisable: specular
+	name: rock
+	texture: textures/rock.jpg
+	normal: textures/rock_normal.jpg
+#end of file
