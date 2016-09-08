@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 18:35:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 23:34:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		keydown_interface_enter(t_rt *rt)
 	}
 	if (interf_setvalue(rt, rt->interf.obj_selected, rt->interf.line) >= 0)
 	{
-		rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
+		ft_putendl("#interface edit ok");
 		rt->keyboard |= FORCE_DISPLAY;
 		interf_resetline(&rt->interf);
 	}
