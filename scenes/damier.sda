@@ -1,6 +1,6 @@
 CAMERA
-	pos: 0 6.193005 -19.865236
-	rot: 5.729576 0 0
+	pos: 0 15.751872 -19.821463
+	rot: 22.918309 0 0
 PLAN
 	color: #2222DF
 	pos: 0 0 -20
@@ -26,8 +26,8 @@ PLAN
 	pos: 0 -1 -4
 	senable: damier
 SPOT
-	color: #FFFFFF
-	pos: 0 15 -10
+	color: #ccccFF
+	pos: 0 10 -8
 	size: 300
 	intensity: 300
 EMPTY
@@ -38,8 +38,8 @@ EMPTY
 		color: #00aa00
 		senable: damier
 		CONE
-			size: 4
-			pos: 0 2 0
+			size: 1.8
+			pos: 0 1.9 -0.2
 			color: #00aa00
 			senable: damier
 EMPTY
@@ -50,13 +50,19 @@ EMPTY
 	pos: 8 0 0
 	rot: 0 40 0
 	include: ./scenes/zbonhomme_to_include.sda
+CONE_INF
+	color: #428484
+	pos: 12 11 19
+	rot: 0.5 1 0
+	size: 0.5
+	senable: damier
 CYL
-	color: #E1E134
-	pos: 0 8 5
+	color: #F1E834
+	pos: -5 8 19
 	rot: 1 1 0
 	senable: damier
 CYL
-	color: #EBE842
-	pos: 0 8 5
+	color: #F1E842
+	pos: -5 8 19
 	rot: -1 1 0
 	senable: damier
