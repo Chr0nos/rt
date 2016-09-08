@@ -6,7 +6,7 @@
 #    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/06 16:47:46 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/08 14:48:39 by alhote           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -248,7 +248,7 @@ else
 endif
 
 debug:
-	make CC="clang -g3" fclean multi
+	make CC="clang -g3 -fsanitize=address" fclean multi
 	lldb "./rt"
 
 .PHONY: all re clean fclean pull norme

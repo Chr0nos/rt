@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threading.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelangh <edelangh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/31 19:42:31 by edelangh          #+#    #+#             */
-/*   Updated: 2016/08/31 20:05:34 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/08 14:39:47 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_thread_args
 	int				thread_count;
 	int				x_start;
 	int				x_end;
+	pthread_mutex_t	*mutex;
 }				t_thread_args;
 
 #endif
