@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 23:43:33 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:47:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int		keydown_interface_enter(t_rt *rt)
 	}
 	else
 		ft_putstr_fd("error: failed to set value\n", 2);
+	cfg->flags &= ~INTER_SELECTED;
 	return (0);
 }
 
