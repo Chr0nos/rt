@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:06:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 01:29:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:51:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "rt.h"
 #include "objects.h"
 
-static inline t_uint	sda_setup_color_text(const char *str, unsigned int mask,
+t_uint					sda_setup_color_text(const char *str, unsigned int mask,
 	unsigned int color, int deca)
 {
 	int		value;

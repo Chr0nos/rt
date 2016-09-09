@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/09 03:28:30 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/09/09 03:57:03 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SDA_SETUP=sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
 		sda_setup_include.o sda_setup_angle.o sda_setup_copy.o  \
 		sda_setup_texture.o sda_setup_normal.o sda_setup_name.o \
 		sda_setup_sdisable.o sda_setup_skybox.o sda_setup_background.o \
-		sda_setup_csg.o sda_setup_senable.o
+		sda_setup_csg.o sda_setup_senable.o sda_setup_alpha.o
 
 SDA_EXPORT_DIR=parser/sda/export
 SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 03:31:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:52:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int						sda_setup_sdisable_real(t_shader *shader, void *target);
 int						sda_spliter(const char *line, char ***av, int *ac);
 void					*sda_setup_getshader_addr(t_shader *s, void *item);
 const t_sda_cfg			*sda_settings_bysetup(const void *setup);
-
+t_uint					sda_setup_color_text(const char *str, unsigned int mask,
+	unsigned int color, int deca);
 /*
 ** exporter
 */
@@ -143,6 +144,7 @@ char					*sda_export_background(t_obj *obj, t_sda_export *e);
 ** configure functions
 */
 
+int						sda_setup_alpha(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color_r(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color_g(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color_b(t_sda *e, t_obj *obj, char **av);

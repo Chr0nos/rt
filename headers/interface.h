@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/09 00:39:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:55:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,14 @@ static const t_interface_cfg	g_interface[INTERF_ITEMS] = {
 		(t_v2i){0, 448}, &sda_export_color_b, NULL, 0, SDA_COLOR,
 			&sda_setup_color_b, SDB_COLOR},
 	(ICFG){"Transparence :",
-		(t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR, NULL,
+		(t_v2i){0, 504}, &interf_getalpha, NULL, 0, SDA_COLOR, &sda_setup_alpha,
 		SDB_COLOR},
 	(ICFG){"Reflection . :",
-		(t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT, NULL,
-		SDB_REFLECT},
+		(t_v2i){0, 532}, &sda_export_reflect, NULL, 0, SDA_REFLECT,
+		&sda_setup_reflect, SDB_REFLECT},
 	(ICFG){"Refraction . :",
-		(t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT, NULL,
-		SDB_REFRACT},
+		(t_v2i){0, 560}, &sda_export_refract, NULL, 0, SDA_REFRACT,
+		&sda_setup_refract, SDB_REFRACT},
 	(ICFG){"Size ....... :",
 		(t_v2i){0, 588}, &sda_export_size, NULL, 0, SDA_SIZE, &sda_setup_size,
 		SDB_SIZE},
