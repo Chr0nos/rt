@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/03 21:46:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:16:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct			s_setting
 	t_texture			*skybox;
 	unsigned char		reflect;
 	double				al;
+	unsigned int		bgcolor;
 }						t_setting;
 
 typedef enum			e_limit_type

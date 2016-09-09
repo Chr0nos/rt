@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
+/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 01:14:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 22:56:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:30:13 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 {
 	t_obj	*root;
 	t_obj	*mesh;
+	t_obj	*setting;
 
 	IFRET__(!(root = rt_factory_alloc(ROOT, NULL)), NULL);
 	IFRET__(!(root->content = rt_factory_alloc(CAMERA, root)), NULL);
@@ -27,6 +28,11 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	((t_obj*)root->content)->cfgbits |= SDB_POS;
 	rt->settings.bgcolor = 0x505050;
 	rt->settings.ambiant_light = 0x101010;
+	IFRET__(!(setting = rt_factory_alloc(SETTING, root)), NULL);
+	((t_setting*)setting->content)->bgcolor = rt->settings.bgcolor;
+	((t_setting*)setting->content)->al = 0.1;
+	((t_setting*)setting->content)->color = 0xff0000;
+	setting->cfgbits |= (SDB_BACKGROUND | SDB_AL | SDB_COLOR);
 	IFRET__(!(rt_factory_alloc(POINTLIGHT, root->content)), NULL);
 	IFRET__(!(mesh = rt_factory_alloc(MESH, root)), NULL);
 	mesh->cfgbits |= SDB_OBJ;
@@ -40,7 +46,6 @@ static t_obj	*rt_parser_obj(const char *filepath, t_rt *rt)
 	sda_set_defaults(root, rt);
 	yolo_parse_finalize(root);
 	camera_save(rt);
-	rt_debug(root, 0);
 	return (root);
 }
 

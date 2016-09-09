@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 13:25:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:58:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:19:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void		sda_export(const t_rt *rt, const int fd)
 	cfg = g_sda_cfg;
 	rt_obj_init(&setting_obj, SETTING | NOSHADER);
 	setting_obj.content = &stack_setting;
-	stack_setting = (t_setting){0x000000, 1.0f, NULL, 0, 0.0};
+	stack_setting = (t_setting){0x000000, 1.0f, NULL, 0, 0.0,
+		rt->settings.bgcolor};
 	export = (t_sda_export){cfg, &stack_setting, &setting_obj, NULL, fd};
 	ft_putstr_fd("#sda export\n", fd);
 	rt_node_foreach(rt->root, INFIX, &sda_export_item, &export);

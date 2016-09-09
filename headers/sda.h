@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 00:36:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:31:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ char					*sda_export_vertex0(t_obj *obj, t_sda_export *e);
 char					*sda_export_vertex1(t_obj *obj, t_sda_export *e);
 char					*sda_export_vertex2(t_obj *obj, t_sda_export *e);
 char					*sda_export_obj(t_obj *obj, t_sda_export *e);
+char					*sda_export_background(t_obj *obj, t_sda_export *e);
 
 /*
 ** configure functions
@@ -221,8 +222,8 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 		SDB_TEXTURE},
 	(T){"reflect:", &sda_setup_reflect, &sda_export_reflect, SDA_REFLECT, 1,
 		SDB_REFLECT},
-	(T){"background:", &sda_setup_background, NULL, SDA_BACKGROUND, 1,
-		SDB_BACKGROUND},
+	(T){"background:", &sda_setup_background, &sda_export_background,
+		SDA_BACKGROUND, 1, SDB_BACKGROUND},
 	(T){"normal:", &sda_setup_normal, &sda_export_normal, SDA_TEXTURE, 1,
 		SDB_NORMAL},
 	(T){"skybox:", &sda_setup_skybox, &sda_export_skybox, SDA_SKYBOX, 1,

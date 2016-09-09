@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/09 00:30:22 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/09 03:28:30 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
 	sda_export_angle.o sda_export_reflect.o  \
 	sda_export_skybox.o sda_export_file.o  \
 	sda_export_sdisable.o sda_export_al.o sda_export_bitmap.o \
-	sda_export_vertex.o sda_export_obj.o
+	sda_export_vertex.o sda_export_obj.o sda_export_background.o
 
 SDA_DEFAULT_DIR=parser/sda/default
 SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \

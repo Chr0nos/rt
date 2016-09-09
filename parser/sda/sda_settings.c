@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 18:44:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:20:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void			sda_settings_stack(t_obj *stack, t_obj *s)
 		o->size = x->size;
 	if (s->cfgbits & SDB_REFLECT)
 		o->reflect = x->reflect;
+	if (s->cfgbits & SDB_BACKGROUND)
+		o->bgcolor = x->bgcolor;
 }
 
 static int		sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
