@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 14:23:22 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 23:05:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 02:49:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,29 @@ void	sda_export_color_raw(unsigned int color, char *color_str)
 
 char	*sda_export_color_r(t_obj *obj, t_sda_export *e)
 {
-	const unsigned char	c = (((t_cube*)obj->content)->color & 0xff0000) >> 16;
+	int	c;
 
+	c = (((t_cube*)obj->content)->color & 0xff0000) >> 16;
 	(void)e;
-	return (ft_itoa((int)c));
+	return (ft_itoa(c));
 }
 
 char	*sda_export_color_g(t_obj *obj, t_sda_export *e)
 {
-	const unsigned char	c = (((t_cube*)obj->content)->color & 0xff0000) >> 16;
+	int	c;
 
+	c = (((t_cube*)obj->content)->color & 0x00ff00) >> 8;
 	(void)e;
-	return (ft_itoa((int)c));
+	return (ft_itoa(c));
 }
 
 char	*sda_export_color_b(t_obj *obj, t_sda_export *e)
 {
-	const unsigned char	c = ((t_cube*)obj->content)->color & 0x0000ff;
+	int	c;
 
+	c = ((t_cube*)obj->content)->color & 0x0000ff;
 	(void)e;
-	return (ft_itoa((int)c));
+	return (ft_itoa(c));
 }
 
 char	*sda_export_color(t_obj *obj, t_sda_export *e)
