@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 04:05:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 04:07:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 	if (split[0])
 	{
 		e = (t_sda){0, rt, rt->root, obj, 0, 0};
-		if (cfg->set_value == &sda_setup_texture)
-			((t_cube*)obj->content)->color = 0x000000;
 		ret = cfg->set_value(&e, obj, split);
+		if ((ret > 0) && (cfg->set_value == &sda_setup_texture))
+			((t_cube*)obj->content)->color = 0x000000;
 	}
 	else
 		ret = -3;
