@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 03:52:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 06:47:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ char					*sda_export_vertex1(t_obj *obj, t_sda_export *e);
 char					*sda_export_vertex2(t_obj *obj, t_sda_export *e);
 char					*sda_export_obj(t_obj *obj, t_sda_export *e);
 char					*sda_export_background(t_obj *obj, t_sda_export *e);
+char					*sda_export_senable(t_obj *obj, t_sda_export *e);
 
 /*
 ** configure functions
@@ -244,7 +245,8 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 		SDB_VERTEX2},
 	(T){"obj:", &sda_setup_obj, &sda_export_obj, SDA_OBJ, 1, SDB_OBJ},
 	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG},
-	(T){"senable:", &sda_setup_senable, NULL, SDA_SENABLE, 1, SDB_SENABLE}
+	(T){"senable:", &sda_setup_senable, &sda_export_senable, SDA_SENABLE, 1,
+		SDB_SENABLE}
 };
 
 static const t_sda_default	g_sda_default[SDA_COUNT_DEFAULTS] = {
