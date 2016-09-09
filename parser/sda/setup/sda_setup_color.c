@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 20:06:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 03:51:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 00:01:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int						sda_setup_color(t_sda *e, t_obj *obj, char **av)
 	if (av[0][0] != '#')
 		return (0);
 	ft_strtoupper(av[0]);
-	raw_color = (unsigned int)ft_basetoul((const char*)&av[0][1],
+	raw_color = ft_basetoul((const char*)&av[0][1],
 		"0123456789ABCDEF");
 	if (raw_color > 0xffffffff)
 		color = 0xffffffff;
