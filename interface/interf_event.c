@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/07 02:29:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 06:34:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ static void	interface_event_loadline(t_interf *me, const int p)
 		free(value);
 	}
 	else
-	{
-		me->line[0] = '\0';
-		me->line_pos = 0;
-	}
+		interf_resetline(me);
 }
 
 static void	interface_event_select_id(t_interf *me, const int id)
@@ -85,10 +82,7 @@ static void	interface_event_select_id(t_interf *me, const int id)
 			if (!me->obj_selected)
 				continue ;
 			if (!me->cfg[p].get_value)
-			{
-				me->line_pos = 0;
-				me->line[0] = '\0';
-			}
+				interf_resetline(me);
 			else
 				interface_event_loadline(me, p);
 		}
@@ -96,6 +90,11 @@ static void	interface_event_select_id(t_interf *me, const int id)
 			me->cfg[p].flags ^= INTER_SELECTED;
 	}
 }
+
+/*
+** interface mouse event function, return 1 if the mouse clicked on interface
+** otherwise 0 will be returned
+*/
 
 int			interface_event(const t_v2i *mouse_pos, t_rt *rt)
 {
@@ -105,8 +104,7 @@ int			interface_event(const t_v2i *mouse_pos, t_rt *rt)
 		return (0);
 	if (id == INTERF_ITEMS - 1)
 	{
-		ft_putendl("todo: appliquer les changements");
-		return (0);
+		return (1);
 	}
 	ft_printf("id: %d\n", id);
 	interface_event_select_id(&rt->interf, id);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 00:27:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 06:36:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
+			if ((rt->interf.flags & INTER_ENABLED) &&
+				(interface_event(&pos, rt) > 0))
+				return (0);
 			mouseclick_obj(rt_obj_atpx(rt, pos), rt, &pos);
-			if (rt->interf.flags & INTER_ENABLED)
-				interface_event(&pos, rt);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 04:19:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 06:23:29 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,12 @@ t_interface_cfg		*interf_getflag(t_interf *me, int mask, int n)
 	return (NULL);
 }
 
-int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
+static int			interf_setvalue_core(char **split, t_obj *obj, t_rt *rt,
+	t_interface_cfg *cfg)
 {
-	char				**split;
-	t_sda				e;
-	t_interface_cfg		*cfg;
-	int					ret;
+	int			ret;
+	t_sda		e;
 
-	if ((cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0)) == NULL)
-		return (-1);
-	if (!cfg->set_value)
-		return (0);
-	if (!(split = ft_strsplit(line, ' ')))
-		return (-2);
 	if (split[0])
 	{
 		e = (t_sda){0, rt, rt->root, obj, 0, 0};
@@ -62,6 +55,22 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 	}
 	else
 		ret = -3;
+	return (ret);
+}
+
+int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
+{
+	char				**split;
+	t_interface_cfg		*cfg;
+	int					ret;
+
+	if ((cfg = interf_getflag(&rt->interf, INTER_SELECTED, 0)) == NULL)
+		return (-1);
+	if (!cfg->set_value)
+		return (0);
+	if (!(split = ft_strsplit(line, ' ')))
+		return (-2);
+	ret = interf_setvalue_core(split, obj, rt, cfg);
 	ft_freesplit(split);
 	free(split);
 	if (ret > 0)
