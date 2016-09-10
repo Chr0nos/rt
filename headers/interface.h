@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 02:18:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 06:09:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_interface_cfg				*interf_getflag(t_interf *me, int mask, int n);
 int							interf_setvalue(t_rt *rt, t_obj *obj,
 	const char *line);
 void						interf_resetline(t_interf *me);
+void						interf_removeflag(t_interf *me, int mask);
 
 /*
 ** sub getter

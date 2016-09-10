@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 06:23:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 06:09:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,20 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 	if (ret > 0)
 		obj->cfgbits |= (cfg->bit | SDB_INTERFACE_EDIT);
 	return (ret);
+}
+
+/*
+** remove the specified bits in all flags
+*/
+
+void				interf_removeflag(t_interf *me, int mask)
+{
+	int			p;
+
+	p = INTERF_ITEMS;
+	while (p--)
+		if (me->cfg[p].flags & mask)
+			me->cfg[p].flags &= ~mask;
 }
 
 void				interf_resetline(t_interf *me)

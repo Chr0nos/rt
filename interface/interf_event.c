@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 05:42:34 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 06:17:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,27 @@ static void	interface_event_loadline(t_interf *me, const int p)
 		interf_resetline(me);
 }
 
-static void	interface_event_select_id(t_interf *me, const int id)
-{
-	int			p;
+/*
+** this function unset any INTER_SELECTED flag in the list,
+** then enable the only item select if suitable (mask ok and obj selected)
+** return 0 in case of no suitable item
+** return 1 in case of successfull object set
+*/
 
-	p = INTERF_ITEMS;
-	while (p--)
+static int	interface_event_select_id(t_interf *me, const int id)
+{
+	interf_removeflag(me, INTER_SELECTED);
+	if ((!me->obj_selected) ||
+		(!(me->obj_selected->type & (unsigned int)me->cfg[id].mask)))
 	{
-		if (p == id)
-		{
-			me->cfg[p].flags |= INTER_SELECTED;
-			if (!me->obj_selected)
-				continue ;
-			if (!me->cfg[p].get_value)
-				interf_resetline(me);
-			else
-				interface_event_loadline(me, p);
-		}
-		else if (me->cfg[p].flags & INTER_SELECTED)
-			me->cfg[p].flags ^= INTER_SELECTED;
+		return (0);
 	}
+	me->cfg[id].flags |= INTER_SELECTED;
+	if (!me->cfg[id].get_value)
+		interf_resetline(me);
+	else
+		interface_event_loadline(me, id);
+	return (1);
 }
 
 /*
@@ -102,8 +103,7 @@ int			interface_event(const t_v2i *mouse_pos, t_rt *rt)
 
 	if (id < 0)
 		return (0);
-	ft_printf("id: %d\n", id);
-	interface_event_select_id(&rt->interf, id);
-	rt->settings.cfgbits |= (RT_CFGB_REFRESHINTER | RT_CFGB_INTERFEDIT);
+	if (interface_event_select_id(&rt->interf, id) > 0)
+		rt->settings.cfgbits |= (RT_CFGB_REFRESHINTER | RT_CFGB_INTERFEDIT);
 	return (1);
 }
