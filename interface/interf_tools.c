@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 00:50:39 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/10 06:09:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 06:57:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ static int			interf_setvalue_core(char **split, t_obj *obj, t_rt *rt,
 		ret = -3;
 	return (ret);
 }
+
+/*
+** this function is used to set a value on an object
+** to do so: a function pointer is used after a split of line is done on ' '
+** in case of error it will return a negative
+** otherwise the return code of the function pointer will be returned
+** (negative = error / 0 = nothing / 1 = ok)
+*/
 
 int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 {

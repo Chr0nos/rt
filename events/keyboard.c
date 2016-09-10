@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:21 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 03:47:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 07:27:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int		keydown_interface_backspace(int p, t_rt *rt)
 
 static int		keydown_interface(int keycode, t_rt *rt)
 {
-	int		p;
+	int			p;
 
 	if (keycode == SDLK_ESCAPE)
 	{
@@ -69,10 +69,17 @@ static int		keydown_interface(int keycode, t_rt *rt)
 		return (keydown_interface_backspace(rt->interf.line_pos - 1, rt));
 	if (keycode == SDLK_RETURN)
 		return (keydown_interface_enter(rt));
+	if (keycode == SDLK_LSHIFT)
+	{
+		rt->interf.flags |= INTER_UPCASE;
+		return (0);
+	}
 	p = rt->interf.line_pos;
 	if (p > INTERF_LINELEN - 1)
 		return (0);
 	rt->interf.line[p] = (char)(keycode & 0xff);
+	if (rt->interf.flags & INTER_UPCASE)
+		rt->interf.line[p] = (char)ft_toupper(rt->interf.line[p]);
 	rt->interf.line[p + 1] = '\0';
 	rt->interf.line_pos = p + 1;
 	rt->settings.cfgbits |= RT_CFGB_REFRESHINTER;
@@ -99,7 +106,11 @@ int				keyrlz(int keycode, t_rt *rt)
 	int		keybit;
 
 	if (rt->settings.cfgbits & RT_CFGB_INTERFEDIT)
+	{
+		if ((keycode == SDLK_LSHIFT) && (rt->interf.flags & INTER_UPCASE))
+			rt->interf.flags &= ~INTER_UPCASE;
 		return (0);
+	}
 	keybit = getkeybit(keycode);
 	if ((!keybit) || (rt->keyboard & QUIT))
 		return (0);

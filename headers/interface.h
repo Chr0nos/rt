@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 06:09:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 07:23:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ enum						e_inter_flag
 {
 	INTER_SELECTED = 1,
 	INTER_ENABLED = 1 << 1,
-	INTER_INITIALIZED = 1 << 2
+	INTER_INITIALIZED = 1 << 2,
+	INTER_UPCASE = 1 << 3
 };
 
 typedef	struct s_rt			t_rt;
