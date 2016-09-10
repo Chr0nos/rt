@@ -14,7 +14,7 @@ EMPTY
 	pos: -2 0 -2
 	include: scenes/pyramide.sda
 PLAN
-	color: #222b4266
+	color: #AA2b4266
 	name: mer
 	reflect: 120
 	normal: textures/water_normal.png
