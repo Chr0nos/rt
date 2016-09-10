@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 14:14:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 22:19:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 05:56:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_obj					*rt_obj_addchild(t_obj *parent, t_obj *child);
 t_obj					*rt_obj_delchild(t_obj *parent, t_obj *child);
 t_obj					*rt_obj_getcamera(t_obj *obj);
 t_obj					*rt_obj_rotate(t_obj *obj, const t_v4d radians);
+t_obj					*rt_obj_rotate_force(t_obj *obj, const t_v4d radians);
 t_obj					*rt_obj_byid(t_obj *node, const unsigned int id);
 t_obj					*rt_obj_byname(t_obj *node, const char *name);
 t_obj					*rt_obj_copy(const t_obj *src, t_obj *parent);
