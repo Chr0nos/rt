@@ -6,13 +6,18 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:32:51 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 06:17:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 16:58:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interface.h"
 #include "rt.h"
 #include "libft.h"
+
+/*
+** this function is used to check if "px" is inside rect
+** return 1 if it's inside, otherwise 0
+*/
 
 static int	interface_event_inrect(t_v2i px, const SDL_Rect *rect)
 {
@@ -39,7 +44,7 @@ static int	interface_event_getelem(const t_v2i *mouse_pos, t_rt *rt)
 		area = (SDL_Rect){
 			rt->interf.cfg[p].offset.x + INTERF_OFFSETX,
 			rt->interf.cfg[p].offset.y + INTERF_OFFSETY,
-			INTERF_GEO.x + INTERF_OFFSETX,
+			INTERF_GEO.x + INTERF_OFFSETX - 100,
 			28
 		};
 		if (interface_event_inrect(*mouse_pos, &area))

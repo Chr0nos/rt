@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 07:23:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 16:57:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define INTERF_OFFSETX		15
 # define INTERF_OFFSETY		15
 # define INTERF_OFFSET		(t_v2i){INTERF_OFFSETX, INTERF_OFFSETY}
-# define INTERF_GEO			(t_v2i){400, 670}
+# define INTERF_GEO			(t_v2i){400, 650}
 # define INTERF_LINELEN		32
 
 enum						e_inter_flag

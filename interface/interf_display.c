@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/07 21:45:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 17:51:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void			interface_display_value(SDL_Surface *screen,
 	SDL_Surface				*value_surface;
 	t_v2i					offset;
 	t_interface_font		*fonts;
+	int						value_offset;
 
 	if ((!obj) || (!(obj->type & (unsigned int)cfg->mask)) || (!cfg->get_value))
 		return ;
@@ -62,14 +63,14 @@ static void			interface_display_value(SDL_Surface *screen,
 		value = ft_strdup(rt->interf.line);
 	else if (!(value = cfg->get_value(obj, NULL)))
 		return ;
+	value_offset = (int)ft_strlen(value) - 20;
 	fonts = rt->interf.fonts;
-	if ((value_surface = TTF_RenderText_Blended(fonts[1].font, value,
+	if ((value_surface = TTF_RenderText_Blended(fonts[1].font,
+		&value[(value_offset < 0) ? 0 : value_offset],
 		interface_color(fonts[1].color))) != NULL)
 	{
 		offset = (t_v2i){cfg->offset.x + INTERF_VALOFFSET + INTERF_OFFSETX,
 			cfg->offset.y};
-		if (ft_strlen(value) > 20)
-			value[20] = '\0';
 		draw_blitsurface(screen, value_surface, offset);
 		SDL_FreeSurface(value_surface);
 	}
