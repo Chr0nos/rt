@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/04 01:11:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/10 00:12:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 02:13:12 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ char	*interf_getalpha(t_obj *obj, t_sda_export *e)
 	(void)e;
 	alpha = (((t_cube*)obj->content)->color & 0xff000000) >> 24;
 	return (ft_itoa((int)alpha));
+}
+
+int		interf_setid(t_sda *e, t_obj *obj, char **av)
+{
+	t_obj		*obj_id;
+
+	(void)obj;
+	obj_id = rt_obj_byid(e->rt->root, (unsigned int)ft_atoi(av[0]));
+	if (!obj_id)
+		return (-1);
+	e->rt->interf.obj_selected = obj_id;
+	return (1);
 }

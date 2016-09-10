@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 06:47:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 01:42:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,14 @@ int						sda_setup_color_g(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color_b(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_pos(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_x(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_y(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_z(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_al(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_rot(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_x(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_y(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_z(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_fov(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_size(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_intensity(t_sda *e, t_obj *obj, char **av);
