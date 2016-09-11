@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 02:18:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:53:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ static int		togglefinterf(t_rt *rt)
 	{
 		rt->interf.flags ^= INTER_ENABLED;
 		if (rt->render_screen)
+		{
 			draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
+			sdl_flush(rt);
+		}
 		else
 			rt->keyboard |= FORCE_DISPLAY;
 	}
