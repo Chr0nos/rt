@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/16 11:40:18 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/11 01:58:29 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:25:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int							interf_setvalue(t_rt *rt, t_obj *obj,
 void						interf_resetline(t_interf *me);
 void						interf_removeflag(t_interf *me, int mask);
 int							interface_font_init(t_interf *me);
+int							keydown_interface(int keycode, t_rt *rt);
 
 /*
 ** sub getter

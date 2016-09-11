@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/11 01:51:49 by snicolet         ###   ########.fr        #
+#    Updated: 2016/09/11 16:25:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,7 +127,7 @@ ARG= arguments.o arg_fs.o arg_geometry.o \
 
 INTER_DIR=interface
 INTER=interf_init.o interf_display.o interf_event.o interf_values.o \
-	interf_pos.o interf_dir.o interf_tools.o interf_font.o
+	interf_pos.o interf_dir.o interf_tools.o interf_font.o interf_keyboard.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
