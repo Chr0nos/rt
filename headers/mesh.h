@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 17:51:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 16:51:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 14:39:08 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct			s_triangle
 	t_vertex			v3;
 	t_texture			*texture;
 	t_texture			*normal;
-	int					normal_fix;
 	unsigned char		reflect;
 }						t_triangle;
 
