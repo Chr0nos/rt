@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:41:00 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/10 17:51:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 02:02:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void				interface_display(t_rt *rt)
 			cfg = &rt->interf.cfg[p];
 			if (!cfg->title)
 				continue ;
-			draw_blitsurface(screen, cfg->title, cfg->offset);
+			draw_blitsurface(screen, (cfg->flags & INTER_SELECTED) ?
+				cfg->title_selected : cfg->title, cfg->offset);
 			interface_display_value(screen, cfg, rt->interf.obj_selected, rt);
 		}
 		draw_blitsurface_blend(rt->sys.screen, screen, INTERF_OFFSET,
