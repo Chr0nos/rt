@@ -4,7 +4,6 @@ CAMERA
 	#POINTLIGHT
 	#	color: #FFFFFF
 	#	intensity: 80
-
 EMPTY
 	name: pyramide
 	TRIANGLE

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/18 13:31:13 by qloubier          #+#    #+#             */
-/*   Updated: 2016/08/24 18:50:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 18:03:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ int					yolo_setup_plight(t_obj *obj, size_t ac, char **av)
 	if ((ac <= PLIGHT_POWER) || ((tmp = ft_atod(av[PLIGHT_POWER])) < 0.0))
 		tmp = MID_LIGHT_POWER;
 	((t_plight *)obj->content)->intensity = tmp;
-	tmp = 0.0;
-	if (ac > PLIGHT_RADIUS)
-		tmp = ft_atod(av[PLIGHT_RADIUS]);
-	((t_plight *)obj->content)->radius = (float)tmp;
 	if (ac <= PLIGHT_COLOR)
 	{
 		((t_plight *)obj->content)->color = 0xffffff;

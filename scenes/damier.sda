@@ -28,10 +28,9 @@ PLAN
 SPOT
 	color: #ccccFF
 	pos: 0 10 -8
-	size: 300
 	intensity: 300
 EMPTY
-	include: ./scenes/zbonhomme_to_include.sda
+	include: ./scenes/bonhomme.sdi
 	CONE
 		size: 5.5
 		pos: 0 6 0
@@ -45,11 +44,11 @@ EMPTY
 EMPTY
 	pos: -8 0 0
 	rot:  10 -25 25
-	include: ./scenes/zbonhomme_damier_to_include.sda
+	include: ./scenes/bonhomme_damier.sdi
 EMPTY
 	pos: 8 0 0
 	rot: 0 40 0
-	include: ./scenes/zbonhomme_to_include.sda
+	include: ./scenes/bonhomme.sdi
 CONE_INF
 	color: #428484
 	pos: 12 11 19

@@ -19,7 +19,6 @@ SPHERE
 	POINTLIGHT
 		pos: 15 5 -5
 		intensity: 200
-		size: 666
 	SPHERE
 		name: atmosphere
 		size: 6.5

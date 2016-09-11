@@ -4,7 +4,6 @@ CAMERA
 	rot: 11.459155 -45.836623 0
 	POINTLIGHT
 		color: #FFFFFF
-		size: 100
 		intensity: 100
 MESH
 	color: #FF0000

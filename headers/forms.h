@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:19:03 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/09 03:16:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 18:02:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ typedef struct			s_sphere
 typedef struct			s_plight
 {
 	t_uint				color;
-	float				radius;
 	double				intensity;
 }						t_plight;
 

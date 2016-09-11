@@ -152,5 +152,4 @@ EMPTY
 POINTLIGHT
 	color: #FFFFFF
 	pos: 0 22 0
-	size: 300
 	intensity: 175

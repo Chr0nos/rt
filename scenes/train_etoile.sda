@@ -14,25 +14,21 @@ EMPTY
 		name: sapin
 		color: #ffffff
 		CONE
-		#	color: #006400
 			pos: 0 4.5 0
 			size: 4
 			angle: 60.000140
 			texture: textures/sapin.jpg
 			CONE
-		#		color: #006400
 				pos: 0 1.5 0
 				size: 3
 				angle: 60.000140
 				texture: textures/sapin.jpg
 				CONE
-		#			color: #006400
 					pos: 0 1 0
 					size: 2
 					angle: 60.000140
 					texture: textures/sapin.jpg
 					CONE
-		#				color: #006400
 						pos: 0 0.7 0
 						angle: 60.000140
 						texture: textures/sapin.jpg
@@ -107,10 +103,8 @@ CUBE
 				refract: 1.33
 POINTLIGHT
 	pos: 0 20 0
-	size: 200
 	intensity: 150.000000
 POINTLIGHT
 	pos: 5 20 0
-	size: 300
 	intensity: 150.000000
 #end of file

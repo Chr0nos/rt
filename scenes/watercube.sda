@@ -8,7 +8,6 @@ CAMERA
 SUNLIGHT
 	color: #FFFFFF
 	pos: 1 1 0
-	size: 100
 	intensity: 150
 EMPTY
 	pos: -2 0 -2

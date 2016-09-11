@@ -5,12 +5,10 @@ CAMERA
 POINTLIGHT
 	color: #FFFFFF
 	pos: 30 15 -30
-	size: 300
 	intensity: 175.000000
 POINTLIGHT
 	color: #FFFFFF
 	pos: -30 15 -30
-	size: 300
 	intensity: 175.000000
 PLAN
 	color: #BBACAC

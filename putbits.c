@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 22:10:55 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/08 22:28:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 19:14:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void		rt_putbits(size_t bits)
 	buffer[64] = ' ';
 	p = 64;
 	while (p--)
-		buffer[p] = (bits & 1u << (64 - p)) ? '1' : '0';
+		buffer[p] = (bits & 1u << (63 - p)) ? '1' : '0';
 	write(1, buffer, 65);
 }

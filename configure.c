@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 18:42:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 17:32:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "keyboard.h"
 #include "draw.h"
 
-static void		rt_configure_interface(t_interf *interf)
+void			rt_configure_interface(t_interf *interf)
 {
 	interf->obj_selected = NULL;
 	interf->screen = NULL;

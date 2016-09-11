@@ -8,7 +8,7 @@ CUBE
 #EMPTY
 #	include: ./scenes/spherecube.sda
 EMPTY
-	include: ./scenes/zsapin_to_include.sda
+	include: ./scenes/sapin.sdi
 SPHERE
 	pos: 6 4 0
 	color: #10d3eb45
