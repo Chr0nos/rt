@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 14:49:34 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/27 16:28:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 21:09:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int						parse_obj(t_obj *obj, const char *filepath)
 	int				ret;
 
 	IFRET__(parse_obj_init(&s, obj, filepath, &fd) < 0, -1);
-	ft_printf("#Loading %s..\n", filepath);
 	ret = 0;
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
