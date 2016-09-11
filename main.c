@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/11 16:31:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:42:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 
 int				rt_create_window(t_rt *rt)
 {
-	if (draw_init(&rt->sys, rt->sys.geometry, "RAYTRACER - 42") < 0)
+	if (draw_init(&rt->sys, rt->sys.geometry, "RT") < 0)
 		return (1);
 	if (draw_init_openglcontext(&rt->sys))
 		return (1);
