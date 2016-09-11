@@ -28,7 +28,7 @@ CUBE
 	texture: textures/sand.jpg
 	normal: textures/water_normal.png
 	SPHERE
-		color: #FF0000
+		color: #FFFFFF
 		pos: 0 7 4
 		reflect: 255
 		normal: textures/water_normal.png

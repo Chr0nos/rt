@@ -1,5 +1,6 @@
 SETTING
 	background: #0AC4FC
+	skybox: textures/skybox.jpg
 CAMERA
 	pos: 3 1 1
 
