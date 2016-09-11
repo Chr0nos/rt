@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/08 15:30:35 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/11 16:22:23 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 ** latt = geo_lenv4(geo_addv4(r->normal, r->ray->dir)) - 1.0;
 */
 
-static t_v4d	rt_specular_pow_intelight(t_obj *light, t_render *r)
+static t_v4d		rt_specular_pow_intelight(t_obj *light, t_render *r)
 {
 	return ((light->type == SUNLIGHT ?
 		geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection))));
 }
 
-void			rt_specular_pow(t_shader *s, t_render *r, t_obj *light,
+void				rt_specular_pow(t_shader *s, t_render *r, t_obj *light,
 		unsigned int *color_render)
 {
 	double			latt;
@@ -73,7 +73,7 @@ static t_obj		*relaunch_ray(t_v4d pos, t_v4d dir, t_render *r)
 	return (sw.obj_intersect);
 }
 
-void			rt_light_pow(t_shader *s, t_render *r, t_obj *light,
+void				rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 		unsigned int *color_render)
 {
 	double			latt;
