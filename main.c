@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 16:35:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 10:55:55 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int				rt_normal(t_rt *rt, const char *path)
 		}
 		if (rt_checkcamera(rt))
 		{
-			rt_node_foreach(rt->root, INFIX, rt_node_display, NULL);
-			ft_putchar('\n');
 			if (!rt_create_window(rt))
 				rt_start(rt);
 		}
