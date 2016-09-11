@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/02 15:26:30 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/06 15:00:31 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/11 17:21:30 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void		shader_damier(t_shader *s, t_render *r, t_obj *light,
 
 	(void)s;
 	(void)light;
-	color[0] = blend_multiply(((t_cube*)r->obj_intersect->content)->color,
-			0x00e0e0e0);
-	color[1] = blend_add(((t_cube*)r->obj_intersect->content)->color, 0x353535);
+	color[0] = blend_multiply(shader_color_texture_intersection(r),
+			0xDDDDDD);
+	color[1] = blend_add(shader_color_texture_intersection(r), 0xFFFFFF);
 	p[0] = (t_uint)(round(r->intersection.x * 0.5 + 0.0001));
 	p[1] = (t_uint)(round(r->intersection.y * 0.5 + 0.0001));
 	p[2] = (t_uint)(round(r->intersection.z * 0.5 + 0.0001));

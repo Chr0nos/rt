@@ -1,80 +1,81 @@
+#sda export
 SETTING
-	background: #0AC4FC
-CAMERA
-	pos: 3 1 1
-
-SUNLIGHT
-	pos: 5 10 -0.5
-
-SPHERE
-	name: rock
-	pos: 0 -0.2 0
-	color: #5F8A5F
-	texture: ./textures/rock.jpg
-	normal: ./textures/rock_normal.jpg
-
-#CUBE
-#	name: arbre
-#	pos: 0.5 0 0
-#	texture: ./textures/feuillage.jpg
-#	normal: ./textures/feuillage_normal.jpg
-
-SPHERE
-	texture: ./textures/rock.jpg
-	normal: ./textures/rock_normal.jpg
-	size: 0.4
-	pos: -1 -0.2 0
-
-SPHERE
-	texture: ./textures/rock.jpg
-	normal: ./textures/rock_normal.jpg
-	size: 0.5
-	pos: 1 0 0
-
-PLAN
-	pos: 0 0 0
-	rot: 0 1 0
-	color: #278722
+	color: #000000
 	reflect: 0
-	texture: ./textures/herbe.jpg
+	background: #0AC4FC
+	skybox: textures/skyboxnight.jpg
+CAMERA
+	pos: 2.541528 0.610082 2.184533
+	rot: 5.729577 -120.321136 0
+POINTLIGHT
+	color: #FFFFFF
+	pos: 0 1 3
+	intensity: 20
 
+SPHERE
+	color: #5F8A5F
+	pos: 0 -0.2 0
+	name: rock
+	texture: textures/rock.jpg
+	normal: textures/rock_normal.jpg
+SPHERE
+	color: #000000
+	pos: -1 -0.2 0
+	size: 0.4
+	texture: textures/rock.jpg
+	normal: textures/rock_normal.jpg
+SPHERE
+	color: #000000
+	pos: 1 0 0
+	size: 0.5
+	texture: textures/rock.jpg
+	normal: textures/rock_normal.jpg
+PLAN
+	color: #278722
+	rot: 0 1 0
+	texture: textures/herbe.jpg
+	sdisable: specular
 EMPTY
+	pos: 0 -0.3 1.3
 	name: piscine
-	pos: 3 -0.3 3
+	MESH
+		color: #d05722
+		pos: 0 0.5 0
+		obj: scenes/parasol.obj
 	CUBE
-		pos: 0 0 0
-		texture: ./textures/sand.jpg
+		color: #000000
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 2 0 0
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 2 0 1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 0 0 1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 1 0 1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 2 0 -1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 0 0 -1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #000000
 		pos: 1 0 -1
-		texture: ./textures/sand.jpg
+		texture: textures/sand.jpg
 	CUBE
+		color: #44007778
 		pos: 1 -0.02 0
-		color: #440077FF
-		#texture: ./textures/water.jpg
-		normal: ./textures/water_normal.png
-		#reflect: 127
-
-#PLAN
-#	pos: 0 50 0
-#	rot: 0 -1 0
-#	color: #0000FF
-#	reflect: 0
-#	texture: ./textures/cloud.png
+		reflect: 127
+		normal: textures/water_normal.png
+#end of file
