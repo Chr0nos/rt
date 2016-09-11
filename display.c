@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/31 20:06:26 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/11 12:40:36 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 int				sdl_flush(const t_rt *rt)
 {
-	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);
-	SDL_UnlockSurface(rt->sys.screen);
 	return (0);
 }
 
