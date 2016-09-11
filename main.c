@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/11 10:55:55 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:31:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "sda.h"
 #include "arguments.h"
 #include "interface.h"
-#include <signal.h>
 
 static int		sdl_loop(SDL_Event *event, t_rt *rt)
 {
@@ -89,7 +88,6 @@ int				main(int ac, char **av)
 	t_rt	rt;
 
 	rt_configure(&rt);
-	signal(SIGUSR1, &rt_signal);
 	ft_putstr("\033[01;34mTry arg -h or press H to more information\033[;m\n");
 	if (ac > 1)
 		return (rt_quit(&rt, arg_parse(&rt, ac - 1, av + 1)));

@@ -6,16 +6,17 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 16:54:53 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/24 18:47:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/08 22:27:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "mesh.h"
 #include "libft.h"
+#include "objects.h"
 
 static void		sda_export_vertex_intern(t_vertex *v, char **str, t_obj *obj,
-	const int uv_mask)
+	const size_t uv_mask)
 {
 	str[0] = sda_double_short(ft_dtoa(v->pos.x, 6));
 	str[1] = sda_double_short(ft_dtoa(v->pos.y, 6));

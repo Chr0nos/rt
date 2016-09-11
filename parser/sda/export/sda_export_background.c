@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_norefresh.c                                    :+:      :+:    :+:   */
+/*   sda_export_background.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/21 19:59:09 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/21 20:00:46 by snicolet         ###   ########.fr       */
+/*   Created: 2016/09/09 03:25:21 by snicolet          #+#    #+#             */
+/*   Updated: 2016/09/09 03:28:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "arguments.h"
+#include "sda.h"
+#include "objects.h"
 
-int			arg_norefresh(t_rt *rt, int ac, char **av)
+char	*sda_export_background(t_obj *obj, t_sda_export *e)
 {
-	(void)ac;
-	(void)av;
-	rt->settings.cfgbits |= RT_CFGB_NOREFRESHX;
-	return (0);
+	char	*str;
+
+	(void)e;
+	if (!(obj->cfgbits & SDB_BACKGROUND))
+		return (NULL);
+	if (!(str = malloc(14)))
+		return (NULL);
+	sda_export_color_raw(((t_setting*)obj->content)->bgcolor, str);
+	return (str);
 }

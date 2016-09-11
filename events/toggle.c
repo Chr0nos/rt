@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 17:27:38 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/07 02:18:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 #include "menu.h"
 #include "sda.h"
+#include "interface.h"
 
 int				togglefs(t_rt *rt)
 {
@@ -48,19 +49,22 @@ static int		togglefilters(t_rt *rt, int keycode)
 
 static int		togglefinterf(t_rt *rt)
 {
-	if (!rt->interf->mode_activated &&
-		rt->sys.geometry.x > 260 && rt->sys.geometry.y >= 768)
+	if (!(rt->interf.flags & INTER_ENABLED) &&
+		(rt->sys.geometry.x > INTERF_GEO.x) &&
+		(rt->sys.geometry.y >= INTERF_GEO.y))
 	{
-		rt->interf->mode_activated = 1;
-		init_interface(rt);
+		rt->interf.flags |= INTER_ENABLED;
+		interface_init(rt);
 		interface_display(rt);
 		sdl_flush(rt);
 	}
-	else if (rt->interf->mode_activated)
+	else if (rt->interf.flags & INTER_ENABLED)
 	{
-		rt->interf->mode_activated = 0;
-		clean_interface(rt);
-		rt->keyboard |= FORCE_DISPLAY;
+		rt->interf.flags ^= INTER_ENABLED;
+		if (rt->render_screen)
+			draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
+		else
+			rt->keyboard |= FORCE_DISPLAY;
 	}
 	return (0);
 }

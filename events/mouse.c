@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 14:49:58 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/09 06:36:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,13 @@ static int		menu_click(SDL_Event *event, t_rt *rt)
 	return (0);
 }
 
-static void		mouseclick_obj(t_obj *obj, t_rt *rt)
+static void		mouseclick_obj(t_obj *obj, t_rt *rt, const t_v2i *pos)
 {
 	if (!obj)
 		return ;
-	if (obj->cfgbits & SDB_TEXTURE)
-		;
-	else if (obj->cfgbits & SDB_NORMAL)
-		;
-	else if (((t_cube*)obj->content)->color == 0xff0000)
-		((t_cube*)obj->content)->color = 0xff;
-	else
-		((t_cube*)obj->content)->color = 0xff0000;
-	rt->interf->obj_selected = obj;
-	if (rt->interf->mode_activated)
-		fill_champs_obj(rt->interf->obj_selected, rt->interf->champs_obj);
+	rt->interf.obj_selected = obj;
+	if (rt->interf.flags & INTER_ENABLED)
+		interface_event(pos, rt);
 	rt->keyboard |= FORCE_DISPLAY;
 }
 
@@ -82,11 +74,10 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 	{
 		if (event->button.button == SDL_BUTTON_LEFT)
 		{
-			if ((rt->interf->mode_activated) && (rt->sys.geometry.y >= 768) &&
-				(rt->sys.geometry.x > 280) && (pos.x < 280 && pos.x > 0))
-				interf_event(&pos, rt);
-			else
-				mouseclick_obj(rt_obj_atpx(rt, pos), rt);
+			if ((rt->interf.flags & INTER_ENABLED) &&
+				(interface_event(&pos, rt) > 0))
+				return (0);
+			mouseclick_obj(rt_obj_atpx(rt, pos), rt, &pos);
 		}
 	}
 	return (0);

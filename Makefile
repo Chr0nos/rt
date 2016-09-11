@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alhote <alhote@student.42.fr>              +#+  +:+       +#+         #
+#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/08 15:41:46 by alhote           ###   ########.fr        #
+#    Updated: 2016/09/11 16:25:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SDA_SETUP=sda_setup_heightmap.o sda_setup_texture_perlin.o sda_setup_vertex.o \
 		sda_setup_include.o sda_setup_angle.o sda_setup_copy.o  \
 		sda_setup_texture.o sda_setup_normal.o sda_setup_name.o \
 		sda_setup_sdisable.o sda_setup_skybox.o sda_setup_background.o \
-		sda_setup_csg.o sda_setup_senable.o
+		sda_setup_csg.o sda_setup_senable.o sda_setup_alpha.o
 
 SDA_EXPORT_DIR=parser/sda/export
 SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
@@ -72,7 +72,8 @@ SDA_EXPORT=sda_export.o sda_export_color.o sda_export_pos.o \
 	sda_export_angle.o sda_export_reflect.o  \
 	sda_export_skybox.o sda_export_file.o  \
 	sda_export_sdisable.o sda_export_al.o sda_export_bitmap.o \
-	sda_export_vertex.o sda_export_obj.o
+	sda_export_vertex.o sda_export_obj.o sda_export_background.o \
+	sda_export_senable.o
 
 SDA_DEFAULT_DIR=parser/sda/default
 SDA_DEFAULT=sda_defaults.o sda_default_lights.o sda_default_camera.o \
@@ -87,7 +88,7 @@ PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
 	rays.o pc_rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
 	configure.o putbits.o parser/parser.o check_camera.o \
-	rt_quit.o export.o signal.o uv.o camera_switch.o
+	rt_quit.o export.o uv.o camera_switch.o
 
 TEXTURE_DIR=texture
 TEXTURE=texture_perlin.o texture_create.o textures_used.o textures_free.o \
@@ -121,13 +122,12 @@ SHADER=shaders.o shaders_init.o light.o shadow.o \
 	reflection.o shader_texture.o shader_normalmap.o damier.o
 
 ARG_DIR=arguments
-ARG= arguments.o arg_norefresh.o arg_fs.o arg_geometry.o \
+ARG= arguments.o arg_fs.o arg_geometry.o \
 		arg_help.o
 
 INTER_DIR=interface
-INTER=interf_init.o interf_display.o interf_define.o interf_clean.o \
-		interf_change_obj.o interf_event.o interf_event2.o \
-		interf_fill_surface.o interf_fill_obj.o
+INTER=interf_init.o interf_display.o interf_event.o interf_values.o \
+	interf_pos.o interf_dir.o interf_tools.o interf_font.o interf_keyboard.o
 
 ALLOBJ=$(OBJ:%.o=$(OBJBUILDDIR)/%.o) \
 	$(YOLO:%.o=$(OBJBUILDDIR)/$(YOLODIR)/%.o) \
@@ -242,7 +242,7 @@ ifeq ($(OPSYS),Darwin)
 			sub("Error ","",$$1);\
 			if ($$2 == " C++ comment") { print "\033[0;33m"$$1"\033[32m"$$2 }\
 			else { print "\033[0;33m"$$1"\033[0m"$$2 }\
-		}
+		}'
 else
 	@printf "\e[33mNo Norminette here\e[m\n"
 endif

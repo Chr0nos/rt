@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:46:15 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/30 19:05:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:55:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
+#include "objects.h"
 
 int		sda_setup_angle(t_sda *e, t_obj *obj, char **av)
 {

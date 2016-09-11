@@ -6,13 +6,14 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:30:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/16 20:34:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:54:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
 #include "stdlib.h"
+#include "objects.h"
 
 static int		sda_isobj(const char *line)
 {

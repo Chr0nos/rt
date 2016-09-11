@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:57:07 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/06 16:45:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/10 01:42:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,73 +17,13 @@
 # define SDA_COUNT_DEFAULTS 8
 # define T t_sda_cfg
 # define FLOATCMP(x, y) ((x > y) || (x < y))
-# include "objects.h"
-# include "rt.h"
-# include "forms.h"
-# include "shaders.h"
-# include "mesh.h"
+# include "forms_bits.h"
+# include "sda_bits.h"
 
-enum					e_sda_cfgbit
-{
-	SDB_COLOR = 1,
-	SDB_POS = 1 << 1,
-	SDB_ROT = 1 << 2,
-	SDB_FOV = 1 << 3,
-	SDB_SIZE = 1 << 4,
-	SDB_AL = 1 << 5,
-	SDB_INTEN = 1 << 6,
-	SDB_REFRACT = 1 << 7,
-	SDB_INCLUDE = 1 << 8,
-	SDB_ANGLE = 1 << 9,
-	SDB_COPY = 1 << 10,
-	SDB_NAME = 1 << 11,
-	SDB_TEXTURE = 1 << 12,
-	SDB_REFLECT = 1 << 13,
-	SDB_BACKGROUND = 1 << 14,
-	SDB_NORMAL = 1 << 15,
-	SDB_SKYBOX = 1 << 16,
-	SDB_SDISABLE = 1 << 17,
-	SDB_HEIGHTMAP = 1 << 18,
-	SDB_TEX_PERLIN = 1 << 19 | SDB_TEXTURE,
-	SDB_VERTEX0 = 1 << 20,
-	SDB_VERTEX1 = 1 << 21,
-	SDB_VERTEX2 = 1 << 22,
-	SDB_VERTEX0_UV = 1 << 23,
-	SDB_VERTEX1_UV = 1 << 24,
-	SDB_VERTEX2_UV = 1 << 25,
-	SDB_OBJ = 1 << 26,
-	SDB_NOEXPORT = 1 << 27,
-	SDB_LIMIT = 1 << 28,
-	SDB_CSG = 1 << 29,
-	SDB_SENABLE = 1 << 30
-};
-
-enum					e_sda_setting
-{
-	SDA_COLOR = VISIBLE | LIGHTTYPE | SETTING,
-	SDA_POS = ~0,
-	SDA_ROT = ~(CONE),
-	SDA_AL = SETTING | CAMERA,
-	SDA_FOV = CAMERA,
-	SDA_SIZE = (SPHERE | CUBE | CONE | CYL | LIGHTTYPE | CONE_INF | SETTING),
-	SDA_INTEN = LIGHTTYPE,
-	SDA_REFRACT = VISIBLE,
-	SDA_INCLUDE = EMPTY,
-	SDA_ANGLE = CONE,
-	SDA_COPY = EMPTY,
-	SDA_NAME = ~0,
-	SDA_TEXTURE = SPHERE | CUBE | PLAN | CONE | TRIANGLE | MESH,
-	SDA_REFLECT = VISIBLE | SETTING,
-	SDA_BACKGROUND = SETTING,
-	SDA_SKYBOX = SETTING,
-	SDA_SDISABLE = VISIBLE,
-	SDA_HEIGHTMAP = PLAN,
-	SDA_TEX_PERLIN = SDA_TEXTURE,
-	SDA_VERTEX = TRIANGLE,
-	SDA_OBJ = MESH,
-	SDA_CSG = VISIBLE,
-	SDA_SENABLE = VISIBLE
-};
+typedef	struct s_rt			t_rt;
+typedef struct s_triangle	t_triangle;
+typedef struct s_mesh		t_mesh;
+typedef struct s_shader		t_shader;
 
 typedef struct			s_sda_eval
 {
@@ -117,7 +57,7 @@ typedef struct			s_sda_cfg
 	char				*(*export)(t_obj *, t_sda_export *);
 	enum e_sda_setting	obj_valid_type;
 	int					argc;
-	int					bit;
+	size_t				bit;
 }						t_sda_cfg;
 
 typedef struct			s_sda_obj
@@ -141,7 +81,7 @@ typedef struct			s_sda_obj
 typedef struct			s_sda_default
 {
 	unsigned int		type_mask;
-	void				(*exec)(t_rt *, t_obj *);
+	void				(*exec)(struct s_rt *, t_obj *);
 }						t_sda_default;
 
 int						sda_lvl(char *line);
@@ -164,7 +104,9 @@ int						sda_export_bitmap_file(const char *filepath,
 int						sda_setup_sdisable_real(t_shader *shader, void *target);
 int						sda_spliter(const char *line, char ***av, int *ac);
 void					*sda_setup_getshader_addr(t_shader *s, void *item);
-
+const t_sda_cfg			*sda_settings_bysetup(const void *setup);
+t_uint					sda_setup_color_text(const char *str, unsigned int mask,
+	unsigned int color, int deca);
 /*
 ** exporter
 */
@@ -178,6 +120,9 @@ char					*sda_export_xyz(const t_v4d *v, char radians);
 char					*sda_export_pos(t_obj *obj, t_sda_export *e);
 char					*sda_export_rot(t_obj *obj, t_sda_export *e);
 char					*sda_export_color(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_r(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_g(t_obj *obj, t_sda_export *e);
+char					*sda_export_color_b(t_obj *obj, t_sda_export *e);
 char					*sda_export_size(t_obj *obj, t_sda_export *e);
 char					*sda_export_texture(t_obj *obj, t_sda_export *e);
 char					*sda_export_normal(t_obj *obj, t_sda_export *e);
@@ -193,15 +138,27 @@ char					*sda_export_vertex0(t_obj *obj, t_sda_export *e);
 char					*sda_export_vertex1(t_obj *obj, t_sda_export *e);
 char					*sda_export_vertex2(t_obj *obj, t_sda_export *e);
 char					*sda_export_obj(t_obj *obj, t_sda_export *e);
+char					*sda_export_background(t_obj *obj, t_sda_export *e);
+char					*sda_export_senable(t_obj *obj, t_sda_export *e);
 
 /*
 ** configure functions
 */
 
+int						sda_setup_alpha(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_color_r(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_color_g(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_color_b(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_color(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_pos(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_x(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_y(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_pos_z(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_al(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_rot(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_x(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_y(t_sda *e, t_obj *obj, char **av);
+int						sda_setup_rot_z(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_fov(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_size(t_sda *e, t_obj *obj, char **av);
 int						sda_setup_intensity(t_sda *e, t_obj *obj, char **av);
@@ -230,14 +187,14 @@ int						sda_setup_senable(t_sda *e, t_obj *obj, char **av);
 ** sda default functions
 */
 
-void					sda_default_lights(t_rt *rt, t_obj *obj);
-void					sda_default_camera(t_rt *rt, t_obj *obj);
-void					sda_default_setting(t_rt *rt, t_obj *obj);
-void					sda_default_triangle(t_rt *rt, t_obj *obj);
-void					sda_default_cone(t_rt *rt, t_obj *obj);
-void					sda_default_shaders(t_rt *rt, t_obj *obj);
-void					sda_default_texture(t_rt *rt, t_obj *obj);
-void					sda_default_size(t_rt *rt, t_obj *obj);
+void					sda_default_lights(struct s_rt *rt, t_obj *obj);
+void					sda_default_camera(struct s_rt *rt, t_obj *obj);
+void					sda_default_setting(struct s_rt *rt, t_obj *obj);
+void					sda_default_triangle(struct s_rt *rt, t_obj *obj);
+void					sda_default_cone(struct s_rt *rt, t_obj *obj);
+void					sda_default_shaders(struct s_rt *rt, t_obj *obj);
+void					sda_default_texture(struct s_rt *rt, t_obj *obj);
+void					sda_default_size(struct s_rt *rt, t_obj *obj);
 
 /*
 ** Obj parser, it is in the sda because of his strong implication with the
@@ -274,8 +231,8 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 		SDB_TEXTURE},
 	(T){"reflect:", &sda_setup_reflect, &sda_export_reflect, SDA_REFLECT, 1,
 		SDB_REFLECT},
-	(T){"background:", &sda_setup_background, NULL, SDA_BACKGROUND, 1,
-		SDB_BACKGROUND},
+	(T){"background:", &sda_setup_background, &sda_export_background,
+		SDA_BACKGROUND, 1, SDB_BACKGROUND},
 	(T){"normal:", &sda_setup_normal, &sda_export_normal, SDA_TEXTURE, 1,
 		SDB_NORMAL},
 	(T){"skybox:", &sda_setup_skybox, &sda_export_skybox, SDA_SKYBOX, 1,
@@ -294,7 +251,8 @@ static const t_sda_cfg	g_sda_cfg[SDA_SETUP_TYPES] = {
 		SDB_VERTEX2},
 	(T){"obj:", &sda_setup_obj, &sda_export_obj, SDA_OBJ, 1, SDB_OBJ},
 	(T){"csg:", &sda_setup_csg, NULL, SDA_CSG, 1, SDB_CSG},
-	(T){"senable:", &sda_setup_senable, NULL, SDA_SENABLE, 1, SDB_SENABLE}
+	(T){"senable:", &sda_setup_senable, &sda_export_senable, SDA_SENABLE, 1,
+		SDB_SENABLE}
 };
 
 static const t_sda_default	g_sda_default[SDA_COUNT_DEFAULTS] = {

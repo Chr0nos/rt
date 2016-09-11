@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 23:44:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/30 17:49:20 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/06 18:42:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 #include "keyboard.h"
 #include "draw.h"
 
-static void		rt_configure_interface(t_rt *rt)
+static void		rt_configure_interface(t_interf *interf)
 {
-	if (!(rt->interf = (t_interf *)ft_memalloc(sizeof(t_interf))))
-	{
-		free(rt->textures);
-		ft_putstr_fd("error: failed to malloc interface\n", 2);
-		exit(1);
-	}
-	rt->interf->obj_selected = NULL;
+	interf->obj_selected = NULL;
+	interf->screen = NULL;
+	interf->flags = 0;
+	interf->line_pos = 0;
+	interf->line[0] = '\0';
 }
 
 void			rt_configure(t_rt *rt)
@@ -50,5 +48,6 @@ void			rt_configure(t_rt *rt)
 	rt->menu.background = NULL;
 	rt->menu.positions = NULL;
 	rt->rayfunc = &rt_render_ray;
-	rt_configure_interface(rt);
+	rt->render_screen = NULL;
+	rt_configure_interface(&rt->interf);
 }

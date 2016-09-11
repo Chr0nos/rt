@@ -6,14 +6,15 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:09:29 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 06:04:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/09 03:20:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "libft.h"
+#include "objects.h"
 
-void		sda_settings_stack(t_obj *stack, t_obj *s)
+void			sda_settings_stack(t_obj *stack, t_obj *s)
 {
 	t_setting	*o;
 	t_setting	*x;
@@ -26,9 +27,11 @@ void		sda_settings_stack(t_obj *stack, t_obj *s)
 		o->size = x->size;
 	if (s->cfgbits & SDB_REFLECT)
 		o->reflect = x->reflect;
+	if (s->cfgbits & SDB_BACKGROUND)
+		o->bgcolor = x->bgcolor;
 }
 
-static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
+static int		sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
 {
 	ft_putstr("warning: obj: ");
 	rt_node_display(e->current_obj, 0, NULL);
@@ -36,7 +39,22 @@ static int	sda_warning(t_sda *e, const char *msg, const char *opt, int ret)
 	return (ret);
 }
 
-int			sda_settings(t_sda *e, int ac, char **av)
+const t_sda_cfg	*sda_settings_bysetup(const void *setup)
+{
+	int					p;
+	const t_sda_cfg		*cfg;
+
+	p = SDA_SETUP_TYPES;
+	while (p--)
+	{
+		cfg = &g_sda_cfg[p];
+		if ((void*)(unsigned long)cfg->config == setup)
+			return (cfg);
+	}
+	return (NULL);
+}
+
+int				sda_settings(t_sda *e, int ac, char **av)
 {
 	int					p;
 	int					ret;

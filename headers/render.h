@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 00:08:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/01 18:15:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:43:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # define MID_LIGHT_POWER	100.0
 # define MAX_LIGHT_POWER	800.0
+
+typedef	struct s_rt	t_rt;
 
 typedef struct		s_render
 {

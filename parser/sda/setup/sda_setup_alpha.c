@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sda_export_texture.c                               :+:      :+:    :+:   */
+/*   sda_setup_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/15 23:49:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/03 21:57:30 by snicolet         ###   ########.fr       */
+/*   Created: 2016/09/09 03:53:05 by snicolet          #+#    #+#             */
+/*   Updated: 2016/09/09 03:54:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
-#include "libft.h"
 #include "objects.h"
 
-char	*sda_export_texture(t_obj *obj, t_sda_export *e)
+int		sda_setup_alpha(t_sda *e, t_obj *obj, char **av)
 {
 	(void)e;
-	if (!(obj->cfgbits & SDB_TEXTURE))
-		return (NULL);
-	return (ft_strdup(rt_obj_get_texture(obj)->filepath));
+	if (!(obj->type & SDA_COLOR))
+		return (0);
+	((t_cube*)obj->content)->color = (sda_setup_color_text(av[0], 0x00ffffff,
+		((t_cube*)obj->content)->color, 24));
+	return (1);
 }

@@ -6,13 +6,14 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/14 18:37:06 by alhote            #+#    #+#             */
-/*   Updated: 2016/08/25 16:57:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/03 21:54:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sda.h"
 #include "parser.h"
 #include "libft.h"
+#include "mesh.h"
 #include <stdlib.h>
 
 int			sda_setup_obj(t_sda *e, t_obj *obj, char **av)
