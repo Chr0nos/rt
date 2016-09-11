@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 19:32:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/02 02:59:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:21:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static t_uint		rt_min_index(double *dist, t_uint size)
 	return (id);
 }
 
-t_v4d			rt_cube_normale(t_obj *obj, t_v4d *v)
+t_v4d				rt_cube_normale(t_obj *obj, t_v4d *v)
 {
 	t_v4d			origin;
 	t_uint			lowest_id;

@@ -1,0 +1,12 @@
+#sda export
+CAMERA
+	pos: 8.083644 4.089841 -7.42912
+	rot: 11.459155 -45.836623 0
+	POINTLIGHT
+		color: #FFFFFF
+		size: 100
+		intensity: 100
+MESH
+	color: #FF0000
+	obj: scenes/pelican.obj
+#end of file

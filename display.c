@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/07 22:06:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:32:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ static int		rt_display_dumprender(t_rt *rt)
 
 int				sdl_flush(const t_rt *rt)
 {
-	SDL_LockSurface(rt->sys.screen);
 	SDL_UpdateWindowSurface(rt->sys.win);
-	SDL_UnlockSurface(rt->sys.screen);
 	return (0);
 }
 

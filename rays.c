@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 01:06:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 00:28:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 16:31:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 			ray.count = 6;
 			ray.dir = geo_m4trans(
 				geo_normv4((t_v4d){rad.x, -rad.y, 1.0, 0.0}), &(args->m));
-			//pthread_mutex_lock(args->mutex);
 			args->pixels[px.y * args->rt->sys.geometry.x + px.x] =
 				args->rt->rayfunc(args->rt, &ray);
-			//pthread_mutex_unlock(args->mutex);
 			rad.y -= rad.w;
 		}
 		rad.x += rad.z;
@@ -68,13 +66,9 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 {
 	pthread_t			threads[THREAD_COUNT];
 	t_thread_args		args[THREAD_COUNT];
-	//pthread_mutex_t		*mutex;
 	int					i;
 
 	i = -1;
-	//if (!(mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t))))
-	//	return ;
-	//pthread_mutex_init(mutex, NULL);
 	while (++i < THREAD_COUNT)
 	{
 		args[i].rt = rt;
@@ -84,9 +78,6 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].thread_count = THREAD_COUNT;
 		args[i].x_start = rt->sys.geometry.x / THREAD_COUNT * i;
 		args[i].x_end = args[i].x_start + rt->sys.geometry.x / THREAD_COUNT;
-		//args[i].mutex = mutex;
-		if (i == 0)
-			args[i].x_start = 0;
 		if (pthread_create(threads + i, NULL,
 			(void *(*)(void*))&rt_rays_pixels_threaded, args + i))
 			ft_putstr_fd("thread creation error\n", 2);
