@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/04 23:21:50 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/11 16:32:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 14:41:33 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "keyboard.h"
 #include "menu.h"
 #include "interface.h"
+
+/*
+** this function duplicate the current render screen into rt->render_screen
+*/
 
 static int		rt_display_dumprender(t_rt *rt)
 {
@@ -50,7 +54,10 @@ static int		display_real(t_rt *rt, const int ret)
 	else
 		draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
 	if (rt->interf.flags & INTER_ENABLED)
+	{
 		interface_display(rt);
+		sdl_flush(rt);
+	}
 	if (ret & FORCE_DISPLAY)
 		rt->keyboard ^= FORCE_DISPLAY;
 	return (0);
@@ -59,13 +66,16 @@ static int		display_real(t_rt *rt, const int ret)
 static int		refresh_interface(t_rt *rt)
 {
 	if (!rt->render_screen)
+	{
 		return (display_real(rt, 0));
+	}
 	if (rt->settings.cfgbits & RT_CFGB_REFRESHINTER)
 	{
 		draw_blitsurface(rt->sys.screen, rt->render_screen, (t_v2i){0, 0});
 		interface_display(rt);
 		sdl_flush(rt);
-		rt->settings.cfgbits ^= RT_CFGB_REFRESHINTER;
+		rt->settings.cfgbits &= ~RT_CFGB_REFRESHINTER;
+		rt->keyboard &= ~FORCE_DISPLAY;
 	}
 	return (0);
 }
