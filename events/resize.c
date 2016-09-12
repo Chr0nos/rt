@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/12 15:18:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 16:29:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void				rt_event_resize_menu(t_rt *rt)
 int						rt_event_resize_force(t_v2i geometry, t_rt *rt)
 {
 	rt->sys.geometry = geometry;
+	ft_printf("#resize to: x: %d y: %d\n", geometry.x, geometry.y);
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 		return (2);
 	if (rt->keyboard & MENU)
