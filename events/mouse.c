@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/12 14:40:01 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 14:51:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int				mouseclick(SDL_Event *event, t_rt *rt)
 		return (menu_click(event, rt));
 	else if (event->motion.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if (event->button.button == SDL_BUTTON_LEFT)
+		if ((event->button.button == SDL_BUTTON_LEFT) &&
+			(!(rt->settings.cfgbits & RT_CFGB_INMENU)))
 		{
 			if ((rt->interf.flags & INTER_ENABLED) &&
 				(interface_event(&pos, rt) > 0))
