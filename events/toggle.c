@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/11 16:53:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 15:20:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				togglefs(t_rt *rt)
 	SDL_SetWindowFullscreen(rt->sys.win,
 		(unsigned int)((rt->keyboard & FULLSCREEN) ? \
 		~SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_FULLSCREEN_DESKTOP));
-	rt->sys.geometry = draw_getgeometry(rt->sys.win);
+	rt_event_resize_force(draw_getgeometry(rt->sys.win), rt);
 	rt->keyboard ^= FULLSCREEN;
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 	{
