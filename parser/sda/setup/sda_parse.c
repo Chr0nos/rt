@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 12:54:20 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/19 21:52:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/11 21:03:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static t_obj	*sda_parse_fd(const int fd, t_rt *rt, t_obj *root,
 		if ((ret = sda_eval(line, &eval, sda_lvl(line))) < 0)
 		{
 			ft_printf("warning: eval failed on line: %d\n", count);
-			break ;
+			free(line);
+			rt_node_free(root);
+			return (NULL);
 		}
 		free(line);
 	}
