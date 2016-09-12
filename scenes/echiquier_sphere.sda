@@ -3,7 +3,11 @@ CAMERA
 	rot: 25 0 0
 	POINTLIGHT
 		intensity: 150
-
+CAMERA
+	pos: 1.111624 1.16 4.23005
+	rot: 13.540844 5.729577 0
+#	POINTLIGHT
+#		intensity: 150
 PLAN
 	pos: 0 -3 0
 	color: #1f0f4a
