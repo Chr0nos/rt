@@ -1,57 +1,84 @@
 CAMERA
-	pos: 6.461164 8.797622 -13.242727
-	rot: 34.377466 0 0
-	al: 10
-
-#SETTING
-#	skybox: textures/skybox.jpg
+	pos: 12 9.195778 -13.885718
+	rot: 28.647888 0 0
 
 POINTLIGHT
-	pos: 6 15 0
+	pos: 12 9 8
+	intensity: 120
 
-CUBE
-	color: #0af0af10
-	size: 2
-	CUBE
-		color: #50f0af10
+SPHERE
+	color: #0a2CD0FF
+	pos: 6 0 0
+	size: 1.3
+	SPHERE
+		color: #502CD0FF
 		pos: 4 0 0
-		size: 2
-		CUBE
-			color: #60f0af10
+		size: 1.3
+		SPHERE
+			color: #602CD0FF
 			pos: 4 0 0
-			size: 2
-			CUBE
-				color: #d0f0af10
+			size: 1.3
+			SPHERE
+				color: #D02CD0FF
 				pos: 4 0 0
-				size: 2
-	CUBE
-		color: #5ff0df10
-		pos: 0 0 8
-		size: 2
-		refract: 1
-		CUBE
-			color: #5ff0df10
-			pos: 4 0 0
-			size: 2
-			refract: 2
-			CUBE
-				color: #5ff0df10
-				pos: 4 0 0
-				size: 2
-				refract: 4
-				CUBE
-					color: #5ff0df10
-					pos: 4 0 0
-					size: 2
-					refract: 5.5
+				size: 1.3
 
+	SPHERE
+		color: #5f2CD0FF
+		pos: 0 0 6
+		size: 1.3
+		refract: 1.1
+		SPHERE
+			color: #5f2CD0FF
+			pos: 4 0 0
+			size: 1.3
+			refract: 1.5
+			SPHERE
+				color: #5f2CD0FF
+				pos: 4 0 0
+				size: 1.3
+				refract: 3
+				SPHERE
+					color: #5f2CD0FF
+					pos: 4 0 0
+					size: 1.3
+					refract: 5.5
+	SPHERE
+		color: #2CD0FF
+		pos: 0 0 12
+		size: 1.3
+		reflect: 25
+		SPHERE
+			color: #2CD0FF
+			pos: 4 0 0
+			size: 1.3
+			reflect: 60
+			SPHERE
+				color: #2CD0FF
+				pos: 4 0 0
+				size: 1.3
+				reflect: 120
+				SPHERE
+					color: #2CD0FF
+					pos: 4 0 0
+					size: 1.3
+					reflect: 210
 EMPTY
 	PLAN
-		pos: 0  0 25
+		pos: 0  0 20
 		rot: 90 0 0
+		color: #ff1211
+		texture: perlin: 100 200
+	PLAN
+		pos: 0  0 0
+		rot: 90 90 0
 		color: #f402a1
-		texture: perlin: 200 200
+		texture: perlin: 100 200
+	PLAN
+		pos: 24  0 0
+		rot: 90 90 0
+		color: #f4d200
+		texture: perlin: 100 200
 	PLAN
 		pos: 0 -2 0
-		color: #3442d1
-		texture: perlin: 200 200
+		color: #FFFFFF
