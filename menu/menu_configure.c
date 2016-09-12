@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/11 17:10:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 13:26:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void		menu_configure_rts_setup(t_menu_id **id, t_rt *rt,
 	(*id)->dest = &rt->rts[p];
 	(*id)->src = rt;
 	(*id)->file = (const char *)files->content;
+	rt->render_screen = NULL;
 }
 
 size_t			menu_configure_rts(t_rt *rt, t_list *files)

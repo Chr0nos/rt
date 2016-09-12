@@ -1,9 +1,9 @@
 CAMERA
 	pos: 5.36632 -1.209647 -1.243724
 	rot: -22.918311 292.208474 0
-	#POINTLIGHT
-	#	color: #FFFFFF
-	#	intensity: 80
+	POINTLIGHT
+		color: #FFFFFF
+		intensity: 80
 EMPTY
 	name: pyramide
 	TRIANGLE
