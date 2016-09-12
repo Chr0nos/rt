@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 18:17:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/12 15:18:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/12 15:48:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define INFIX 2
 # define SUFFIX 4
 # define RT_CFGB_FREESCREEN 	1u
-# define RT_CFGB_FULLSCREEN		1u << 1
-# define RT_CFGB_NOREFRESHX 	1u << 2
-# define RT_CFGB_INMENU			1u << 3
-# define RT_CFGB_REFRESHINTER	1u << 4
-# define RT_CFGB_INTERFEDIT		1u << 5
+# define RT_CFGB_FULLSCREEN		(1u << 1)
+# define RT_CFGB_NOREFRESHX 	(1u << 2)
+# define RT_CFGB_INMENU			(1u << 3)
+# define RT_CFGB_REFRESHINTER	(1u << 4)
+# define RT_CFGB_INTERFEDIT		(1u << 5)
 
 typedef enum	e_rendflag
 {
