@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/04 16:13:19 by hantlowt          #+#    #+#             */
-/*   Updated: 2016/09/11 16:20:05 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/13 15:17:44 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 {
 	unsigned int	shad;
 	unsigned int	color;
+	unsigned int	alpha;
 
 	shad = (light->type == SUNLIGHT ? 0x15000000 : 0x35000000);
 	color = (sw->obj_intersect ? shader_color_texture_intersection(sw) : 0);
@@ -29,9 +30,13 @@ static void		set_color_shader_shadow(t_render *r, unsigned int *render,
 	{
 		if (A(color))
 		{
+			alpha = (A(color) > 0x55 ? 0xFF - A(color) : A(color));
+			shad = to_rgb(alpha + A(shad), 0, 0, 0);
+			//shad = (A(alpha) > 0x7F ? 0xFF000000 - shad : shad);
 			color = blend_multiply(to_rgb(0, R(color), G(color), B(color)),
-			to_rgb(0, A(color), A(color), A(color)));
-			*render = blend_add(color, *render);
+			to_rgb(0, alpha, alpha, alpha));
+			*render = blend_add(blend_multiply(color,
+				((t_cube*)(light->content))->color), *render);
 		}
 		*render = blend_sub(*render, shad);
 	}
@@ -47,7 +52,7 @@ void			shader_shadow(t_shader *s, t_render *r, t_obj *light,
 	ray = *r->ray;
 	ray.start = geo_addv4(r->intersection, geo_multv4(ray.dir,
 		geo_dtov4d(-0.00001)));
-	ray.dir = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
+	ray.dir = (light->type & SUNLIGHT ? geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
 	sw = (t_render){&ray, r->rt, NULL, HUGE_VAL, 0.0,
 			(t_v4d){0.0, 0.0, 0.0, 0.0}, ray.dir, color_render};

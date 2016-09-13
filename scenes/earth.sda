@@ -1,46 +1,48 @@
+#sda export
 SETTING
-	skybox: ./textures/skybox_space.jpg
+	color: #000000
+	skybox: textures/skybox_space.jpg
 CAMERA
-	pos: 0.958092 8.04958 13.539058
-	rot: 34.377466 -595.876106 0
+	pos: -6.59948 3.783373 -1.747077
+	rot: 11.459154 -664.63104 0
 CAMERA
-	pos: 36.857788 1.880921 6.618749
-	rot: 22.91831 -693.278931 0
+	pos: 23.239813 6.707274 2.774651
+	rot: 51.566198 -796.411334 34.377467
 CAMERA
-	pos: 40.16978 1.153176 8.186435
-	rot: 5.729576 -441.177501 0
+	pos: 20.183629 13.070794 -31.844958
+	rot: 17.188731 -739.115554 0
 SPHERE
-	name: earth
-	size: 6.371
+	color: #000000
 	pos: 0 0 10
-	texture: ./textures/earth.jpg
-	normal: ./textures/earth_normal.jpg
-	sdisable: specular
+	size: 6.370999
+	name: earth
+	texture: textures/earth.jpg
+	normal: textures/earth_normal.jpg
 	POINTLIGHT
-		pos: 15 5 -5
-		intensity: 200
+		color: #FFFFFA
+		pos: 10 10 -30
+		intensity: 300
 	SPHERE
-		name: atmosphere
+		color: #000000
 		size: 6.5
-		color: #5500BFFF
-		normal: ./textures/clouds_earth_normal.jpg
-		texture: ./textures/clouds_earth.jpg
+		name: atmosphere
+		texture: textures/clouds_earth.png
 	SPHERE
-		name: moon
-		pos: 38.44 0 0
-		size: 1.737
 		color: #808080
-		texture: ./textures/moon.jpg
-		normal: ./textures/moon_normal.jpg
+		pos: 20 5 -5
+		size: 1.736999
+		name: moon
+		texture: textures/moon.jpg
+		normal: textures/moon_normal.jpg
 		sdisable: specular
-
 SPHERE
-	name: sun
-	size: 6.9
+	color: #FFFFFF
 	pos: 450 0 -500
-	color: #ffffff;
-	sdisable: specular diffuse
+	size: 6.9
+	name: sun
+	sdisable: diffuse specular
 	SPHERE
+		color: #B7EEF7
 		size: 7
-		color: #00b7eef7;
-		sdisable: specular diffuse
+		sdisable: diffuse specular
+#end of file

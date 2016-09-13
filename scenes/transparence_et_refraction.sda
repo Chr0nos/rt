@@ -3,6 +3,7 @@ CAMERA
 	rot: 28.647888 0 0
 
 POINTLIGHT
+	color: #FFFFFF
 	pos: 12 9 8
 	intensity: 120
 
@@ -32,17 +33,17 @@ SPHERE
 			color: #5f2CD0FF
 			pos: 4 0 0
 			size: 1.3
-			refract: 1.5
+			refract: 1.1
 			SPHERE
 				color: #5f2CD0FF
 				pos: 4 0 0
 				size: 1.3
-				refract: 3
+				refract: 1.1
 				SPHERE
 					color: #5f2CD0FF
 					pos: 4 0 0
 					size: 1.3
-					refract: 5.5
+					refract: 1.1
 	SPHERE
 		color: #2CD0FF
 		pos: 0 0 12
@@ -61,7 +62,7 @@ SPHERE
 				SPHERE
 					color: #2CD0FF
 					pos: 4 0 0
-					size: 1.3
+					size: 1.1
 					reflect: 210
 EMPTY
 	PLAN

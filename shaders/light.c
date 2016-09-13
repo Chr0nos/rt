@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 17:29:43 by qloubier          #+#    #+#             */
-/*   Updated: 2016/09/11 16:22:23 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/13 15:15:18 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 static t_v4d		rt_specular_pow_intelight(t_obj *light, t_render *r)
 {
-	return ((light->type == SUNLIGHT ?
+	return ((light->type & SUNLIGHT ?
 		geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection))));
 }
@@ -47,10 +47,11 @@ void				rt_specular_pow(t_shader *s, t_render *r, t_obj *light,
 	if ((latt > 0.0) && (((t_plight *)light->content)->color))
 	{
 		li = (pow(latt, 20) * (((t_plight *)light->content)->intensity) /
-		(light->type == SUNLIGHT ? 1.0 : (r->light_lenght / 5.0)))
+		(light->type & SUNLIGHT ? 1.0 : (r->light_lenght / 5.0)))
 			/ MID_LIGHT_POWER * 255.0;
 		*color_render = blend_lighten(*color_render,
-			to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li));
+			blend_multiply(((t_cube*)(light->content))->color,
+			to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li)));
 	}
 }
 
@@ -83,9 +84,10 @@ void				rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 
 	(void)s;
 	(void)light;
-	light_vector = (light->type == SUNLIGHT ? geo_normv4(light->trans.w) :
+	light_vector = (light->type & SUNLIGHT ? geo_normv4(light->trans.w) :
 		geo_normv4(geo_subv4(light->trans.w, r->intersection)));
-	r->light_lenght = geo_distv4(light->trans.w, r->intersection);
+	r->light_lenght = (light->type & SUNLIGHT ? (double)INFINITY :
+		geo_distv4(light->trans.w, r->intersection));
 	latt = geo_dotv4(r->normal, light_vector);
 	if (latt > 0.0 || (A(shader_color_texture_intersection(r)) &&
 		!relaunch_ray(geo_addv4(r->intersection,
@@ -93,8 +95,9 @@ void				rt_light_pow(t_shader *s, t_render *r, t_obj *light,
 	{
 		latt = (latt < 0.0 ? -latt : latt);
 		li = ((latt * (((t_plight *)light->content)->intensity)) * 2.0) /
-			(light->type == SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));
-		color = to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li);
+			(light->type & SUNLIGHT ? 1.0 : (r->light_lenght * 0.1));
+		color = blend_multiply(((t_cube*)(light->content))->color,
+		to_rgb(0, (unsigned int)li, (unsigned int)li, (unsigned int)li));
 		color = blend_lighten(color, r->rt->settings.ambiant_light);
 	}
 	else
