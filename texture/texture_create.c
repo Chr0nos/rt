@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/09 03:39:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 04:21:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ static t_texture		*texture_create_set(t_texture *tex, char *filepath,
 	*lst = tex;
 	return (tex);
 }
+
+/*
+** std_surface will contain the converted surface format to 4 bpp
+** surface only contain the raw format (wich can be any bpp)
+*/
 
 static t_texture		*texture_create_file(t_texture **lst, char *filepath)
 {

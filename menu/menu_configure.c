@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/12 13:26:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 05:45:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void			menu_configure_thumbs_size(t_rt *rt)
 	rt->menu.items.y = (d) ? (geo->y + MENU_BORDER_Y - MENU_PADDING_Y) / d : 0;
 	menu_update_positions(rt);
 	menu_background_init(rt);
+}
+
+static void		menu_confiture_id_interf(t_rt *rt_dest, t_rt *rt)
+{
+	rt_dest->render_screen = NULL;
+	rt_dest->textures = rt->textures;
+	rt_configure_interface(&rt_dest->interf);
 }
 
 static void		*menu_confiture_id(void *userdata)
@@ -60,12 +67,14 @@ static void		*menu_confiture_id(void *userdata)
 static void		menu_configure_rts_setup(t_menu_id **id, t_rt *rt,
 	t_list *files, int p)
 {
+	t_rt	*rt_dest;
+
+	rt_dest = &rt->rts[p];
 	*id = &rt->menu.id[p];
 	(*id)->id = 0;
 	(*id)->dest = &rt->rts[p];
 	(*id)->src = rt;
 	(*id)->file = (const char *)files->content;
-	rt->render_screen = NULL;
 }
 
 size_t			menu_configure_rts(t_rt *rt, t_list *files)
@@ -74,7 +83,8 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 	t_menu_id		*id;
 
 	rt->menu.positions = (SDL_Rect*)&rt->rts[rt->rts_size];
-	rt->menu.id = malloc(sizeof(t_menu_id) * rt->rts_size);
+	if (!(rt->menu.id = malloc(sizeof(t_menu_id) * rt->rts_size)))
+		return (0);
 	menu_configure_thumbs_size(rt);
 	p = -1;
 	while ((files) && (++p > -1))
@@ -88,6 +98,7 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 		}
 		else
 			id->enabled = 1;
+		menu_confiture_id_interf(id->dest, rt);
 		files = files->next;
 	}
 	textures_display(*rt->textures);

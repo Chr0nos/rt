@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/12 14:51:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 05:53:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ static void		menu_update_params(t_rt *rt)
 	rt->rts = NULL;
 	rt->keyboard &= FULLSCREEN;
 	rt->keyboard |= FORCE_DISPLAY;
-	rt->settings.cfgbits &= RT_CFGB_INMENU;
+	rt->settings.cfgbits &= ~RT_CFGB_INMENU;
 	textures_cleanup(rt->root, rt->textures);
-	rt_configure_interface(&rt->interf);
+	//debug
+	rt_debug(rt->root, 0);
+	ft_putendl("#debug done");
+	textures_display(*rt->textures);
+	ft_putendl("#end of textures");
 }
 
 static int		menu_click(SDL_Event *event, t_rt *rt)
