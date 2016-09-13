@@ -1,0 +1,10 @@
+CAMERA
+	pos: 0 0 -14
+SPHERE
+	size: 10
+	color: #ffffff
+	SPHERE
+		texture: textures/earth.jpg
+		color: #80000000
+		POINTLIGHT
+			intensity: 30000
