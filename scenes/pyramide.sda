@@ -1,0 +1,31 @@
+CAMERA
+	pos: 5.36632 -1.209647 -1.243724
+	rot: -22.918311 292.208474 0
+	POINTLIGHT
+		color: #FFFFFF
+		intensity: 80
+EMPTY
+	name: pyramide
+	TRIANGLE
+		texture: textures/herbe.jpg
+		vertex1: 1 2 0.5
+		vertex2: 2 0 0
+		sdisable: specular
+	TRIANGLE
+		texture: textures/herbe.jpg
+		vertex0: 0 0 0
+		vertex1: 1 2 0.5
+		vertex2: 1 0 2
+		sdisable: specular
+	TRIANGLE
+		texture: textures/herbe.jpg
+		vertex0: 2 0 0
+		vertex1: 1 2 0.5
+		vertex2: 1 0 2
+		sdisable: specular
+	TRIANGLE
+		texture: textures/herbe.jpg
+		vertex0: 0 0 0
+		vertex1: 1 0 2
+		vertex2: 2 0 0
+		sdisable: specular
