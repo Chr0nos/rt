@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:38:30 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/13 05:45:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 15:55:29 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 	if (!(rt->menu.id = malloc(sizeof(t_menu_id) * rt->rts_size)))
 		return (0);
 	menu_configure_thumbs_size(rt);
-	p = -1;
-	while ((files) && (++p > -1))
+	p = 0;
+	while ((files))
 	{
 		menu_configure_rts_setup(&id, rt, files, p);
 		if (menu_confiture_id(id) == NULL)
@@ -100,6 +100,7 @@ size_t			menu_configure_rts(t_rt *rt, t_list *files)
 			id->enabled = 1;
 		menu_confiture_id_interf(id->dest, rt);
 		files = files->next;
+		p++;
 	}
 	textures_display(*rt->textures);
 	return ((size_t)p);
