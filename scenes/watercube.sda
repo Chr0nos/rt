@@ -11,7 +11,7 @@ SUNLIGHT
 	intensity: 150
 EMPTY
 	pos: -2 0 -2
-	include: scenes/pyramide.sda
+	include: scenes/pyramide.sdi
 PLAN
 	color: #AA2b4266
 	name: mer

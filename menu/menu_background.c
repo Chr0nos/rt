@@ -6,12 +6,13 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:05:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/27 19:12:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 14:33:08 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "menu.h"
+#include "libft.h"
 
 void			menu_background_init(t_rt *rt)
 {
