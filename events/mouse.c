@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/13 19:25:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 16:24:53 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void		menu_update_params(t_rt *rt)
 	rt->keyboard |= FORCE_DISPLAY;
 	rt->settings.cfgbits &= ~RT_CFGB_INMENU;
 	textures_cleanup(rt->root, rt->textures);
-	//debug
 	rt_debug(rt->root, 0);
 	ft_putendl("#debug done");
 	textures_display(*rt->textures);

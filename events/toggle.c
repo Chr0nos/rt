@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   toggle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/24 19:46:18 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/12 15:20:00 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 16:09:37 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int		togglefinterf(t_rt *rt)
 
 int				toggle_key(int keycode, t_rt *rt)
 {
-	if (keycode == SDLK_o)
+	if (keycode == SDLK_o && (!(rt->keyboard & MENU)))
 		geo_putm4(((t_obj*)rt->root->content)->trans, 6);
 	else if (keycode == SDLK_r)
 		return (camera_reset(rt));
