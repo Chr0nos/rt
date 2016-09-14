@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 17:18:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/22 16:06:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 17:21:37 by dboudy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ t_obj			*yolo_parse(const char *filepath, t_rtcfg *rset)
 	while ((ft_get_next_line(fd, &line) > 0) && (line))
 	{
 		if ((line[0] != '#') && (!ft_stronlystr(line, " \t")) &&
-			(yolo_parse_line(line, &lastlvl, &lastobj, rset) < 0) &&
-			(ft_mfree(1, line)))
+			(yolo_parse_line(line, &lastlvl, &lastobj, rset) < 0))
 			break ;
 		free(line);
 	}
