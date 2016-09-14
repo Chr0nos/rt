@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 16:19:41 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/14 07:16:38 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/14 20:52:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static int		sdl_loop(SDL_Event *event, t_rt *rt)
 int				rt_create_window(t_rt *rt)
 {
 	if (draw_init(&rt->sys, rt->sys.geometry, "RT") < 0)
-		return (1);
-	if (draw_init_openglcontext(&rt->sys))
 		return (1);
 	if (!(rt->sys.screen = SDL_GetWindowSurface(rt->sys.win)))
 	{
