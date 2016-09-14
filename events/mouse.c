@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 17:40:57 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/13 05:53:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/13 19:25:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include "libft.h"
 #include "objects.h"
 #include "sda.h"
+
+/*
+** this function remove all keys in the keyboard stat exepted for the FULLSCREEN
+** then force a new display (because the screen will change size from thumb to
+** window size)
+** remove the RT_CFGB_INMENU configuration bit
+** clean all un-used textures
+*/
 
 static void		menu_update_params(t_rt *rt)
 {
