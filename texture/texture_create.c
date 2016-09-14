@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/31 14:29:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/13 04:21:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 08:57:49 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,12 @@
 
 char					*texture_cleanpath(char *filepath)
 {
-	char	*tmp;
 	int		p;
 
 	p = 0;
 	while (!ft_strncmp(&filepath[p], "./", 2))
 		p += 2;
-	tmp = filepath;
-	filepath = ft_strdup(&filepath[p]);
-	free(tmp);
-	return (filepath);
+	return (ft_memmove(filepath, &filepath[p], ft_strlen(&filepath[p])));
 }
 
 static t_texture		*texture_create_set(t_texture *tex, char *filepath,
