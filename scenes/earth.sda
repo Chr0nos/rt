@@ -6,6 +6,7 @@ CAMERA
 	pos: -6.59948 3.783373 -1.747077
 	rot: 11.459154 -664.63104 0
 	MESH
+		name: wheatley
 		pos: 0 0 5
 		texture: textures/wheatley.jpg
 		normal: textures/wheatley_normal.jpg

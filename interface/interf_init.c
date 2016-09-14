@@ -6,7 +6,7 @@
 /*   By: dboudy <dboudy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/17 10:33:02 by dboudy            #+#    #+#             */
-/*   Updated: 2016/09/11 02:38:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 01:32:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int					interface_init(t_rt *rt)
 		return (-3);
 	}
 	ft_putstr("#Menu init ok\n");
+	rt->interf.obj_selected = rt->root->content;
 	rt->interf.flags |= INTER_INITIALIZED;
 	return (0);
 }
