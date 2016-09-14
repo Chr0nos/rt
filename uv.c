@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 15:42:49 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/13 17:09:12 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/14 19:16:14 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_v2f		get_uv_triangle(t_obj *obj, t_v4d p)
 			(double)((t_triangle*)(obj->content))->v2.uv.y + bary.z *
 			(double)((t_triangle*)(obj->content))->v3.uv.y)
 	};
-	result.x = 1.0f - result.x;
 	result.y = 1.0f - result.y;
 	return (result);
 }
