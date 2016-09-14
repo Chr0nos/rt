@@ -80,7 +80,6 @@ int					interf_setvalue(t_rt *rt, t_obj *obj, const char *line)
 		return (-2);
 	ret = interf_setvalue_core(split, obj, rt, cfg);
 	ft_freesplit(split);
-	free(split);
 	if (ret > 0)
 		obj->cfgbits |= (cfg->bit | SDB_INTERFACE_EDIT);
 	return (ret);

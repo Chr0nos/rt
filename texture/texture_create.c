@@ -94,6 +94,5 @@ t_texture				*texture_create(t_texture **lst, char *filepath)
 	else
 		noise_size = (t_v2i){200, 200};
 	ft_freesplit(tab);
-	free(tab);
 	return (texture_perlin(lst, noise_size, filepath));
 }

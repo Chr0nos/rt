@@ -130,12 +130,10 @@ int						parse_obj(t_obj *obj, const char *filepath)
 			break ;
 		}
 		else if (ret != 0)
-		{
 			ft_freesplit(s.av);
-			free(s.av);
-		}
 		free(line);
 	}
+	free(line);
 	ft_mfree(3, s.v, s.uv, s.n);
 	close(fd);
 	return (ret);

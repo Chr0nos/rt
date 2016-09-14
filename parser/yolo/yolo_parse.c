@@ -116,6 +116,7 @@ t_obj			*yolo_parse(const char *filepath, t_rtcfg *rset)
 			break ;
 		free(line);
 	}
+	free(line);
 	close(fd);
 	return (yolo_parse_finalize(obj));
 }
