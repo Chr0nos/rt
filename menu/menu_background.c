@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/27 13:05:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/13 14:33:08 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/14 06:35:30 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
 
 void			menu_background_init(t_rt *rt)
 {
+	if (rt->menu.background)
+		SDL_FreeSurface(rt->menu.background);
 	if (!(rt->menu.background = draw_make_surface(rt->sys.geometry)))
 		ft_putendl_fd("error: failed to malloc background surface", 2);
 	else
-	{
-		SDL_UnlockSurface(rt->menu.background);
 		menu_degrade(rt->menu.background, 0xfb70f6, COLOR_YELLOW);
-	}
 }
 
 void			menu_background_update(t_rt *rt)
