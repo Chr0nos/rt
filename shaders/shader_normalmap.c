@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 15:27:09 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/13 17:25:30 by alhote           ###   ########.fr       */
+/*   Updated: 2016/09/14 14:24:05 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ unsigned int	shader_color_normal_intersection(const t_render *r)
 		uv = get_uv_triangle(r->obj_intersect, r->intersection);
 	else
 		uv = shader_normalmap_uv(r);
+	uv = geo_clamp_v2f(uv, 0.0, 1.0);
 	return (draw_suv(tex->surface, uv));
 }
 

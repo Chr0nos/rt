@@ -6,7 +6,7 @@
 /*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/14 18:34:04 by alhote            #+#    #+#             */
-/*   Updated: 2016/09/01 16:13:53 by dboudy           ###   ########.fr       */
+/*   Updated: 2016/09/14 14:38:11 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ unsigned int		shader_color_texture_intersection(const t_render *r)
 		(t_shader_uvfunc){TRIANGLE, &shader_texture_uv_triangle}
 	};
 
-	if ((!tex) || (!tex->surface->pixels))
+	if ((p = 2) && ((!tex) || (!tex->surface->pixels)))
 	{
 		return ((r->obj_intersect->cfgbits & SDB_COLOR ?
 			((t_cube*)r->obj_intersect->content)->color : 0));
 	}
-	p = 2;
 	while ((p--) && (!(x[p].type & r->obj_intersect->type)))
 		;
 	uv = (p < 0) ? shader_texture_uv_generic(r) : x[p].uv(r);
 	uv_func = &draw_suv;
+	uv = geo_clamp_v2f(uv, 0.0, 1.0);
 	if (r->obj_intersect->cfgbits & SDB_COLOR)
 	{
 		return (blend_add(uv_func(tex->surface, uv),
