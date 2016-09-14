@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhote <alhote@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 03:31:46 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/26 02:08:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 17:13:59 by alhote           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 #include "shaders.h"
+#include "mesh.h"
 
 int			rt_node_display(t_obj *obj, int mode, void *userdata)
 {
@@ -101,5 +102,7 @@ void		rt_node_free(t_obj *node)
 		rt_node_free_shaders(node->shader);
 	if (node->name)
 		ft_memdel((void**)&node->name);
+	if (node->type & MESH)
+		ft_strdel(&((t_mesh*)(node->content))->filepath);
 	free(node);
 }
