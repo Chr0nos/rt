@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/13 20:46:06 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/25 06:21:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 05:58:58 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ t_texture			*texture_search(t_texture *tex,
 {
 	char	*real_path;
 
-	real_path = texture_cleanpath(ft_strdup(filepath));
 	if (!ft_strncmp(filepath, "perlin:", 7))
 		return (NULL);
+	real_path = texture_cleanpath(ft_strdup(filepath));
 	while (tex)
 	{
 		if (!ft_strcmp(tex->filepath, real_path))
