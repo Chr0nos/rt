@@ -36,7 +36,6 @@
 @[31m*  @[;01;04;35m* INTERFACE :@[;03;33m I :@[01;33m to launch / quit mode interface
 @[31m*	 @[;03;33mMouse left :@[01;33m to choose an object or param to scale@[01;33m
 @[31m*
-@[31m*@[33m	 -100 -10 -1 +1 +10 +100 : choose an incrementing factor	
 @[31m*@[33m	 Id		 : Change object
 @[31m*@[33m	 Type 		 : just give you information on type of the current object
 @[31m*@[33m	 Name 		 : define a new name to object
@@ -46,7 +45,7 @@
 @[31m*@[33m	 R G B		 : change colors parameters
 @[31m*@[33m	 Transparency	 : add or change transparency
 @[31m*@[33m	 Reflection	 : change the percentage of reflection
-@[31m*@[33m	 Refrection	 : change th percentage of refraction
+@[31m*@[33m	 Refraction	 : change the percentage of refraction
 @[31m*
 @[31m*	 @[;03;33mENTER :@[01;33m to confirm all changement in object and display@[01;33m
 @[31m*
