@@ -1,10 +1,10 @@
 CAMERA
 	pos: 0 0 -14
 SPHERE
-	size: 10
+	texture: textures/earth.jpg
+	color: #80000000
+	POINTLIGHT
+		intensity: 300
+PLAN
+	pos: 0 -1 0
 	color: #ffffff
-	SPHERE
-		texture: textures/earth.jpg
-		color: #80000000
-		POINTLIGHT
-			intensity: 30000
