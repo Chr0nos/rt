@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 21:19:40 by snicolet          #+#    #+#             */
-/*   Updated: 2016/09/14 06:31:20 by edelangh         ###   ########.fr       */
+/*   Updated: 2016/09/14 07:13:24 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 static void				rt_event_resize_menu(t_rt *rt)
 {
 	menu_configure_thumbs_size(rt);
-	menu_background_update(rt);
 	menu_update_positions(rt);
 }
 

@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/21 13:39:49 by snicolet          #+#    #+#             */
-/*   Updated: 2016/08/12 10:55:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/14 07:23:41 by edelangh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int				ls_isdir(const char *path);
 void			menu_degrade(SDL_Surface *surface,
 	const unsigned int scolor, const unsigned int ecolor);
 void			menu_background_init(t_rt *rt);
-void			menu_background_update(t_rt *rt);
 size_t			menu_configure_rts(t_rt *rt, t_list *files);
 void			menu_configure_thumbs_size(t_rt *rt);
 
