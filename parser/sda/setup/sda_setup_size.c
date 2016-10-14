@@ -6,7 +6,7 @@
 /*   By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 18:57:31 by snicolet          #+#    #+#             */
-/*   Updated: 2016/07/17 10:45:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/09/15 17:32:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 
 int			sda_setup_size(t_sda *e, t_obj *obj, char **av)
 {
-	const float		size = (float)ft_atod(av[0]);
+	float		size;
 
+	size = (float)ft_atod(av[0]);
+	if (size < 0.0f)
+		size = 0.0f;
 	if (obj->type == SETTING)
 	{
 		((t_setting*)obj->content)->size = size;
