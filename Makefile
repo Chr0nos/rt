@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/09/11 16:25:28 by snicolet         ###   ########.fr        #
+#    Updated: 2016/10/19 08:54:11 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -202,7 +202,12 @@ $(ALLDIR):
 $(OBJBUILDDIR)/%.o: %.c
 	$(CC) -c $< -o $@ $(INC) $(FLAGS)
 
-$(LIBFT)/libft.a:
+$(LIBFT)/Makefile:
+	@echo Fetching submodules
+	git submodule init
+	git submodule update
+	
+$(LIBFT)/libft.a: $(LIBFT)/Makefile
 	make -j -C $(LIBFT) FLAGS="$(FLAGS)"
 
 $(DRAW)/libdraw.a:
