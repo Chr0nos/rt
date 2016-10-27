@@ -6,7 +6,7 @@
 #    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2016/10/19 08:54:11 by snicolet         ###   ########.fr        #
+#*   Updated: 2016/10/27 04:10:52 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,13 @@ DRAW=./libs/libdraw
 LIBFT=./libs/libft
 CC=clang
 OBJBUILDDIR=build
-INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)
+INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT) -I /usr/local/include/
 
 ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
 	SDLHERE=$(shell test -f $(SDLLIB))
 	ifeq ("$(wildcard $(SDLHERE))", "")
-		SDLLINK=-L ~/.brew/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
+		SDLLINK=-L /usr/local/lib/ -L ~/.brew/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 		INC+=-I ~/.brew/include
 	else
 		SDLLINK=-framework sdl2 -framework SDL2_image -framework SDL2_ttf
