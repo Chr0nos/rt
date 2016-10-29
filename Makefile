@@ -202,6 +202,9 @@ $(ALLDIR):
 $(OBJBUILDDIR)/%.o: %.c
 	$(CC) -c $< -o $@ $(INC) $(FLAGS)
 
+$(LIBFT)/Makefile: submodules
+$(DRAW)/Makefile: submodules
+
 $(LIBFT)/libft.a:
 	make -j -C $(LIBFT) FLAGS="$(FLAGS)"
 
