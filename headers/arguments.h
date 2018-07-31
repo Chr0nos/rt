@@ -19,13 +19,12 @@
 
 typedef struct		s_argument
 {
-	const char			*name;
+	const char		*name;
 	int				params_mins;
 	int				(*f)(t_rt *, int, char **);
 
 }					t_argument;
 
-t_v2i				arg_getgeo(const char *s);
 int					arg_parse(t_rt *rt, int ac, char **av);
 int					arg_geometry(t_rt *rt, int ac, char **av);
 int					arg_fs(t_rt *rt, int ac, char **av);
