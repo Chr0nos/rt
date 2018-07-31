@@ -14,7 +14,7 @@ OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rt
-FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
+FLAGS=-Wall -Wextra -Werror -Weverything -Wno-strict-prototypes -Wno-strict-aliasing -pipe -Ofast -march=native -mtune=native -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
 endif
@@ -22,7 +22,7 @@ DRAW=./libs/libdraw
 LIBFT=./libs/libft
 CC=clang
 OBJBUILDDIR=build
-INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT) -I /usr/local/include/
+INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)/include -I /usr/local/include/
 
 ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
@@ -208,7 +208,7 @@ $(LIBFT)/Makefile:
 	git submodule update
 	
 $(LIBFT)/libft.a: $(LIBFT)/Makefile
-	make -j -C $(LIBFT) FLAGS="$(FLAGS)"
+	make -j -C $(LIBFT) CC=clang FLAGS="$(FLAGS)"
 
 $(DRAW)/libdraw.a:
 	make -j -C $(DRAW) FLAGS="$(FLAGS)"

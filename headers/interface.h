@@ -42,8 +42,8 @@ typedef struct s_obj		t_obj;
 typedef struct				s_interface_font
 {
 	const char				*path;
-	const int				size;
-	const unsigned int		color;
+	int						size;
+	unsigned int			color;
 	TTF_Font				*font;
 }							t_interface_font;
 

@@ -16,6 +16,18 @@
 #include "sda.h"
 #include "objects.h"
 
+static void		ft_putnchar(const char c, unsigned int n)
+{
+	while (n--)
+		ft_putchar(c);
+}
+
+static void		ft_debug_pstr(const char *str, unsigned int n)
+{
+	ft_putnchar(' ', n);
+	ft_printf("%s\n", str);
+}
+
 static void		rt_debug_childs(t_obj *item, unsigned int level)
 {
 	t_obj	*x;
@@ -89,7 +101,7 @@ void			rt_debug(t_obj *item, unsigned int level)
 	if (!item)
 		return ;
 	ft_debug_pstr("- type: ", level);
-	rt_puttype(item->type, 1);
+	rt_puttype((int)item->type, 1);
 	ft_printf("[%d]\n", (int)item->id);
 	rt_debug_elems(item, level);
 	write(1, "\n", 1);

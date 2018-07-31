@@ -41,7 +41,7 @@ typedef struct			s_sda_export
 	t_setting				*setting;
 	t_obj					*setting_obj;
 	char					*tbl;
-	const int				fd;
+	int						fd;
 }						t_sda_export;
 
 typedef	struct			s_sda_shader

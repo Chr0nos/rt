@@ -70,7 +70,7 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	if (!(export->tbl = sda_export_ntab(lvl + 1)))
 		return (-1);
 	write(export->fd, export->tbl, lvl);
-	rt_puttype(obj->type, export->fd);
+	rt_puttype((int)obj->type, export->fd);
 	write(export->fd, "\n", 1);
 	sda_export_item_loop(obj, export, lvl, 0);
 	free(export->tbl);

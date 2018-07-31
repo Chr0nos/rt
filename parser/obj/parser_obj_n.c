@@ -18,7 +18,7 @@ int				parse_obj_n(t_sda_obj *s)
 	if ((s->select_n >= s->size_n) || (!s->n))
 	{
 		s->size_n += 3;
-		s->n = (t_v4d*)ft_realloc(s->n,
+		s->n = (t_v4d*)ft_realloc_fake(s->n,
 			(unsigned int)(sizeof(t_v4d) * (s->size_n - 3)),
 			(unsigned int)(sizeof(t_v4d) * s->size_n));
 	}

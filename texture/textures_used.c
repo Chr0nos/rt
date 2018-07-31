@@ -44,10 +44,13 @@ t_list			*textures_used(t_obj *root)
 	return (used);
 }
 
-static void		textures_used_display_foreach(void *content)
+static void		textures_used_display_foreach(void *userdata,
+		size_t content_size, void *content)
 {
 	t_texture	*tex;
 
+	(void)userdata;
+	(void)content_size;
 	tex = content;
 	if (tex->filepath)
 		ft_printf("#texture in use: %s\n", tex->filepath);
@@ -58,6 +61,6 @@ void			textures_used_display(t_obj *root)
 	t_list	*lst;
 
 	lst = textures_used(root);
-	ft_lstforeach(lst, &textures_used_display_foreach);
+	ft_lstforeach(lst, NULL, &textures_used_display_foreach);
 	ft_lstdel(&lst, NULL);
 }

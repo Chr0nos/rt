@@ -55,7 +55,7 @@ t_obj				*rt_factory_alloc(t_type type, t_obj *parent)
 		return (NULL);
 	if (!(obj = malloc(size)))
 		return (NULL);
-	rt_obj_init(obj, type);
+	rt_obj_init(obj, (int)type);
 	if (type == ROOT)
 	{
 		rt_box_update(obj);

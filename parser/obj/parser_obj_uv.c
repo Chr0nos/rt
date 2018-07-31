@@ -18,7 +18,7 @@ int				parse_obj_uv(t_sda_obj *s)
 	if ((s->select_uv >= s->size_uv) || (!s->uv))
 	{
 		s->size_uv += 3;
-		s->uv = (t_v2f*)ft_realloc(s->uv,
+		s->uv = (t_v2f*)ft_realloc_fake(s->uv,
 			(unsigned int)(sizeof(t_v2f) * (s->size_uv - 3)),
 			(unsigned int)(sizeof(t_v2f) * s->size_uv));
 	}

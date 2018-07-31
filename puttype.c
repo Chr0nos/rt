@@ -66,7 +66,7 @@ char			*search_str_type(int type)
 	int				p;
 
 	p = 17;
-	while ((p--) && (types[p].type != type))
+	while ((p--) && ((int)types[p].type != type))
 		;
 	return ((p < 0) ? ft_strdup("UNKNOW") : ft_strdup(types[p].str));
 }

@@ -13,14 +13,14 @@
 #ifndef ARGUMENTS_H
 # define ARGUMENTS_H
 # include "rt.h"
-# define PARSE_ARG_STOP 1 << 30
-# define PARSE_ARG_ERROR 1 << 29
-# define PARSE_ARG_STOPALL 1 << 28
+# define PARSE_ARG_STOP (1 << 30)
+# define PARSE_ARG_ERROR (1 << 29)
+# define PARSE_ARG_STOPALL (1 << 28)
 
 typedef struct		s_argument
 {
-	const char		*name;
-	const int		params_mins;
+	const char			*name;
+	int				params_mins;
 	int				(*f)(t_rt *, int, char **);
 
 }					t_argument;
