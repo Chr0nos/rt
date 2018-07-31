@@ -103,7 +103,7 @@ int			sda_export_bitmap_file(const char *filepath, SDL_Surface *surface)
 	unsigned int	size;
 
 	bitmap = sda_export_bitmap(surface, &size);
-	if ((fd = open(filepath, O_CREAT | O_TRUNC | O_RDWR)) <= 0)
+	if ((fd = open(filepath, O_CREAT | O_TRUNC | O_RDWR, 0644)) <= 0)
 	{
 		free(bitmap);
 		return (-1);
