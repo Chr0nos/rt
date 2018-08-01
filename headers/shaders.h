@@ -30,8 +30,8 @@ typedef enum		e_shader_type
 {
 	NO_SHADER = 0,
 	LIGHT_SHADER = 1,
-	INTERSECT_SHADER = 1 << 1,
-	SCREEN_SHADER = 1 << 2
+	INTERSECT_SHADER = (1 << 1),
+	SCREEN_SHADER = (1 << 2)
 }					t_shatyp;
 
 typedef enum		e_shader_func

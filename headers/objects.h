@@ -22,13 +22,13 @@ struct s_rt;
 enum	e_obj_flags
 {
 	FLAG_CSG_NEGATIVE = 1,
-	FLAG_CSG_NONE = 1 << 1
+	FLAG_CSG_NONE = (1 << 1)
 };
 
 enum	e_flag_intersect
 {
 	INTER_IN = 1,
-	INTER_OUT = 1 << 2
+	INTER_OUT = (1 << 2)
 };
 
 typedef struct			s_obj
