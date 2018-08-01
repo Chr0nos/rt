@@ -17,18 +17,6 @@
 #include "objects.h"
 #include <limits.h>
 
-static void		ft_putnchar(const char c, unsigned int n)
-{
-	while (n--)
-		ft_putchar(c);
-}
-
-static void		ft_debug_pstr(const char *str, unsigned int n)
-{
-	ft_putnchar(' ', n);
-	ft_printf("%s\n", str);
-}
-
 static void		rt_debug_childs(t_obj *item, unsigned int level)
 {
 	t_obj	*x;
@@ -43,7 +31,7 @@ static void		rt_debug_childs(t_obj *item, unsigned int level)
 
 static void		rt_printf_ntab(struct s_printf *pf)
 {
-	const unsigned int		n = (unsigned int)pf->raw_value;
+	const unsigned int		n = (unsigned int)pf->raw_value * 2;
 
 	if (n > INT_MAX)
 		return ;
@@ -97,12 +85,10 @@ void			rt_debug(t_obj *item, unsigned int level)
 {
 	if (!item)
 		return ;
-	// ft_printf("%k %s %s\n",
-		// &rt_printf_ntab, level, "type:", search_str_type((int)item->type));
-	ft_debug_pstr("- type: ", level);
-	rt_puttype((int)item->type, 1);
-	ft_printf("[%d]\n", (int)item->id);
-	rt_debug_elems(item, level);
+	ft_printf("\n%k %s %s [%u]\n",
+		&rt_printf_ntab, level, "- type:", get_strtype((int)item->type),
+		item->id);
+	rt_debug_elems(item, level + 2);
 	write(1, "\n", 1);
 	if (item->childs)
 	{
