@@ -86,7 +86,7 @@ PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
 		parser_obj_checksplit.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
-	rays.o pc_rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
+	rays.o pc_rays.o bounds.o node.o puttype.o rad2deg.o display.o \
 	configure.o parser/parser.o check_camera.o \
 	rt_quit.o export.o uv.o camera_switch.o
 

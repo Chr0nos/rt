@@ -114,7 +114,6 @@ int				sdl_event(SDL_Event *event, t_rt *rt);
 int				rt_event_resize(SDL_Event *event, t_rt *rt);
 int				toggle_key(int keycode, t_rt *rt);
 
-void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
 unsigned int	rt_factory_getuid(void);
