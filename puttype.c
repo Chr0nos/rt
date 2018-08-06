@@ -81,11 +81,3 @@ char			*search_str_type(int type)
 	return (ft_strdup(get_strtype(type)));
 }
 
-void			rt_puttype(int type, const int fd)
-{
-	char *str;
-
-	str = search_str_type(type);
-	ft_putstr_fd(str, fd);
-	free(str);
-}
