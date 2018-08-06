@@ -94,7 +94,6 @@ typedef struct	s_rt
 	SDL_Surface		*render_screen;
 }				t_rt;
 
-void			rt_putbits(size_t bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);
