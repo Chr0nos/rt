@@ -32,7 +32,7 @@ char	*interf_getname(t_obj *obj, t_sda_export *e)
 char	*interf_gettype(t_obj *obj, t_sda_export *e)
 {
 	(void)e;
-	return (search_str_type(obj->type));
+	return (search_str_type((int)obj->type));
 }
 
 char	*interf_getalpha(t_obj *obj, t_sda_export *e)

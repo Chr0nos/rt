@@ -69,9 +69,8 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 		sda_settings_stack(export->setting_obj, obj);
 	if (!(export->tbl = sda_export_ntab(lvl + 1)))
 		return (-1);
-	write(export->fd, export->tbl, lvl);
-	rt_puttype(obj->type, export->fd);
-	write(export->fd, "\n", 1);
+	ft_dprintf(export->fd, "%.*s%s\n",
+			lvl, export->tbl, get_strtype((int) obj->type));
 	sda_export_item_loop(obj, export, lvl, 0);
 	free(export->tbl);
 	return (OK);

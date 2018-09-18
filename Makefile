@@ -14,7 +14,7 @@ OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rt
-FLAGS=-Wall -Wextra -Werror -pipe -Ofast -march=native -mtune=native -Weverything -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
+FLAGS=-Wall -Wextra -Werror -Weverything -Wno-strict-prototypes -Wno-strict-aliasing -pipe -Ofast -march=native -mtune=native -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
 endif
@@ -22,7 +22,7 @@ DRAW=./libs/libdraw
 LIBFT=./libs/libft
 CC=clang
 OBJBUILDDIR=build
-INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT) -I /usr/local/include/
+INC=-I./headers -I $(DRAW)/headers/ -I $(LIBFT)/include -I /usr/local/include/
 
 ifeq ($(OPSYS), Darwin)
 	SDLLIB=/Library/Frameworks/SDL2.framework/Versions/A/Headers/SDL.h
@@ -86,8 +86,8 @@ PARSE_OBJ=parse_obj.o parse_obj_dispatch.o parser_obj_v.o parser_obj_uv.o \
 		parser_obj_checksplit.o
 
 OBJ=main.o debug.o factory.o check_cube.o box.o camera.o \
-	rays.o pc_rays.o bounds.o node.o puttype.o putbounds.o rad2deg.o display.o \
-	configure.o putbits.o parser/parser.o check_camera.o \
+	rays.o pc_rays.o bounds.o node.o puttype.o rad2deg.o display.o \
+	configure.o parser/parser.o check_camera.o \
 	rt_quit.o export.o uv.o camera_switch.o
 
 TEXTURE_DIR=texture
@@ -208,7 +208,7 @@ $(LIBFT)/Makefile:
 	git submodule update
 	
 $(LIBFT)/libft.a: $(LIBFT)/Makefile
-	make -j -C $(LIBFT) FLAGS="$(FLAGS)"
+	make -j -C $(LIBFT) CC=clang FLAGS="$(FLAGS)"
 
 $(DRAW)/libdraw.a:
 	make -j -C $(DRAW) FLAGS="$(FLAGS)"

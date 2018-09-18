@@ -94,12 +94,11 @@ typedef struct	s_rt
 	SDL_Surface		*render_screen;
 }				t_rt;
 
-void			rt_putbits(size_t bits);
 void			rt_configure(t_rt *rt);
 int				rt_create_window(t_rt *rt);
 int				rt_start(t_rt *rt);
 char			*search_str_type(int type);
-void			rt_puttype(int type, const int fd);
+const char		*get_strtype(const int type);
 t_type			rt_gettype(const char *str);
 
 /*
@@ -114,7 +113,6 @@ int				sdl_event(SDL_Event *event, t_rt *rt);
 int				rt_event_resize(SDL_Event *event, t_rt *rt);
 int				toggle_key(int keycode, t_rt *rt);
 
-void			rt_putbounds(t_obj *obj, unsigned int p);
 void			rt_debug(t_obj *item, unsigned int level);
 t_obj			*rt_factory_alloc(enum e_type type, t_obj *parent);
 unsigned int	rt_factory_getuid(void);

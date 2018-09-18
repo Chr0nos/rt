@@ -42,7 +42,7 @@ t_type			rt_gettype(const char *str)
 	return ((p < 0) ? INVALID : types[p].type);
 }
 
-char			*search_str_type(int type)
+const char		*get_strtype(const int type)
 {
 	const t_typecmp	types[] = {
 		{CUBE, "CUBE"},
@@ -61,21 +61,23 @@ char			*search_str_type(int type)
 		{SUNLIGHT, "SUNLIGHT"},
 		{SETTING, "SETTING"},
 		{TRIANGLE, "TRIANGLE"},
-		{MESH, "MESH"}
+		{MESH, "MESH"},
+		{EMPTY, NULL}
 	};
-	int				p;
+	unsigned int		p;
 
-	p = 17;
-	while ((p--) && (types[p].type != type))
-		;
-	return ((p < 0) ? ft_strdup("UNKNOW") : ft_strdup(types[p].str));
+	p = 0;
+	while (types[p].str)
+	{
+		if ((int)types[p].type == type)
+			return (types[p].str);
+		p++;
+	}
+	return ("UNKNOW");
 }
 
-void			rt_puttype(int type, const int fd)
+char			*search_str_type(int type)
 {
-	char *str;
-
-	str = search_str_type(type);
-	ft_putstr_fd(str, fd);
-	free(str);
+	return (ft_strdup(get_strtype(type)));
 }
+

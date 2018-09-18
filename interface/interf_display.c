@@ -86,7 +86,7 @@ void				interface_display(t_rt *rt)
 	screen = rt->interf.screen;
 	if ((!interface_fit(rt->sys.geometry)) || (!screen) || (!rt->sys.screen))
 		;
-	else if (!rt->interf.flags & INTER_INITIALIZED)
+	else if (!(rt->interf.flags & INTER_INITIALIZED))
 		ft_putendl("#Menu: warning: interface not initialized i will hide\n");
 	else
 	{
