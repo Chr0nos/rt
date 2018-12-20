@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include "sda.h"
 #include "objects.h"
+#include <limits.h>
 
 static void		rt_debug_childs(t_obj *item, unsigned int level)
 {
@@ -28,70 +29,66 @@ static void		rt_debug_childs(t_obj *item, unsigned int level)
 	}
 }
 
-static void		rt_debug_color(unsigned int level, unsigned int color)
+static void		rt_printf_ntab(struct s_printf *pf)
 {
-	char		hex[12];
-	const char	*ba = "0123456789ABCEDF";
+	const unsigned int		n = (unsigned int)pf->raw_value * 2;
 
-	ft_itobase((int)color, hex, 16, ba);
-	ft_stralign_right(hex, 6);
-	ft_strreplace(hex, ' ', '0');
-	if (hex[0] == '-')
-		ft_memmove(hex, &hex[1], 11);
-	ft_putnchar('\t', level + 1);
-	ft_printf("color: [%d:%d:%d] (#%s)\n", (color >> 16) & 0xff,
-		(color >> 8) & 0xff, color & 0xff, hex);
+	if (n > INT_MAX)
+		return ;
+	ft_printf_padding(pf, ' ', (int)n);
+	pf->slen += n;
 }
 
-static void		rt_debug_rot(t_obj *obj, unsigned int lvl)
+static void		rt_debug_rot(const t_v4d rad, unsigned int lvl)
 {
-	char	*av[6];
+	t_v4d		deg;
 
-	av[0] = ft_dtoa(obj->rotation.x, 6);
-	av[1] = ft_dtoa(obj->rotation.y, 6);
-	av[2] = ft_dtoa(obj->rotation.z, 6);
-	av[3] = ft_dtoa(rad2deg(obj->rotation.x), 6);
-	av[4] = ft_dtoa(rad2deg(obj->rotation.y), 6);
-	av[5] = ft_dtoa(rad2deg(obj->rotation.z), 6);
-	ft_putnchar('\t', lvl + 1);
-	ft_printf("rotation rad: {%s, %s, %s}\n", av[0], av[1], av[2]);
-	ft_putnchar('\t', lvl + 1);
-	ft_printf("rotation deg: {%s, %s, %s}\n", av[3], av[4], av[5]);
-	ft_free_tab(av, 6);
+	deg = (t_v4d){
+		.x = rad2deg(rad.x),
+		.y = rad2deg(rad.y),
+		.z = rad2deg(rad.z),
+		.w = 0.0
+	};
+	ft_printf("%k %s {%.6f, %.6f, %.6f}\n%k %s {%.6f, %.6f, %.6f}\n",
+		&rt_printf_ntab, lvl, "rotation rad:", rad.x, rad.y, rad.z,
+		&rt_printf_ntab, lvl, "rotation deg:", deg.x, deg.y, deg.z);
 }
 
 static void		rt_debug_elems(t_obj *obj, unsigned int lvl)
 {
-	const unsigned int	precision = 2;
-	char				*tab[3];
-
 	if (obj->type != ROOT)
 	{
-		ft_putnchar('\t', lvl + 1);
-		tab[0] = ft_dtoa((double)obj->trans.w.x, precision);
-		tab[1] = ft_dtoa((double)obj->trans.w.y, precision);
-		tab[2] = ft_dtoa((double)obj->trans.w.z, precision);
-		ft_printf("pos: (x: %s, y: %s, z: %s)\n", tab[0], tab[1], tab[2]);
-		ft_free_tab(tab, 3);
+		ft_printf("%k pos: (%s%.2f%s%.2f%s%.2f)\n",
+			&rt_printf_ntab, lvl + 1,
+			"x: ", obj->trans.w.x,
+			", y: ", obj->trans.w.y,
+			", z: ", obj->trans.w.z);
 	}
 	if ((obj->cfgbits & SDB_COLOR) && (obj->type != SETTING))
-		rt_debug_color(lvl, *(unsigned int*)obj->content);
-	ft_debug_pstr("bounds: ", lvl + 1);
-	rt_putbounds(obj, 3);
+	{
+		ft_printf("%k color: #%010x\n",
+			&rt_printf_ntab, lvl + 1, *(unsigned int *)obj->content);
+	}
+	ft_printf("%k %s [%f:%f] [%f:%f] [%f:%f]\n",
+		&rt_printf_ntab, lvl + 1,
+		"bounds:",
+		(double)obj->bounds.xmin, (double)obj->bounds.xmax,
+		(double)obj->bounds.ymin, (double)obj->bounds.ymax,
+		(double)obj->bounds.zmin, (double)obj->bounds.zmax);
 	if (obj->cfgbits & SDB_ROT)
-		rt_debug_rot(obj, lvl);
-	ft_debug_pstr("config: ", lvl + 1);
-	rt_putbits((unsigned int)obj->cfgbits);
+		rt_debug_rot(obj->rotation, lvl + 1);
+	ft_printf("%k %s %064lb",
+		&rt_printf_ntab, lvl + 1, "config:", obj->cfgbits);
 }
 
 void			rt_debug(t_obj *item, unsigned int level)
 {
 	if (!item)
 		return ;
-	ft_debug_pstr("- type: ", level);
-	rt_puttype(item->type, 1);
-	ft_printf("[%d]\n", (int)item->id);
-	rt_debug_elems(item, level);
+	ft_printf("\n%k %s %s [%u]\n",
+		&rt_printf_ntab, level, "- type:", get_strtype((int)item->type),
+		item->id);
+	rt_debug_elems(item, level + 2);
 	write(1, "\n", 1);
 	if (item->childs)
 	{

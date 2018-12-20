@@ -15,25 +15,6 @@
 #include "libft.h"
 #define ARG_NUM 5
 
-t_v2i		arg_getgeo(const char *s)
-{
-	t_v2i		geo;
-	char		*sx;
-	char		*sy;
-	int			p;
-
-	p = 0;
-	while (ft_isdigit(s[p]))
-		p++;
-	sx = ft_strndup(s, (unsigned int)p);
-	p++;
-	sy = ft_strdup(&s[p]);
-	geo.x = ft_atoi(sx);
-	geo.y = ft_atoi(sy);
-	ft_mfree(2, sx, sy);
-	return (geo);
-}
-
 /*
 ** returns the index in the tab of name
 */

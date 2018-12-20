@@ -68,8 +68,8 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 	t_thread_args		args[THREAD_COUNT];
 	int					i;
 
-	i = -1;
-	while (++i < THREAD_COUNT)
+	i = THREAD_COUNT;
+	while (i--)
 	{
 		args[i].rt = rt;
 		args[i].pixels = pixels;
@@ -82,8 +82,8 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 			(void *(*)(void*))&rt_rays_pixels_threaded, args + i))
 			ft_putstr_fd("thread creation error\n", 2);
 	}
-	i = -1;
-	while (++i < THREAD_COUNT)
+	i = THREAD_COUNT;
+	while (i--)
 		pthread_join(threads[i], NULL);
 	filter_apply(rt->sys.screen, rt->keyboard);
 }

@@ -13,19 +13,18 @@
 #ifndef ARGUMENTS_H
 # define ARGUMENTS_H
 # include "rt.h"
-# define PARSE_ARG_STOP 1 << 30
-# define PARSE_ARG_ERROR 1 << 29
-# define PARSE_ARG_STOPALL 1 << 28
+# define PARSE_ARG_STOP (1 << 30)
+# define PARSE_ARG_ERROR (1 << 29)
+# define PARSE_ARG_STOPALL (1 << 28)
 
 typedef struct		s_argument
 {
 	const char		*name;
-	const int		params_mins;
+	int				params_mins;
 	int				(*f)(t_rt *, int, char **);
 
 }					t_argument;
 
-t_v2i				arg_getgeo(const char *s);
 int					arg_parse(t_rt *rt, int ac, char **av);
 int					arg_geometry(t_rt *rt, int ac, char **av);
 int					arg_fs(t_rt *rt, int ac, char **av);

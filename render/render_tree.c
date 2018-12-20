@@ -21,7 +21,7 @@ static t_obj	*rt_rtree_push(t_obj **iter, t_obj *obj, t_obj *parent,
 	t_obj		*ob;
 
 	*iter = &((*iter)[1]);
-	ob = rt_obj_init(*iter, obj->type | NOSHADER);
+	ob = rt_obj_init(*iter, (int)obj->type | NOSHADER);
 	rt_obj_addchild(parent, ob)->trans = *mat;
 	ob->shader = obj->shader;
 	ob->content = obj->content;

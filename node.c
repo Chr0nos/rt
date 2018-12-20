@@ -19,8 +19,7 @@ int			rt_node_display(t_obj *obj, int mode, void *userdata)
 {
 	(void)userdata;
 	(void)mode;
-	rt_puttype(obj->type, 1);
-	ft_printf("[%d] ", (int)obj->id);
+	ft_printf("%s%s[%d] ", get_strtype((int)obj->type), (int)obj->id);
 	return (0);
 }
 
