@@ -13,6 +13,9 @@
 #include "rt.h"
 #include "keyboard.h"
 #include "menu.h"
+#define AXIS_X	(struct s_v3d){1.0, 0.0, 0.0}
+#define AXIS_Y	(struct s_v3d){0.0, 1.0, 0.0}
+#define AXIS_Z	(struct s_v3d){0.0, 0.0, 1.0}
 
 t_obj	*rt_obj_getcamera(t_obj *obj)
 {
@@ -57,9 +60,11 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 
 void	camera_rotate(t_rt *rt, const double x, const int dir)
 {
-	t_obj	*cam;
+	t_obj				*cam;
+	struct s_quaternion	*q;
 
 	cam = rt->root->content;
+	q = &((t_camera*)cam->content)->q;
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
 		cam->rotation.y += (dir & ROTATE_LEFT) ? -x : x;
 	if (dir & (ROTATE_UP | ROTATE_DOWN))
@@ -68,6 +73,20 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation.z += (dir & ROLL_LEFT) ? -x : x;
 	cam->trans = geo_mk4_rotxyz(
 		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
+	// quaternion part
+	if (dir & ROTATE_LEFT)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Y, x));
+	else if (dir & ROTATE_RIGHT)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Y, -x));
+	if (dir & ROTATE_UP)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_X, x));
+	else if (dir & ROTATE_DOWN)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_X, -x));
+	if (dir & ROLL_LEFT)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Z, x));
+	else if (dir & ROLL_LEFT)
+		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Z, -x));
+	// cam->trans = geo_quat_tomatrix_offset(*q, cam->trans.w);
 }
 
 void	camera_save(t_rt *rt)
@@ -97,6 +116,7 @@ int		camera_reset(t_rt *rt)
 	cam = obj->content;
 	obj->trans = cam->origin;
 	obj->rotation = cam->origin_rot;
+	cam->q = geo_quat_identity();
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }

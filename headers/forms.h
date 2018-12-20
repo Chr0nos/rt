@@ -13,6 +13,8 @@
 #ifndef FORMS_H
 # define FORMS_H
 # include "draw.h"
+# include "geo.h"
+# include "quaternion.h"
 # include "texture.h"
 # include "forms_bits.h"
 
@@ -31,12 +33,6 @@ typedef struct			s_typecmp
 	t_type				type;
 	const char			*str;
 }						t_typecmp;
-
-typedef struct			s_v2d
-{
-	double				x;
-	double				y;
-}						t_v2d;
 
 typedef struct			s_typesize
 {
@@ -111,6 +107,7 @@ typedef struct			s_plight
 
 typedef struct			s_camera
 {
+	struct s_quaternion	q;
 	t_mattf				rtrans;
 	t_v2d				steppx;
 	t_v4d				rayfix;
