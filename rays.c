@@ -68,8 +68,8 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 	t_thread_args		args[THREAD_COUNT];
 	int					i;
 
-	i = THREAD_COUNT;
-	while (i--)
+	i = 0;
+	while (i < THREAD_COUNT)
 	{
 		args[i].rt = rt;
 		args[i].pixels = pixels;
@@ -78,11 +78,13 @@ static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
 		args[i].thread_count = THREAD_COUNT;
 		args[i].x_start = rt->sys.geometry.x / THREAD_COUNT * i;
 		args[i].x_end = args[i].x_start + rt->sys.geometry.x / THREAD_COUNT;
+		if (i + 1 == THREAD_COUNT)
+			args[i].x_end = rt->sys.geometry.x;
 		if (pthread_create(threads + i, NULL,
 			(void *(*)(void*))&rt_rays_pixels_threaded, args + i))
 			ft_putstr_fd("thread creation error\n", 2);
+		i++;
 	}
-	i = THREAD_COUNT;
 	while (i--)
 		pthread_join(threads[i], NULL);
 	filter_apply(rt->sys.screen, rt->keyboard);
