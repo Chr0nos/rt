@@ -32,7 +32,7 @@ int			arg_geometry(t_rt *rt, int ac, char **av)
 		ft_putstr_fd("error: size is too big: refusing job\n", STDERR_FILENO);
 		return (PARSE_ARG_ERROR);
 	}
-	ft_printf("geometry set: x: %d y: %d\n", rt->sys.geometry.x,
+	ft_printf("# geometry set: x: %d y: %d\n", rt->sys.geometry.x,
 		rt->sys.geometry.y);
 	return (1);
 }
