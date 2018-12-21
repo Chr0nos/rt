@@ -20,5 +20,5 @@ char	*sda_export_obj(t_obj *obj, t_sda_export *e)
 	(void)e;
 	if (!(obj->cfgbits & SDB_OBJ))
 		return (NULL);
-	return (((t_mesh*)(obj->content))->filepath);
+	return (ft_strdup(((t_mesh*)(obj->content))->filepath));
 }

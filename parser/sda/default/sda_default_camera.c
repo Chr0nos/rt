@@ -13,6 +13,7 @@
 #include "sda.h"
 #include "parser.h"
 #include "objects.h"
+#include "quaternion.h"
 
 void	sda_default_camera(t_rt *rt, t_obj *obj)
 {
@@ -24,5 +25,6 @@ void	sda_default_camera(t_rt *rt, t_obj *obj)
 	cam = obj->content;
 	if (!(obj->cfgbits & SDB_FOV))
 		cam->fov = -49.124;
+	cam->q = geo_quat_identity();
 	yolo_camera_save(obj);
 }

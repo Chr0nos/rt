@@ -40,7 +40,6 @@ typedef struct			s_sda_export
 	const struct s_sda_cfg	*cfg;
 	t_setting				*setting;
 	t_obj					*setting_obj;
-	char					*tbl;
 	int						fd;
 }						t_sda_export;
 

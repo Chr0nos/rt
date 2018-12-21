@@ -17,17 +17,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-char		*sda_export_ntab(unsigned int lvl)
-{
-	char	*tbl;
-
-	if (!(tbl = malloc(lvl + 1)))
-		return (NULL);
-	tbl[lvl] = '\0';
-	ft_memset(tbl, '\t', lvl);
-	return (tbl);
-}
-
 static void	sda_export_line(t_obj *obj, t_sda_export *export,
 	const unsigned int lvl, const int p)
 {
@@ -35,10 +24,10 @@ static void	sda_export_line(t_obj *obj, t_sda_export *export,
 
 	if (!(value = export->cfg[p].export(obj, export)))
 		return ;
-	write(export->fd, export->tbl, lvl + 1);
-	ft_putstr_fd(export->cfg[p].str, export->fd);
-	ft_putchar_fd(' ', export->fd);
-	ft_putendl_fd(value, export->fd);
+	ft_dprintf(export->fd, "%-*.1k%s %s\n",
+		lvl + 1, ft_printf_conv_padding, '\t',
+		export->cfg[p].str,
+		value);
 	free(value);
 }
 
@@ -67,12 +56,10 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	export = userdata;
 	if (obj->type == SETTING)
 		sda_settings_stack(export->setting_obj, obj);
-	if (!(export->tbl = sda_export_ntab(lvl + 1)))
-		return (-1);
-	ft_dprintf(export->fd, "%.*s%s\n",
-			lvl, export->tbl, get_strtype((int) obj->type));
+	ft_dprintf(export->fd, "%-*.1k %s\n",
+			lvl, ft_printf_conv_padding, '\t',
+			get_strtype((int) obj->type));
 	sda_export_item_loop(obj, export, lvl, 0);
-	free(export->tbl);
 	return (OK);
 }
 
@@ -88,7 +75,7 @@ void		sda_export(const t_rt *rt, const int fd)
 	setting_obj.content = &stack_setting;
 	stack_setting = (t_setting){0x000000, 1.0f, NULL, 0, 0.0,
 		rt->settings.bgcolor};
-	export = (t_sda_export){cfg, &stack_setting, &setting_obj, NULL, fd};
+	export = (t_sda_export){cfg, &stack_setting, &setting_obj, fd};
 	ft_putstr_fd("#sda export\n", fd);
 	rt_node_foreach(rt->root, INFIX, &sda_export_item, &export);
 	ft_putstr_fd("#end of file\n", fd);
