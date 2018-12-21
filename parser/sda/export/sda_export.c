@@ -24,7 +24,7 @@ static void	sda_export_line(t_obj *obj, t_sda_export *export,
 
 	if (!(value = export->cfg[p].export(obj, export)))
 		return ;
-	ft_dprintf(export->fd, "%-*.1k%s %s\n",
+	ft_dprintf(export->fd, "%-*.1k%s%s\n",
 		lvl + 1, ft_printf_conv_padding, '\t',
 		export->cfg[p].str,
 		value);
@@ -56,7 +56,7 @@ static int	sda_export_item(t_obj *obj, int mode, void *userdata)
 	export = userdata;
 	if (obj->type == SETTING)
 		sda_settings_stack(export->setting_obj, obj);
-	ft_dprintf(export->fd, "%-*.1k %s\n",
+	ft_dprintf(export->fd, "%-*.1k%s\n",
 			lvl, ft_printf_conv_padding, '\t',
 			get_strtype((int) obj->type));
 	sda_export_item_loop(obj, export, lvl, 0);
