@@ -40,5 +40,5 @@ int				arg_display_help(t_rt *rt, int ac, char **av)
 	(void)rt;
 	read_txt_help("arguments/arg_help.txt");
 	read_txt_help("arguments/arg_help_key.txt");
-	return (0);
+	return (PARSE_ARG_STOPALL);
 }
