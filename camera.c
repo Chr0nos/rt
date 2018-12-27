@@ -61,7 +61,7 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	struct s_quaternion	*q;
 
 	cam = rt->root->content;
-	q = &((t_camera*)cam->content)->q;
+	q = &cam->transform.q;
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
 		cam->rotation.y += (dir & ROTATE_LEFT) ? -x : x;
 	if (dir & (ROTATE_UP | ROTATE_DOWN))
@@ -72,17 +72,17 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		// cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
 	// quaternion part
 	if (dir & ROTATE_LEFT)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Y, x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.y, x));
 	else if (dir & ROTATE_RIGHT)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Y, -x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.y, -x));
 	if (dir & ROTATE_UP)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_X, x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.x, x));
 	else if (dir & ROTATE_DOWN)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_X, -x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.x, -x));
 	if (dir & ROLL_LEFT)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Z, x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, x));
 	else if (dir & ROLL_RIGHT)
-		*q = geo_quat_mult(*q, geo_quat_rot(AXIS_Z, -x));
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, -x));
 	cam->trans = geo_quat_tomatrix_offset(*q, cam->trans.w);
 }
 
@@ -113,8 +113,9 @@ int		camera_reset(t_rt *rt)
 	cam = obj->content;
 	obj->trans = cam->origin;
 	obj->rotation = cam->origin_rot;
-	cam->q = geo_quat_from_rot(
+	obj->transform.q = geo_quat_from_rot(
 		(t_v3d){obj->rotation.x, obj->rotation.y, obj->rotation.z});
+	// obj->trans = geo_quat_tomatrix_offset(cam->q, obj->trans.w);
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }

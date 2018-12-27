@@ -107,7 +107,6 @@ typedef struct			s_plight
 
 typedef struct			s_camera
 {
-	struct s_quaternion	q;
 	t_mattf				rtrans;
 	t_v2d				steppx;
 	t_v4d				rayfix;

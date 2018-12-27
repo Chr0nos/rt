@@ -21,6 +21,14 @@ void		yolo_camera_save(t_obj *camera)
 	cam = camera->content;
 	cam->origin_rot = camera->rotation;
 	cam->origin = camera->trans;
+	camera->transform.q = geo_quat_from_rot((t_v3d){
+		camera->rotation.x,
+		camera->rotation.y,
+		camera->rotation.z
+	});
+	camera->transform.q = geo_quat_inv(camera->transform.q);
+	camera->trans = geo_quat_tomatrix_offset(
+		camera->transform.q, camera->trans.w);
 }
 
 int			yolo_setup_camera(t_obj *obj, size_t ac, char **av)

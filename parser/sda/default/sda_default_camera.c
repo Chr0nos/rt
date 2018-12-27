@@ -25,7 +25,7 @@ void	sda_default_camera(t_rt *rt, t_obj *obj)
 	cam = obj->content;
 	if (!(obj->cfgbits & SDB_FOV))
 		cam->fov = -49.124;
-	cam->q = geo_quat_from_rot(
+	obj->transform.q = geo_quat_from_rot(
 		(t_v3d){obj->rotation.x, obj->rotation.y, obj->rotation.z});
 	yolo_camera_save(obj);
 }

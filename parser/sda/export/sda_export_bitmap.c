@@ -23,7 +23,7 @@
 static void	sda_bmp_dump(unsigned char *dest, SDL_Surface *surface)
 {
 	unsigned int		color;
-	t_point				px;
+	t_v2i				px;
 
 	px.y = surface->h;
 	while (px.y--)
