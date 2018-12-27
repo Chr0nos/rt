@@ -61,8 +61,7 @@ static void		*rt_rays_pixels_threaded(const t_thread_args *args)
 	return (NULL);
 }
 
-static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels,
-	t_m4 m)
+static void		rt_rays_pixels(t_rt *rt, unsigned int *pixels, const t_m4 m)
 {
 	pthread_t			threads[THREAD_COUNT];
 	t_thread_args		args[THREAD_COUNT];
