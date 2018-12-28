@@ -24,7 +24,7 @@ static void	sda_export_line(t_obj *obj, t_sda_export *export,
 
 	if (!(value = export->cfg[p].export(obj, export)))
 		return ;
-	ft_dprintf(export->fd, "%-*.1k%s%s\n",
+	ft_dprintf(export->fd, "%-*.1k%s %s\n",
 		lvl + 1, ft_printf_conv_padding, '\t',
 		export->cfg[p].str,
 		value);
