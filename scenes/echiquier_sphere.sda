@@ -3,11 +3,23 @@ CAMERA
 	rot: 25 0 0
 	POINTLIGHT
 		intensity: 150
+
 CAMERA
 	pos: 1.111624 1.16 4.23005
 	rot: 13.540844 5.729577 0
 #	POINTLIGHT
 #		intensity: 150
+
+CAMERA
+	name: betty
+	pos: 0.847391 0.643643 -0.466169
+	rot: -3.647889 28.647888 0
+
+CAMERA
+	name: marie
+	pos: 1.11 1.16 4.23
+	rot: 13.540842 5.729576 0
+
 PLAN
 	pos: 0 -3 0
 	color: #1f0f4a
