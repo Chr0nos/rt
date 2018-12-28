@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 22:04:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2018/12/28 19:04:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	else if (dir & ROTATE_DOWN)
 		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.x, -x));
 	if (dir & ROLL_LEFT)
-		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, x));
-	else if (dir & ROLL_RIGHT)
 		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, -x));
+	else if (dir & ROLL_RIGHT)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, x));
 	cam->trans = geo_quat_tomatrix_offset(*q, cam->trans.w);
 	cam->transform.matrix = cam->trans;
 	cam->transform.axis = (struct s_world){
