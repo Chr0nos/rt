@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 18:08:25 by snicolet          #+#    #+#             */
-/*   Updated: 2016/06/23 22:04:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2018/12/28 19:04:34 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,36 @@ void	rt_update_camera(t_v2i geometry, t_camera *cam)
 
 void	camera_rotate(t_rt *rt, const double x, const int dir)
 {
-	t_obj	*cam;
+	t_obj				*cam;
+	struct s_quaternion	*q;
 
 	cam = rt->root->content;
+	q = &cam->transform.q;
 	if (dir & (ROTATE_LEFT | ROTATE_RIGHT))
 		cam->rotation.y += (dir & ROTATE_LEFT) ? -x : x;
 	if (dir & (ROTATE_UP | ROTATE_DOWN))
 		cam->rotation.x += (dir & ROTATE_UP) ? -x : x;
 	if (dir & ROLL)
 		cam->rotation.z += (dir & ROLL_LEFT) ? -x : x;
-	cam->trans = geo_mk4_rotxyz(
-		cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
+	if (dir & ROTATE_LEFT)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.y, x));
+	else if (dir & ROTATE_RIGHT)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.y, -x));
+	if (dir & ROTATE_UP)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.x, x));
+	else if (dir & ROTATE_DOWN)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.x, -x));
+	if (dir & ROLL_LEFT)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, -x));
+	else if (dir & ROLL_RIGHT)
+		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, x));
+	cam->trans = geo_quat_tomatrix_offset(*q, cam->trans.w);
+	cam->transform.matrix = cam->trans;
+	cam->transform.axis = (struct s_world){
+		.x = geo_apply_v3d(AXIS_X, &cam->trans),
+		.y = geo_apply_v3d(AXIS_Y, &cam->trans),
+		.z = geo_apply_v3d(AXIS_Z, &cam->trans)
+	};
 }
 
 void	camera_save(t_rt *rt)
@@ -97,6 +116,9 @@ int		camera_reset(t_rt *rt)
 	cam = obj->content;
 	obj->trans = cam->origin;
 	obj->rotation = cam->origin_rot;
+	obj->transform.q = geo_quat_from_rot(
+		(t_v3d){obj->rotation.x, obj->rotation.y, obj->rotation.z});
+	// obj->trans = geo_quat_tomatrix_offset(cam->q, obj->trans.w);
 	rt->keyboard |= FORCE_DISPLAY;
 	return (0);
 }

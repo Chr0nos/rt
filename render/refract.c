@@ -21,17 +21,17 @@
 
 static t_v4d	rt_ray_refract(const t_render *r, const t_ray *ray)
 {
-	const double	*rfi = &r->obj_intersect->refractive_index;
+	const double	rfi = r->obj_intersect->refractive_index;
 	const double	cosa = geo_dotv4(r->normal, geo_invv4(ray->dir));
-	const double	cosb = sqrt(1 - pow(1.0 / *rfi, 2) * (1 - pow(cosa, 2)));
+	const double	cosb = sqrt(1 - pow(1.0 / rfi, 2) * (1 - pow(cosa, 2)));
 	const double	coef = (cosa > 0.0 ? -1.0 : 1.0);
 
 	return ((t_v4d) {
-		(1.0 / *rfi) * ray->dir.x + ((1.0 / *rfi) * cosa + cosb * coef)
+		(1.0 / rfi) * ray->dir.x + ((1.0 / rfi) * cosa + cosb * coef)
 		* r->normal.x,
-		(1.0 / *rfi) * ray->dir.y + ((1.0 / *rfi) * cosa + cosb *
+		(1.0 / rfi) * ray->dir.y + ((1.0 / rfi) * cosa + cosb *
 		coef) * r->normal.y,
-		(1.0 / *rfi) * ray->dir.z + ((1.0 / *rfi) * cosa +
+		(1.0 / rfi) * ray->dir.z + ((1.0 / rfi) * cosa +
 		cosb * coef) * r->normal.z,
 		0.0
 	});
@@ -47,7 +47,7 @@ unsigned int	rt_render_opacity(t_rt *rt, const t_ray *ray, const t_render *r)
 	alpha = A(shader_color_texture_intersection(r));
 	if (alpha > 0xff)
 		alpha = 0xff;
-	if (!alpha)
+	else if (!alpha)
 		return (ray->color);
 	nray = *ray;
 	nray.start = geo_addv4(r->intersection, geo_multv4(ray->dir,

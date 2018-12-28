@@ -28,6 +28,9 @@
 # define RT_CFGB_INMENU			(1u << 3)
 # define RT_CFGB_REFRESHINTER	(1u << 4)
 # define RT_CFGB_INTERFEDIT		(1u << 5)
+# define AXIS_X					(struct s_v3d){1.0, 0.0, 0.0}
+# define AXIS_Y					(struct s_v3d){0.0, 1.0, 0.0}
+# define AXIS_Z					(struct s_v3d){0.0, 0.0, 1.0}
 
 typedef enum	e_rendflag
 {

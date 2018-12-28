@@ -32,6 +32,18 @@ void			rt_obj_init_shader(t_obj *obj)
 		(void*)(unsigned long)&shader_damier);
 }
 
+static void		rt_obj_init_transform(struct s_transform *trans)
+{
+	trans->axis = (struct s_world) {
+		.x = (struct s_v3d){1.0, 0.0, 0.0},
+		.y = (struct s_v3d){0.0, 1.0, 0.0},
+		.z = (struct s_v3d){0.0, 0.0, 1.0}
+	};
+	trans->q = geo_quat_identity();
+	trans->scale = (struct s_v3d){1.0, 1.0, 1.0};
+	trans->matrix = geo_mk4_identity();
+}
+
 t_obj			*rt_obj_init(t_obj *obj, int type)
 {
 	obj->id = 0;
@@ -42,6 +54,7 @@ t_obj			*rt_obj_init(t_obj *obj, int type)
 	obj->childs = NULL;
 	obj->content = NULL;
 	obj->trans = geo_mk4_identity();
+	rt_obj_init_transform(&obj->transform);
 	obj->bounds = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 	obj->rotation = (t_v4d){0.0, 0.0, 0.0, 0.0};

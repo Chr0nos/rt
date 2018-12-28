@@ -21,7 +21,7 @@ static void		read_txt_help(char *src)
 
 	if ((ret_fd = open(src, O_RDONLY)) == -1)
 	{
-		ft_putstr("Error, arg_help.txt or arg_help_key.txt not found\n");
+		ft_dprintf(STDERR_FILENO, "%s%s%s", "Error: ", src, "not readable.\n");
 		exit(1);
 	}
 	while ((ft_get_next_line(ret_fd, &line)) == 1)
@@ -40,5 +40,5 @@ int				arg_display_help(t_rt *rt, int ac, char **av)
 	(void)rt;
 	read_txt_help("arguments/arg_help.txt");
 	read_txt_help("arguments/arg_help_key.txt");
-	return (0);
+	return (PARSE_ARG_STOPALL);
 }

@@ -5,12 +5,12 @@ SETTING
 CAMERA
 	pos: -6.59948 3.783373 -1.747077
 	rot: 11.459154 -664.63104 0
-	MESH
-		name: wheatley
-		pos: 0 0 5
-		texture: textures/wheatley.jpg
-		normal: textures/wheatley_normal.jpg
-		obj: scenes/wheatley.obj
+#	MESH
+#		name: wheatley
+#		pos: 0 0 5
+#		texture: textures/wheatley.jpg
+#		normal: textures/wheatley_normal.jpg
+#		obj: scenes/wheatley.obj
 CAMERA
 	pos: 23.239813 6.707274 2.774651
 	rot: 51.566198 -796.411334 34.377467

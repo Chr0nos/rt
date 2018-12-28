@@ -31,6 +31,21 @@ enum	e_flag_intersect
 	INTER_OUT = (1 << 2)
 };
 
+struct					s_world
+{
+	struct s_v3d		x;
+	struct s_v3d		y;
+	struct s_v3d		z;
+};
+
+struct					s_transform
+{
+	struct s_world		axis;
+	struct s_quaternion	q;
+	struct s_v3d		scale;
+	struct s_m4			matrix;
+};
+
 typedef struct			s_obj
 {
 	t_type				type;
@@ -38,6 +53,7 @@ typedef struct			s_obj
 	size_t				cfgbits;
 	int					flags;
 	t_mattf				trans;
+	struct s_transform	transform;
 	t_v4d				rotation;
 	t_box				bounds;
 	t_box				hitbox;
@@ -60,8 +76,6 @@ typedef struct			s_obj_lookup
 	t_obj				*current;
 	t_obj				*next;
 }						t_obj_lookup;
-
-struct s_rt;
 
 t_obj					*rt_obj_init(t_obj *obj, int type);
 t_obj					*rt_obj_nparent(t_obj *obj, unsigned int n);
