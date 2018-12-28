@@ -68,9 +68,6 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 		cam->rotation.x += (dir & ROTATE_UP) ? -x : x;
 	if (dir & ROLL)
 		cam->rotation.z += (dir & ROLL_LEFT) ? -x : x;
-	// cam->trans = geo_mk4_rotxyz(
-		// cam->rotation, (t_v4d){1.0, 1.0, 1.0, 1.0}, cam->trans.w);
-	// quaternion part
 	if (dir & ROTATE_LEFT)
 		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.y, x));
 	else if (dir & ROTATE_RIGHT)
@@ -84,6 +81,12 @@ void	camera_rotate(t_rt *rt, const double x, const int dir)
 	else if (dir & ROLL_RIGHT)
 		*q = geo_quat_mult(*q, geo_quat_rot(cam->transform.axis.z, -x));
 	cam->trans = geo_quat_tomatrix_offset(*q, cam->trans.w);
+	cam->transform.matrix = cam->trans;
+	cam->transform.axis = (struct s_world){
+		.x = geo_apply_v3d(AXIS_X, &cam->trans),
+		.y = geo_apply_v3d(AXIS_Y, &cam->trans),
+		.z = geo_apply_v3d(AXIS_Z, &cam->trans)
+	};
 }
 
 void	camera_save(t_rt *rt)
