@@ -29,6 +29,7 @@ The project subject is available here: https://cdn.intra.42.fr/pdf/pdf/33/rt.fr.
 | m             | switch to next camera                     |
 | shift         | move faster (wasdeq...)                   |
 | r             | reset camera                              |
+| y             | save current camera                       |
 | p             | force rebuild of current scene            |
 | f             | toggle full screen                        |
 | t             | display current used textures             |
