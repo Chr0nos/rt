@@ -62,5 +62,5 @@ parameters, and non mandatory values
 - Normal mapping
 - Multiple lighting
 
-# Screeshoot
+# Screenshoot
 ![Image](https://github.com/Chr0nos/rt/blob/master/screenshoots/earth.png "image")
