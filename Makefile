@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snicolet <snicolet@student.42.fr>          +#+  +:+       +#+         #
+#    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#*   Updated: 2016/10/27 04:10:52 by snicolet         ###   ########.fr       *#
+#    Updated: 2020/04/20 18:16:50 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ OPSYS=$(shell uname -s)
 HOSTNAME=$(shell hostname)
 CLANGVERSION=$(shell clang -v 2>&1 | grep "clang version" | head -c19 | tail -c 5)
 NAME=rt
-FLAGS=-Wall -Wextra -Werror -Weverything -Wno-strict-prototypes -Wno-strict-aliasing -pipe -Ofast -march=native -mtune=native -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
+FLAGS=-Wall -Wextra -Werror -Weverything -Wno-float-conversion -Wno-strict-prototypes -Wno-strict-aliasing -pipe -Ofast -march=native -mtune=native -Wno-padded -Wno-documentation-unknown-command -Wno-documentation
 ifneq ($(CLANGVERSION),3.5.2)
 	FLAGS+=-Wno-reserved-id-macro
 endif
@@ -206,7 +206,7 @@ $(LIBFT)/Makefile:
 	@echo Fetching submodules
 	git submodule init
 	git submodule update
-	
+
 $(LIBFT)/libft.a: $(LIBFT)/Makefile
 	make -j -C $(LIBFT) CC=clang FLAGS="$(FLAGS)"
 
