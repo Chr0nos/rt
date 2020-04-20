@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/19 22:06:06 by snicolet          #+#    #+#              #
-#    Updated: 2020/04/20 18:16:50 by snicolet         ###   ########.fr        #
+#    Updated: 2020/04/20 18:20:47 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ifeq ($(OPSYS), Darwin)
 	endif
 	INC+=-I ./headers/mac
 else
-	SDLLINK=-lSDL2 -lSDL2_image -lSDL2_ttf
+	SDLLINK=-L/usr/lib/x86_64-linux-gnu/ -lSDL2 -lSDL2_image -lSDL2_ttf
 	ifeq ($(HOSTNAME),stark)
 		INC+=-I./headers/mac
 	else
