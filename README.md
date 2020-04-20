@@ -64,3 +64,17 @@ parameters, and non mandatory values
 
 # Screenshoot
 ![Image](https://github.com/Chr0nos/rt/blob/master/screenshoots/earth.png "image")
+
+
+# Compile
+## Archlinux
+```shell
+sudo pacman -S extra/sdl2 extra/sdl2_ttf extra/sdl2_image make clang
+make
+```
+
+## Ubuntu
+```shell
+sudo apt install libsdl2-ttf-dev libsdl2-dev build-essential libsdl2-2.0-0 libsdl2-ttf-2.0-0 libsdl2-image-2.0-0 libsdl2-image-dev clang
+make
+```
